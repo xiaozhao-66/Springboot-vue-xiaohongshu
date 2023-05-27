@@ -1,0 +1,79 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /manage
+
+spring:
+  application:
+    name: ccimgcloud-manage
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ccimg-platform?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
+    username: root
+    password: mogu2018
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+#  rabbitmq:
+#    host: 192.168.57.128
+#    port: 5672
+#    username: admin
+#    password: mogu2018
+#    # 虚拟主机
+#    virtual-host: /
+#    # 开启发送端发送确认，无论是否到达broker都会触发回调【发送端确认机制+本地事务表】
+#    publisher-confirm-type: correlated
+#    # 开启发送端抵达队列确认，消息未被队列接收时触发回调【发送端确认机制+本地事务表】
+#    publisher-returns: true
+#    # 消息在没有被队列接收时是否强行退回
+#    template:
+#      mandatory: true
+#    # 消费者手动确认模式，关闭自动确认，否则会消息丢失
+#    listener:
+#      simple:
+#        acknowledge-mode: manual
+
+#  redis:
+#    database: 0
+#    host: localhost
+#    port: 6379
+#    password:  # 密码（默认为空）
+#    timeout: 6000ms  # 连接超时时长（毫秒）
+#    jedis:
+#      pool:
+#        max-active: 1000  # 连接池最大连接数（使用负值表示没有限制）
+#        max-wait: -1ms      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+#        max-idle: 10      # 连接池中的最大空闲连接
+#        min-idle: 5       # 连接池中的最小空闲连接
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.xz.manage.entity
+  global-config:
+    #数据库相关配置
+    db-config:
+      #主键类型
+      id-type: ASSIGN_ID
+    banner: false
+  #原生配置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    call-setters-on-nulls: true
+    jdbc-type-for-null: 'null'
+  configuration-properties:
+    prefix:
+    blobType: BLOB
+    boolValue: TRUE
+
+#feign:
+#  client:
+#    config: true
+

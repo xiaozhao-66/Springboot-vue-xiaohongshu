@@ -1,0 +1,6 @@
+com\xz\gateway\common\redis\RedisUtils.class
+com\xz\gateway\config\AuthorizeGlobalFilter.class
+com\xz\gateway\config\CorsConfig.class
+com\xz\gateway\ApiGatewayApplication.class
+com\xz\gateway\common\redis\RedisConfig.class
+com\xz\gateway\utils\JwtUtils.class

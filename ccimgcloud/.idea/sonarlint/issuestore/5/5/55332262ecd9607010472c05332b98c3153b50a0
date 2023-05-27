@@ -1,0 +1,13 @@
+
+g	java:S112&"FDefine and throw a dedicated exception instead of using a generic one.(ù™Ùãşÿÿÿÿ8°ÿ‰¯€1
+s
+java:S3008"XRename this field "m_wordCut_cfg" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶Õ¹Ğşÿÿÿÿ
+\
+java:S1118":Add a private constructor to hide the implicit public one.(üª…¹üÿÿÿÿ8ŞÀĞ„1
+]	java:S125,"<This block of commented-out lines of code should be removed.(»•ûÿÿÿÿ8êÀĞ„1
+O
+java:S11357"2Complete the task associated to this TODO comment.(ÉÚõÎ8ÿĞø®€1
+c
+java:S1128	"ARemove this unused import 'org.wltea.analyzer.cfg.DefaultConfig'.(ş¡ˆøÿÿÿÿ8ëÀĞ„1
+S
+java:S1068"1Remove this unused "m_wordCut_cfg" private field.(¶Õ¹Ğşÿÿÿÿ8ëÀĞ„1

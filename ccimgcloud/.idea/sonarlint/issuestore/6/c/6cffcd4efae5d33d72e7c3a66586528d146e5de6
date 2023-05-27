@@ -1,0 +1,13 @@
+
+r
+java:S1450*"WRemove the "httpHost" field and declare it as a local variable in the relevant methods.(¨»ϋύÿÿÿÿ
+Q
+java:S1874,";Remove this use of "RestHighLevelClient"; it is deprecated.(¤‡“Υ
+V
+java:S18744";Remove this use of "RestHighLevelClient"; it is deprecated.(±λόΊώÿÿÿÿ
+V
+java:S1874@";Remove this use of "RestHighLevelClient"; it is deprecated.(‡Χ£ωÿÿÿÿ
+>
+java:S1604I"(Make this anonymous inner class a lambda(“έ¶
+>
+java:S1604X"(Make this anonymous inner class a lambda(Ή”µο

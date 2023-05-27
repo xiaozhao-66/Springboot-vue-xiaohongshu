@@ -1,0 +1,140 @@
+{
+  "groups": [
+    {
+      "name": "dynamic",
+      "type": "com.xz.datasource.properties.DynamicDataSourceProperties",
+      "sourceType": "com.xz.datasource.properties.DynamicDataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.druid",
+      "type": "com.xz.datasource.properties.DataSourceProperties",
+      "sourceType": "com.xz.datasource.config.DynamicDataSourceConfig",
+      "sourceMethod": "dataSourceProperties()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "dynamic.datasource",
+      "type": "java.util.Map<java.lang.String,com.xz.datasource.properties.DataSourceProperties>",
+      "sourceType": "com.xz.datasource.properties.DynamicDataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.druid.driver-class-name",
+      "type": "java.lang.String",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.druid.filters",
+      "type": "java.lang.String",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties",
+      "defaultValue": "stat,wall"
+    },
+    {
+      "name": "spring.datasource.druid.initial-size",
+      "type": "java.lang.Integer",
+      "description": "Druid默认参数",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties",
+      "defaultValue": 2
+    },
+    {
+      "name": "spring.datasource.druid.max-active",
+      "type": "java.lang.Integer",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties",
+      "defaultValue": 10
+    },
+    {
+      "name": "spring.datasource.druid.max-evictable-idle-time-millis",
+      "type": "java.lang.Long",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.datasource.druid.max-open-prepared-statements",
+      "type": "java.lang.Integer",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties",
+      "defaultValue": -1
+    },
+    {
+      "name": "spring.datasource.druid.max-wait",
+      "type": "java.lang.Long",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.datasource.druid.min-evictable-idle-time-millis",
+      "type": "java.lang.Long",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.datasource.druid.min-idle",
+      "type": "java.lang.Integer",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties",
+      "defaultValue": -1
+    },
+    {
+      "name": "spring.datasource.druid.password",
+      "type": "java.lang.String",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.druid.pool-prepared-statements",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.datasource.druid.share-prepared-statements",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.datasource.druid.test-on-borrow",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.datasource.druid.test-on-return",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties",
+      "defaultValue": false
+    },
+    {
+      "name": "spring.datasource.druid.test-while-idle",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties",
+      "defaultValue": true
+    },
+    {
+      "name": "spring.datasource.druid.time-between-eviction-runs-millis",
+      "type": "java.lang.Long",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "spring.datasource.druid.url",
+      "type": "java.lang.String",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.druid.username",
+      "type": "java.lang.String",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties"
+    },
+    {
+      "name": "spring.datasource.druid.validation-query",
+      "type": "java.lang.String",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties",
+      "defaultValue": "select 1"
+    },
+    {
+      "name": "spring.datasource.druid.validation-query-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.xz.datasource.properties.DataSourceProperties",
+      "defaultValue": -1
+    }
+  ],
+  "hints": []
+}

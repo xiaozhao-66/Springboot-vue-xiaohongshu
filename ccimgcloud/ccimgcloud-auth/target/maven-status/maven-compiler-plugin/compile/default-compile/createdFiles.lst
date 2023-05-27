@@ -1,0 +1,16 @@
+com\xz\auth\dao\UserOtherLoginRelationDao.class
+com\xz\auth\entity\UserRecordEntity.class
+com\xz\auth\controller\AuthUserController.class
+com\xz\auth\constant\AuthConstant.class
+com\xz\auth\AuthApplication.class
+com\xz\auth\dao\UserRecordDao.class
+com\xz\auth\entity\UserOtherLoginRelationEntity.class
+com\xz\auth\service\impl\UserOtherLoginRelationServiceImpl.class
+com\xz\auth\service\impl\AuthUserServiceImpl.class
+com\xz\auth\dto\UserOtherLoginRelationDTO.class
+com\xz\auth\dao\AuthUserDao.class
+com\xz\auth\service\AuthUserService.class
+com\xz\auth\service\UserOtherLoginRelationService.class
+com\xz\auth\dto\AuthUserDTO.class
+com\xz\auth\entity\AuthUser.class
+com\xz\auth\constant\AuthConstant$ReturnMessage.class

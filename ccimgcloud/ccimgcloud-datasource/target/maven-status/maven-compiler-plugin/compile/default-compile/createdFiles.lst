@@ -1,0 +1,10 @@
+com\xz\datasource\annotation\DataSource.class
+com\xz\datasource\config\DynamicContextHolder$1.class
+com\xz\datasource\aspect\DataSourceAspect.class
+com\xz\datasource\config\DynamicDataSourceFactory.class
+com\xz\datasource\properties\DynamicDataSourceProperties.class
+com\xz\datasource\config\DynamicContextHolder.class
+com\xz\datasource\config\DynamicDataSourceConfig.class
+META-INF\spring-configuration-metadata.json
+com\xz\datasource\config\DynamicDataSource.class
+com\xz\datasource\properties\DataSourceProperties.class

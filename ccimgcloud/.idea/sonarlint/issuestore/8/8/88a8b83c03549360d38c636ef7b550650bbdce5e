@@ -1,0 +1,28 @@
+
+W
+java:S1128"<Remove this unused import 'com.xz.common.constant.Constant'.(úÖğäıÿÿÿÿ
+M
+java:S1128"8Remove this unused import 'com.xz.common.page.PageData'.(ŸëäY
+M
+java:S1128"7Remove this unused import 'com.xz.common.utils.Result'.(™·©»
+[
+java:S1128"@Remove this unused import 'com.xz.common.validator.AssertUtils'.(Œ»‰ëÿÿÿÿÿ
+^
+java:S1128"CRemove this unused import 'com.xz.common.validator.ValidatorUtils'.(şØ§ãøÿÿÿÿ
+^
+java:S1128"CRemove this unused import 'com.xz.common.validator.group.AddGroup'.(À‡Ñøÿÿÿÿ
+b
+java:S1128	"GRemove this unused import 'com.xz.common.validator.group.DefaultGroup'.(ü´¨‚ûÿÿÿÿ
+\
+java:S1128
+"FRemove this unused import 'com.xz.common.validator.group.UpdateGroup'.(ÇÜ‘†
+Z
+java:S1128"DRemove this unused import 'io.swagger.annotations.ApiImplicitParam'.(…‡øË
+[
+java:S1128"ERemove this unused import 'io.swagger.annotations.ApiImplicitParams'.(Ó‘×
+V
+java:S1128"@Remove this unused import 'io.swagger.annotations.ApiOperation'.(¡šÜ
+e
+java:S1128"JRemove this unused import 'springfox.documentation.annotations.ApiIgnore'.(µâ¤›ùÿÿÿÿ
+E
+java:S1128"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ

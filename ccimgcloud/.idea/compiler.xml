@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ccimgcloud-datasource" />
+        <module name="ccimgcloud-generator" />
+        <module name="ccimgcloud-api-platform" />
+        <module name="ccimgcloud-common" />
+        <module name="ccimgcloud-manage" />
+        <module name="ccimgcloud-auth" />
+        <module name="ccimgcloud-admin" />
+        <module name="ccimgcloud-utils" />
+        <module name="ccimgcloud-recommend" />
+        <module name="ccimgcloud-api-search" />
+        <module name="ccimgcloud-api-auth" />
+        <module name="ccimgcloud-platform" />
+        <module name="ccimgcloud-api-admin" />
+        <module name="ccimgcloud-gateway" />
+        <module name="ccimgcloud-search" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ccimgclooud-common" target="1.5" />
+      <module name="recommend" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ccimgcloud" options="-parameters" />
+      <module name="ccimgcloud-admin" options="-parameters" />
+      <module name="ccimgcloud-api" options="-parameters" />
+      <module name="ccimgcloud-api-admin" options="-parameters" />
+      <module name="ccimgcloud-api-auth" options="-parameters" />
+      <module name="ccimgcloud-api-platform" options="-parameters" />
+      <module name="ccimgcloud-api-search" options="-parameters" />
+      <module name="ccimgcloud-auth" options="-parameters" />
+      <module name="ccimgcloud-common" options="-parameters" />
+      <module name="ccimgcloud-datasource" options="-parameters" />
+      <module name="ccimgcloud-gateway" options="-parameters" />
+      <module name="ccimgcloud-generator" options="-parameters" />
+      <module name="ccimgcloud-manage" options="-parameters" />
+      <module name="ccimgcloud-platform" options="-parameters" />
+      <module name="ccimgcloud-recommend" options="-parameters" />
+      <module name="ccimgcloud-search" options="-parameters" />
+      <module name="ccimgcloud-utils" options="-parameters" />
+      <module name="recommend" options="-parameters" />
+    </option>
+  </component>
+</project>

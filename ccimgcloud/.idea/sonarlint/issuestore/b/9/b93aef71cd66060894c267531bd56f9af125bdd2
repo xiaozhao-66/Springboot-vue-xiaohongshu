@@ -1,0 +1,7 @@
+
+œ
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(½Ú¾ûüÿÿÿÿ
+@
+java:S1068"*Remove this unused "logger" private field.(›ä´Ž
+{
+java:S1488"`Immediately return this expression instead of assigning it to the temporary variable "criteria".(Ö¾˜Áýÿÿÿÿ

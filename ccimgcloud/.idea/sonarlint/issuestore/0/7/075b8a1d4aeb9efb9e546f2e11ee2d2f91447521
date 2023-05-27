@@ -1,0 +1,13 @@
+
+U
+java:S1854.":Remove this useless assignment to local variable "input6".(É·‰âûÿÿÿÿ
+U
+java:S1854-":Remove this useless assignment to local variable "input5".(²‡Áñûÿÿÿÿ
+F
+java:S1481-"+Remove this unused "input5" local variable.(²‡Áñûÿÿÿÿ
+F
+java:S1481."+Remove this unused "input6" local variable.(É·‰âûÿÿÿÿ
+N	java:S1063"9Replace this use of System.out or System.err by a logger.(ÿñŠÿ
+Q	java:S1256"<This block of commented-out lines of code should be removed.(†óšù
+:
+java:S2629"$Invoke method(s) only conditionally.(®©‘“

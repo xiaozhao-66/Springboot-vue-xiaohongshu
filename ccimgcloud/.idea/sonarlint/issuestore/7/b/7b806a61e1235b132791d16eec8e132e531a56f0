@@ -1,0 +1,44 @@
+
+?
+java:S2129"$Remove this "BigInteger" constructor(ò€Ûøÿÿÿÿ
+h
+java:S3776/"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(€µ¨ÿ
+?
+java:S2129b"$Remove this "BigInteger" constructor(›¦ùìûÿÿÿÿ
+:
+java:S2129w"$Remove this "BigInteger" constructor(Ù•æÚ
+:
+java:S2129{"$Remove this "BigInteger" constructor(Øˆ—¤
+@
+java:S2129"$Remove this "BigInteger" constructor(ÖÂóÿùÿÿÿÿ
+@
+java:S2129™"$Remove this "BigInteger" constructor(­»²ıÿÿÿÿ
+@
+java:S2129œ"$Remove this "BigInteger" constructor(ÔìÍ«ıÿÿÿÿ
+@
+java:S2129œ"$Remove this "BigInteger" constructor(ÔìÍ«ıÿÿÿÿ
+@
+java:S2129§"$Remove this "BigInteger" constructor(å”¡¹úÿÿÿÿ
+@
+java:S2129ä"$Remove this "BigInteger" constructor(’áñ¦ÿÿÿÿÿ
+@
+java:S2129ä"$Remove this "BigInteger" constructor(’áñ¦ÿÿÿÿÿ
+@
+java:S2129ì"$Remove this "BigInteger" constructor(…ªûòúÿÿÿÿ
+O	java:S106¶"9Replace this use of System.out or System.err by a logger.(Æ¦”‰
+O	java:S106½"9Replace this use of System.out or System.err by a logger.(¡‡¿·
+O	java:S106Ä"9Replace this use of System.out or System.err by a logger.(Èòö
+T	java:S106Í"9Replace this use of System.out or System.err by a logger.(ò«‘¾üÿÿÿÿ
+_
+java:S1192‹"HDefine a constant instead of duplicating this literal "content" 8 times.(¡¥ê†
+e
+java:S1192"IDefine a constant instead of duplicating this literal "category" 8 times.(Õß¾¯ıÿÿÿÿ
+n	java:S135D"YReduce the total number of break and continue statements in this loop to use at most one.(ú‘¡Ñ
+l	java:S117Æ"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(îàêïøÿÿÿÿ
+g	java:S117Ç"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…óİ
+f	java:S117È"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ı·ı#
+g	java:S117É"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Áï
+3
+java:S1643“"Use a StringBuilder instead.(Åà•‚
+z
+java:S1488Õ"cImmediately return this expression instead of assigning it to the temporary variable "formatScale".(—úºª

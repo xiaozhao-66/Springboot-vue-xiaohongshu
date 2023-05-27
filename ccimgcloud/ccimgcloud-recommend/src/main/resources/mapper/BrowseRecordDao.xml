@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xz.recommend.dao.BrowseRecordDao">
+
+
+
+    <select id="selectNums"  resultType="string">
+        select mid from t_browse_record  where uid=#{uid} order by update_date desc limit 0,#{nums} ;
+    </select>
+
+</mapper>

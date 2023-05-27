@@ -1,0 +1,17 @@
+server:
+  port: 8085
+  servlet:
+    context-path: /utils
+
+spring:
+  application:
+    name: ccimgcloud-utils
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+

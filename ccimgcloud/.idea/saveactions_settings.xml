@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SaveActionSettings">
+    <option name="actions">
+      <set>
+        <option value="activate" />
+        <option value="fieldCanBeFinal" />
+        <option value="localCanBeFinal" />
+        <option value="localCanBeFinalExceptImplicit" />
+        <option value="methodMayBeStatic" />
+        <option value="unqualifiedFieldAccess" />
+        <option value="unqualifiedMethodAccess" />
+        <option value="unqualifiedStaticMemberAccess" />
+        <option value="missingOverrideAnnotation" />
+        <option value="useBlocks" />
+        <option value="generateSerialVersionUID" />
+        <option value="unnecessaryThis" />
+        <option value="finalPrivateMethod" />
+        <option value="unnecessaryFinalOnLocalVariableOrParameter" />
+        <option value="explicitTypeCanBeDiamond" />
+        <option value="suppressAnnotation" />
+        <option value="unnecessarySemicolon" />
+        <option value="accessCanBeTightened" />
+      </set>
+    </option>
+    <option name="configurationPath" value="" />
+  </component>
+</project>
