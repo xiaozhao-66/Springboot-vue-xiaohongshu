@@ -23,24 +23,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0840add4-c316-453a-90ee-09da3938f768" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/config/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/config/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/apk/__UNI__83A0CAE_cm.apk" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/apk/__UNI__83A0CAE_cm.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/apk/apkurl" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/apk/apkurl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/apk/cmManifestCache.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/apk/cmManifestCache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/certdata" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/certdata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/wgt/__UNI__83A0CAE/.manifest/google-keystore.keystore" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/wgt/__UNI__83A0CAE/.manifest/google-keystore.keystore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/wgt/__UNI__83A0CAE/__uniappquill.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/wgt/__UNI__83A0CAE/__uniappquill.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/wgt/__UNI__83A0CAE/app-config-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/wgt/__UNI__83A0CAE/app-config-service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/wgt/__UNI__83A0CAE/app-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/wgt/__UNI__83A0CAE/app-service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/wgt/__UNI__83A0CAE/app-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/wgt/__UNI__83A0CAE/app-view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/wgt/__UNI__83A0CAE/view.umd.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/wgt/__UNI__83A0CAE/view.umd.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/build/app-plus/__uniappquill.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/build/app-plus/__uniappquill.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/build/app-plus/app-config-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/build/app-plus/app-config-service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/build/app-plus/app-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/build/app-plus/app-service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/build/app-plus/app-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/build/app-plus/app-view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/build/app-plus/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/build/app-plus/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/build/app-plus/view.umd.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/build/app-plus/view.umd.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/.automator/app-plus/.automator.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/__uniappchooselocation.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/__uniapperror.png" beforeDir="false" />
@@ -240,43 +229,12 @@
       <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/uni_modules/evan-emoji/static/icon/del_icon.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/view.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/view.umd.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/release/apk/__UNI__83A0CAE__20230525124508.apk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/release/apk/烟火.apk" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/release/apk/烟火.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-admin/target/ccimgcloud-admin.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-admin/target/ccimgcloud-admin.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-admin/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-admin/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-admin/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-admin/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-auth/target/ccimgcloud-auth-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-auth/target/ccimgcloud-auth-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-auth/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-auth/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-auth/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-auth/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-common/src/main/java/com/xz/common/recommend/SentenceEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-common/src/main/java/com/xz/common/recommend/SentenceEncoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-datasource/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-datasource/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-datasource/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-datasource/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-datasource/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-datasource/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-gateway/target/ccimgcloud-gateway-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-gateway/target/ccimgcloud-gateway-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-gateway/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-gateway/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-gateway/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-gateway/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-generator/target/ccimgcloud-generator-1.0-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-generator/target/ccimgcloud-generator-1.0-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-generator/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-generator/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-generator/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-generator/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-manage/target/ccimgcloud-manage.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-manage/target/ccimgcloud-manage.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-manage/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-manage/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-manage/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-manage/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-platform/target/ccimgcloud-platform.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-platform/target/ccimgcloud-platform.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-platform/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-platform/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-platform/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-platform/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-platform/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-platform/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-platform/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-platform/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-search/target/ccimgcloud-search-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-search/target/ccimgcloud-search-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-search/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-search/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-search/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-search/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-search/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-search/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-search/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-search/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-utils/src/main/java/com/xz/utils/constant/OssConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-utils/src/main/java/com/xz/utils/constant/OssConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-utils/target/ccimgcloud-utils-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-utils/target/ccimgcloud-utils-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-utils/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-utils/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-utils/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-utils/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ccimgcloud-platform/src/main/resources/mapper/AgreeDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-platform/src/main/resources/mapper/AgreeDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ccimgcloud-platform/src/main/resources/mapper/CollectionDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-platform/src/main/resources/mapper/CollectionDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ccimgcloud-platform/src/main/resources/mapper/FollowDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-platform/src/main/resources/mapper/FollowDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../烟火.apk" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,8 +244,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
+        <option value="HTML File" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -307,6 +266,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -317,7 +277,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ccimgcloud-common/models" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -338,22 +298,48 @@
       <recent name="com.xz.platform" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.xz.recommend.utils" />
+      <recent name="com.xz.recommend.dto" />
       <recent name="com.xz.common.recommend" />
       <recent name="com.xz.recommend.common.recommend" />
       <recent name="com.xz.platform.config" />
-      <recent name="com.xz.search.config" />
-      <recent name="com.xz.recommend.config" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\48423\Desktop\springboot-vue-ccimgcloud\ccimgcloud\ccimgcloud-common\models" />
       <recent name="D:\project\xzcc-root\master\springboot-vue-ccimgcloud\ccimgcloud\ccimgcloud-common\src\main\java\com\xz\common" />
       <recent name="D:\project\xzcc-root\master\springboot-vue-ccimgcloud\ccimgcloud\ccimgcloud-common\src\main\java\com\xz\common\recommend" />
       <recent name="D:\project\xzcc-root\master\springboot-vue-ccimgcloud\ccimgcloud\ccimgcloud-common\models" />
       <recent name="D:\project\xzcc-root\master\springboot-vue-ccimgcloud\ccimgcloud\ccimgcloud-recommend\src\models" />
+      <recent name="D:\project\xzcc-root\master\springboot-vue-ccimgcloud\ccimgcloud\ccimgcloud-recommend\src\main\java\com\xz\recommend\common\recommend" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.ApiGatewayApplication">
-    <configuration name="RecommendUtils2 (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.KeywordsExtractor (1)">
+    <configuration name="KeywordsExtractor (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.xz.recommend.utils.KeywordsExtractor" />
+      <module name="ccimgcloud-recommend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.xz.recommend.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KeywordsExtractor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.xz.recommend.common.jsceg.KeywordsExtractor" />
+      <module name="ccimgcloud-recommend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.xz.recommend.common.jsceg.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RecommendUtils2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.xz.common.recommend.RecommendUtils2" />
       <module name="ccimgcloud-common" />
       <extension name="coverage">
@@ -366,33 +352,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RecommendUtils2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.xz.recommend.utils.RecommendUtils2" />
+    <configuration name="JcsegTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ccimgcloud-recommend" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.xz.recommend.utils.*" />
+          <option name="PATTERN" value="com.xz.recommend.jcseg.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.xz.recommend.jcseg" />
+      <option name="MAIN_CLASS_NAME" value="com.xz.recommend.jcseg.JcsegTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RecommendUtils2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.xz.recommend.common.client.recommend.RecommendUtils2" />
-      <module name="ccimgcloud-common" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.xz.recommend.common.recommend.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RecommendApplicationTests.test7" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RecommendApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ccimgcloud-recommend" />
       <extension name="coverage">
         <pattern>
@@ -402,8 +378,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.xz.recommend" />
       <option name="MAIN_CLASS_NAME" value="com.xz.recommend.RecommendApplicationTests" />
-      <option name="METHOD_NAME" value="test7" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -422,14 +397,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="AuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ccimgcloud-auth" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.xz.auth.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.xz.auth.AuthApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -449,14 +418,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlatFormApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="PlatFormApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ccimgcloud-platform" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.xz.platform.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.xz.platform.PlatFormApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -484,8 +447,11 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.KeywordsExtractor" />
+      <item itemvalue="Application.KeywordsExtractor (1)" />
       <item itemvalue="Application.RecommendUtils2" />
-      <item itemvalue="JUnit.RecommendApplicationTests.test7" />
+      <item itemvalue="JUnit.JcsegTest.test" />
+      <item itemvalue="JUnit.RecommendApplicationTests" />
       <item itemvalue="Spring Boot.GeneratorApplication" />
       <item itemvalue="Spring Boot.RecommendApplication" />
       <item itemvalue="Spring Boot.ManageApplication" />
@@ -493,17 +459,16 @@
       <item itemvalue="Spring Boot.AdminApplication" />
       <item itemvalue="Spring Boot.UtilApplication" />
       <item itemvalue="Spring Boot.ApiGatewayApplication" />
-      <item itemvalue="Spring Boot.AuthApplication" />
       <item itemvalue="Spring Boot.PlatFormApplication" />
-      <item itemvalue="Application.RecommendUtils2 (1)" />
+      <item itemvalue="Spring Boot.AuthApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.RecommendUtils2 (1)" />
-        <item itemvalue="Spring Boot.PlatFormApplication" />
-        <item itemvalue="Spring Boot.AuthApplication" />
+        <item itemvalue="Application.KeywordsExtractor (1)" />
         <item itemvalue="Application.RecommendUtils2" />
-        <item itemvalue="JUnit.RecommendApplicationTests.test7" />
+        <item itemvalue="Application.KeywordsExtractor" />
+        <item itemvalue="JUnit.RecommendApplicationTests" />
+        <item itemvalue="JUnit.JcsegTest.test" />
       </list>
     </recent_temporary>
   </component>
@@ -625,8 +590,19 @@
       <workItem from="1684904100717" duration="6529000" />
       <workItem from="1684975277397" duration="20140000" />
       <workItem from="1685061762603" duration="13670000" />
-      <workItem from="1685148661649" duration="2498000" />
-      <workItem from="1685183247061" duration="2801000" />
+      <workItem from="1685148661649" duration="2500000" />
+      <workItem from="1685282852337" duration="678000" />
+      <workItem from="1685368548525" duration="310000" />
+      <workItem from="1685375665898" duration="4704000" />
+      <workItem from="1685672946909" duration="4539000" />
+      <workItem from="1685752664525" duration="8699000" />
+      <workItem from="1685765845584" duration="5567000" />
+      <workItem from="1685794833229" duration="7829000" />
+      <workItem from="1685869364390" duration="2018000" />
+      <workItem from="1685876275243" duration="9287000" />
+      <workItem from="1685924934720" duration="28097000" />
+      <workItem from="1685962252543" duration="3111000" />
+      <workItem from="1686103240860" duration="1731000" />
     </task>
     <servers />
   </component>
@@ -675,25 +651,26 @@
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="600" y="314" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1707.1027@0.0.1707.1027" timestamp="1681029584068" />
-    <state x="680" y="222" key="#com.intellij.ide.util.MemberChooser" timestamp="1684976976894">
+    <state x="680" y="222" key="#com.intellij.ide.util.MemberChooser" timestamp="1686023480329">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state x="612" y="176" key="#com.intellij.ide.util.MemberChooser/0.0.1536.816@0.0.1536.816" timestamp="1682761743283" />
-    <state x="680" y="222" key="#com.intellij.ide.util.MemberChooser/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1683799817334" />
+    <state x="612" y="176" key="#com.intellij.ide.util.MemberChooser/0.0.1536.816@0.0.1536.816" timestamp="1686013619114" />
+    <state x="680" y="222" key="#com.intellij.ide.util.MemberChooser/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023480329" />
     <state x="3325" y="225" key="#com.intellij.ide.util.MemberChooser/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1684128204188" />
     <state x="680" y="222" key="#com.intellij.ide.util.MemberChooser/0.0.1707.1027@0.0.1707.1027" timestamp="1684976976894" />
     <state x="674" y="204" width="391" height="619" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1684729990198">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="674" y="204" width="391" height="619" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog/0.0.1707.1027@0.0.1707.1027" timestamp="1684729990198" />
-    <state x="392" y="436" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1684985200022">
+    <state x="392" y="436" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1685801271255">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="3001" y="442" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1679195577555" />
-    <state x="392" y="436" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1707.1027@0.0.1707.1027" timestamp="1684985200022" />
-    <state x="539" y="380" width="628" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1685061774210">
-      <screen x="0" y="0" width="1707" height="1027" />
+    <state x="392" y="436" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1707.1027@0.0.1707.1027" timestamp="1685801271255" />
+    <state x="485" y="302" width="566" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1685964970615">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
+    <state x="485" y="302" width="566" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.816@0.0.1536.816" timestamp="1685964970615" />
     <state x="539" y="380" width="628" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1678669939377" />
     <state x="539" y="380" width="628" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1707.1027@0.0.1707.1027" timestamp="1685061774210" />
     <state x="591" y="393" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1680949349641">
@@ -704,102 +681,103 @@
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="609" y="220" width="887" height="587" key="#xdebugger.evaluate/0.0.1707.1027@0.0.1707.1027" timestamp="1685070926387" />
-    <state width="816" height="461" key="DebuggerActiveHint" timestamp="1684983916979">
-      <screen x="0" y="0" width="1707" height="1027" />
+    <state width="735" height="367" key="DebuggerActiveHint" timestamp="1686027608470">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
+    <state width="735" height="367" key="DebuggerActiveHint/0.0.1536.816@0.0.1536.816" timestamp="1686027608470" />
     <state width="438" height="466" key="DebuggerActiveHint/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1679019945090" />
     <state width="816" height="461" key="DebuggerActiveHint/0.0.1707.1027@0.0.1707.1027" timestamp="1684983916979" />
     <state x="93" y="93" width="1521" height="841" key="DiffContextDialog" timestamp="1685112430007">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="93" y="93" width="1521" height="841" key="DiffContextDialog/0.0.1707.1027@0.0.1707.1027" timestamp="1685112430007" />
-    <state x="658" y="271" key="FileChooserDialogImpl" timestamp="1684918655055">
+    <state x="658" y="271" key="FileChooserDialogImpl" timestamp="1685870461530">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state x="658" y="271" key="FileChooserDialogImpl/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1683805894733" />
+    <state x="658" y="271" key="FileChooserDialogImpl/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1685870461530" />
     <state x="3300" y="274" key="FileChooserDialogImpl/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1678931896461" />
-    <state x="658" y="271" key="FileChooserDialogImpl/0.0.1707.1027@0.0.1707.1027" timestamp="1684918655055" />
-    <state width="1493" height="244" key="GridCell.Tab.0.bottom" timestamp="1685190915314">
+    <state x="658" y="271" key="FileChooserDialogImpl/0.0.1707.1027@0.0.1707.1027" timestamp="1685693432356" />
+    <state width="1493" height="244" key="GridCell.Tab.0.bottom" timestamp="1686033258162">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1685190915314" />
-    <state width="1663" height="267" key="GridCell.Tab.0.bottom/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1683894410762" />
-    <state width="1877" height="271" key="GridCell.Tab.0.bottom/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1684204194139" />
-    <state width="1663" height="388" key="GridCell.Tab.0.bottom/0.0.1707.1027@0.0.1707.1027" timestamp="1685158617335" />
-    <state width="1493" height="244" key="GridCell.Tab.0.center" timestamp="1685190915313">
+    <state width="1493" height="244" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1686033258162" />
+    <state width="1663" height="283" key="GridCell.Tab.0.bottom/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023908515" />
+    <state width="1877" height="289" key="GridCell.Tab.0.bottom/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1685966314609" />
+    <state width="1663" height="230" key="GridCell.Tab.0.bottom/0.0.1707.1027@0.0.1707.1027" timestamp="1685803618671" />
+    <state width="1493" height="244" key="GridCell.Tab.0.center" timestamp="1686033258162">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1685190915313" />
-    <state width="1663" height="267" key="GridCell.Tab.0.center/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1683894410762" />
-    <state width="1877" height="271" key="GridCell.Tab.0.center/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1684204194139" />
-    <state width="1663" height="388" key="GridCell.Tab.0.center/0.0.1707.1027@0.0.1707.1027" timestamp="1685158617335" />
-    <state width="1493" height="244" key="GridCell.Tab.0.left" timestamp="1685190915311">
+    <state width="1493" height="244" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1686033258162" />
+    <state width="1663" height="283" key="GridCell.Tab.0.center/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023908515" />
+    <state width="1877" height="289" key="GridCell.Tab.0.center/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1685966314608" />
+    <state width="1663" height="230" key="GridCell.Tab.0.center/0.0.1707.1027@0.0.1707.1027" timestamp="1685803618671" />
+    <state width="1493" height="244" key="GridCell.Tab.0.left" timestamp="1686033258162">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1685190915311" />
-    <state width="1663" height="267" key="GridCell.Tab.0.left/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1683894410762" />
-    <state width="1877" height="271" key="GridCell.Tab.0.left/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1684204194139" />
-    <state width="1663" height="388" key="GridCell.Tab.0.left/0.0.1707.1027@0.0.1707.1027" timestamp="1685158617335" />
-    <state width="1493" height="244" key="GridCell.Tab.0.right" timestamp="1685190915314">
+    <state width="1493" height="244" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1686033258162" />
+    <state width="1663" height="283" key="GridCell.Tab.0.left/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023908515" />
+    <state width="1877" height="289" key="GridCell.Tab.0.left/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1685966314608" />
+    <state width="1663" height="230" key="GridCell.Tab.0.left/0.0.1707.1027@0.0.1707.1027" timestamp="1685803618671" />
+    <state width="1493" height="244" key="GridCell.Tab.0.right" timestamp="1686033258162">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1685190915314" />
-    <state width="1663" height="267" key="GridCell.Tab.0.right/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1683894410762" />
-    <state width="1877" height="271" key="GridCell.Tab.0.right/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1684204194139" />
-    <state width="1663" height="388" key="GridCell.Tab.0.right/0.0.1707.1027@0.0.1707.1027" timestamp="1685158617335" />
-    <state width="1493" height="244" key="GridCell.Tab.1.bottom" timestamp="1685185804934">
+    <state width="1493" height="244" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1686033258162" />
+    <state width="1663" height="283" key="GridCell.Tab.0.right/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023908515" />
+    <state width="1877" height="289" key="GridCell.Tab.0.right/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1685966314608" />
+    <state width="1663" height="230" key="GridCell.Tab.0.right/0.0.1707.1027@0.0.1707.1027" timestamp="1685803618671" />
+    <state width="1493" height="244" key="GridCell.Tab.1.bottom" timestamp="1686033258162">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1685185804934" />
-    <state width="1663" height="267" key="GridCell.Tab.1.bottom/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1683894410762" />
-    <state width="1877" height="271" key="GridCell.Tab.1.bottom/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1684204194139" />
-    <state width="1663" height="388" key="GridCell.Tab.1.bottom/0.0.1707.1027@0.0.1707.1027" timestamp="1685158617336" />
-    <state width="1493" height="244" key="GridCell.Tab.1.center" timestamp="1685185804934">
+    <state width="1493" height="244" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1686033258162" />
+    <state width="1663" height="283" key="GridCell.Tab.1.bottom/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023199908" />
+    <state width="1877" height="289" key="GridCell.Tab.1.bottom/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1685966314610" />
+    <state width="1663" height="230" key="GridCell.Tab.1.bottom/0.0.1707.1027@0.0.1707.1027" timestamp="1685803618671" />
+    <state width="1493" height="244" key="GridCell.Tab.1.center" timestamp="1686033258162">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1685185804934" />
-    <state width="1663" height="267" key="GridCell.Tab.1.center/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1683894410762" />
-    <state width="1877" height="271" key="GridCell.Tab.1.center/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1684204194139" />
-    <state width="1663" height="388" key="GridCell.Tab.1.center/0.0.1707.1027@0.0.1707.1027" timestamp="1685158617335" />
-    <state width="1493" height="244" key="GridCell.Tab.1.left" timestamp="1685185804934">
+    <state width="1493" height="244" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1686033258162" />
+    <state width="1663" height="283" key="GridCell.Tab.1.center/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023199908" />
+    <state width="1877" height="289" key="GridCell.Tab.1.center/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1685966314610" />
+    <state width="1663" height="230" key="GridCell.Tab.1.center/0.0.1707.1027@0.0.1707.1027" timestamp="1685803618671" />
+    <state width="1493" height="244" key="GridCell.Tab.1.left" timestamp="1686033258162">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1685185804934" />
-    <state width="1663" height="267" key="GridCell.Tab.1.left/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1683894410762" />
-    <state width="1877" height="271" key="GridCell.Tab.1.left/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1684204194139" />
-    <state width="1663" height="388" key="GridCell.Tab.1.left/0.0.1707.1027@0.0.1707.1027" timestamp="1685158617335" />
-    <state width="1493" height="244" key="GridCell.Tab.1.right" timestamp="1685185804934">
+    <state width="1493" height="244" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1686033258162" />
+    <state width="1663" height="283" key="GridCell.Tab.1.left/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023199908" />
+    <state width="1877" height="289" key="GridCell.Tab.1.left/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1685966314609" />
+    <state width="1663" height="230" key="GridCell.Tab.1.left/0.0.1707.1027@0.0.1707.1027" timestamp="1685803618671" />
+    <state width="1493" height="244" key="GridCell.Tab.1.right" timestamp="1686033258162">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1685185804934" />
-    <state width="1663" height="267" key="GridCell.Tab.1.right/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1683894410762" />
-    <state width="1877" height="271" key="GridCell.Tab.1.right/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1684204194139" />
-    <state width="1663" height="388" key="GridCell.Tab.1.right/0.0.1707.1027@0.0.1707.1027" timestamp="1685158617336" />
-    <state width="1663" height="237" key="GridCell.Tab.2.bottom" timestamp="1685070950785">
-      <screen x="0" y="0" width="1707" height="1027" />
+    <state width="1493" height="244" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1686033258162" />
+    <state width="1663" height="283" key="GridCell.Tab.1.right/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023199908" />
+    <state width="1877" height="289" key="GridCell.Tab.1.right/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1685966314610" />
+    <state width="1663" height="230" key="GridCell.Tab.1.right/0.0.1707.1027@0.0.1707.1027" timestamp="1685803618671" />
+    <state width="1493" height="275" key="GridCell.Tab.2.bottom" timestamp="1686027976641">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="258" key="GridCell.Tab.2.bottom/0.0.1536.816@0.0.1536.816" timestamp="1682839369187" />
+    <state width="1493" height="275" key="GridCell.Tab.2.bottom/0.0.1536.816@0.0.1536.816" timestamp="1686027976641" />
     <state width="1877" height="348" key="GridCell.Tab.2.bottom/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1679025425646" />
     <state width="1877" height="362" key="GridCell.Tab.2.bottom/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1683966316686" />
     <state width="1663" height="237" key="GridCell.Tab.2.bottom/0.0.1707.1027@0.0.1707.1027" timestamp="1685070950785" />
-    <state width="1663" height="237" key="GridCell.Tab.2.center" timestamp="1685070950785">
-      <screen x="0" y="0" width="1707" height="1027" />
+    <state width="1493" height="275" key="GridCell.Tab.2.center" timestamp="1686027976641">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="258" key="GridCell.Tab.2.center/0.0.1536.816@0.0.1536.816" timestamp="1682839369187" />
+    <state width="1493" height="275" key="GridCell.Tab.2.center/0.0.1536.816@0.0.1536.816" timestamp="1686027976641" />
     <state width="1877" height="348" key="GridCell.Tab.2.center/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1679025425646" />
     <state width="1877" height="362" key="GridCell.Tab.2.center/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1683966316686" />
     <state width="1663" height="237" key="GridCell.Tab.2.center/0.0.1707.1027@0.0.1707.1027" timestamp="1685070950785" />
-    <state width="1663" height="237" key="GridCell.Tab.2.left" timestamp="1685070950785">
-      <screen x="0" y="0" width="1707" height="1027" />
+    <state width="1493" height="275" key="GridCell.Tab.2.left" timestamp="1686027976641">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="258" key="GridCell.Tab.2.left/0.0.1536.816@0.0.1536.816" timestamp="1682839369187" />
+    <state width="1493" height="275" key="GridCell.Tab.2.left/0.0.1536.816@0.0.1536.816" timestamp="1686027976641" />
     <state width="1877" height="348" key="GridCell.Tab.2.left/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1679025425646" />
     <state width="1877" height="362" key="GridCell.Tab.2.left/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1683966316686" />
     <state width="1663" height="237" key="GridCell.Tab.2.left/0.0.1707.1027@0.0.1707.1027" timestamp="1685070950785" />
-    <state width="1663" height="237" key="GridCell.Tab.2.right" timestamp="1685070950785">
-      <screen x="0" y="0" width="1707" height="1027" />
+    <state width="1493" height="275" key="GridCell.Tab.2.right" timestamp="1686027976641">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state width="1493" height="258" key="GridCell.Tab.2.right/0.0.1536.816@0.0.1536.816" timestamp="1682839369187" />
+    <state width="1493" height="275" key="GridCell.Tab.2.right/0.0.1536.816@0.0.1536.816" timestamp="1686027976641" />
     <state width="1877" height="348" key="GridCell.Tab.2.right/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1679025425646" />
     <state width="1877" height="362" key="GridCell.Tab.2.right/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1683966316686" />
     <state width="1663" height="237" key="GridCell.Tab.2.right/0.0.1707.1027@0.0.1707.1027" timestamp="1685070950785" />
@@ -839,24 +817,26 @@
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="399" y="107" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1707.1027@0.0.1707.1027" timestamp="1679915314391" />
-    <state x="326" y="242" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1685068553981">
-      <screen x="0" y="0" width="1707" height="1027" />
+    <state x="293" y="192" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1686014187730">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
+    <state x="293" y="192" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.816@0.0.1536.816" timestamp="1686014187730" />
     <state x="326" y="242" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1707.1027@0.0.1707.1027" timestamp="1685068553981" />
     <state x="119" y="207" width="1434" height="732" key="dock-window-1" timestamp="1683858710415">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="119" y="207" width="1434" height="732" key="dock-window-1/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1683858710415" />
-    <state x="980" y="297" key="extract.method.dialog" timestamp="1681884333132">
-      <screen x="0" y="0" width="1707" height="1027" />
+    <state x="882" y="236" key="extract.method.dialog" timestamp="1686010416858">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
+    <state x="882" y="236" key="extract.method.dialog/0.0.1536.816@0.0.1536.816" timestamp="1686010416857" />
     <state x="980" y="297" key="extract.method.dialog/0.0.1707.1027@0.0.1707.1027" timestamp="1681884333132" />
-    <state x="537" y="205" width="1024" height="626" key="find.popup" timestamp="1685071163799">
+    <state x="302" y="351" width="1024" height="626" key="find.popup" timestamp="1685801485937">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="585" y="338" width="674" height="616" key="find.popup/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1678689616731" />
     <state x="3167" y="416" width="759" height="624" key="find.popup/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1679013892004" />
-    <state x="537" y="205" width="1024" height="626" key="find.popup/0.0.1707.1027@0.0.1707.1027" timestamp="1685071163799" />
+    <state x="302" y="351" width="1024" height="626" key="find.popup/0.0.1707.1027@0.0.1707.1027" timestamp="1685801485937" />
     <state x="297" y="178" key="new project wizard" timestamp="1679378980144">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
@@ -871,24 +851,25 @@
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="510" y="238" key="run.anything.popup/0.0.1707.1027@0.0.1707.1027" timestamp="1681108761600" />
-    <state x="516" y="222" width="672" height="678" key="search.everywhere.popup" timestamp="1684729232809">
+    <state x="516" y="222" width="672" height="678" key="search.everywhere.popup" timestamp="1685944587091">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
+    <state x="516" y="222" width="672" height="678" key="search.everywhere.popup/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1685944587091" />
     <state x="3140" y="225" width="756" height="687" key="search.everywhere.popup/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1683964614424" />
-    <state x="516" y="222" width="672" height="678" key="search.everywhere.popup/0.0.1707.1027@0.0.1707.1027" timestamp="1684729232809" />
+    <state x="516" y="222" width="672" height="678" key="search.everywhere.popup/0.0.1707.1027@0.0.1707.1027" timestamp="1685760422492" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/ccimgcloud-platform/src/main/java/com/xz/platform/service/impl/FollowServiceImpl.java</url>
-          <line>160</line>
+          <line>183</line>
           <option name="timeStamp" value="150" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ccimgcloud-platform/src/main/java/com/xz/platform/service/impl/AgreeServiceImpl.java</url>
-          <line>91</line>
-          <option name="timeStamp" value="151" />
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/ccimgcloud-platform/src/main/java/com/xz/platform/service/impl/CommentServiceImpl.java</url>
+          <line>198</line>
+          <option name="timeStamp" value="153" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

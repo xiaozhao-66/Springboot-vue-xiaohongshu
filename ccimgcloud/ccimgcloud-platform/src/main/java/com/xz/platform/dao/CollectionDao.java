@@ -2,6 +2,7 @@ package com.xz.platform.dao;
 
 import com.xz.common.dao.BaseDao;
 import com.xz.platform.entity.CollectionEntity;
+import com.xz.platform.vo.CollectionVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -16,4 +17,6 @@ import java.util.List;
 public interface CollectionDao extends BaseDao<CollectionEntity> {
 
     void deleteBatchIdList(List<String> idList);
+
+    List<CollectionVo> getAllCollection(long page, long limit, String uid, Integer type);
 }

@@ -1,15 +1,10 @@
 package com.xz.platform.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.xz.common.service.impl.CrudServiceImpl;
-import com.xz.platform.common.utils.KMP;
-import com.xz.platform.dao.MessageDao;
+import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.platform.dao.SearchRecordDao;
-import com.xz.platform.dto.MessageDTO;
 import com.xz.platform.dto.SearchRecordDTO;
-import com.xz.platform.entity.MessageEntity;
 import com.xz.platform.entity.SearchRecordEntity;
-import com.xz.platform.service.MessageService;
 import com.xz.platform.service.SearchRecordService;
 import org.springframework.stereotype.Service;
 
@@ -19,17 +14,7 @@ import java.util.*;
  * @author 48423
  */
 @Service
-public class SearchRecordServiceImpl extends CrudServiceImpl<SearchRecordDao, SearchRecordEntity, SearchRecordDTO> implements SearchRecordService {
-    @Override
-    public QueryWrapper<SearchRecordEntity> getWrapper(Map<String, Object> params) {
-        return null;
-    }
-
-    private List<String> splitRecord(String content) {
-
-        String[] records = content.split(";");
-        return Arrays.asList(records);
-    }
+public class SearchRecordServiceImpl extends BaseServiceImpl<SearchRecordDao, SearchRecordEntity> implements SearchRecordService {
 
     @Override
     public List<String> getAllSearchRecord(String uid) {

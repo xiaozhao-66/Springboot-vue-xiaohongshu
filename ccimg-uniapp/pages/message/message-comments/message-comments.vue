@@ -20,11 +20,11 @@
 									<view v-else class="tui-msg-type-item">回复您的评论</view>
 									<view class="tui-msg-time">{{ item.time }}</view>
 								</view>
-								<view class="tui-msg-content">{{ item.replyContent }}</view>
+								<view class="tui-msg-content">{{ item.content }}</view>
 								<view class="tui-msg-content " v-if="item.replyId != 0">
 									<view  class="reply" style="display: flex;">
 										 <view v-if="item.replyUid!=uid">{{item.replyName}}:</view>
-										 <view>{{ item.content }}</view>
+										 <view>{{ item.replyContent }}</view>
 									</view>
 								</view>
 							</view>
@@ -46,11 +46,12 @@
 <script>
 import { getAllReplyComment } from "@/api/comment.js"
 import { addBrowseRecord } from "@/api/browseRecord.js"
+import {timeAgo} from "@/utils/webUtils.js"
 export default {
 	data() {
 		return {
 			page: 1,
-			limit: 7,
+			limit: 8,
 			total: 0,
 			isEnd: false, //是否到底底部了
 			loading: false, //是否正在加载
@@ -73,9 +74,13 @@ export default {
 				uid: this.uid
 			}
 			getAllReplyComment(this.page, this.limit, params).then(res => {
-				console.log(res.data)
-				this.dataList = res.data.records;
-				this.total = res.data.total
+				console.log(new Date(res.data[0].createDate).getTime())
+				res.data.forEach(e=>{
+					e.time = timeAgo(new Date(e.createDate).getTime())
+					this.dataList.push(e)
+				})
+				//this.dataList = res.data;
+				this.total = res.data.length;
 			})
 		},
 
@@ -93,10 +98,10 @@ export default {
 		},
 		loadData() {
 
-
+            console.log("111")
 			this.page = this.page + 1
 
-			if (this.dataList.length >= this.total) {
+			if (this.total<this.limit) {
 				this.isEnd = true
 				return
 			}
@@ -105,8 +110,12 @@ export default {
 				uid: this.uid
 			}
 			getAllReplyComment(this.page, this.limit, params).then(res => {
-				this.dataList.push(...res.data.records)
-
+				
+				res.data.forEach(e=>{
+					e.time = timeAgo(e.time)
+					this.dataList.push(e)
+				})
+				this.total = res.data.length
 			})
 		},
 		

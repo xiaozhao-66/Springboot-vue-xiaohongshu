@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<scroll-view scroll-y class="page" @scrolltolower="loadData" refresher-enabled="true"
-				:refresher-triggered="triggered" @refresherrefresh="onRefresh">
+				:refresher-triggered="triggered" @refresherrefresh="onRefresh" @scroll="scroll" :scroll-top="scrollTop">
 			<view class="tui-content-box">
 				<view class="tui-avatar-box">
 					<view @click="openDrawer" v-if="userInfo">
@@ -14,11 +14,7 @@
 				<view class="tui-search-box" @click="toSearch">
 					<tui-icon name="search-2" :size="18" color="#bfbfbf"></tui-icon>
 					<view class="tui-search-text" >请输入内容</view>
-					<!-- <input class="tui-search-text" placeholder="请输入搜索内容" v-model="keyword" /> -->
 				</view>
-				<!-- <view class="tui-notice-box">
-					<tui-button type="danger" height="54rpx" width="100rpx" :size="24" @click="esSearch">搜索</tui-button>
-				</view> -->
 			</view>
 			<view>
 				<tui-drawer mode="left" :visible="visiable" @close="closeDrawer">
@@ -74,12 +70,11 @@
 			</view>
 
 
-
-			<view class="tui-mtop">
-				<view class="nav">
+			<view :class="isFixed?'tui-mtop-fixed':'tui-mtop' " id='tui-mtop' >
+				<view class="nav" >
 					<ul>
-						<li v-for="(item, index) in categoryList">
-							<a @click="getImgListByCategory(item.id)">{{ item.name}}</a>
+						<li v-for="(item, index) in categoryList" :key="index">
+							<a @click="getImgListByCategory(item.id,index)"><view :class="index==C?'c-activated':''">{{item.name}}</view></a>
 						</li>
 					</ul>
 				</view>
@@ -91,7 +86,8 @@
 
 				<view class="nav-show" :class="T ? 'box-show' : ''">
 					<ul>
-						<li v-for="(item, index) in categoryList"><a @click="getImgListByCategory(item.id)">{{ item.name}}</a>
+						<li v-for="(item, index) in categoryList" :key="index">
+							<a @click="getImgListByCategory(item.id,index)"><view :class="index==C?'c-activated':''">{{item.name}}</view></a>
 						</li>
 					</ul>
 				</view>
@@ -133,7 +129,7 @@
 			<tui-icon name="loading" :size="18"></tui-icon>
 		</view>
 		<view class="loadStyle" v-if="isEnd">我也是有底线的~</view>
-		</scroll-view>
+	</scroll-view>
 		
 	</view>
 </template>
@@ -150,6 +146,7 @@ export default {
 	data() {
 		return {
 			T: true,
+			C: -1,
 			visiable: false,
 			triggered: false,
 			userInfo: {},
@@ -164,11 +161,20 @@ export default {
 			categoryList: [],
 			isSearchByCategory: false,
 			cid: '',
+			
+			//滚动
+			scrollTop: 0,
+			old: {
+				scrollTop: 0
+			},
+			isFixed:false,
 		}
 	},
 	watch:{
 	  seed(newVal,oldVal){
+		   
 		   this.userInfo = uni.getStorageSync("userInfo")
+		   this.onRefresh()
 	  },
 	},
 	created() {
@@ -177,8 +183,10 @@ export default {
 		
 	},
 	mounted() {
-	   this.getRecommend()
+		
+		this.getRecommend()
 	},
+	
 	methods: {
 		show() {
 			this.T = !this.T
@@ -189,7 +197,18 @@ export default {
 		closeDrawer() {
 			this.visiable = false
 		},
-
+		
+		scroll(e) {
+			
+			this.old.scrollTop = e.detail.scrollTop
+			if(e.detail.scrollTop>50){
+				this.isFixed = true
+			}else{
+				this.isFixed = false
+			}
+			
+		},
+		
 		getCategory() {
 			getCategory().then(res => {
 				
@@ -198,7 +217,8 @@ export default {
 			})
 		},
 
-		getImgListByCategory(id) {
+		getImgListByCategory(id,index) {
+			this.C = index
 			//数据要先清空
 			this.dataList = []
 			
@@ -218,6 +238,8 @@ export default {
 			})
 
 		},
+		
+		
 
 		getPage() {
 			let params = {}
@@ -227,7 +249,7 @@ export default {
 			})
 		},
 		onRefresh() {
-			
+			this.C = -1
 			this.triggered = true;
             this.isEnd = false
 			setTimeout(() => {
@@ -293,7 +315,6 @@ export default {
 					}
 					getRecommend(this.page, this.limit, params).then(res => {
 						
-						console.log("新的推荐",res.data)
 						if (res.data == null) {
 							getPage(this.page, this.limit, params).then(res => {
 								this.dataList.push(...res.data.records)
@@ -464,6 +485,15 @@ image {
 	display: flex;
 }
 
+.tui-mtop-fixed{
+	position: fixed; 
+	display: flex;
+	width: 100%;
+	top: 150rpx; 
+	z-index: 999; 
+	background-color: #fff;
+}
+
 .nav {
 	overflow: auto;
 }
@@ -489,15 +519,22 @@ image {
 	padding-left: 45rpx;
 }
 
-.nav ul li a:hover {
-	color: #ff0000;
+.c-activated{
+	
+	color: red;
 }
 
 .tui-mtop a {
 	line-height: 80rpx;
 	margin-right: 40rpx;
-
 }
+
+.tui-mtop-fixed a {
+	line-height: 80rpx;
+	margin-right: 40rpx;
+}
+
+
 
 .nav-show {
 	position: absolute;
@@ -513,7 +550,7 @@ image {
 }
 
 .nav-show ul {
-	margin-left: 40rpx;
+	
 }
 
 .nav-show ul li {
@@ -521,9 +558,13 @@ image {
 	display: inline-block;
 }
 
-.nav-show ul li a:hover {
-	color: #ff0000;
+.nav-show ul li a {
+	display: inline-block;
+	margin: 0rpx;
+	color: #333;
+	padding-left: 45rpx;
 }
+
 
 .tui-header-icon {
 	width: 100%;

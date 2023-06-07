@@ -14,4 +14,56 @@
         </foreach>
     </delete>
 
+
+    <select id="getAllCollection" resultType="com.xz.platform.vo.CollectionVo">
+        -- 查询收藏数据
+        -- 查询收藏数据
+        SELECT
+        c.id,
+        c.create_date AS collectionTime,
+        CASE
+        WHEN c.type = 1 THEN a.cover
+        ELSE i.cover
+        END AS cover,
+        CASE
+        WHEN c.type = 1 THEN a.id
+        ELSE i.id
+        END AS collectionId,
+        CASE
+        WHEN c.type = 1 THEN a.uid
+        ELSE i.user_id
+        END AS userId,
+        u.username,
+        u.avatar,
+        CASE
+        WHEN c.type = 1 THEN a.name
+        ELSE i.content
+        END AS content,
+
+        a.img_count,
+        a.collection_count,
+        i.agree_count,
+        i.count,
+        CASE
+        WHEN c.type = 1 THEN '1'
+        ELSE '0'
+        END AS type
+        FROM
+        t_collection c
+        LEFT JOIN t_album a ON c.collection_id = a.id AND c.type = 1
+        LEFT JOIN t_img_details i ON c.collection_id = i.id AND c.type != 1
+        LEFT JOIN t_user u ON
+        CASE
+        WHEN c.type = 1 THEN a.uid
+        ELSE i.user_id
+        END = u.id
+        WHERE
+        c.uid = #{uid} AND c.type = #{type}
+        ORDER BY
+        c.create_date DESC
+
+        LIMIT ${(page-1)*limit},${limit};
+
+    </select>
+
 </mapper>

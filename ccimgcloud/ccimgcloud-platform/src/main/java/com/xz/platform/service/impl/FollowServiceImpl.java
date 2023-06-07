@@ -1,31 +1,30 @@
 package com.xz.platform.service.impl;
 
-import cn.hutool.core.lang.Dict;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
 import com.xz.common.exception.RenException;
+import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.service.impl.CrudServiceImpl;
 import com.xz.common.utils.ConvertUtils;
 import com.xz.common.utils.DateUtils;
 import com.xz.common.utils.PageUtils;
+import com.xz.common.utils.RedisUtils;
 import com.xz.platform.common.constant.Constant;
 import com.xz.platform.dao.*;
 import com.xz.platform.dto.FollowDTO;
 import com.xz.platform.entity.*;
 import com.xz.platform.service.FollowService;
 import com.xz.platform.vo.FollowTrendVo;
-import com.xz.platform.vo.FollowVo;
+import com.xz.platform.vo.FollowVo;;
 import com.xz.platform.websocket.WebSocketServer;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -35,7 +34,7 @@ import java.util.stream.Collectors;
  * @since 1.0.0 2023-03-16
  */
 @Service
-public class FollowServiceImpl extends CrudServiceImpl<FollowDao, FollowEntity, FollowDTO> implements FollowService {
+public class FollowServiceImpl extends BaseServiceImpl<FollowDao, FollowEntity> implements FollowService {
 
     @Autowired
     ImgDetailsDao imgDetailsDao;
@@ -55,75 +54,100 @@ public class FollowServiceImpl extends CrudServiceImpl<FollowDao, FollowEntity, 
     @Autowired
     AgreeDao agreeDao;
 
+    @Autowired
+    RedisUtils redisUtils;
+
+
+    /**
+     *
+     * @param page
+     * @param limit
+     * @param uid
+     * @return
+     */
     @Override
-    public QueryWrapper<FollowEntity> getWrapper(Map<String, Object> params) {
-        String id = (String) params.get("id");
+    public List<FollowTrendVo> getAllFollowTrends(long page, long limit, String uid) {
+        String key = ImgDetailCacheNames.FOLLOW_TREND+uid+"page:"+page;
 
-        QueryWrapper<FollowEntity> wrapper = new QueryWrapper<>();
-        wrapper.eq(StringUtils.isNotBlank(id), "id", id);
+        if(Boolean.TRUE.equals(redisUtils.hasKey(key))){
+            String objStr = redisUtils.get(key);
+            List<FollowTrendVo> followTrendVos = JSON.parseArray(objStr, FollowTrendVo.class);
+            Page<FollowTrendVo> pages = PageUtils.getPages((int) page, (int) limit, followTrendVos);
+            assert pages != null;
+            return pages.getRecords();
+        }else{
 
-        return wrapper;
-    }
+        List<FollowTrendVo>  followTrendVoList = baseDao.getAllFollowTrends(page, limit, uid);
 
+//            旧方法
+//            List<FollowTrendVo> res = new ArrayList<>();
+//
+//            List<String> ids = new ArrayList<>();
+//            ids.add(userId);
+//
+//            //查询当前用户关注的所有用户
+//            List<FollowEntity> follows = baseDao.selectList(new QueryWrapper<FollowEntity>().eq("uid", userId));
+//
+//            ids.addAll(follows.stream().map(map -> String.valueOf(map.getFid())).collect(Collectors.toList()));
+//            //批量查找
+//
+//            Map<String, Object> map = new HashMap<>(4);
+//            map.put("idList", ids);
+//            map.put("page", page);
+//            map.put("limit", limit);
+//
+//            List<ImgDetailsEntity> imgDetailList = imgDetailsDao.selectBatch(map);
+//
+//
+//            FollowTrendVo followTrendVo = null;
+//            UserEntity userEntity = null;
+//            AlbumEntity albumEntity = null;
+//
+//
+//            for (ImgDetailsEntity model : imgDetailList) {
+//
+//                userEntity = userDao.selectById(model.getUserId());
+//                AgreeEntity agreeEntity = agreeDao.selectOne(new QueryWrapper<AgreeEntity>().and(e -> e.eq("uid", userId).eq("agree_id", model.getId()).eq("type", 1)));
+//
+//                List<String> imgList = JSON.parseArray(model.getImgsUrl(), String.class);
+//
+//
+//                followTrendVo = ConvertUtils.sourceToTarget(model, FollowTrendVo.class);
+//                followTrendVo.setMid(model.getId())
+//                        .setIsAgree(agreeEntity != null)
+//                        .setUserId(userEntity.getId())
+//                        .setUsername(userEntity.getUsername())
+//                        .setAvatar(userEntity.getAvatar())
+//                        .setImgsUrl(imgList)
+//                        .setTime(DateUtils.timeUtile(model.getUpdateDate()));
+//
+//
+//
+//                List<AlbumImgRelationEntity> albumImgRelationList = albumImgRelationDao.selectList(new QueryWrapper<AlbumImgRelationEntity>().eq("mid", model.getId()));
+//
+//                for (AlbumImgRelationEntity element : albumImgRelationList) {
+//                    albumEntity = albumDao.selectById(element.getAid());
+//                    if (albumEntity.getUid().equals(model.getUserId())) {
+//                        followTrendVo.setAlbumId(albumEntity.getId());
+//                        followTrendVo.setAlbumName(albumEntity.getName());
+//                        break;
+//                    }
+//                }
+//
+//                res.add(followTrendVo);
+//            }
 
-    @Override
-    public List<FollowTrendVo> getAllFollowTrends(long page, long limit, String userId) {
-
-        List<FollowTrendVo> res = new ArrayList<>();
-
-        List<String> ids = new ArrayList<>();
-        ids.add(userId);
-        //查询当前用户关注的所有用户
-        List<FollowEntity> follows = baseDao.selectList(new QueryWrapper<FollowEntity>().eq("uid", userId));
-
-        ids.addAll(follows.stream().map(map -> String.valueOf(map.getFid())).collect(Collectors.toList()));
-        //批量查找
-
-        Map<String, Object> map = new HashMap<>(4);
-        map.put("idList", ids);
-        //map.put("status",1);
-        map.put("page", page);
-        map.put("limit", limit);
-        List<ImgDetailsEntity> imgDetailList = imgDetailsDao.selectBatch(map);
-        FollowTrendVo followTrendVo = null;
-        UserEntity userEntity = null;
-        AlbumEntity albumEntity = null;
-        for (ImgDetailsEntity model : imgDetailList) {
-            userEntity = userDao.selectById(model.getUserId());
-            AgreeEntity agreeEntity = agreeDao.selectOne(new QueryWrapper<AgreeEntity>().and(e -> e.eq("uid", userId).eq("agree_id", model.getId()).eq("type", 1)));
-            List<String> imgList = JSON.parseArray(model.getImgsUrl(), String.class);
-
-            followTrendVo = ConvertUtils.sourceToTarget(model, FollowTrendVo.class);
-            followTrendVo.setMid(model.getId())
-                    .setIsAgree(agreeEntity != null)
-                    .setUserId(userEntity.getId())
-                    .setUsername(userEntity.getUsername())
-                    .setAvatar(userEntity.getAvatar())
-                    .setImgsUrl(imgList)
-                    .setTime(DateUtils.timeUtile(model.getUpdateDate()));
-
-            List<AlbumImgRelationEntity> albumImgRelationList = albumImgRelationDao.selectList(new QueryWrapper<AlbumImgRelationEntity>().eq("mid", model.getId()));
-
-            for (AlbumImgRelationEntity element : albumImgRelationList) {
-                albumEntity = albumDao.selectById(element.getAid());
-                if (albumEntity.getUid().equals(model.getUserId())) {
-                    followTrendVo.setAlbumId(albumEntity.getId());
-                    followTrendVo.setAlbumName(albumEntity.getName());
-                    break;
-                }
-            }
-
-            res.add(followTrendVo);
-
+            //设置缓存失效过期时间为5分钟
+            redisUtils.setEx(key,JSON.toJSONString(followTrendVoList),5,TimeUnit.MINUTES);
+            return followTrendVoList;
         }
-        return res;
     }
 
     @Override
     public boolean isFollow(String uid, String fid) {
 
-        FollowEntity followEntity = baseDao.selectOne(new QueryWrapper<FollowEntity>().and(e -> e.eq("uid", uid).eq("fid", fid)));
-        return followEntity != null;
+        Long count = baseDao.selectCount(new QueryWrapper<FollowEntity>().and(e -> e.eq("uid", uid).eq("fid", fid)));
+        return count>0;
     }
 
 
@@ -157,6 +181,17 @@ public class FollowServiceImpl extends CrudServiceImpl<FollowDao, FollowEntity, 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void followUser(FollowDTO followDTO) {
+
+        //删除redis中当前用户的关注关注信息
+        String followKey = ImgDetailCacheNames.FOLLOW_TREND + followDTO.getUid();
+        Set<String> listKey = redisUtils.getListKey(followKey);
+
+        if (!listKey.isEmpty()) {
+            for (String e : listKey) {
+                redisUtils.delete(e);
+            }
+        }
+
         FollowEntity followEntity = new FollowEntity();
         followEntity.setFid(followDTO.getFid());
         followEntity.setUid(followDTO.getUid());
@@ -222,6 +257,17 @@ public class FollowServiceImpl extends CrudServiceImpl<FollowDao, FollowEntity, 
 
     @Override
     public void clearFollow(FollowDTO followDTO) {
+
+        //删除redis中当前用户的关注关注信息
+        String followKey = ImgDetailCacheNames.FOLLOW_TREND + followDTO.getUid();
+        Set<String> listKey = redisUtils.getListKey(followKey);
+
+        if (!listKey.isEmpty()) {
+            for (String e : listKey) {
+                redisUtils.delete(e);
+            }
+        }
+
         UserRecordEntity currentUser = userRecordDao.selectOne(new QueryWrapper<UserRecordEntity>().eq("uid", followDTO.getUid()));
         currentUser.setFollowCount(currentUser.getFollowCount() - 1);
 

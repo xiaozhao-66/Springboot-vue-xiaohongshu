@@ -93,6 +93,7 @@ export default {
 		},
 		loginOut() {
 
+            console.log("执行logout方法")
 			let user = uni.getStorageSync("userInfo")
 
 			loginOut(user).then(res => {

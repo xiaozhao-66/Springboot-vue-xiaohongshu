@@ -22,7 +22,7 @@
 
 							<view class="img-list" @click="toMain(item.mid)">
 								<view v-for="(img, index) in item.imgsUrl" :key="index">
-									<image :src="img" mode="aspectFill"  :lazy-load='true'/>
+									<image :src="img" mode="aspectFill"  :lazy-load='true' class="fadeImg"/>
 								</view>
 							</view>
 
@@ -41,10 +41,8 @@
 						<view class="fotter"></view>
 					</view>
 				</li>
-
 			</ul>
 
-			<view class="loadStyle" v-if="!isEnd && !loading">下拉加载</view>
 			<view class="loadStyle" v-if="!isEnd && loading">正在加载中</view>
 			<view class="loadStyle" v-if="isEnd">我也是有底线的~</view>
 		</scroll-view>
@@ -55,6 +53,7 @@
 import { getTrendByUser } from "@/api/user.js"
 import { getUserInfo } from "@/api/user.js"
 import { addBrowseRecord } from "@/api/browseRecord.js"
+import {timeAgo} from "@/utils/webUtils.js"
 export default {
 	props: {
 		uid: String,
@@ -83,9 +82,14 @@ export default {
 				userId: this.userInfo.id
 			}
 			getTrendByUser(this.page, this.limit, params).then(res => {
-
-				this.dataList = res.data.records
-				this.total = res.data.total
+                console.log(res.data)
+				res.data.forEach(e=>{
+					e.time = timeAgo(e.time)
+					e.imgsUrl = JSON.parse(e.imgsUrl)
+					
+					this.dataList.push(e)
+				})
+				this.total = res.data.length
 			})
 		},
 		getUserInfo(uid) {
@@ -99,10 +103,10 @@ export default {
 		},
 
 		loadData() {
-
+            console.log("122")
 			this.loading = true
 			setTimeout(() => {
-				if (this.dataList.length >= this.total) {
+				if (this.total<this.limit) {
 					this.isEnd = true
 					return
 				}
@@ -113,9 +117,13 @@ export default {
 
 				getTrendByUser(this.page, this.limit, params).then(res => {
 
-					this.dataList.push(...res.data.records)
-
-
+					res.data.forEach(e=>{
+						e.time = timeAgo(e.time)
+						e.imgsUrl = JSON.parse(e.imgsUrl)
+						
+						this.dataList.push(e)
+					})
+					this.total = res.data.length
 				})
 			}, 1000)
 		},
@@ -296,5 +304,50 @@ li:not(:first-child) {
 	height: 60rpx;
 	text-align: center;
 	color: #bfbfbf;
+}
+
+
+/* 图片淡入淡出 */
+.fadeImg {
+width: 100px;
+height: 100px;
+background: #fff;
+-webkit-animation: fadeinout 2s linear forwards;
+animation: fadeinout 2s linear forwards;
+}
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 1; }
+50% { opacity: 0.5; }
+100% { opacity: 0; }
+}
+
+@keyframes fadeinout {
+0%{ opacity: 1; }
+50% { opacity: 0.5; }
+100% { opacity: 0; }
+}
+
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity: 0.5; }
+100% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+0%{ opacity:0; }
+50% { opacity: 0.5; }
+100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity:1; }
+}
+
+@keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity:1; }
 }
 </style>

@@ -48,8 +48,6 @@ public class WebSocketServer {
     private static final ConcurrentMap<String, Session> SESSION_MAP = new ConcurrentHashMap<>();
 
 
-
-
     /***
      * 1.把登录用户存到sessionMap中
      * 2.发送给所有人当前登录人员信息

@@ -108,8 +108,7 @@ public class CommentController {
      */
     @RequestMapping("getAllReplyComment/{page}/{limit}")
     public Result<?> getAllReplyComment(@PathVariable long page, @PathVariable long limit, String uid) {
-        Result<IPage<CommentVo>> result = new Result<>();
-        IPage<CommentVo> pageInfo = commentService.getAllReplyComment(page, limit, uid);
-        return result.ok(pageInfo);
+        List<CommentVo> commentVoList = commentService.getAllReplyComment(page, limit, uid);
+        return new Result<List<CommentVo>>().ok(commentVoList);
     }
 }

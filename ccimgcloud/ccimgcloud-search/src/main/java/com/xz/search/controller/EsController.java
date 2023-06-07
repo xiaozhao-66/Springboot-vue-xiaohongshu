@@ -33,6 +33,11 @@ public class EsController {
         return new Result<HashMap<String, Object>>().ok(map);
     }
 
+    @RequestMapping("getPage/{page}/{limit}/{type}")
+    public List<ImgDetailSearchVo> getPage(@PathVariable long page, @PathVariable long limit, @PathVariable Integer type) throws IOException {
+        return esService.getPage(page, limit, type);
+    }
+
     @RequestMapping("esSearchList")
     public List<ImgDetailSearchVo> esSearchList() throws IOException {
         return esService.esSearchList();

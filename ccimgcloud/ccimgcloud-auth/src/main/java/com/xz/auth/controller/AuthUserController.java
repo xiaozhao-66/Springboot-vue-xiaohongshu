@@ -32,18 +32,14 @@ public class AuthUserController {
      */
     @RequestMapping("login")
     public Result<?> login(@RequestBody AuthUserDTO authUserDTO) {
-
         Map<String, Object> map = authUserService.login(authUserDTO);
-
         return new Result<Map<String, Object>>().ok(map);
     }
 
 
     @RequestMapping("loginByCode")
     public Result<?> loginByCode(@RequestBody AuthUserDTO authUserDTO) {
-
         Map<String, Object> map = authUserService.loginByCode(authUserDTO);
-
         return new Result<Map<String, Object>>().ok(map);
     }
 

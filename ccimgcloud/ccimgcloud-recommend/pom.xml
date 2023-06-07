@@ -39,6 +39,13 @@
             <version>2012_u6</version>
         </dependency>
 
+<!--        重要文字提取-->
+        <dependency>
+            <groupId>org.lionsoul</groupId>
+            <artifactId>jcseg-core</artifactId>
+            <version>2.6.3</version>
+        </dependency>
+
 
     </dependencies>
 

@@ -1,6 +1,6 @@
 package com.xz.platform.service;
 
-import com.xz.common.service.CrudService;
+import com.xz.common.service.BaseService;
 import com.xz.platform.dto.AlbumDTO;
 import com.xz.platform.entity.AlbumEntity;
 import com.xz.platform.vo.AlbumVo;
@@ -13,7 +13,7 @@ import java.util.List;
  * @author xiaozhao sunlightcs@gmail.com
  * @since 1.0.0 2023-03-16
  */
-public interface AlbumService extends CrudService<AlbumEntity, AlbumDTO> {
+public interface AlbumService extends BaseService<AlbumEntity> {
 
     List<AlbumVo> getAllAlbum(String uid);
 

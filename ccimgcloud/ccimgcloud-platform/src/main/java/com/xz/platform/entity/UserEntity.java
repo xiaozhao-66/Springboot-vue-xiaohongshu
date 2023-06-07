@@ -19,61 +19,61 @@ import java.util.Date;
 public class UserEntity extends BaseEntity {
 
     /**
-     *
+     * 唯一用户的id
      */
     private Long userId;
     /**
-     *
+     * 用户名
      */
     private String username;
     /**
-     *
+     * 密码
      */
     private String password;
     /**
-     *
+     * 头像
      */
     private String avatar;
     /**
-     *
+     * 性别
      */
     private Integer gender;
     /**
-     *
+     * 电话
      */
     private String phone;
     /**
-     *
+     * email
      */
     private String email;
     /**
-     *
+     * 描述
      */
     private String description;
     /**
-     *
+     * 状态
      */
     private Integer status;
     /**
-     *
+     * 生日
      */
     private String birthday;
     /**
-     *
+     * 地址
      */
     private String address;
     /**
-     *
+     * 封面
      */
     private String cover;
 
     /**
-     *
+     * 修改用户
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updater;
     /**
-     *
+     * 修改时间
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateDate;

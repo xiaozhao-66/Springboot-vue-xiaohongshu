@@ -17,7 +17,7 @@ import java.util.Date;
  * @since 1.0.0 2023-03-16
  */
 @Data
-@ApiModel(value = "")
+@ApiModel(value = "浏览记录")
 public class BrowseRecordDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 

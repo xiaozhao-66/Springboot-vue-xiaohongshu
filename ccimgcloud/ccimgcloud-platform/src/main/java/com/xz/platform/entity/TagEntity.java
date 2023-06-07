@@ -17,15 +17,15 @@ import java.util.Date;
 public class TagEntity extends BaseEntity {
 
     /**
-     *
+     * 数量
      */
     private Long count;
     /**
-     *
+     * 名称
      */
     private String name;
     /**
-     *
+     * 排序
      */
     private Integer sort;
 }

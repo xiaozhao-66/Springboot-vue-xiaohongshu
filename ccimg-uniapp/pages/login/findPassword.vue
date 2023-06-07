@@ -58,9 +58,6 @@
 				})
 			},
 			
-			
-			
-			
 			getCode() {
 			
 				let isM = isMobile(this.value)

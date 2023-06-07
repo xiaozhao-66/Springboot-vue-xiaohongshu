@@ -37,8 +37,8 @@ public class UserController {
      */
     @RequestMapping("/getTrendByUser/{page}/{limit}")
     public Result<?> getTrendByUser(@PathVariable long page, @PathVariable long limit, String userId) {
-        Page<TrendVo> pageInfo = userService.getTrendByUser(page, limit, userId);
-        return new Result<Page<TrendVo>>().ok(pageInfo);
+        List<TrendVo> trendVoList = userService.getTrendByUser(page, limit, userId);
+        return new Result<List<TrendVo>>().ok(trendVoList);
     }
 
     /**

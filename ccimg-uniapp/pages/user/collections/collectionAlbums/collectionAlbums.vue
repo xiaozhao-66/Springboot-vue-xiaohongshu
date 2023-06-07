@@ -5,7 +5,7 @@
 				<block v-for="(item, index) in dataList" :key="index">
 					<tui-grid-item :cell="2" backgroundColor="#f4f4f4" :border="false" :bottomLine="false">
 						<view class="card">
-							<view @click="searchAlbum(item.id)">
+							<view @click="searchAlbum(item.collectionId)">
 								<image :src="item.cover" mode="aspectFill" :lazy-load='true'/>
 							</view>
 							<view class="cont">
@@ -52,9 +52,9 @@ export default {
 				type: 1
 			}
 			getAllCollection(this.page,this.limit,params).then(res => {
-                console.log("所有专辑",res.data)
-				this.dataList = res.data.records
-				this.total  = res.data.total
+                console.log(res.data)
+				this.dataList = res.data
+				this.total  = res.data.length
 			})
 
 		},
@@ -66,8 +66,8 @@ export default {
 		},
 		
 		loadData(){
-			console.log("刷新数据")
-			if (this.dataList.length >= this.total) {
+			
+			if (this.total<this.limit) {
 				this.isEnd = true
 				return
 			}
@@ -78,7 +78,8 @@ export default {
 				type: 1
 			}
 			getAllCollection(this.page,this.limit,params).then(res => {
-				this.dataList.push(...res.data.records)
+				this.dataList.push(...res.data)
+				this.total = res.data.length
 			})
 		}
 		

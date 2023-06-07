@@ -20,6 +20,7 @@ import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.StopWatch;
 import org.elasticsearch.common.text.Text;
 import org.elasticsearch.core.TimeValue;
 import org.elasticsearch.index.query.BoolQueryBuilder;
@@ -61,9 +62,12 @@ public class EsServiceImpl implements EsService {
         // 精确查询，添加查询条件
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
 
-        MatchQueryBuilder contentQueryBuilder = QueryBuilders.matchQuery("content", imgDetailSearchDTO.getKeyword());
-        MatchQueryBuilder usernameQueryBuilder = QueryBuilders.matchQuery("username", imgDetailSearchDTO.getKeyword());
-        BoolQueryBuilder should = boolQueryBuilder.should(contentQueryBuilder).should(usernameQueryBuilder);
+        if(imgDetailSearchDTO.getKeyword()!=null){
+            MatchQueryBuilder contentQueryBuilder = QueryBuilders.matchQuery("content", imgDetailSearchDTO.getKeyword());
+            MatchQueryBuilder usernameQueryBuilder = QueryBuilders.matchQuery("username", imgDetailSearchDTO.getKeyword());
+            BoolQueryBuilder should = boolQueryBuilder.should(contentQueryBuilder).should(usernameQueryBuilder);
+            searchSourceBuilder.query(should);    // 分页
+        }
         searchSourceBuilder.timeout(new TimeValue(60, TimeUnit.SECONDS));
 
         if (imgDetailSearchDTO.getType() == 1) {
@@ -73,8 +77,6 @@ public class EsServiceImpl implements EsService {
             searchSourceBuilder.sort(new FieldSortBuilder("time").order(SortOrder.DESC));
         }
 
-
-        searchSourceBuilder.query(should);    // 分页
 
         searchSourceBuilder.from((int) (page - 1) * (int) limit);
         searchSourceBuilder.size((int) limit);    // 高亮 =========
@@ -87,7 +89,6 @@ public class EsServiceImpl implements EsService {
         List<ImgDetailSearchVo> res = new ArrayList<>();
 
         for (SearchHit documentFields : hits.getHits()) {
-            // 使用新的字段值（高亮），覆盖旧的字段值
             String sourceAsString = documentFields.getSourceAsString();
             ImgDetailSearchVo imgDetailSearchVo = JSON.parseObject(sourceAsString, ImgDetailSearchVo.class);
             res.add(imgDetailSearchVo);
@@ -96,6 +97,9 @@ public class EsServiceImpl implements EsService {
         map.put("total", totalHits.value);
         return map;
     }
+
+
+
 
     @Override
     public void addData(ImgDetailSearchVo imgDetailSearchVo) throws IOException {
@@ -303,6 +307,41 @@ public class EsServiceImpl implements EsService {
             results.add(sourceAsMap);
         }
         return results;
+    }
+
+    @Override
+    public List<ImgDetailSearchVo> getPage(long page, long limit, Integer type) throws IOException {
+        SearchRequest searchRequest = new SearchRequest(EsConstant.NEW_INDEX);
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+
+
+        searchSourceBuilder.timeout(new TimeValue(60, TimeUnit.SECONDS));
+
+        if (type == 1) {
+            //点赞排序
+            searchSourceBuilder.sort(new FieldSortBuilder("agreeCount").order(SortOrder.DESC));
+        } else {
+            searchSourceBuilder.sort(new FieldSortBuilder("time").order(SortOrder.DESC));
+        }
+
+
+        searchSourceBuilder.from((int) (page - 1) * (int) limit);
+        searchSourceBuilder.size((int) limit);    // 高亮 =========
+        searchRequest.source(searchSourceBuilder);
+
+        SearchResponse searchResponse = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);    // 解析结果 ==========
+        SearchHits hits = searchResponse.getHits();
+
+
+        List<ImgDetailSearchVo> res = new ArrayList<>();
+
+        for (SearchHit documentFields : hits.getHits()) {
+            String sourceAsString = documentFields.getSourceAsString();
+            ImgDetailSearchVo imgDetailSearchVo = JSON.parseObject(sourceAsString, ImgDetailSearchVo.class);
+            res.add(imgDetailSearchVo);
+        }
+
+        return res;
     }
 
 

@@ -10,8 +10,7 @@
 				<view class="tui-search-box" >
 					<tui-icon name="search-2" :size="18" color="#bfbfbf"></tui-icon>
 					<input class="tui-search-text" placeholder="请输入搜索内容" v-model="keyword" 
-					 :focus="cursor"    @input="change" 
-					/>
+					 :focus="cursor"    @input="change" />
 				</view>
 				
 				<view class="tui-notice-box">
@@ -123,7 +122,6 @@
 				//键盘
 				cursor: false, //是否聚焦
 				
-				
 				//聚焦内容
 				searchData:[],
 				
@@ -137,7 +135,6 @@
 		},
 		
 		created() {
-			
 			this.getAllSearchRecord()
 			this.getRecommend()
 			this.esAllSearchRecord()

@@ -3,7 +3,7 @@ package com.xz.platform.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xz.common.exception.RenException;
-import com.xz.common.service.impl.CrudServiceImpl;
+import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.ConvertUtils;
 import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
 import com.xz.platform.common.constant.Constant;
@@ -18,7 +18,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -29,7 +28,7 @@ import java.util.concurrent.TimeUnit;
  * @since 1.0.0 2023-03-16
  */
 @Service
-public class AlbumImgRelationServiceImpl extends CrudServiceImpl<AlbumImgRelationDao, AlbumImgRelationEntity, AlbumImgRelationDTO> implements AlbumImgRelationService {
+public class AlbumImgRelationServiceImpl extends BaseServiceImpl<AlbumImgRelationDao, AlbumImgRelationEntity> implements AlbumImgRelationService {
 
     @Autowired
     AlbumDao albumDao;
@@ -48,21 +47,10 @@ public class AlbumImgRelationServiceImpl extends CrudServiceImpl<AlbumImgRelatio
 
 
     @Override
-    public QueryWrapper<AlbumImgRelationEntity> getWrapper(Map<String, Object> params) {
-        String id = (String) params.get("id");
-
-        QueryWrapper<AlbumImgRelationEntity> wrapper = new QueryWrapper<>();
-        wrapper.eq(StringUtils.isNotBlank(id), "id", id);
-
-        return wrapper;
-    }
-
-
-    @Override
     public boolean isCollectImgToAlbum(String uid, String mid) {
 
-        CollectionEntity collectionEntity = collectionDao.selectOne(new QueryWrapper<CollectionEntity>().and(e -> e.eq("uid", uid).eq("collection_id", mid)));
-        return collectionEntity != null;
+        Long count = collectionDao.selectCount(new QueryWrapper<CollectionEntity>().and(e -> e.eq("uid", uid).eq("collection_id", mid)));
+        return count > 0;
     }
 
     /**
@@ -73,6 +61,13 @@ public class AlbumImgRelationServiceImpl extends CrudServiceImpl<AlbumImgRelatio
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void addAlbumImgRelation(AlbumImgRelationDTO albumImgRelationDTO) {
+
+        //如果当前图片是本人发布的则无法添加至专辑中
+        ImgDetailsEntity imgDetail = imgDetailsDao.selectOne(new QueryWrapper<ImgDetailsEntity>().eq("id", albumImgRelationDTO.getMid()).select("user_id"));
+        if(imgDetail.getUserId().equals(albumImgRelationDTO.getUid())){
+            return;
+        }
+
 
         String key = ImgDetailCacheNames.IMG_DETAIL + albumImgRelationDTO.getMid();
 

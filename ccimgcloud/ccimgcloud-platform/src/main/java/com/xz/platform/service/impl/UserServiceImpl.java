@@ -3,11 +3,12 @@ package com.xz.platform.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xz.common.entity.BaseEntity;
-import com.xz.common.service.impl.CrudServiceImpl;
+import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
+import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.ConvertUtils;
 import com.xz.common.utils.DateUtils;
 import com.xz.common.utils.PageUtils;
+import com.xz.common.utils.RedisUtils;
 import com.xz.platform.dao.*;
 import com.xz.platform.dto.UserDTO;
 import com.xz.platform.entity.*;
@@ -31,7 +32,7 @@ import java.util.stream.Collectors;
  * @since 1.0.0 2023-03-13
  */
 @Service
-public class UserServiceImpl extends CrudServiceImpl<UserDao, UserEntity, UserDTO> implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<UserDao, UserEntity> implements UserService {
 
     @Autowired
     ImgDetailsDao imgDetailsDao;
@@ -51,54 +52,66 @@ public class UserServiceImpl extends CrudServiceImpl<UserDao, UserEntity, UserDT
     @Autowired
     FollowDao followDao;
 
+    @Autowired
+    RedisUtils redisUtils;
+
+    /**
+     * TODO 使用缓存
+     * @param page
+     * @param limit
+     * @param userId
+     * @return
+     */
     @Override
-    public QueryWrapper<UserEntity> getWrapper(Map<String, Object> params) {
-        String id = (String) params.get("id");
+    public List<TrendVo> getTrendByUser(long page, long limit, String userId) {
 
-        QueryWrapper<UserEntity> wrapper = new QueryWrapper<>();
-        wrapper.eq(StringUtils.isNotBlank(id), "id", id);
+          List<TrendVo> trendVoList =  baseDao.getTrendByUser(page, limit,userId);
+          return trendVoList;
 
-        return wrapper;
-    }
+//        String key = ImgDetailCacheNames.USER_TREND+userId;
+//
+//        if(Boolean.TRUE.equals(redisUtils.hasKey(key))){
+//            String objStr = redisUtils.get(key);
+//            List<TrendVo> trendVos = JSON.parseArray(objStr, TrendVo.class);
+//            return PageUtils.getPages((int) page, (int) limit, trendVos);
+//        }
 
+//        List<TrendVo> res = new ArrayList<>();
+//
+//        List<ImgDetailsEntity> imgDetailList = imgDetailsDao.selectList(new QueryWrapper<ImgDetailsEntity>().eq("user_id", userId).orderByDesc("update_date"));
+//        TrendVo trendVo = null;
+//        List<String> imgList = null;
+//        List<AlbumEntity> albumList = null;
+//        List<AlbumImgRelationEntity> albumImgRelationList = null;
+//        //分页
+//        for (ImgDetailsEntity model : imgDetailList) {
+//
+//            imgList = JSON.parseArray(model.getImgsUrl(), String.class);
+//            trendVo = ConvertUtils.sourceToTarget(model, TrendVo.class);
+//            trendVo.setImgsUrl(imgList)
+//                    .setMid(model.getId())
+//                    .setTime(DateUtils.timeUtile(model.getUpdateDate()));
+//
+//            //得到专辑
+//            albumList = albumDao.selectList(new QueryWrapper<AlbumEntity>().eq("uid", userId));
+//
+//            for (AlbumEntity element : albumList) {
+//                albumImgRelationList = albumImgRelationDao.selectList(new QueryWrapper<AlbumImgRelationEntity>().eq("aid", element.getId()));
+//                for (AlbumImgRelationEntity e : albumImgRelationList) {
+//                    if (StringUtils.equals(String.valueOf(e.getMid()), String.valueOf(model.getId()))) {
+//                        trendVo.setAlbumId(element.getId());
+//                        trendVo.setAlbumName(element.getName());
+//                        break;
+//                    }
+//                }
+//            }
+//
+//            res.add(trendVo);
+//        }
 
-    @Override
-    public Page<TrendVo> getTrendByUser(long page, long limit, String userId) {
-
-        List<TrendVo> res = new ArrayList<>();
-
-        List<ImgDetailsEntity> imgDetailList = imgDetailsDao.selectList(new QueryWrapper<ImgDetailsEntity>().eq("user_id", userId).orderByDesc("update_date"));
-        TrendVo trendVo = null;
-        List<String> imgList = null;
-        List<AlbumEntity> albumList = null;
-        List<AlbumImgRelationEntity> albumImgRelationList = null;
-        //分页
-        for (ImgDetailsEntity model : imgDetailList) {
-
-            imgList = JSON.parseArray(model.getImgsUrl(), String.class);
-            trendVo = ConvertUtils.sourceToTarget(model, TrendVo.class);
-            trendVo.setImgsUrl(imgList)
-                    .setMid(model.getId())
-                    .setTime(DateUtils.timeUtile(model.getUpdateDate()));
-
-            //得到专辑
-            albumList = albumDao.selectList(new QueryWrapper<AlbumEntity>().eq("uid", userId));
-
-            for (AlbumEntity element : albumList) {
-                albumImgRelationList = albumImgRelationDao.selectList(new QueryWrapper<AlbumImgRelationEntity>().eq("aid", element.getId()));
-                for (AlbumImgRelationEntity e : albumImgRelationList) {
-                    if (StringUtils.equals(String.valueOf(e.getMid()), String.valueOf(model.getId()))) {
-                        trendVo.setAlbumId(element.getId());
-                        trendVo.setAlbumName(element.getName());
-                        break;
-                    }
-                }
-            }
-
-            res.add(trendVo);
-        }
-
-        return PageUtils.getPages((int) page, (int) limit, res);
+//        redisUtils.set(key, JSON.toJSONString(res));
+//
+//        return PageUtils.getPages((int) page, (int) limit, res);
     }
 
     @Override

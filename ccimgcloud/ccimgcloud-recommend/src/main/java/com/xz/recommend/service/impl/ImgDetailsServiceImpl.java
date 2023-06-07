@@ -1,26 +1,30 @@
 package com.xz.recommend.service.impl;
 
+import ai.djl.MalformedModelException;
 import ai.djl.ModelException;
+import ai.djl.repository.zoo.ModelNotFoundException;
 import ai.djl.translate.TranslateException;
+import cn.hutool.core.date.StopWatch;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Lists;
+import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
+import com.xz.common.exception.RenException;
 import com.xz.common.recommend.RecommendUtils2;
-import com.xz.common.service.impl.CrudServiceImpl;
+import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.ConvertUtils;
 import com.xz.common.utils.PageUtils;
 import com.xz.common.utils.RedisUtils;
 import com.xz.recommend.common.client.EsClient;
 import com.xz.recommend.common.client.RecommendClient;
 import com.xz.recommend.dao.*;
-import com.xz.recommend.dto.ImgDetailsDTO;
 import com.xz.recommend.entity.*;
 import com.xz.recommend.service.CategoryService;
 import com.xz.recommend.service.ImgDetailsService;
-import com.xz.recommend.utils.IKSegmenterUtil;
 import com.xz.recommend.utils.PearsonUtils;
 import com.xz.recommend.utils.RecommendUtils;
+import com.xz.recommend.vo.ImgDetailSearchVo;
 import com.xz.recommend.vo.ImgDetailVo;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
@@ -29,6 +33,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -38,13 +43,16 @@ import java.util.stream.Collectors;
  * @since 1.0.0 2023-03-13
  */
 @Service
-public class ImgDetailsServiceImpl extends CrudServiceImpl<ImgDetailsDao, ImgDetailsEntity, ImgDetailsDTO> implements ImgDetailsService {
+public class ImgDetailsServiceImpl extends BaseServiceImpl<ImgDetailsDao, ImgDetailsEntity> implements ImgDetailsService {
 
     @Autowired
     RedisUtils redisUtils;
 
     @Autowired
     CategoryService categoryService;
+
+    @Autowired
+    CategoryDao categoryDao;
 
     @Autowired
     UserDao userDao;
@@ -64,11 +72,6 @@ public class ImgDetailsServiceImpl extends CrudServiceImpl<ImgDetailsDao, ImgDet
     @Autowired
     EsClient esClient;
 
-
-    @Override
-    public QueryWrapper<ImgDetailsEntity> getWrapper(Map<String, Object> params) {
-        return null;
-    }
 
     /**
      * @param uid 用户id
@@ -95,64 +98,64 @@ public class ImgDetailsServiceImpl extends CrudServiceImpl<ImgDetailsDao, ImgDet
      * @param imgDetailsEntity
      * @return
      */
-    private String computerSource(ImgDetailsEntity imgDetailsEntity) {
-
-        List<String> keyWords = IKSegmenterUtil.parse(imgDetailsEntity.getContent(), true);
-        Set<String> contentSet = new HashSet<>(keyWords);
-
-        TagImgRelationEntity tagImgRelationEntity = tagImgRelationDao.selectOne(new QueryWrapper<TagImgRelationEntity>().eq("mid", imgDetailsEntity.getId()));
-
-        String tagIdstr = tagImgRelationEntity.getTagIds();
-        String[] ids = tagIdstr.split(";");
-        List<TagEntity> tags = tagDao.selectBatchIds(Arrays.asList(ids));
-        for (TagEntity tag : tags) {
-            contentSet.add(tag.getName());
-        }
-
-        CategoryEntity categoryEntity = categoryService.selectById(imgDetailsEntity.getCategoryPid());
-        contentSet.add(categoryEntity.getName());
-        CategoryEntity categoryEntity2 = categoryService.selectById(imgDetailsEntity.getCategoryId());
-        contentSet.add(categoryEntity2.getName());
-
-        StringBuilder sb = new StringBuilder();
-        for (String e : contentSet) {
-            sb.append(e);
-            sb.append("|");
-        }
-        return sb.toString();
-    }
-
-
-    private String computerSource(List<ImgDetailsEntity> imgDetailsEntityList) {
-
-        Set<String> contentSet = new HashSet<>();
-
-        for (ImgDetailsEntity model : imgDetailsEntityList) {
-
-            List<String> keyWords = IKSegmenterUtil.parse(model.getContent(), true);
-            contentSet.addAll(keyWords);
-
-            TagImgRelationEntity tagImgRelationEntity = tagImgRelationDao.selectOne(new QueryWrapper<TagImgRelationEntity>().eq("mid", model.getId()));
-
-            String tagIdstr = tagImgRelationEntity.getTagIds();
-            String[] ids = tagIdstr.split(";");
-            List<TagEntity> tags = tagDao.selectBatchIds(Arrays.asList(ids));
-            for (TagEntity tag : tags) {
-                contentSet.add(tag.getName());
-            }
-
-            CategoryEntity categoryEntity = categoryService.selectById(model.getCategoryPid());
-            contentSet.add(categoryEntity.getName());
-            CategoryEntity categoryEntity2 = categoryService.selectById(model.getCategoryId());
-            contentSet.add(categoryEntity2.getName());
-        }
-        StringBuilder sb = new StringBuilder();
-        for (String e : contentSet) {
-            sb.append(e);
-            sb.append("|");
-        }
-        return sb.toString();
-    }
+//    private String computerSource(ImgDetailsEntity imgDetailsEntity) {
+//
+//        List<String> keyWords = IKSegmenterUtil.parse(imgDetailsEntity.getContent(), true);
+//        Set<String> contentSet = new HashSet<>(keyWords);
+//
+//        TagImgRelationEntity tagImgRelationEntity = tagImgRelationDao.selectOne(new QueryWrapper<TagImgRelationEntity>().eq("mid", imgDetailsEntity.getId()));
+//
+//        String tagIdstr = tagImgRelationEntity.getTagIds();
+//        String[] ids = tagIdstr.split(";");
+//        List<TagEntity> tags = tagDao.selectBatchIds(Arrays.asList(ids));
+//        for (TagEntity tag : tags) {
+//            contentSet.add(tag.getName());
+//        }
+//
+//        CategoryEntity categoryEntity = categoryService.selectById(imgDetailsEntity.getCategoryPid());
+//        contentSet.add(categoryEntity.getName());
+//        CategoryEntity categoryEntity2 = categoryService.selectById(imgDetailsEntity.getCategoryId());
+//        contentSet.add(categoryEntity2.getName());
+//
+//        StringBuilder sb = new StringBuilder();
+//        for (String e : contentSet) {
+//            sb.append(e);
+//            sb.append("|");
+//        }
+//        return sb.toString();
+//    }
+//
+//
+//    private String computerSource(List<ImgDetailsEntity> imgDetailsEntityList) {
+//
+//        Set<String> contentSet = new HashSet<>();
+//
+//        for (ImgDetailsEntity model : imgDetailsEntityList) {
+//
+//            List<String> keyWords = IKSegmenterUtil.parse(model.getContent(), true);
+//            contentSet.addAll(keyWords);
+//
+//            TagImgRelationEntity tagImgRelationEntity = tagImgRelationDao.selectOne(new QueryWrapper<TagImgRelationEntity>().eq("mid", model.getId()));
+//
+//            String tagIdstr = tagImgRelationEntity.getTagIds();
+//            String[] ids = tagIdstr.split(";");
+//            List<TagEntity> tags = tagDao.selectBatchIds(Arrays.asList(ids));
+//            for (TagEntity tag : tags) {
+//                contentSet.add(tag.getName());
+//            }
+//
+//            CategoryEntity categoryEntity = categoryService.selectById(model.getCategoryPid());
+//            contentSet.add(categoryEntity.getName());
+//            CategoryEntity categoryEntity2 = categoryService.selectById(model.getCategoryId());
+//            contentSet.add(categoryEntity2.getName());
+//        }
+//        StringBuilder sb = new StringBuilder();
+//        for (String e : contentSet) {
+//            sb.append(e);
+//            sb.append("|");
+//        }
+//        return sb.toString();
+//    }
 
 
     /**
@@ -246,63 +249,64 @@ public class ImgDetailsServiceImpl extends CrudServiceImpl<ImgDetailsDao, ImgDet
     @Override
     public Page<ImgDetailVo> recommendToUser2(long page, long limit, String uid) {
 
-
-        String ukey = "brimg:" + uid;
-        //这里获取当前用户的前20条浏览记录
-        Set<String> mids = redisUtils.zReverseRange(ukey, 0, 20);
-
-        List<ImgDetailsEntity> imgDetailList = baseDao.selectBatchIds(mids);
-
-        //结合协同过滤算法做推荐
-        List<ImgDetailsEntity> imgDetailsByComList = imgDetailsEntityList(uid);
-
-        imgDetailList.addAll(imgDetailsByComList);
-
-        RecommendUtils mySimHash1 = new RecommendUtils(computerSource(imgDetailList), 64);
-
-        //选择最新的1000数据
-        List<ImgDetailsEntity> imgDetailsEntityList = baseDao.selectLimit(1000);
-        Collections.shuffle(imgDetailsEntityList);
-        //数据量太少，数据量多了的话就随机选择前500条
-        List<List<ImgDetailsEntity>> partition = Lists.partition(imgDetailsEntityList, 50);
-
-        //更改使用es获取数据
-//        List<ImgDetailSearchVo> imgDetailSearchVos = null;
-//        try {
-//            imgDetailSearchVos = esClient.esSearchList();
 //
-//        }catch (Exception e) {
-//             throw new RuntimeException("es数据查找异常");
+//        String ukey = ImgDetailCacheNames.BR_IMG_KEY + uid;
+//        //这里获取当前用户的前20条浏览记录
+//        Set<String> mids = redisUtils.zReverseRange(ukey, 0, 20);
+//
+//        List<ImgDetailsEntity> imgDetailList = baseDao.selectBatchIds(mids);
+//
+//        //结合协同过滤算法做推荐
+//        List<ImgDetailsEntity> imgDetailsByComList = imgDetailsEntityList(uid);
+//
+//        imgDetailList.addAll(imgDetailsByComList);
+//
+//        RecommendUtils mySimHash1 = new RecommendUtils(computerSource(imgDetailList), 64);
+//
+//        //选择最新的1000数据
+//        List<ImgDetailsEntity> imgDetailsEntityList = baseDao.selectLimit(1000);
+//        Collections.shuffle(imgDetailsEntityList);
+//        //数据量太少，数据量多了的话就随机选择前500条
+//        List<List<ImgDetailsEntity>> partition = Lists.partition(imgDetailsEntityList, 50);
+//
+//        //更改使用es获取数据
+////        List<ImgDetailSearchVo> imgDetailSearchVos = null;
+////        try {
+////            imgDetailSearchVos = esClient.esSearchList();
+////
+////        }catch (Exception e) {
+////             throw new RuntimeException("es数据查找异常");
+////        }
+////        List<Long> ids = imgDetailSearchVos.stream().map(ImgDetailSearchVo::getId).collect(Collectors.toList());
+////        List<ImgDetailsEntity> imgDetailsEntityList = baseDao.selectBatchIds(ids);
+//
+//
+//        //计算相似性
+//        Map<ImgDetailsEntity, Double> map = new HashMap<>();
+//
+//        for (ImgDetailsEntity model : partition.get(0)) {
+//            RecommendUtils mySimHash2 = new RecommendUtils(computerSource(model), 64);
+//            Double similar = mySimHash1.getSimilar(mySimHash2);
+//            map.put(model, similar);
 //        }
-//        List<Long> ids = imgDetailSearchVos.stream().map(ImgDetailSearchVo::getId).collect(Collectors.toList());
-//        List<ImgDetailsEntity> imgDetailsEntityList = baseDao.selectBatchIds(ids);
-
-
-        //计算相似性
-        Map<ImgDetailsEntity, Double> map = new HashMap<>();
-
-        for (ImgDetailsEntity model : partition.get(0)) {
-            RecommendUtils mySimHash2 = new RecommendUtils(computerSource(model), 64);
-            Double similar = mySimHash1.getSimilar(mySimHash2);
-            map.put(model, similar);
-        }
-
-
-        Map<ImgDetailsEntity, Double> map2 = map.entrySet().stream()
-                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
-                        (oldVal, newVal) -> oldVal,
-                        LinkedHashMap::new));
-
-        List<ImgDetailsEntity> list = new ArrayList<>();
-        for (ImgDetailsEntity key : map2.keySet()) {
-            if (!imgDetailList.contains(key)) {
-                list.add(key);
-            }
-        }
-        return getImgDetailVoPage((int) page, (int) limit, list);
+//
+//
+//        Map<ImgDetailsEntity, Double> map2 = map.entrySet().stream()
+//                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+//                .collect(Collectors.toMap(
+//                        Map.Entry::getKey,
+//                        Map.Entry::getValue,
+//                        (oldVal, newVal) -> oldVal,
+//                        LinkedHashMap::new));
+//
+//        List<ImgDetailsEntity> list = new ArrayList<>();
+//        for (ImgDetailsEntity key : map2.keySet()) {
+//            if (!imgDetailList.contains(key)) {
+//                list.add(key);
+//            }
+//        }
+//        return getImgDetailVoPage((int) page, (int) limit, list);
+        return null;
     }
 
 
@@ -326,153 +330,6 @@ public class ImgDetailsServiceImpl extends CrudServiceImpl<ImgDetailsDao, ImgDet
         return Objects.requireNonNull(PageUtils.getPages(page, limit, resultList));
     }
 
-    /**
-     * 新的推荐方式（使用机器学习模型做推荐系统）
-     * @param page
-     * @param limit
-     * @param uid
-     * @return
-     */
-    @Override
-    public HashMap<String,Object>  newRecommendToUser(long page, long limit, String uid) throws ModelException, TranslateException, IOException {
-
-
-        HashMap<String,Object> resMap = new HashMap<>(2);
-
-        String ukey = "brimg:" + uid;
-        //这里获取当前用户的前10条浏览记录
-        Set<String> mids = redisUtils.zReverseRange(ukey, 0, 10);
-
-        List<ImgDetailsEntity> imgDetailList = baseDao.selectBatchIds(mids);
-
-        //得到用户浏览记录的分类情况
-        String content1 = getContent(imgDetailList);
-        float[] embeddings1 = RecommendUtils2.getEmbeddings(content1);
-
-        //TODO 选择最新数据(这里的参数后面都要修改，数据量太少了)
-        Page<ImgDetailsEntity> pageInfo = baseDao.selectPage(new Page<>((int) page, 30), new QueryWrapper<ImgDetailsEntity>().orderByDesc("update_date"));
-
-        List<ImgDetailsEntity> imgDetailsEntityList = pageInfo.getRecords();
-        Collections.shuffle(imgDetailsEntityList);
-
-        resMap.put("total",30);
-
-
-        List<List<ImgDetailsEntity>> partition = Lists.partition(imgDetailsEntityList, (int)limit);
-
-        //计算相似性
-        Map<ImgDetailsEntity, Double> map = new HashMap<>();
-
-        for (ImgDetailsEntity model : partition.get(0)) {
-              //计算词向量部分需要的时间过长，修改使用redis存储词向量
-            float[] embeddings2 = null;
-            String key = "recommend:"+model.getId();
-            if(Boolean.TRUE.equals(redisUtils.hasKey(key))){
-                embeddings2 = JSON.parseObject(redisUtils.get(key),float[].class);
-            }else{
-                String content2 = getContent(model);
-                embeddings2 = RecommendUtils2.getEmbeddings(content2);
-                redisUtils.set(key,JSON.toJSONString(embeddings2));
-            }
-
-            Double value = RecommendUtils2.getSimilar(embeddings1, embeddings2);
-            map.put(model, value);
-        }
-
-        Map<ImgDetailsEntity, Double> map2 = map.entrySet().stream()
-                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
-                        (oldVal, newVal) -> oldVal,
-                        LinkedHashMap::new));
-
-        List<ImgDetailsEntity> list = new ArrayList<>();
-        for (ImgDetailsEntity key : map2.keySet()) {
-            if (!imgDetailList.contains(key)) {
-                list.add(key);
-            }
-        }
-
-        List<ImgDetailVo> records = new ArrayList<>();
-        ImgDetailVo imgDetailVo = null;
-        List<String> imgList = null;
-        UserEntity user = null;
-        for (ImgDetailsEntity model : list) {
-            imgDetailVo = ConvertUtils.sourceToTarget(model, ImgDetailVo.class);
-            imgList = JSON.parseArray(model.getImgsUrl(), String.class);
-            imgDetailVo.setImgsUrl(imgList);
-            user = userDao.selectOne(new QueryWrapper<UserEntity>().eq("id", model.getUserId()));
-            imgDetailVo.setUserId(user.getId());
-            imgDetailVo.setUsername(user.getUsername());
-            imgDetailVo.setAvatar(user.getAvatar());
-            records.add(imgDetailVo);
-        }
-
-        resMap.put("records",records);
-        return resMap;
-    }
-
-
-
-    private String getContent(ImgDetailsEntity imgDetailsEntity) {
-
-        Set<String> contentSet = new HashSet<>();
-
-        TagImgRelationEntity tagImgRelationEntity = tagImgRelationDao.selectOne(new QueryWrapper<TagImgRelationEntity>().eq("mid", imgDetailsEntity.getId()));
-
-        String tagIdstr = tagImgRelationEntity.getTagIds();
-        String[] ids = tagIdstr.split(";");
-        List<TagEntity> tags = tagDao.selectBatchIds(Arrays.asList(ids));
-        for (TagEntity tag : tags) {
-            contentSet.add(tag.getName());
-        }
-
-        CategoryEntity categoryEntity = categoryService.selectById(imgDetailsEntity.getCategoryPid());
-        contentSet.add(categoryEntity.getName());
-        CategoryEntity categoryEntity2 = categoryService.selectById(imgDetailsEntity.getCategoryId());
-        contentSet.add(categoryEntity2.getName());
-
-        StringBuilder sb = new StringBuilder();
-        for (String e : contentSet) {
-            sb.append(e);
-            sb.append("|");
-        }
-        return sb.toString();
-    }
-
-    /**
-     * 只使用分类和标签计算
-     * @param imgDetailsEntityList
-     * @return
-     */
-    private String getContent(List<ImgDetailsEntity> imgDetailsEntityList) {
-
-        Set<String> contentSet = new HashSet<>();
-
-        for (ImgDetailsEntity model : imgDetailsEntityList) {
-
-            TagImgRelationEntity tagImgRelationEntity = tagImgRelationDao.selectOne(new QueryWrapper<TagImgRelationEntity>().eq("mid", model.getId()));
-
-            String tagIdstr = tagImgRelationEntity.getTagIds();
-            String[] ids = tagIdstr.split(";");
-            List<TagEntity> tags = tagDao.selectBatchIds(Arrays.asList(ids));
-            for (TagEntity tag : tags) {
-                contentSet.add(tag.getName());
-            }
-
-            CategoryEntity categoryEntity = categoryService.selectById(model.getCategoryPid());
-            contentSet.add(categoryEntity.getName());
-            CategoryEntity categoryEntity2 = categoryService.selectById(model.getCategoryId());
-            contentSet.add(categoryEntity2.getName());
-        }
-        StringBuilder sb = new StringBuilder();
-        for (String e : contentSet) {
-            sb.append(e);
-            sb.append("|");
-        }
-        return sb.toString();
-    }
 
 
 

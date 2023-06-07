@@ -23,66 +23,68 @@ import java.util.List;
  * @since 1.0.0 2023-03-13
  */
 @Data
-@ApiModel(value = "")
+@ApiModel(value = "图片信息")
 public class ImgDetailsDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "id")
 	@Null(message = "id为空", groups = AddGroup.class)
 	@NotNull(message = "id不能为空", groups = UpdateGroup.class)
 	private Long id;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "分类id")
 	@NotNull(message = "分类id不能为空", groups = DefaultGroup.class)
 	private Long categoryId;
 
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "分类父级id")
 	private Long categoryPid;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "内容")
 	@NotBlank(message = "内容不能为空", groups = DefaultGroup.class)
 	private String content;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "封面")
 	@NotBlank(message = "封面不能为空", groups = DefaultGroup.class)
 	private String cover;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "用户id")
 	@NotNull(message = "用户id不能为空", groups = DefaultGroup.class)
 	private Long userId;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "专辑id")
 	@NotNull(message = "专辑id不能为空", groups = DefaultGroup.class)
 	private Long albumId;
 
+	@ApiModelProperty(value = "专辑")
 	@NotNull(message = "album不能为空", groups = UpdateGroup.class)
 	private AlbumEntity album;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "图片地址")
 	@NotBlank(message = "图片地址不能为空", groups = DefaultGroup.class)
 	private String imgsUrl;
 
+	@ApiModelProperty(value = "图片数量")
 	@Max(value = 9, message = "图片数量最多为9", groups = DefaultGroup.class)
 	private Integer count;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "排序")
 	private Integer sort;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "标签")
 	@Size(min = 1, max = 5, message = "list的Size在[1,5]")
 	private List<TagEntity> tags;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "状态")
 	private Integer status;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "点赞数量")
 	private Long agreeCount;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "收藏数量")
 	private Long collectionCount;
 
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "评论数量")
 	private Long commentCount;
 }

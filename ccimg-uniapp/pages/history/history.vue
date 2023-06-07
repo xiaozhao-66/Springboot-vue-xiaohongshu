@@ -100,16 +100,15 @@ export default {
 			}
 
 			getAllBrowseRecordByUser(this.page, this.limit, params).then(res => {
-
-				this.dataList = res.data.records
-				this.total = res.data.total
+				this.dataList = res.data
+				this.total = res.data.length
 			})
 		},
 
 		loadData() {
 			this.loading = true
 			setTimeout(() => {
-				if (this.dataList.length >= this.total) {
+				if (this.total < this.limit) {
 					this.isEnd = true
 					return
 				}
@@ -120,7 +119,8 @@ export default {
 
 				getAllBrowseRecordByUser(this.page, this.limit, params).then(res => {
 
-					this.dataList.push(...res.data.records)
+					this.dataList.push(...res.data)
+					this.total = res.data.length
 				})
 			}, 1000)
 		},

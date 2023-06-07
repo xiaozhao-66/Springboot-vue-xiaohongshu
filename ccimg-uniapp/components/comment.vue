@@ -95,7 +95,7 @@
 
 			</li>
 		</ul>
-		<view class="loadStyle" v-if="isEnd">我也是有底线的~</view>
+		<view class="loadStyle" v-if="isEnd&&dataList.length>0">我也是有底线的~</view>
 	</view>
 </template>
 

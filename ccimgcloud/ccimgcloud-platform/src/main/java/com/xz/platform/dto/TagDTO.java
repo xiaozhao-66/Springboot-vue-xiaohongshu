@@ -18,14 +18,14 @@ import java.util.Date;
  * @since 1.0.0 2023-03-16
  */
 @Data
-@ApiModel(value = "")
+@ApiModel(value = "标签")
 public class TagDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "标签名称")
 	@NotBlank(message = "名称不能为空", groups = DefaultGroup.class)
 	private String name;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "排序")
 	private Integer sort;
 }

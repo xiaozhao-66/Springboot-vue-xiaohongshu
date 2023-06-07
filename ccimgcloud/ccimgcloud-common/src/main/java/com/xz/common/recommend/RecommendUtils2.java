@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * 新的推荐方式
@@ -32,6 +33,24 @@ public class RecommendUtils2 {
         }
     }
 
+    public static float[] getEmbeddings(List<String> keywords) throws MalformedModelException, ModelNotFoundException, IOException, TranslateException {
+
+        StringBuilder sb = new StringBuilder();
+        for (String key : keywords) {
+            sb.append(key);
+            sb.append("-");
+        }
+
+        SentenceEncoder sentenceEncoder = new SentenceEncoder();
+        try (ZooModel<String, float[]> model = ModelZoo.loadModel(sentenceEncoder.criteria());
+             Predictor<String, float[]> predictor = model.newPredictor()) {
+            float[] embeddings = predictor.predict(sb.toString());
+            logger.info("Sentence1 embeddings: {}", Arrays.toString(embeddings));
+            return embeddings;
+        }
+    }
+
+
     public static Double getSimilar(float[] f1, float[] f2){
 
         double value = FeatureComparison.cosineSim(f1, f2);
@@ -49,14 +68,5 @@ public class RecommendUtils2 {
         float[] embeddings1 = getEmbeddings(input4);
         Double similar = getSimilar(embeddings, embeddings1);
         System.out.println(similar);
-
-
-//        ArrayList<Integer> list  = new ArrayList<>();
-//        for (int i = 0; i < 100; i++) {
-//            list.add(i);
-//        }
-//        List<List<Integer>> partition = Lists.partition(list, 10);
-//
-//        System.out.println(partition.get(0));
     }
 }

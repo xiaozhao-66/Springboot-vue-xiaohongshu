@@ -157,7 +157,7 @@ export default {
 				} else {
 
 					uni.uploadFile({
-						url: appConfig.WEB_API + '/utils/fileoss/uploadOssFiles', //仅为示例，非真实的接口地址
+						url: appConfig.Picture_API + '/utils/fileoss/uploadOssFiles', //仅为示例，非真实的接口地址
 						files: that.imgurl,
 						formData: { num: that.imgurl.length },
 						success: (res) => {

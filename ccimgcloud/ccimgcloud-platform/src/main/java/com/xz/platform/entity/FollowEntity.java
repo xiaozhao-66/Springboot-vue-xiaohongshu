@@ -18,11 +18,11 @@ public class FollowEntity extends BaseEntity {
 
 
     /**
-     *
+     * 用户id
      */
     private Long uid;
     /**
-     *
+     * 关注的用户id
      */
     private Long fid;
 }

@@ -21,15 +21,7 @@
 			</ul>
 			
 			
-			<!-- <view>
-				<tui-list-view  class="left">
-					
-	
-					<tui-list-cell v-for="(category, index) in categoryList" :key="index" @click="getCategoryTwo(category)">
-						{{ category.name }}
-					</tui-list-cell>
-				</tui-list-view>
-			</view> -->
+
 			<view class="right">
 				<view class="r-head">
 					<view class="r-h-item">
@@ -113,12 +105,12 @@ export default {
 			getCategory().then(res => {
 				this.categoryList = res.data
 				this.category = res.data[0]
+				console.log(res)
 			})
 		},
 
 		getCategoryTwo(category,index) {
             this.T = index
-			console.log(index)
 			this.category = category
 		},
 

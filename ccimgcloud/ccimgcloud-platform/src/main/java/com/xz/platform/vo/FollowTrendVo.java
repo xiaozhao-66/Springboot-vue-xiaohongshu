@@ -22,7 +22,7 @@ public class FollowTrendVo implements Serializable {
 
     private String content;
 
-    private List<String> imgsUrl;
+    private String imgsUrl;
 
     private Long albumId;
 

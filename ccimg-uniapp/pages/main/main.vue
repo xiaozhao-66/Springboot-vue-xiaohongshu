@@ -27,7 +27,7 @@
 				
 				<!-- 重做图片显示模块 -->
 				<view class="img-list-one" v-if="count==1">
-					<img :src="imgInfo.imgsUrl[0]" width="100%" @click="previewImgae(0)"></img>
+					<img :src="imgInfo.imgsUrl[0]" width="100%" @click="previewImgae(0)" class="fadeImg"></img>
 				</view>
 				
 				<view class="img-list-two" v-if="count==2">
@@ -38,11 +38,11 @@
 				
 				<view class="img-list-five" v-if="count==5">
 					<view class="img-list-five-top">
-						<image :src="imgInfo.imgsUrl[0]" mode="aspectFill" @click="previewImgae(0)" style="width: 50%;height: 600rpx;"></image>
-						<image :src="imgInfo.imgsUrl[1]" mode="aspectFill" @click="previewImgae(1)" style="width: 50%;height: 600rpx;"></image>
+						<image :src="imgInfo.imgsUrl[0]" mode="aspectFill" @click="previewImgae(0)" style="width: 50%;height: 600rpx;" class="fadeImg"></image>
+						<image :src="imgInfo.imgsUrl[1]" mode="aspectFill" @click="previewImgae(1)" style="width: 50%;height: 600rpx;" class="fadeImg"></image>
 					</view>
 					<view class = 'img-list-five-down' >
-						<image :src="imgInfo.imgsUrl[2]" mode="aspectFill" @click="previewImgae(2)"></image>
+						<image :src="imgInfo.imgsUrl[2]" mode="aspectFill" @click="previewImgae(2)" ></image>
 						<image :src="imgInfo.imgsUrl[3]" mode="aspectFill" @click="previewImgae(3)" ></image>
 						<image :src="imgInfo.imgsUrl[4]" mode="aspectFill" @click="previewImgae(4)" ></image>
 					</view>
@@ -53,7 +53,7 @@
 					<block v-for="(item, index) in imgInfo.imgsUrl" :key="index">
 						<tui-grid-item :cell="2" :border="false" :bottomLine="false">
 							<view class="card">
-		                         <image :src="item" mode="aspectFill" @click="previewImgae(index)" style="width: 100%;height: 600rpx;"></image>
+		                         <image :src="item" mode="aspectFill" @click="previewImgae(index)" style="width: 100%;height: 600rpx;" class="fadeImg"></image>
 							</view>
 						</tui-grid-item>
 					</block>
@@ -62,12 +62,12 @@
 				
 				<view  v-if="count==7">
 					<view class="img-list-five-top">
-						<image :src="imgInfo.imgsUrl[0]" mode="aspectFill" @click="previewImgae(0)" style="height: 500rpx;"></image>
+						<image :src="imgInfo.imgsUrl[0]" mode="aspectFill" @click="previewImgae(0)" style="height: 500rpx;" ></image>
 						<image :src="imgInfo.imgsUrl[1]" mode="aspectFill" @click="previewImgae(1)" style="height: 500rpx;"></image>
 					</view>
 					<view class="img-list-five-top">
-						<image :src="imgInfo.imgsUrl[2]" mode="aspectFill" @click="previewImgae(2)" style="height: 500rpx;"></image>
-						<image :src="imgInfo.imgsUrl[3]" mode="aspectFill" @click="previewImgae(3)" style="height: 500rpx;"></image>
+						<image :src="imgInfo.imgsUrl[2]" mode="aspectFill" @click="previewImgae(2)" style="height: 500rpx;" ></image>
+						<image :src="imgInfo.imgsUrl[3]" mode="aspectFill" @click="previewImgae(3)" style="height: 500rpx;" ></image>
 					</view>
 					<view class = 'img-list-five-down' >
 						<image :src="imgInfo.imgsUrl[4]" mode="aspectFill" @click="previewImgae(4)" ></image>
@@ -81,7 +81,7 @@
 					<block v-for="(item, index) in imgInfo.imgsUrl" :key="index">
 						<tui-grid-item :cell="3" :border="false" :bottomLine="false">
 							<view class="card" >
-								<image :src="item" @click="previewImgae(index)" mode="aspectFill"  style="width: 300rpx;height: 300rpx;" />
+								<image :src="item" @click="previewImgae(index)" mode="aspectFill"  style="width: 300rpx;height: 300rpx;" class="fadeImg"/>
 							</view>
 						</tui-grid-item>
 					</block>
@@ -152,11 +152,11 @@
 		<!--底部分享弹窗-->
 		<tui-bottom-popup backgroundColor="#f6f6f6" :zIndex="1002" :maskZIndex="1001" :show="popupShow" @close="popup">
 			<view class="tui-share">
-				<view class="tui-share-title">分享到</view>
+				<view class="tui-share-title">操作</view>
 
-				<view class="tui-share-top">
+				<view class="tui-share-top" v-if="isCurrentUser">
 
-					<view class="tui-share-item" v-if="isCurrentUser"
+					<view class="tui-share-item" 
 						:class="[shareList[1].operate.length - 1 === index ? 'tui-item-last' : '']"
 						v-for="(item, index) in shareList[1].operate" :key="index" @tap="popup">
 						<view class="tui-share-icon" hover-class="tui-hover" :hover-stay-time="150">
@@ -168,6 +168,23 @@
 					</view>
 
 				</view>
+				
+				<view class="tui-share-top" v-else>
+				
+					<view class="tui-share-item" 
+						:class="[shareList[2].operate2.length - 1 === index ? 'tui-item-last' : '']"
+						v-for="(item, index) in shareList[2].operate2" :key="index" @tap="popup">
+						<view class="tui-share-icon" hover-class="tui-hover" :hover-stay-time="150">
+							<view @click="operate2(index)">
+								<tui-icon :name="item.icon" color="#404040" :size="item.size"></tui-icon>
+							</view>
+						</view>
+						<view class="tui-share-text">{{ item.name }}</view>
+					</view>
+				
+				</view>
+				
+				
 
 				<view class="tui-share-bottom tui-mt">
 					<view class="tui-share-item" :class="[shareList[0].share.length - 1 === index ? 'tui-item-last' : '']"
@@ -185,7 +202,62 @@
 			</view>
 		</tui-bottom-popup>
 		<!--底部分享弹窗-->
-
+		
+		
+		<!-- 批量保存 -->
+           <tui-bottom-popup backgroundColor="#ffffff" :zIndex="1002" :maskZIndex="1001" :show="batchSaveShow" @close="batchShow">
+			   <view class="tui-share" >
+				   <view class="tui-share-title popup-top">
+					  
+						   <view @click="batchShow">取消</view>
+						   <view style="font-size: 28rpx; color: black; font-style: inherit;">选择需要保存的图片</view>
+						   <view class="selectAll" >
+							   <view class="all-icon">
+								   <tui-icon name="circle-fill" color="#ff0000" v-if="imgInfo.imgsUrl!=null&&imgInfo.imgsUrl.length == selectImgs.length" size="18" @click="cancalAll()"></tui-icon>
+								   <tui-icon name="circle" size="18" v-else  @click="selectAll()"></tui-icon>
+							   </view>
+							   <view class="all-title">
+								   <view v-if="imgInfo.imgsUrl!=null&&imgInfo.imgsUrl.length == selectImgs.length" size="18" @click="cancalAll()" style="color:#ff0000 ;">全部</view>
+								   <view v-else @click="selectAll()">全部</view>
+							   </view>
+						   </view>
+					   
+					   
+				   </view>
+				        
+						
+				   <view class="pictures">
+					   
+					   <tui-grid :unlined="true" >
+					   	<block v-for="(item, index) in imgInfo.imgsUrl" :key="index">
+					   		<tui-grid-item :cell="3" :border="false" :bottomLine="false">
+					   			<view class="card" >
+									
+									<view class="card-circle"  v-if="!selectImgs.includes(index)" @click="delAffirm(index)">
+										  <tui-icon
+												name="circle" size="22" @click="delCancel(index)">
+										  </tui-icon>
+										</view>
+									<view class="card-circle" v-if="selectImgs.includes(index)"><tui-icon
+											name="circle-fill" color="#f90000" size="22" @click="delCancel(index)"></tui-icon>
+									</view>
+									
+									
+					   				<image :src="item" @click="previewImgae(index)" mode="aspectFill"  />
+					   			</view>
+					   		</tui-grid-item>
+					   	</block>
+					   </tui-grid>
+					   
+				   </view>
+					
+					
+					<view class="tui-btn-cancle" style="background-color: #fff;" >
+						<tui-button type="danger" @click="batchSave()" shape="circle" width='560rpx'  height="80rpx" :size='28' >批量下载</tui-button>
+					</view>
+			   </view>
+			</tui-bottom-popup>
+        <!-- 批量保存 -->
 		<!-- 蒙板 -->
 		<view class="shade" v-show="show" @click="close"></view>
 	</view>
@@ -236,8 +308,15 @@ export default {
 			old: {
 				scrollTop: 0
 			},
+			
+			//批量保存
+			isshow: false,
+			affirmId: '',
+			selectImgs: [],
+			
 			//实现编辑操作
 			popupShow: false,
+			batchSaveShow: false,
 			shareList: [{
 				share: [{
 					name: "QQ",
@@ -279,10 +358,32 @@ export default {
 					size: 30
 				},
 				{
-					name: "其他内容",
-					icon: "immore",
+					name: "批量保存",
+					icon: "picture",
 					size: 28
 				}]
+			},{
+				operate2: [{
+					name: "批量保存",
+					icon: "picture",
+					size: 30
+				},
+				{
+					name: "不感兴趣",
+					icon: "dissatisfied",
+					size: 30
+				},
+				{
+					name: "举报",
+					icon: "about",
+					size: 30
+				},
+				{
+					name: "社区公约",
+					icon: "immore",
+					size: 28
+				},
+				]
 			}],
 		}
 	},
@@ -519,7 +620,13 @@ export default {
 
 						//进行保存
 						if (data.tapIndex == 0) {
-							that.downLoadImg(that.imgInfo.imgsUrl[data.index])
+							let p = that.downLoadImg(that.imgInfo.imgsUrl[data.index])
+							p.then((data)=>{
+								uni.showToast({
+									title: data,
+									icon: "none"
+								});
+							})
 						}
 						//进行收藏
 						if (data.tapIndex == 1) {
@@ -542,7 +649,7 @@ export default {
 
 				this.imgInfo = res.data
 				this.count = res.data.imgsUrl.length
-				console.log(res.data)
+				
 				this.album = res.data.album
 				this.isFollow()
 				this.isAgree()
@@ -629,6 +736,15 @@ export default {
 		},
 
 		saveImgToAlbum() {
+			
+			if(this.imgInfo.userId == uni.getStorageSync("userInfo").id){
+				uni.showToast({
+					title: "自己不能收藏",
+					icon: "none"
+				});
+				return
+			}
+			
 			uni.navigateTo({
 				url: '/pages/addalbum/addalbum?mid=' + this.imgInfo.id
 			})
@@ -636,30 +752,32 @@ export default {
 		// 保存图片至本地
 		downLoadImg(path) {
 			//下载图片资源至本地，返回文件的本地临时路径
-			uni.downloadFile({
-				url: path,
-				success: (res) => {
-					if (res.statusCode === 200) {
-						//保存图片至相册
-						uni.saveImageToPhotosAlbum({
-							filePath: res.tempFilePath,
-							success: function () {
-								uni.showToast({
-									title: "保存成功",
-									icon: "none"
-								});
-							},
-							fail: function () {
-								uni.showToast({
-									title: "保存失败，请稍后重试",
-									icon: "none"
-								});
-							}
-						});
+			let p = new Promise((resolve,reject)=>{
+				uni.downloadFile({
+					url: path,
+					success: (res) => {
+						if (res.statusCode === 200) {
+							//保存图片至相册
+							uni.saveImageToPhotosAlbum({
+								filePath: res.tempFilePath,
+								success: function () {
+									
+								    resolve("保存成功")
+								},
+								fail: function () {
+									
+									reject("保存失败")
+								}
+							});
+						}
 					}
-				}
+				})
 			})
+			return p;
+		
 		},
+		
+		
 
 		toAlbum(aid) {
 			uni.navigateTo({
@@ -695,12 +813,79 @@ export default {
 					}, 1000)
 
 				})
-			} else {
-
-				uni.navigateTo({
-					url: "/pages/test/test"
-				})
+			} else if(index==3){
+                
+				this.batchSaveShow = true
+				// this.isshow = true
+				for(var i = 0; i<this.imgInfo.imgsUrl.length ;i++){
+					this.selectImgs.push(i)
+				}
+			
 			}
+		},
+		
+		operate2(index){
+			console.log(index)
+			if(index==0){
+				//批量保存
+				this.batchSaveShow = true
+				// this.isshow = true
+				for(var i = 0; i<this.imgInfo.imgsUrl.length ;i++){
+					this.selectImgs.push(i)
+				}
+			}
+		},
+		
+		batchShow(){
+			this.batchSaveShow = false
+		},
+		
+		
+		
+		delAffirm(index) {
+			
+			this.selectImgs.push(index)
+			
+		},
+		
+		selectAll() {
+			for (let i = 0; i < this.imgInfo.imgsUrl.length; i++) {
+				this.selectImgs.push(i)
+			}
+		},
+		cancalAll() {
+			
+			this.selectImgs = []
+		},
+		delCancel(index) {
+			for(var i =0 ;i<this.selectImgs.length; i++){
+				if(this.selectImgs[i]==index){
+					this.selectImgs.splice(i, 1)
+					 break
+				}
+			}
+			
+			
+		},
+		
+		
+		batchSave(){
+			uni.showToast({
+				title: "保存中",
+				icon: "none"
+			});
+			for(var i =0 ;i<this.selectImgs.length;i++){
+				this.downLoadImg(this.imgInfo.imgsUrl[this.selectImgs[i]])
+			}
+			
+			setTimeout(() => {
+				uni.showToast({
+					title: "保存成功",
+					icon: "none"
+				});
+				
+				this.batchSaveShow = false
+			}, 300)
 		},
 		
 		share(index){
@@ -974,7 +1159,7 @@ li {
 
 /* 底部分享 */
 .tui-share {
-	background: #e8e8e8;
+	background: #ffffff;
 	position: relative;
 }
 
@@ -983,7 +1168,7 @@ li {
 	color: #7E7E7E;
 	text-align: center;
 	line-height: 26rpx;
-	padding: 20rpx 0 50rpx 0;
+	padding: 20rpx 0 28rpx 0;
 }
 
 .tui-share-top,
@@ -1049,5 +1234,92 @@ li {
 
 .tui-hover {
 	background: rgba(0, 0, 0, 0.2)
+}
+
+.popup-top{
+	width: 92%;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	
+}
+
+.selectAll{
+	display: flex;
+	align-items: center;
+}
+
+.pictures {
+	height: 680rpx;
+	background-color: #fff;
+}
+
+.pictures .card {
+	position: relative;
+	border-radius: 8px;
+}
+
+.pictures .card image{
+	width: 100%;
+	height: 180rpx;
+	border-radius: 8px;
+}
+
+
+.pictures .tui-grid {
+	padding: 2px 4px;
+}
+
+.pictures .card-circle{
+	position: absolute;
+	z-index: 999;
+	top: 130rpx;
+	left: 190rpx;
+}
+
+
+/* 图片淡入淡出 */
+.fadeImg {
+width: 100px;
+height: 100px;
+background: #fff;
+-webkit-animation: fadeinout 2s linear forwards;
+animation: fadeinout 2s linear forwards;
+}
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 1; }
+50% { opacity: 0.5; }
+100% { opacity: 0; }
+}
+
+@keyframes fadeinout {
+0%{ opacity: 1; }
+50% { opacity: 0.5; }
+100% { opacity: 0; }
+}
+
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity: 0.5; }
+100% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+0%{ opacity:0; }
+50% { opacity: 0.5; }
+100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity:1; }
+}
+
+@keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity:1; }
 }
 </style>

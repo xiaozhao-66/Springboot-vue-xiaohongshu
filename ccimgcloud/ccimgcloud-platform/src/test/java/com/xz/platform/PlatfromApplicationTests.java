@@ -1,6 +1,7 @@
 package com.xz.platform;
 
 import cn.hutool.Hutool;
+import cn.hutool.core.date.StopWatch;
 import cn.hutool.core.util.RandomUtil;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
@@ -14,6 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import javax.net.ssl.HttpsURLConnection;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -152,6 +158,8 @@ public class PlatfromApplicationTests {
         System.out.println("切分后的数组,index【1】:"+partition.get(1));
         System.out.println("切分后的数组,index【2】:"+partition.get(2));
 
+
+
     }
 
 
@@ -179,13 +187,5 @@ public class PlatfromApplicationTests {
         if (denominator==0) return 0.0;
         return numerator/denominator;
     }
-
-
-
-
-
-
-
-
 
 }

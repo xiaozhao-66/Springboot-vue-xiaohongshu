@@ -5,18 +5,9 @@ package com.xz.platform.common.constant;
  */
 public interface Constant {
 
-    String MSG_SUCCESS = "发送消息成功";
-
     String MSG_ERROR = "发送消息失败";
 
     String ES_ERROR = "ESS数据处理异常";
-
-    String BR_KEY = "br:";
-
-    String BR_IMG_KEY = "brimg:";
-
-    String BR_COUNT = "BrCount:";
-
 
     String MESSAGE = "message";
 

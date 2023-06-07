@@ -3,7 +3,7 @@
 		<view class="title">登录</view>
 		<view class="info">
 			<view class="center">
-				<input placeholder="输入手机号/邮箱/昵称" class="info-input" v-model="userInfo.username" />
+				<input placeholder="输入手机号/邮箱" class="info-input" v-model="userInfo.username" />
 				<input placeholder="输入密码" class="info-input" type="password" v-model="userInfo.password" />
 			</view>
 			<view class="info-bottom">

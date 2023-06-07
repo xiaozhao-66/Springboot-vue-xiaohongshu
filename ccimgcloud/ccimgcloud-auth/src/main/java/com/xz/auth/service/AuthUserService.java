@@ -3,11 +3,11 @@ package com.xz.auth.service;
 import com.xz.auth.dto.AuthUserDTO;
 import com.xz.auth.dto.UserOtherLoginRelationDTO;
 import com.xz.auth.entity.AuthUser;
-import com.xz.common.service.CrudService;
+import com.xz.common.service.BaseService;
 
 import java.util.Map;
 
-public interface AuthUserService extends CrudService<AuthUser, AuthUserDTO> {
+public interface AuthUserService extends BaseService<AuthUser> {
     Map<String, Object> login(AuthUserDTO authUserDTO);
 
     AuthUser getUserInfoByToken(String token);

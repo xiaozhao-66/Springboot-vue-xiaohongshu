@@ -61,8 +61,8 @@ public class ImgDetailsController {
      */
     @RequestMapping("getAllImgByAlbum/{page}/{limit}")
     public Result<?> getAllImgByAlbum(@PathVariable long page, @PathVariable long limit, String albumId) {
-        Page<ImgDetailVo> pageData = imgDetailsService.getAllImgByAlbum(page, limit, albumId);
-        return new Result<Page<ImgDetailVo>>().ok(pageData);
+        List<ImgDetailVo> imgDetailVoList = imgDetailsService.getAllImgByAlbum(page, limit, albumId);
+        return new Result<List<ImgDetailVo>>().ok(imgDetailVoList);
     }
 
     /**

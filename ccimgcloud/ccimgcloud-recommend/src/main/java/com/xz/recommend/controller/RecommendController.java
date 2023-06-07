@@ -2,10 +2,12 @@ package com.xz.recommend.controller;
 
 import ai.djl.ModelException;
 import ai.djl.translate.TranslateException;
+import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
 import com.xz.common.utils.RedisUtils;
 import com.xz.common.utils.Result;
 import com.xz.recommend.common.client.RecommendClient;
 import com.xz.recommend.service.ImgDetailsService;
+import com.xz.recommend.service.RecommendService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +26,7 @@ import java.util.HashMap;
 public class RecommendController {
 
     @Autowired
-    ImgDetailsService imgDetailsService;
+    RecommendService recommendService;
 
     @Autowired
     RedisUtils redisUtils;
@@ -45,13 +47,13 @@ public class RecommendController {
     @RequestMapping("newRecommendToUser/{page}/{limit}")
     public Result<?> newRecommendToUser(@PathVariable long page, @PathVariable long limit, String uid) throws ModelException, IOException, TranslateException {
 
-        String ukey = "brimg:" + uid;
+        String ukey = ImgDetailCacheNames.BR_IMG_KEY + uid;
 
         if (Boolean.FALSE.equals(redisUtils.hasKey(ukey))) {
             return recommendClient.getPage(page, limit);
         }
 
-        HashMap<String, Object> map = imgDetailsService.newRecommendToUser(page, limit, uid);
+        HashMap<String, Object> map = recommendService.newRecommendToUser(page, limit, uid);
         return new Result<HashMap<String, Object>>().ok(map);
     }
 }

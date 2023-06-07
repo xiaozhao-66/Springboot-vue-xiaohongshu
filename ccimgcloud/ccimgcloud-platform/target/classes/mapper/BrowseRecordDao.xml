@@ -3,7 +3,29 @@
 
 <mapper namespace="com.xz.platform.dao.BrowseRecordDao">
 
-
+  <select id="getAllBrowseRecordByUser" resultType="com.xz.platform.vo.BrowseRecordVo">
+        SELECT
+          t_browse_record.id,
+          t_browse_record.uid,
+          t_img_details.id AS mid,
+          t_user.id AS userId,
+          t_user.username,
+          t_user.avatar,
+          t_img_details.imgs_url,
+          t_img_details.count AS nums,
+          t_img_details.content,
+          t_img_details.cover,
+          t_img_details.agree_count
+        FROM
+          t_browse_record
+          INNER JOIN t_img_details ON t_browse_record.mid = t_img_details.id
+          INNER JOIN t_user ON t_img_details.user_id = t_user.id
+        WHERE
+          t_browse_record.uid = #{uid}
+        ORDER BY
+          t_browse_record.update_date DESC
+        LIMIT ${(page-1)*limit},${limit};
+  </select>
 
 
 </mapper>

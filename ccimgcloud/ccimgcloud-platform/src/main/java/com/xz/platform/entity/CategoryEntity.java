@@ -19,11 +19,11 @@ import java.util.Date;
 public class CategoryEntity extends BaseEntity {
 
     /**
-     *
+     * 分类名称
      */
     private String name;
     /**
-     *
+     * 分类的父级id
      */
     private Long pid;
 
@@ -37,7 +37,7 @@ public class CategoryEntity extends BaseEntity {
      */
     private Long count;
     /**
-     *
+     * 排序
      */
     private Integer sort;
     /**
@@ -50,12 +50,12 @@ public class CategoryEntity extends BaseEntity {
     private String hotCover;
 
     /**
-     *
+     * 修改用户
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updater;
     /**
-     *
+     * 修改时间
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateDate;

@@ -1,7 +1,7 @@
 package com.xz.platform.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xz.common.page.PageData;
+import com.xz.common.service.BaseService;
 import com.xz.common.service.CrudService;
 import com.xz.platform.dto.FollowDTO;
 import com.xz.platform.entity.FollowEntity;
@@ -16,9 +16,9 @@ import java.util.List;
  * @author xiaozhao sunlightcs@gmail.com
  * @since 1.0.0 2023-03-16
  */
-public interface FollowService extends CrudService<FollowEntity, FollowDTO> {
+public interface FollowService extends BaseService<FollowEntity> {
 
-    List<FollowTrendVo> getAllFollowTrends(long page, long limit, String userId);
+    List<FollowTrendVo> getAllFollowTrends(long page, long limit, String uid);
 
     boolean isFollow(String uid, String fid);
 

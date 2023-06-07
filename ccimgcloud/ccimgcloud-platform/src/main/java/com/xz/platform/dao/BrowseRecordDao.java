@@ -2,7 +2,10 @@ package com.xz.platform.dao;
 
 import com.xz.common.dao.BaseDao;
 import com.xz.platform.entity.BrowseRecordEntity;
+import com.xz.platform.vo.BrowseRecordVo;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * 
@@ -12,5 +15,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface BrowseRecordDao extends BaseDao<BrowseRecordEntity> {
-	
+
+    List<BrowseRecordVo> getAllBrowseRecordByUser(long page, long limit, String uid);
 }

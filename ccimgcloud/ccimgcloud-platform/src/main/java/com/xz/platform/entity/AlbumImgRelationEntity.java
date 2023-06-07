@@ -20,28 +20,25 @@ public class AlbumImgRelationEntity extends BaseEntity {
 
 
     /**
-     *
+     * 专辑id
      */
     private Long aid;
+
     /**
-     *
-     */
-    private String imgPath;
-    /**
-     *
+     * 图片信息id
      */
     private Long mid;
     /**
-     *
+     * 排序
      */
     private Integer sort;
     /**
-     *
+     * 修改用户
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updater;
     /**
-     *
+     * 修改时间
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateDate;

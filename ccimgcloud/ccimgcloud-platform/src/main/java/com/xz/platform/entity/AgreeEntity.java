@@ -16,18 +16,21 @@ import java.util.Date;
 @TableName("t_agree")
 public class AgreeEntity extends BaseEntity {
 
+	/**
+	 * 当前点赞的用户id
+	 */
 	private Long uid;
 	/**
-	 *
+	 * 点赞的类型id（点赞图片或者评论）
 	 */
 	private Long agreeId;
 
 	/**
-	 * 给点赞的用户id
+	 *  点赞图片或评论发布的用户id
 	 */
 	private Long agreeUid;
 	/**
-	 *
+	 * 点赞类型
 	 */
 	private Integer type;
 }

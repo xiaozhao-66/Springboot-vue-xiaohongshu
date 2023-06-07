@@ -14,6 +14,8 @@ public class CollectionVo implements Serializable {
      *
      */
     private Long id;
+
+    private Long collectionId;
     /**
      *专辑或图片名称
      */
@@ -49,7 +51,6 @@ public class CollectionVo implements Serializable {
 
     private String avatar;
 
-    private String time;
 
 
     private Date collectionTime;

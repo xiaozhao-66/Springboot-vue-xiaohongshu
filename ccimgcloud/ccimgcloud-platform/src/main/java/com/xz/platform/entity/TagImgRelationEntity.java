@@ -16,15 +16,15 @@ import java.util.Date;
 public class TagImgRelationEntity {
 
     /**
-     *
+     * id
      */
     private Long id;
     /**
-     *
+     * 图像信息id
      */
     private Long mid;
     /**
-     *
+     * 标签的ids
      */
     private String tagIds;
 }

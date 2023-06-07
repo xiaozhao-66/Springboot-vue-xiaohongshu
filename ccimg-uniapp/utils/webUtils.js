@@ -70,13 +70,8 @@ export function timeAgo(dateTimeStamp) {
   let month = day * 30;
   let year = day * 365;
   let now = new Date().getTime();   //获取当前时间毫秒
-  dateTimeStamp = dateTimeStamp.substring(0, 18);
-  //必须把日期'-'转为'/'
-  dateTimeStamp = dateTimeStamp.replace(/-/g, '/');
 
-  let timestamp = new Date(dateTimeStamp).getTime();
-
-  let diffValue = now - timestamp;//时间差
+  let diffValue = now - dateTimeStamp;//时间差
 
   if (diffValue < 0) {
     return result;

@@ -25,7 +25,8 @@
 					<view class="images" @click="toMain(item.id)">
 
 						<view v-for="(img, index) in item.imgsUrl " v-show="index < 3">
-							<image :src="img" mode="aspectFill"  :lazy-load='true'/>
+							
+							<image :src="img" mode="aspectFill"  :lazy-load='true'  class="fadeImg" />
 						</view>
 
 						<view class="nums" v-if="item.count > 3">+{{ item.count - 3 }}</view>
@@ -42,6 +43,7 @@
 import { getHot } from '@/api/imgDetail.js'
 import { addBrowseRecord } from "@/api/browseRecord.js"
 export default {
+
 	data() {
 		return {
 			page: 1,
@@ -212,4 +214,51 @@ export default {
 	height: 60rpx;
 	text-align: center;
 	color: #bfbfbf;
-}</style>
+}
+
+
+/* 图片淡入淡出 */
+.fadeImg {
+width: 100px;
+height: 100px;
+background: #fff;
+-webkit-animation: fadeinout 2s linear forwards;
+animation: fadeinout 2s linear forwards;
+}
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 1; }
+50% { opacity: 0.5; }
+100% { opacity: 0; }
+}
+
+@keyframes fadeinout {
+0%{ opacity: 1; }
+50% { opacity: 0.5; }
+100% { opacity: 0; }
+}
+
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity: 0.5; }
+100% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+0%{ opacity:0; }
+50% { opacity: 0.5; }
+100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity:1; }
+}
+
+@keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity:1; }
+}
+
+</style>

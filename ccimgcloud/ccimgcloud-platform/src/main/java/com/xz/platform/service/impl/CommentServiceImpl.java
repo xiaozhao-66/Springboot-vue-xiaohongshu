@@ -4,11 +4,13 @@ import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
 import com.xz.common.exception.RenException;
-import com.xz.common.service.impl.CrudServiceImpl;
+import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.ConvertUtils;
 import com.xz.common.utils.DateUtils;
 import com.xz.common.utils.PageUtils;
+import com.xz.common.utils.RedisUtils;
 import com.xz.platform.common.constant.Constant;
 import com.xz.platform.dao.CommentDao;
 import com.xz.platform.dao.ImgDetailsDao;
@@ -37,7 +39,7 @@ import java.util.*;
  * @since 1.0.0 2023-03-16
  */
 @Service
-public class CommentServiceImpl extends CrudServiceImpl<CommentDao, CommentEntity, CommentDTO> implements CommentService {
+public class CommentServiceImpl extends BaseServiceImpl<CommentDao, CommentEntity> implements CommentService {
 
     @Autowired
     UserDao userDao;
@@ -52,14 +54,9 @@ public class CommentServiceImpl extends CrudServiceImpl<CommentDao, CommentEntit
     @Autowired
     UserRecordDao userRecordDao;
 
-    @Override
-    public QueryWrapper<CommentEntity> getWrapper(Map<String, Object> params) {
-        String id = (String) params.get("id");
+    @Autowired
+    RedisUtils redisUtils;
 
-        QueryWrapper<CommentEntity> wrapper = new QueryWrapper<>();
-        wrapper.eq(StringUtils.isNotBlank(id), "id", id);
-        return wrapper;
-    }
 
     private boolean isAgree(String uid, String mid) {
         AgreeDTO agreeDTO = new AgreeDTO();
@@ -147,83 +144,104 @@ public class CommentServiceImpl extends CrudServiceImpl<CommentDao, CommentEntit
      * @return
      */
     @Override
-    public IPage<CommentVo> getAllReplyComment(long page, long limit, String uid) {
+    public List<CommentVo> getAllReplyComment(long page, long limit, String uid) {
 
-        List<CommentVo> replyCommentList = new ArrayList<>();
-        //得到当前用户发布的所有作品
-        List<ImgDetailsEntity> imgDetailList = imgDetailsDao.selectList(new QueryWrapper<ImgDetailsEntity>().eq("user_id", uid));
+        return baseDao.getAllReplyComment(page, limit, uid);
 
-        for (ImgDetailsEntity model : imgDetailList) {
-            //得到当前笔记的所有一级评论
-            List<CommentEntity> commentList = baseDao.selectList(new QueryWrapper<CommentEntity>().and(e -> e.eq("mid", model.getId()).eq("pid", 0)));
-
-            for (CommentEntity e : commentList) {
-                if (StringUtils.equals(String.valueOf(e.getUid()), uid)) {
-                    continue;
-                }
-
-                CommentVo commentVo = ConvertUtils.sourceToTarget(e, CommentVo.class);
-                commentVo.setCover(model.getCover())
-                        .setReplyContent(e.getContent())
-                        .setCreateDate(e.getCreateDate())
-                        .setTime(DateUtils.timeUtile(e.getCreateDate()));
-                replyCommentList.add(commentVo);
-            }
-
-            //得到当前笔记的所有二级评论
-            List<CommentEntity> twoCommentList = baseDao.selectList(new QueryWrapper<CommentEntity>().and(e -> e.eq("mid", model.getId()).ne("pid", 0)));
-
-            for (CommentEntity comment : twoCommentList) {
-
-                //如果二级评论是当前笔记的作者评论
-                if (StringUtils.equals(String.valueOf(comment.getUid()), uid)) {
-                    continue;
-                }
-                //得到原评论
-                CommentEntity sourceComment = baseDao.selectById(comment.getReplyId());
-
-                CommentVo commentVo = ConvertUtils.sourceToTarget(comment, CommentVo.class);
-                commentVo.setCover(model.getCover())
-                        .setReplyUid(sourceComment.getUid())
-                        .setReplyContent(comment.getContent())
-                        .setContent(sourceComment.getContent())
-                        .setTime(DateUtils.timeUtile(comment.getCreateDate()));
-                replyCommentList.add(commentVo);
-            }
-
-        }
-
-        //得到当前用户的所有评论(有一级评论和二级评论)
-        List<CommentEntity> commentList = baseDao.selectList(new QueryWrapper<CommentEntity>().eq("uid", uid));
-
-        for (CommentEntity model : commentList) {
-
-            List<CommentEntity> commentList2 = baseDao.selectList(new QueryWrapper<CommentEntity>().eq("reply_id", model.getId()));
-            for (CommentEntity e : commentList2) {
-
-                if (StringUtils.equals(String.valueOf(e.getUid()), uid)) {
-                    continue;
-                }
-
-                CommentVo commentVo = ConvertUtils.sourceToTarget(e, CommentVo.class);
-                commentVo.setCover(imgDetailsDao.selectById(model.getMid()).getCover())
-                        .setReplyUid(model.getUid())
-                        .setReplyContent(e.getContent())
-                        .setContent(model.getContent())
-                        .setTime(DateUtils.timeUtile(e.getCreateDate()));
-                replyCommentList.add(commentVo);
-            }
-
-        }
-
-        replyCommentList.sort((o1, o2) -> o2.getCreateDate().compareTo(o1.getCreateDate()));
-        return PageUtils.getPages((int) page, (int) limit, replyCommentList);
+//        HashMap<Long,CommentVo> map = new HashMap<>();
+//        List<CommentVo> replyCommentList = new ArrayList<>();
+//        //得到当前用户发布的所有作品
+//        List<ImgDetailsEntity> imgDetailList = imgDetailsDao.selectList(new QueryWrapper<ImgDetailsEntity>().eq("user_id", uid));
+//
+//        for (ImgDetailsEntity model : imgDetailList) {
+//            //得到当前笔记的所有一级评论
+//            List<CommentEntity> commentList = baseDao.selectList(new QueryWrapper<CommentEntity>().and(e -> e.eq("mid", model.getId()).eq("pid", 0)));
+//
+//            for (CommentEntity e : commentList) {
+//                if (StringUtils.equals(String.valueOf(e.getUid()), uid)) {
+//                    continue;
+//                }
+//
+//                CommentVo commentVo = ConvertUtils.sourceToTarget(e, CommentVo.class);
+//                commentVo.setCover(model.getCover())
+//                        .setReplyContent(e.getContent())
+//                        .setCreateDate(e.getCreateDate())
+//                        .setTime(DateUtils.timeUtile(e.getCreateDate()));
+//
+//                map.put(commentVo.getId(),commentVo);
+//            }
+//
+//            //得到当前笔记的所有二级评论
+//            List<CommentEntity> twoCommentList = baseDao.selectList(new QueryWrapper<CommentEntity>().and(e -> e.eq("mid", model.getId()).ne("pid", 0)));
+//
+//            for (CommentEntity comment : twoCommentList) {
+//
+//                //如果二级评论是当前笔记的作者评论
+//                if (StringUtils.equals(String.valueOf(comment.getUid()), uid)) {
+//                    continue;
+//                }
+//                //得到原评论
+//                CommentEntity sourceComment = baseDao.selectById(comment.getReplyId());
+//
+//                CommentVo commentVo = ConvertUtils.sourceToTarget(comment, CommentVo.class);
+//                commentVo.setCover(model.getCover())
+//                        .setReplyUid(sourceComment.getUid())
+//                        .setReplyContent(comment.getContent())
+//                        .setContent(sourceComment.getContent())
+//                        .setTime(DateUtils.timeUtile(comment.getCreateDate()));
+//
+//                map.put(commentVo.getId(),commentVo);
+//            }
+//
+//        }
+//
+//        //得到当前用户的所有评论(有一级评论和二级评论)
+//        List<CommentEntity> commentList = baseDao.selectList(new QueryWrapper<CommentEntity>().eq("uid", uid));
+//
+//        for (CommentEntity model : commentList) {
+//            //得到所有的回复评论
+//            List<CommentEntity> commentList2 = baseDao.selectList(new QueryWrapper<CommentEntity>().eq("reply_id", model.getId()));
+//            for (CommentEntity e : commentList2) {
+//
+//                if (StringUtils.equals(String.valueOf(e.getUid()), uid)||map.containsKey(e.getId())) {
+//                    continue;
+//                }
+//
+//                CommentVo commentVo = ConvertUtils.sourceToTarget(e, CommentVo.class);
+//                commentVo.setCover(imgDetailsDao.selectById(model.getMid()).getCover())
+//                        .setReplyUid(model.getUid())
+//                        .setReplyContent(e.getContent())
+//                        .setContent(model.getContent())
+//                        .setTime(DateUtils.timeUtile(e.getCreateDate()));
+//                map.put(commentVo.getId(),commentVo);
+//            }
+//
+//        }
+//
+//        for (Long k:map.keySet()) {
+//            replyCommentList.add(map.get(k));
+//        }
+//
+//        replyCommentList.sort((o1, o2) -> o2.getCreateDate().compareTo(o1.getCreateDate()));
+//
+//
+//        return PageUtils.getPages((int) page, (int) limit, replyCommentList);
 
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public CommentVo addComment(CommentDTO commentDTO) {
+
+        String followKey = ImgDetailCacheNames.FOLLOW_TREND+commentDTO.getUid();
+        Set<String> listKey = redisUtils.getListKey(followKey);
+
+        if(!listKey.isEmpty()){
+            for(String e : listKey){
+                redisUtils.delete(e);
+            }
+        }
+
         CommentEntity commentEntity = ConvertUtils.sourceToTarget(commentDTO, CommentEntity.class);
         baseDao.insert(commentEntity);
         ImgDetailsEntity imgDetailsEntity = imgDetailsDao.selectById(commentDTO.getMid());

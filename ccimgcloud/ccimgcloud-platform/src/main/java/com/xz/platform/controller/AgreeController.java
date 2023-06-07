@@ -13,6 +13,8 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 /**
  * 
@@ -66,13 +68,12 @@ public class AgreeController {
     public Result<?> getAllAgreeAndCollection(@PathVariable("page") long page,
                                               @PathVariable("limit") long limit,
                                               String uid) {
-        Page<AgreeVo> pageInfo = agreeService.getAllAgreeAndCollection(page, limit, uid);
-        return new Result<Page<AgreeVo>>().ok(pageInfo);
+        List<AgreeVo> agreeVoList = agreeService.getAllAgreeAndCollection(page, limit, uid);
+        return new Result<List<AgreeVo>>().ok(agreeVoList);
     }
 
     /**
      * 取消点赞
-     *
      * @param agreeDTO
      * @return
      */

@@ -5,6 +5,7 @@ import ai.djl.repository.zoo.ModelNotFoundException;
 import ai.djl.translate.TranslateException;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xz.common.page.PageData;
+import com.xz.common.service.BaseService;
 import com.xz.common.service.CrudService;
 import com.xz.platform.dto.ImgDetailsDTO;
 import com.xz.platform.entity.ImgDetailsEntity;
@@ -21,13 +22,13 @@ import java.util.List;
  * @author xiaozhao sunlightcs@gmail.com
  * @since 1.0.0 2023-03-13
  */
-public interface ImgDetailsService extends CrudService<ImgDetailsEntity, ImgDetailsDTO> {
+public interface ImgDetailsService extends BaseService<ImgDetailsEntity> {
 
     Page<ImgDetailVo> getPage(long page, long limit);
 
     void publish(ImgDetailsDTO imgDetailsDTO) throws MalformedModelException, ModelNotFoundException, TranslateException, IOException;
 
-    Page<ImgDetailVo> getAllImgByAlbum(long page, long limit, String albumId);
+    List<ImgDetailVo> getAllImgByAlbum(long page, long limit, String albumId);
 
     ImgDetailInfoVo getOne(String id);
 

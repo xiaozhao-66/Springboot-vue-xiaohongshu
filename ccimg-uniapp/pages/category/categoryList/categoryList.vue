@@ -67,7 +67,7 @@ export default {
 		},
 
 		loadData() {
-            console.log("刷新数据")
+			
 			this.loading = true
             
 			if (this.dataList.length >= this.total) {

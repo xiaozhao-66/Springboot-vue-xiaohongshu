@@ -17,7 +17,7 @@
 			</view>
 		</view>
 		<view>
-			<input placeholder="添加标签" class="tag-input" @confirm="submit" v-model='content' />
+			<input placeholder="输入标签" class="tag-input" @confirm="submit" v-model='content' />
 		</view>
 
 		<view class="recommend-tag">
@@ -82,15 +82,18 @@ export default {
 			this.tagList.splice(index, 1)
 		},
 		selectTag(item) {
-			if (this.tagList.length < 5) {
-				
+			if (this.tagList.length >= 5) {
+				let params = {
+					title: "最多支持5个标签",
+				}
+			    this.$refs.toast.show(params);
+			}else{
 				this.tagList.push(item)
 			}
+		
 		},
 		back() {
-			let that = this
-			uni.setStorageSync("tags", JSON.stringify(that.tagList))
-
+			uni.setStorageSync("tags", JSON.stringify(this.tagList))
 			uni.navigateTo({
 				url: "/pages/push/push?mid=" + this.mid + '&type=' + this.type + '&version=' + 2
 			})

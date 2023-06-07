@@ -11,8 +11,6 @@ import java.util.Date;
 public class AgreeVo implements Serializable {
 
 
-    private Long id;
-
     private Long mid;
 
     private String cover;

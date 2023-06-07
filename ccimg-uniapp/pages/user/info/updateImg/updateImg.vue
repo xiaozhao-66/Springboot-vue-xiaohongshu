@@ -13,7 +13,7 @@
 		</tui-navigation-bar>
 
 		<view class="upload-img" @click="uploadImg">
-			<view class="title2 w">请选择一张图片</view>
+			<view class="title2 w">请上传一张新的图片</view>
 			<view class="upload">
 				<view class="img-icon" v-if="value == ''">
 					<tui-icon name="pic"></tui-icon>
@@ -28,7 +28,7 @@
 		<view class="fotter">
 			<view class="add">
 
-				<tui-button type="danger" shape="circle" @click="publish" limit='1'>点击发布</tui-button>
+				<tui-button type="danger" shape="circle" @click="publish" limit='1' :disabled="disabled">点击发布</tui-button>
 
 			</view>
 		</view>
@@ -48,6 +48,7 @@ export default {
 			uid: '',
 			type: 0,
 			userInfo: {},
+			disabled:true,
 		}
 	},
 	onLoad(options) {
@@ -85,81 +86,54 @@ export default {
 				sizeType: ['original'], //original 原图，compressed 压缩图，默认二者都有
 				sourceType: ['album'], //album 从相册选图，camera 使用相机，默认二者都有。如需直接开相机或直接选相册，请只使用一个选项
 				success: function (res) {
-					uni.uploadFile({
-						url: appConfig.WEB_API + '/utils/fileoss/uploadOssFile',
-						filePath: res.tempFilePaths[0],
-						name: 'file',
-						success: (uploadFileRes) => {
-
-							that.value = JSON.parse(uploadFileRes.data).data
-
-						}
-					});
+					   that.value = res.tempFilePaths[0]
+					   that.disabled = false
 				}
 			})
 		},
 		publish() {
-
-			if (this.type == 1) {
-				//更换头像
-				this.userInfo.avatar = this.value
-			} else {
-				//更换封面
-				this.userInfo.cover = this.value
-			}
-
-			updateUser(this.userInfo).then(res => {
-				let params = {
-					title: "修改成功",
-					imgUrl: "/static/images/toast/check-circle.png",
-					icon: true
-				}
-				this.$refs.toast.show(params);
-				setTimeout(() => {
-					uni.switchTab({
-						url: "/pages/user/user"
-					})
-				}, 1000)
-			})
-
-			if (this.isupdate) {
-				//修改
-				updateAlbum(this.albumInfo).then(res => {
+			
+			let that  = this
+			
+			
+			that.disabled = true
+			
+			uni.uploadFile({
+				url: appConfig.WEB_API + '/utils/fileoss/uploadOssFile',
+				filePath: that.value,
+				name: 'file',
+				success: (uploadFileRes) => {
+			      
+				  
+				  let path = JSON.parse(uploadFileRes.data).data
+			      
+				  if (that.type == 1) {
+					//更换头像
+					that.userInfo.avatar = path
+				  } else {
+					//更换封面
+					that.userInfo.cover = path
+				  }
+				  
+				  updateUser(that.userInfo).then(res => {
 					let params = {
 						title: "修改成功",
 						imgUrl: "/static/images/toast/check-circle.png",
 						icon: true
 					}
-					this.$refs.toast.show(params);
-					this.albumInfo.name = ''
-					this.value = ''
+					that.disabled = false
+					that.$refs.toast.show(params);
 					setTimeout(() => {
-						uni.reLaunch({
-							url: "/pages/user/user?currentTab=" + 1
+						uni.switchTab({
+							url: "/pages/user/user"
 						})
 					}, 1000)
-				})
-			} else {
-				//发布
-
-				saveAlbum(this.albumInfo).then(res => {
-					let params = {
-						title: "发布成功",
-						imgUrl: "/static/images/toast/check-circle.png",
-						icon: true
-					}
-					this.$refs.toast.show(params);
-					this.albumInfo.name = ''
-					this.value = ''
-					setTimeout(() => {
-						uni.reLaunch({
-							url: "/pages/user/user?currentTab=" + 1
-						})
-					}, 1000)
-				})
-			}
-
-
+				  })
+				  
+				  
+				}
+			});
+		
 		},
 
 	}

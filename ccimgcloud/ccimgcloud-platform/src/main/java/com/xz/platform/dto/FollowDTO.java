@@ -18,15 +18,15 @@ import java.util.Date;
  * @since 1.0.0 2023-03-16
  */
 @Data
-@ApiModel(value = "")
+@ApiModel(value = "关注")
 public class FollowDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "用户id")
 	@NotNull(message = "uid不能为空", groups = DefaultGroup.class)
 	private Long uid;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "关注的用户id")
 	@NotNull(message = "fid不能为空", groups = DefaultGroup.class)
 	private Long fid;
 }

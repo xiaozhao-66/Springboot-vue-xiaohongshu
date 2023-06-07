@@ -29,4 +29,5 @@ public interface EsService {
 
     List<Map<String, Object>> esSearchRecord(String keyword) throws IOException;
 
+    List<ImgDetailSearchVo> getPage(long page, long limit, Integer type) throws IOException;
 }

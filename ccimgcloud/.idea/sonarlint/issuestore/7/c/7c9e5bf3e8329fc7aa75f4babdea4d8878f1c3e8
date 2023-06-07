@@ -1,5 +1,0 @@
-
-[	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(½çùð
-\
-java:S1128"ARemove this unused import 'com.aliyun.oss.internal.OSSConstants'.(ðñ‹³úÿÿÿÿ
-k	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ú’¬„üÿÿÿÿ

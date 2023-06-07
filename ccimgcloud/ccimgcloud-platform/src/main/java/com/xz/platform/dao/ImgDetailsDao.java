@@ -2,6 +2,7 @@ package com.xz.platform.dao;
 
 import com.xz.common.dao.BaseDao;
 import com.xz.platform.entity.ImgDetailsEntity;
+import com.xz.platform.vo.ImgDetailVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,4 +18,6 @@ import java.util.Map;
 public interface ImgDetailsDao extends BaseDao<ImgDetailsEntity> {
 
     List<ImgDetailsEntity> selectBatch(Map<String, Object> map);
+
+    List<ImgDetailVo> getAllImgByAlbum(long page, long limit, String albumId);
 }

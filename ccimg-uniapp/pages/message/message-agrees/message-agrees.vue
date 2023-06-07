@@ -21,7 +21,7 @@
 									<view v-if="item.type == 2" class="tui-msg-type-item">收藏您的笔记</view>
 									<view v-if="item.type == 1" class="tui-msg-type-item">点赞您的笔记</view>
 									<view v-if="item.type == 0" class="tui-msg-type-item">点赞您的评论</view>
-									<view class="tui-msg-time">{{ item.time }}</view>
+									<view class="tui-msg-time">{{item.time}}</view>
 								</view>
 
 								<view class="tui-msg-content" v-if="item.type == 0">{{ item.content }}</view>
@@ -43,6 +43,7 @@
 <script>
 import { getAllAgreeAndCollection } from "@/api/agree.js"
 import { addBrowseRecord } from "@/api/browseRecord.js"
+import {timeAgo} from "@/utils/webUtils.js"
 export default {
 	data() {
 		return {
@@ -65,14 +66,24 @@ export default {
 			   delta:1
 		   })
 		},
+		
+		
+		
+		
+		
 		getAllAgreeAndCollection() {
 			let params = {
 				uid: this.uid
 			}
 			getAllAgreeAndCollection(this.page, this.limit, params).then(res => {
-
-				this.dataList = res.data.records;
-				this.total = res.data.total
+				console.log(res)
+				res.data.forEach((e)=>{
+					e.time = timeAgo(e.time)
+					this.dataList.push(e)
+				})
+				// this.dataList = res.data;
+				
+				this.total = res.data.length
 			})
 		},
 		getImg(mid) {
@@ -91,17 +102,22 @@ export default {
 		loadData() {
 			this.page = this.page + 1
 
-			if (this.dataList.length >= this.total) {
+			if (this.total < this.limit) {
 				this.isEnd = true
 				return
 			}
-
+			
 			let params = {
 				uid: this.uid
 			}
 			getAllAgreeAndCollection(this.page, this.limit, params).then(res => {
-				this.dataList.push(...res.data.records)
-
+				
+				res.data.forEach((e)=>{
+					e.time = timeAgo(e.time)
+					this.dataList.push(e)
+				})
+				
+				this.total = res.data.length
 			})
 
 		},

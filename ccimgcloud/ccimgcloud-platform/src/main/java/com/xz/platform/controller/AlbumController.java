@@ -28,7 +28,6 @@ public class AlbumController {
 
     /**
      * 得到当前用户的所有专辑
-     *
      * @param uid
      * @return
      */
@@ -40,7 +39,6 @@ public class AlbumController {
 
     /**
      * 保存专辑
-     *
      * @param albumDTO
      * @return
      */
@@ -53,7 +51,6 @@ public class AlbumController {
 
     /**
      * 得到专辑信息
-     *
      * @param id
      * @return
      */
@@ -66,7 +63,6 @@ public class AlbumController {
 
     /**
      * 删除专辑
-     *
      * @param id
      * @param uid
      * @return
@@ -80,7 +76,6 @@ public class AlbumController {
 
     /**
      * 更新专辑
-     *
      * @param albumDTO
      * @return
      */

@@ -12,6 +12,8 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 
  *
@@ -37,8 +39,8 @@ public class BrowseRecordController {
      */
     @RequestMapping("getAllBrowseRecordByUser/{page}/{limit}")
     public Result<?> getAllBrowseRecordByUser(@PathVariable("page") long page, @PathVariable("limit") long limit, String uid) {
-        Page<BrowseRecordVo> pageInfo = browseRecordService.getAllBrowseRecordByUser(page, limit, uid);
-        return new Result<Page<BrowseRecordVo>>().ok(pageInfo);
+        List<BrowseRecordVo> browseRecordVoList = browseRecordService.getAllBrowseRecordByUser(page, limit, uid);
+        return new Result<List<BrowseRecordVo>>().ok(browseRecordVoList);
     }
 
 

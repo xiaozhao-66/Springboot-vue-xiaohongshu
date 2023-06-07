@@ -6,11 +6,12 @@ import ai.djl.translate.TranslateException;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xz.common.constant.cacheConstant.AlbumCacheNames;
 import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
 import com.xz.common.exception.ErrorCode;
 import com.xz.common.exception.RenException;
 import com.xz.common.recommend.RecommendUtils2;
-import com.xz.common.service.impl.CrudServiceImpl;
+import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.ConvertUtils;
 import com.xz.common.utils.DateUtils;
 import com.xz.common.utils.PageUtils;
@@ -47,7 +48,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 1.0.0 2023-03-13
  */
 @Service
-public class ImgDetailsServiceImpl extends CrudServiceImpl<ImgDetailsDao, ImgDetailsEntity, ImgDetailsDTO> implements ImgDetailsService {
+public class ImgDetailsServiceImpl extends BaseServiceImpl<ImgDetailsDao, ImgDetailsEntity> implements ImgDetailsService {
 
     @Autowired
     AlbumImgRelationDao albumImgRelationDao;
@@ -86,16 +87,6 @@ public class ImgDetailsServiceImpl extends CrudServiceImpl<ImgDetailsDao, ImgDet
     @Autowired
     RedisUtils redisUtils;
 
-
-    @Override
-    public QueryWrapper<ImgDetailsEntity> getWrapper(Map<String, Object> params) {
-        String id = (String) params.get("id");
-
-        QueryWrapper<ImgDetailsEntity> wrapper = new QueryWrapper<>();
-        wrapper.eq(StringUtils.isNotBlank(id), "id", id);
-
-        return wrapper;
-    }
 
     @NotNull
     private ImgDetailVo getImgDetailVo(ImgDetailsEntity model) {
@@ -138,36 +129,22 @@ public class ImgDetailsServiceImpl extends CrudServiceImpl<ImgDetailsDao, ImgDet
     }
 
 
-    private String getContent(ImgDetailsEntity imgDetailsEntity) {
-
-        Set<String> contentSet = new HashSet<>();
-
-        TagImgRelationEntity tagImgRelationEntity = tagImgRelationDao.selectOne(new QueryWrapper<TagImgRelationEntity>().eq("mid", imgDetailsEntity.getId()));
-
-        String tagIdstr = tagImgRelationEntity.getTagIds();
-        String[] ids = tagIdstr.split(";");
-        List<TagEntity> tags = tagDao.selectBatchIds(Arrays.asList(ids));
-        for (TagEntity tag : tags) {
-            contentSet.add(tag.getName());
-        }
-
-        CategoryEntity categoryEntity = categoryDao.selectById(imgDetailsEntity.getCategoryPid());
-        contentSet.add(categoryEntity.getName());
-        CategoryEntity categoryEntity2 = categoryDao.selectById(imgDetailsEntity.getCategoryId());
-        contentSet.add(categoryEntity2.getName());
-
-        StringBuilder sb = new StringBuilder();
-        for (String e : contentSet) {
-            sb.append(e);
-            sb.append("|");
-        }
-        return sb.toString();
-    }
-
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void publish(ImgDetailsDTO imgDetailsDTO) throws MalformedModelException, ModelNotFoundException, TranslateException, IOException {
 
+        String followKey = ImgDetailCacheNames.FOLLOW_TREND+imgDetailsDTO.getUserId();
+        Set<String> listKey = redisUtils.getListKey(followKey);
+        if(!listKey.isEmpty()){
+            for(String e : listKey){
+                redisUtils.delete(e);
+            }
+        }
+
+        String userTrendKey = ImgDetailCacheNames.USER_TREND+imgDetailsDTO.getUserId();
+        if(redisUtils.hasKey(userTrendKey)){
+            redisUtils.delete(userTrendKey);
+        }
 
         ImgDetailsEntity imgDetailsEntity = ConvertUtils.sourceToTarget(imgDetailsDTO, ImgDetailsEntity.class);
         baseDao.insert(imgDetailsEntity);
@@ -202,15 +179,9 @@ public class ImgDetailsServiceImpl extends CrudServiceImpl<ImgDetailsDao, ImgDet
         UserEntity userEntity = userDao.selectById(imgDetailsEntity.getUserId());
         imgDetailVo.setUsername(userEntity.getUsername())
                 .setAvatar(userEntity.getAvatar())
+                .setAgreeCount(0L)
                 .setOtherUserId(userEntity.getUserId())
                 .setTime(imgDetailsEntity.getUpdateDate());
-
-        //计算词向量并存储到redis中
-        String content = getContent(imgDetailsEntity);
-        float[] embeddings = RecommendUtils2.getEmbeddings(content);
-
-        redisUtils.set("recommend:"+imgDetailsEntity.getId(),JSON.toJSONString(embeddings));
-
 
         try {
             esClient.addData(imgDetailVo);
@@ -222,27 +193,31 @@ public class ImgDetailsServiceImpl extends CrudServiceImpl<ImgDetailsDao, ImgDet
     }
 
     @Override
-    public Page<ImgDetailVo> getAllImgByAlbum(long page, long limit, String albumId) {
-
-        List<AlbumImgRelationEntity> albumImgRelation = albumImgRelationDao.selectList(new QueryWrapper<AlbumImgRelationEntity>().eq("aid", albumId));
-
-        List<String> idList = albumImgRelation.stream().map(e -> String.valueOf(e.getMid())).collect(Collectors.toList());
+    public List<ImgDetailVo> getAllImgByAlbum(long page, long limit, String albumId) {
 
 
-        List<ImgDetailsEntity> imgDetailList = baseDao.selectList(new QueryWrapper<ImgDetailsEntity>().in("id", idList).orderByDesc("update_date"));
+        return baseDao.getAllImgByAlbum(page, limit, albumId);
 
-        List<ImgDetailVo> res = new ArrayList<>();
-        for (ImgDetailsEntity model : imgDetailList) {
-            AlbumEntity albumEntity = albumDao.selectById(albumId);
-
-            ImgDetailVo imgDetailVo = getImgDetailVo(model);
-            imgDetailVo.setAlbumName(albumEntity.getName())
-                    .setImgCount(albumEntity.getImgCount())
-                    .setTime(DateUtils.timeUtile(model.getUpdateDate()));
-            res.add(imgDetailVo);
-        }
-
-        return PageUtils.getPages((int) page, (int) limit, res);
+//        List<AlbumImgRelationEntity> albumImgRelation = albumImgRelationDao.selectList(new QueryWrapper<AlbumImgRelationEntity>().eq("aid", albumId));
+//
+//        List<String> idList = albumImgRelation.stream().map(e -> String.valueOf(e.getMid())).collect(Collectors.toList());
+//
+//
+//        List<ImgDetailsEntity> imgDetailList = baseDao.selectList(new QueryWrapper<ImgDetailsEntity>().in("id", idList).orderByDesc("update_date"));
+//
+//        AlbumEntity albumEntity = albumDao.selectById(albumId);
+//
+//        List<ImgDetailVo> res = new ArrayList<>();
+//        for (ImgDetailsEntity model : imgDetailList) {
+//
+//            ImgDetailVo imgDetailVo = getImgDetailVo(model);
+//            imgDetailVo.setAlbumName(albumEntity.getName())
+//                    .setImgCount(albumEntity.getImgCount())
+//                    .setTime(DateUtils.timeUtile(model.getUpdateDate()));
+//            res.add(imgDetailVo);
+//        }
+//
+//        return PageUtils.getPages((int) page, (int) limit, res);
     }
 
     @Override
@@ -370,6 +345,22 @@ public class ImgDetailsServiceImpl extends CrudServiceImpl<ImgDetailsDao, ImgDet
                         redisUtils.delete(key);
                     }
 
+                    //删除关注用户中的数据
+                    String followKey = ImgDetailCacheNames.FOLLOW_TREND+model.getUserId();
+                    Set<String> listKey = redisUtils.getListKey(followKey);
+                    if(!listKey.isEmpty()){
+                        for(String e : listKey){
+                            redisUtils.delete(e);
+                        }
+                    }
+
+                    //删除用户动态中的数据
+                    String userTrendKey = ImgDetailCacheNames.USER_TREND+model.getUserId();
+                    if(Boolean.TRUE.equals(redisUtils.hasKey(userTrendKey))){
+                        redisUtils.delete(userTrendKey);
+                    }
+
+
                     //删除推荐系统中缓存的数据
                     String recommendKey = ImgDetailCacheNames.RECOMMEND+model.getId();
                     if(Boolean.TRUE.equals(redisUtils.hasKey(recommendKey))){
@@ -396,8 +387,20 @@ public class ImgDetailsServiceImpl extends CrudServiceImpl<ImgDetailsDao, ImgDet
         }
     }
 
+    /**
+     * @param page
+     * @param limit
+     * @return
+     */
     @Override
     public Page<ImgDetailVo> getHot(long page, long limit) {
+
+        String key = ImgDetailCacheNames.HOT;
+        if(Boolean.TRUE.equals(redisUtils.hasKey(key))) {
+            String objStr = redisUtils.get(key);
+            List<ImgDetailVo> imgDetailVos = JSON.parseArray(objStr, ImgDetailVo.class);
+            return PageUtils.getPages((int) page, (int) limit, imgDetailVos);
+        }
 
         List<ImgDetailsEntity> imgDetailsEntityList = baseDao.selectList(new QueryWrapper<ImgDetailsEntity>().orderByDesc("agree_count").ge("agree_count", 1));
         List<ImgDetailVo> list = new ArrayList<>();
@@ -414,6 +417,8 @@ public class ImgDetailsServiceImpl extends CrudServiceImpl<ImgDetailsDao, ImgDet
             list.add(imgDetailVo);
         }
         return PageUtils.getPages((int) page, (int) limit, list);
+
+
     }
 
     @Override
@@ -424,6 +429,20 @@ public class ImgDetailsServiceImpl extends CrudServiceImpl<ImgDetailsDao, ImgDet
         if (Boolean.TRUE.equals(redisUtils.hasKey(key))) {
             redisUtils.delete(key);
         }
+
+        String followKey = ImgDetailCacheNames.FOLLOW_TREND+imgDetailsDTO.getUserId();
+        Set<String> listKey = redisUtils.getListKey(followKey);
+        if(!listKey.isEmpty()){
+            for(String e : listKey){
+                redisUtils.delete(e);
+            }
+        }
+
+        String userTrendKey = ImgDetailCacheNames.USER_TREND+imgDetailsDTO.getUserId();
+        if(redisUtils.hasKey(userTrendKey)){
+            redisUtils.delete(userTrendKey);
+        }
+
 
         ImgDetailsEntity imgDetailsEntity = ConvertUtils.sourceToTarget(imgDetailsDTO, ImgDetailsEntity.class);
         baseDao.updateById(imgDetailsEntity);
@@ -443,6 +462,8 @@ public class ImgDetailsServiceImpl extends CrudServiceImpl<ImgDetailsDao, ImgDet
         AlbumEntity albumEntity = albumDao.selectById(imgDetailsDTO.getAlbumId());
         albumEntity.setImgCount(imgDetailsDTO.getCount() + albumEntity.getImgCount());
         albumDao.updateById(albumEntity);
+
+
 
         //插入新的绑定关系
         AlbumImgRelationEntity albumImgRelationEntity = new AlbumImgRelationEntity();
@@ -473,11 +494,7 @@ public class ImgDetailsServiceImpl extends CrudServiceImpl<ImgDetailsDao, ImgDet
             redisUtils.delete(recommendKey);
         }
 
-        //计算词向量并存储到redis中
-        String content = getContent(imgDetailsEntity);
-        float[] embeddings = RecommendUtils2.getEmbeddings(content);
 
-        redisUtils.set(key,JSON.toJSONString(embeddings));
 
         try {
             esClient.update(imgDetailVo);

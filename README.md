@@ -1,21 +1,29 @@
 # Springboot-vue-ccimgcloud
 
-#### 数据库和apk测试安装包在ccimg-admin-vue下的public包中（！！！项目启动流程在下面）
+### 数据库在ccimg-admin-vue下的public包中，由于很多学生环境都没有配好就来找我安装环境，后面再需要安装环境可能需要收取一定费用（30元包括项目运行启动）。（！！！项目启动流程在下面）
+
+### oss账号要用自己的，本项目不提供
 
 #### 介绍
-一个仿照小红书设计的浏览图片uniapp项目,有问题加q3044606584（小号，可能收不到消息）或者q484235492。（**目前没有开发文档，运行不了（不包括环境配置问题）或者有哪里代码不懂可以加我，都会回复的**）
-
- 第一次学习uniapp因此想做个项目来学习一下，后续可能更新会很慢，如果觉得项目不错可以点个赞，谢谢。
-
+一个仿照小红书设计的浏览图片uniapp项目,有问题加q3044606584（小号，可能收不到消息）或者q484235492。（**目前没有开发文档，运行不了或者有哪里代码不懂可以加我，都会回复的**）
 
 ####  项目启动
-首先需要把redis，nacos环境配置好并启动。
+!!! 推荐功能需要一个压缩模型，无法上传，需要加我qq。如果不使用推荐功能也可以运行。里面也有使用协同过滤算法做推荐功能。\
+!!! oss账号要用自己的，本项目不提供,没有的去开通阿里云或七牛云OSS对象存储服务
 
-启动**ccimgcloud-auth**,**ccimgcloud-gateway**,**ccimgcloud-platform**,**ccimgcloud-recommend**这四个服务就可以正常浏览项目。
+1.首先需要把redis，nacos环境配置好并启动。
 
-如果需要使用图片上传和短信，邮箱服务，需要配置es环境并启动，并在ccimgcloud-utils模块中连接自己的oss账号，然后启动**ccimgcloud-search**和**ccimgcloud-utils**(注意配置oss)这两个服务。
+2.启动**ccimgcloud-auth**,**ccimgcloud-gateway**,**ccimgcloud-platform**,**ccimgcloud-recommend**这四个服务就可以正常浏览项目。
 
-如果只需要运行后台页面，则启动**ccimgcloud-admin**和**ccimgcloud-manage**模块即可
+3.如果需要使用图片上传,短信，邮箱,搜索功能，需要配置**es环境**并启动，并在**ccimgcloud-utils**模块中连接自己的oss账号，然后启动**ccimgcloud-search**和**ccimgcloud-utils**这两个服务。
+
+4.如果只需要运行后台页面，则启动**ccimgcloud-admin**和**ccimgcloud-manage**模块即可
+
+
+### 测试项目
+首先需要下载apk文件 \
+测试账号:xiaozhao \
+测试密码:123456
 
 
 #### 文档

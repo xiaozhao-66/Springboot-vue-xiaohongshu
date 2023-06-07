@@ -15,31 +15,20 @@ import java.util.Date;
  * @since 1.0.0 2023-03-16
  */
 @Data
-@ApiModel(value = "")
+@ApiModel(value = "收藏")
 public class CollectionDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "收藏的用户id")
 	private Long uid;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "收藏类型的id")
 	private Long collectionId;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "收藏的类型（0是图片，1是专辑）")
 	private Integer type;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "排序")
 	private Integer sort;
 
-	@ApiModelProperty(value = "")
-	private Long creator;
-
-	@ApiModelProperty(value = "")
-	private Date createDate;
-
-	@ApiModelProperty(value = "")
-	private Long updater;
-
-	@ApiModelProperty(value = "")
-	private Date updateDate;
 }

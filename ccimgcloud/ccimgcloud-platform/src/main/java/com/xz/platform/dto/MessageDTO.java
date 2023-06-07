@@ -15,22 +15,22 @@ import java.util.Date;
  * @since 1.0.0 2023-03-16
  */
 @Data
-@ApiModel(value = "")
+@ApiModel(value = "消息")
 public class MessageDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "id")
 	private Long id;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "发送方的id")
 	private Long sendId;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "接收方的id")
 	private Long acceptId;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "内容")
 	private String content;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "时间")
 	private String time;
 }

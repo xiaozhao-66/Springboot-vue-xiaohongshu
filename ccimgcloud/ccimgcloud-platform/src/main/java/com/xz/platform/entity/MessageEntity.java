@@ -17,17 +17,20 @@ import java.util.Date;
 public class MessageEntity extends BaseEntity {
 
 
+	/**
+	 * 发送方的用户id
+	 */
 	private Long sendId;
 	/**
-	 *
+	 * 接收方的用户id
 	 */
 	private Long acceptId;
 	/**
-	 *
+	 * 内容
 	 */
 	private String content;
 	/**
-	 *
+	 * 时间
 	 */
 	private String time;
 }

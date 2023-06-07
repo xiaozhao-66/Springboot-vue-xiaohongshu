@@ -3,7 +3,7 @@ package com.xz.auth.service.impl;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.SecureUtil;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xz.auth.constant.AuthConstant;
 import com.xz.auth.dao.UserOtherLoginRelationDao;
@@ -14,15 +14,12 @@ import com.xz.auth.entity.UserRecordEntity;
 import com.xz.auth.dao.AuthUserDao;
 import com.xz.auth.dto.AuthUserDTO;
 import com.xz.auth.entity.AuthUser;
+import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.RedisUtils;
 import com.xz.auth.service.AuthUserService;
 import com.xz.common.constant.Constant;
-import com.xz.common.service.impl.CrudServiceImpl;
 import com.xz.common.utils.ConvertUtils;
 import com.xz.common.utils.JwtUtils;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +32,7 @@ import java.util.Map;
  * @author 48423
  */
 @Service
-public class AuthUserServiceImpl extends CrudServiceImpl<AuthUserDao, AuthUser, AuthUserDTO> implements AuthUserService {
+public class AuthUserServiceImpl extends BaseServiceImpl<AuthUserDao, AuthUser> implements AuthUserService {
 
     @Autowired
     RedisUtils redisUtils;
@@ -52,11 +49,9 @@ public class AuthUserServiceImpl extends CrudServiceImpl<AuthUserDao, AuthUser, 
     private static final String USER_INFO = "userInfo";
     private static final String CODE = "code";
     private static final String EXPIRATION = "expiration";
-
-    @Override
-    public QueryWrapper<AuthUser> getWrapper(Map<String, Object> params) {
-        return null;
-    }
+    private static final String DEFAULT_AVATAR = "https://foruda.gitee.com/avatar/1677084428450863653/7573881_xzjsccz_1604058944.png!avatar200";
+    private static final String DEFAULT_COVER = "https://cc-video-oss.oss-accelerate.aliyuncs.com/2023/06/02/c6a167251a194484ac7b25c5e3ae366720200725103959_K8EJa.jpeg";
+    private static final String DEFAULT_PASSWORD = "qwer1234";
 
 
     private boolean checkCode(AuthUserDTO authUserDTO, Map<String, Object> map) {
@@ -82,7 +77,7 @@ public class AuthUserServiceImpl extends CrudServiceImpl<AuthUserDao, AuthUser, 
         Map<String, Object> map = new HashMap<>(2);
         String title = authUserDTO.getUsername();
         //查询当前用户
-        AuthUser authUser = baseDao.selectOne(new QueryWrapper<AuthUser>().eq("username", title).or().eq("phone", title).or().eq("email", title));
+        AuthUser authUser = baseDao.selectOne(new QueryWrapper<AuthUser>().eq("username",title).or().eq("phone", title).or().eq("email", title));
 
         String s = SecureUtil.md5(authUserDTO.getPassword());
         if (ObjectUtil.isEmpty(authUser) || !s.equals(authUser.getPassword())) {
@@ -92,7 +87,7 @@ public class AuthUserServiceImpl extends CrudServiceImpl<AuthUserDao, AuthUser, 
         }
         String token = JwtUtils.getJwtToken(String.valueOf(authUser.getId()), authUser.getPassword());
         //将用户信息保存在redis中
-        redisUtils.set(AuthUserServiceImpl.USER_KEY + authUser.getId(), JSONObject.toJSONString(authUser));
+        redisUtils.set(AuthUserServiceImpl.USER_KEY + authUser.getId(), JSON.toJSONString(authUser));
 
         map.put(Constant.FRONT_TOKEN_HEADER, token);
         map.put(AuthUserServiceImpl.USER_INFO, authUser);
@@ -102,9 +97,7 @@ public class AuthUserServiceImpl extends CrudServiceImpl<AuthUserDao, AuthUser, 
 
     @Override
     public AuthUser getUserInfoByToken(String token) {
-
         String id = JwtUtils.getUserId(token);
-
         return baseDao.selectById(id);
     }
 
@@ -127,9 +120,9 @@ public class AuthUserServiceImpl extends CrudServiceImpl<AuthUserDao, AuthUser, 
             AuthUser authUser = ConvertUtils.sourceToTarget(authUserDTO, AuthUser.class);
             authUser.setUserId(Long.valueOf(RandomUtil.randomNumbers(10)));
             authUser.setUsername(RandomUtil.randomString(12));
-            authUser.setAvatar("https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png");
-            authUser.setCover("https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png");
-            String password = SecureUtil.md5(authUserDTO.getPassword());
+            authUser.setAvatar(DEFAULT_AVATAR);
+            authUser.setCover(DEFAULT_COVER);
+            String password = SecureUtil.md5(DEFAULT_PASSWORD);
             authUser.setPassword(password);
 
             baseDao.insert(authUser);
@@ -150,7 +143,7 @@ public class AuthUserServiceImpl extends CrudServiceImpl<AuthUserDao, AuthUser, 
 
             String token = JwtUtils.getJwtToken(String.valueOf(authUser.getId()), authUser.getPassword());
             //将用户信息保存在redis中
-            redisUtils.set(AuthUserServiceImpl.USER_KEY + authUser.getId(), JSONObject.toJSONString(authUser));
+            redisUtils.set(AuthUserServiceImpl.USER_KEY + authUser.getId(), JSON.toJSONString(authUser));
 
             map.put(Constant.FRONT_TOKEN_HEADER, token);
             map.put(AuthUserServiceImpl.USER_INFO, authUser);
@@ -181,7 +174,6 @@ public class AuthUserServiceImpl extends CrudServiceImpl<AuthUserDao, AuthUser, 
             map.put(AuthUserServiceImpl.MESSAGE, AuthConstant.ReturnMessage.USERINFO_ERROR.getValue());
             return map;
         }
-
 
         if (checkCode(authUserDTO, map)) {
             return map;
@@ -226,7 +218,7 @@ public class AuthUserServiceImpl extends CrudServiceImpl<AuthUserDao, AuthUser, 
             }
             String token = JwtUtils.getJwtToken(String.valueOf(currentUser.getId()), currentUser.getPassword());
             //将用户信息保存在redis中
-            redisUtils.set(AuthUserServiceImpl.USER_KEY + currentUser.getId(), JSONObject.toJSONString(currentUser));
+            redisUtils.set(AuthUserServiceImpl.USER_KEY + currentUser.getId(), JSON.toJSONString(currentUser));
             map.put(AuthUserServiceImpl.RES, AuthConstant.SUCCESS_STATUE.toString());
             map.put(Constant.FRONT_TOKEN_HEADER, token);
             map.put(AuthUserServiceImpl.USER_INFO, currentUser);
@@ -249,7 +241,7 @@ public class AuthUserServiceImpl extends CrudServiceImpl<AuthUserDao, AuthUser, 
             authUser.setUserId(Long.valueOf(RandomUtil.randomNumbers(10)));
             authUser.setUsername(RandomUtil.randomString(12));
             authUser.setAvatar(userOtherLoginRelationDTO.getOtherAvatar());
-            authUser.setCover("https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png");
+            authUser.setCover(DEFAULT_COVER);
 
             baseDao.insert(authUser);
 
@@ -269,7 +261,7 @@ public class AuthUserServiceImpl extends CrudServiceImpl<AuthUserDao, AuthUser, 
 
         String token = JwtUtils.getJwtToken(String.valueOf(authUser.getId()), authUser.getPassword());
         //将用户信息保存在redis中
-        redisUtils.set(AuthUserServiceImpl.USER_KEY + authUser.getId(), JSONObject.toJSONString(authUser));
+        redisUtils.set(AuthUserServiceImpl.USER_KEY + authUser.getId(), JSON.toJSONString(authUser));
         map.put(Constant.FRONT_TOKEN_HEADER, token);
         map.put(AuthUserServiceImpl.USER_INFO, authUser);
         return map;

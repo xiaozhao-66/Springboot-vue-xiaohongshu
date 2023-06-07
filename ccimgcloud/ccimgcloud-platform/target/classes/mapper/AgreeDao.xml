@@ -3,7 +3,92 @@
 
 <mapper namespace="com.xz.platform.dao.AgreeDao">
 
+   <select id="getAllAgreeAndCollection"  resultType="com.xz.platform.vo.AgreeVo">
 
+       -- 查询点赞记录和相关信息
+       -- 查询点赞记录和相关信息
+       SELECT
+       t_agree.uid,
+       t_user.avatar,
+       t_user.username,
+       t_agree.create_date,
+       t_img_details.cover,
+       t_img_details.id AS mid,
+       null as content,
+       UNIX_TIMESTAMP(t_agree.create_date)*1000 AS time,
+       CASE
+       WHEN t_agree.type = 1 THEN 1
+       WHEN t_agree.type = 0 THEN 0
+       ELSE 2
+       END AS type
+       FROM
+       t_agree
+       INNER JOIN t_user ON t_agree.uid = t_user.id
+
+       LEFT JOIN t_img_details ON t_agree.agree_id = t_img_details.id
+       WHERE
+       t_agree.agree_uid = #{uid} AND t_agree.uid != #{uid} AND t_agree.type = 1
+
+
+       UNION ALL
+
+       -- 查询当前用户发布的图片被收藏的专辑信息
+       SELECT
+       t_user.id AS uid,
+       t_user.avatar,
+       t_user.username,
+       t_album_img_relation.create_date,
+       t_img_details.cover,
+       t_img_details.id AS mid,
+       null as content,
+       UNIX_TIMESTAMP(t_album_img_relation.create_date)*1000 AS time,
+       2 AS type
+       FROM
+       t_img_details
+       INNER JOIN t_album_img_relation ON t_img_details.id = t_album_img_relation.mid
+       INNER JOIN t_album ON t_album_img_relation.aid = t_album.id
+       INNER JOIN t_user ON t_album.uid = t_user.id
+       WHERE
+       t_img_details.user_id = #{uid} AND t_user.id  != #{uid}
+
+
+       union ALL
+
+       SELECT
+       t_agree.uid,
+       t_user.avatar,
+       t_user.username,
+       t_agree.create_date,
+       t_img_details.cover,
+       t_img_details.id AS mid,
+       t_comment.content,
+       UNIX_TIMESTAMP(t_agree.create_date)*1000 AS time,
+       CASE
+       WHEN t_agree.type = 1 THEN 1
+       WHEN t_agree.type = 0 THEN 0
+       ELSE 2
+       END AS type
+       FROM
+       t_agree
+       INNER JOIN t_user ON t_agree.uid = t_user.id
+
+
+       LEFT JOIN (t_comment,t_img_details) ON t_agree.agree_id = t_comment.id AND t_comment.mid = t_img_details.id
+
+       WHERE
+       t_agree.agree_uid = #{uid} AND t_agree.uid != #{uid} and t_agree.type=0
+
+
+       ORDER BY create_date DESC
+
+
+
+
+
+       LIMIT ${(page-1)*limit},${limit};
+
+
+   </select>
 
 
 </mapper>

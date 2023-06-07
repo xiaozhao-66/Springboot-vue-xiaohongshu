@@ -20,27 +20,27 @@ import java.util.Date;
 public class ImgDetailsEntity extends BaseEntity {
 
     /**
-     *
+     * 图片信息内容
      */
     private String content;
     /**
-     *
+     * 图片封面
      */
     private String cover;
     /**
-     *
+     * 发布图片信息的用户id
      */
     private Long userId;
     /**
-     *
+     * 图片所属的二级分类
      */
     private Long categoryId;
     /**
-     *
+     * 图片所属的一级分类
      */
     private Long categoryPid;
     /**
-     *
+     * 图片的地址信息
      */
     private String imgsUrl;
     /**
@@ -48,11 +48,11 @@ public class ImgDetailsEntity extends BaseEntity {
      */
     private Integer count;
     /**
-     *
+     * 排序
      */
     private Integer sort;
     /**
-     *
+     * 图片的状态
      */
     private Integer status;
 
@@ -78,12 +78,12 @@ public class ImgDetailsEntity extends BaseEntity {
 
 
     /**
-     *
+     * 修改用户
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updater;
     /**
-     *
+     * 修改时间
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateDate;

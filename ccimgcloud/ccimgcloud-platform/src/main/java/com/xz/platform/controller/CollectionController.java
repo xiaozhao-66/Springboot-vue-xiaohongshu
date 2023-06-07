@@ -9,6 +9,7 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,8 +38,8 @@ public class CollectionController {
      */
     @RequestMapping("getAllCollection/{page}/{limit}")
     public Result<?> getAllCollection(@PathVariable long page, @PathVariable long limit, String uid, Integer type) {
-        Page<CollectionVo> pageInfo = collectionService.getAllCollection(page, limit, uid, type);
-        return new Result<Page<CollectionVo>>().ok(pageInfo);
+        List<CollectionVo> collectionVoList = collectionService.getAllCollection(page, limit, uid, type);
+        return new Result<List<CollectionVo>>().ok(collectionVoList);
     }
 
     /**

@@ -1,7 +1,7 @@
 package com.xz.platform.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.xz.common.service.impl.CrudServiceImpl;
+import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.ConvertUtils;
 import com.xz.common.constant.cacheConstant.AlbumCacheNames;
 import com.xz.platform.dao.AlbumDao;
@@ -25,7 +25,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +35,7 @@ import java.util.Map;
  * @since 1.0.0 2023-03-16
  */
 @Service
-public class AlbumServiceImpl extends CrudServiceImpl<AlbumDao, AlbumEntity, AlbumDTO> implements AlbumService {
+public class AlbumServiceImpl extends BaseServiceImpl<AlbumDao, AlbumEntity> implements AlbumService {
 
     @Autowired
     UserDao userDao;
@@ -50,17 +49,12 @@ public class AlbumServiceImpl extends CrudServiceImpl<AlbumDao, AlbumEntity, Alb
     @Autowired
     CollectionDao collectionDao;
 
-    @Override
-    public QueryWrapper<AlbumEntity> getWrapper(Map<String, Object> params) {
-        String id = (String) params.get("id");
-
-        QueryWrapper<AlbumEntity> wrapper = new QueryWrapper<>();
-        wrapper.eq(StringUtils.isNotBlank(id), "id", id);
-
-        return wrapper;
-    }
-
-
+    /**
+     * TODO 使用缓存机制
+     *
+     * @param uid
+     * @return
+     */
     @Override
     public List<AlbumVo> getAllAlbum(String uid) {
         List<AlbumEntity> albumList = baseDao.selectList(new QueryWrapper<AlbumEntity>().eq("uid", uid).orderByDesc("update_date"));

@@ -52,4 +52,26 @@
 
     </select>
 
+    <select id="getAllImgByAlbum" resultType="com.xz.platform.vo.ImgDetailVo">
+       -- 查询ImgDetailsEntity表中ID在指定列表idList中的记录，并按照update_date降序排序
+        SELECT
+            i.id,
+            i.cover,
+            i.content,
+            i.agree_count,
+            i.count,
+            u.username,
+            u.avatar
+        FROM
+            t_img_details AS i
+            LEFT JOIN t_album_img_relation as air on air.mid = i.id
+            LEFT JOIN t_user as u on i.user_id = u.id
+
+        WHERE
+            air.aid = #{albumId}
+        ORDER BY
+            air.create_date DESC
+        LIMIT ${(page-1)*limit},${limit};
+    </select>
+
 </mapper>

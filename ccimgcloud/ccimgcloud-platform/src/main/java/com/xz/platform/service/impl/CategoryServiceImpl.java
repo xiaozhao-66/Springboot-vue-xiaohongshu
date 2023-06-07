@@ -2,7 +2,7 @@ package com.xz.platform.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xz.common.service.impl.CrudServiceImpl;
+import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.ConvertUtils;
 import com.xz.common.utils.PageUtils;
 import com.xz.common.utils.TreeUtils;
@@ -10,20 +10,17 @@ import com.xz.common.constant.cacheConstant.CategoryCacheNames;
 import com.xz.platform.dao.CategoryDao;
 import com.xz.platform.dao.ImgDetailsDao;
 import com.xz.platform.dao.UserDao;
-import com.xz.platform.dto.CategoryDTO;
 import com.xz.platform.entity.CategoryEntity;
 import com.xz.platform.entity.ImgDetailsEntity;
 import com.xz.platform.entity.UserEntity;
 import com.xz.platform.service.CategoryService;
 import com.xz.platform.vo.CategoryVo;
 import com.xz.platform.vo.ImgDetailVo;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 
@@ -32,7 +29,7 @@ import java.util.Map;
  * @since 1.0.0 2023-03-13
  */
 @Service
-public class CategoryServiceImpl extends CrudServiceImpl<CategoryDao, CategoryEntity, CategoryDTO> implements CategoryService {
+public class CategoryServiceImpl extends BaseServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
 
 
     @Autowired
@@ -40,16 +37,6 @@ public class CategoryServiceImpl extends CrudServiceImpl<CategoryDao, CategoryEn
 
     @Autowired
     UserDao userDao;
-
-    @Override
-    public QueryWrapper<CategoryEntity> getWrapper(Map<String, Object> params) {
-        String id = (String) params.get("id");
-
-        QueryWrapper<CategoryEntity> wrapper = new QueryWrapper<>();
-        wrapper.eq(StringUtils.isNotBlank(id), "id", id);
-
-        return wrapper;
-    }
 
 
     @Override

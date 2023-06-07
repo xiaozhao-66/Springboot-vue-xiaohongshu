@@ -27,7 +27,7 @@ public final class SentenceEncoder {
     Criteria<String, float[]> criteria =
         Criteria.builder()
             .setTypes(String.class, float[].class)
-            .optModelPath(Paths.get("C:\\Users\\48423\\Desktop\\springboot-vue-ccimgcloud\\ccimgcloud\\ccimgcloud-common\\models\\distiluse-base-multilingual-cased-v1.zip"))
+            .optModelPath(Paths.get("C:\\Users\\48423\\Desktop\\ccimgcloud\\sentence_encoder_15_sdk\\distiluse-base-multilingual-cased-v1.zip"))
             .optTranslator(new SentenceTransTranslator())
             .optEngine("PyTorch") // Use PyTorch engine
             .optDevice(Device.cpu())

@@ -15,11 +15,7 @@ public class TrendVo {
 
     private String albumName;
 
-    private Long agreeCount;
-
-    private Long commentCount;
-
-    private List<String> imgsUrl;
+    private String imgsUrl;
 
     private String time;
 

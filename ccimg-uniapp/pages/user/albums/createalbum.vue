@@ -19,7 +19,7 @@
 			</view>
 		</view>
 
-		<view class="upload-img" @click="uploadImg">
+		<view class="upload-img" @click="chooseImg">
 			<view class="title2 w">请选择一张图片</view>
 			<view class="upload">
 				<view class="img-icon" v-if="value == ''">
@@ -38,7 +38,7 @@
 		<view class="fotter">
 			<view class="add">
 
-				<tui-button type="danger" shape="circle" @click="publish" limit='1'>点击发布</tui-button>
+				<tui-button type="danger" shape="circle" @click="publish" limit='1'  :disabled="disabled">点击发布</tui-button>
 
 			</view>
 		</view>
@@ -64,7 +64,9 @@ export default {
 			uid: '',
 			albumId: '',
 			isupdate: false,
-			modal: false
+			modal: false,
+			disabled:false
+			
 		}
 	},
 	onLoad(option) {
@@ -95,74 +97,105 @@ export default {
 			})
 
 		},
-		uploadImg() {
+		chooseImg() {
 			let that = this
 			uni.chooseImage({
 				count: 1, // 最多可以选择的图片张数，默认9
 				sizeType: ['original'], //original 原图，compressed 压缩图，默认二者都有
 				sourceType: ['album'], //album 从相册选图，camera 使用相机，默认二者都有。如需直接开相机或直接选相册，请只使用一个选项
 				success: function (res) {
-					uni.uploadFile({
-						url: appConfig.WEB_API + '/utils/fileoss/uploadOssFile', //仅为示例，非真实的接口地址
-						filePath: res.tempFilePaths[0],
-						name: 'file',
-						success: (uploadFileRes) => {
-
-							that.value = JSON.parse(uploadFileRes.data).data
-
-						}
-					});
+					
+					that.value = res.tempFilePaths[0]
+					
+					
 				}
 			})
 		},
+		
+		uploadImg(){
+			 return new Promise((res,error)=>{
+				 uni.uploadFile({
+				 	url: appConfig.WEB_API + '/utils/fileoss/uploadOssFile', //仅为示例，非真实的接口地址
+				 	filePath: this.value,
+				 	name: 'file',
+				 	success: (uploadFileRes) => {
+
+				 	  res(JSON.parse(uploadFileRes.data).data);
+				 	}
+				 });
+		    })
+		},
+		
+		
+		
 		publish() {
-
-			if (this.albumInfo.name == '' || this.albumInfo.name == null) {
-
+            let that = this
+			
+			
+			
+			if (that.albumInfo.name == '' || that.albumInfo.name == null) {
+				uni.showToast({
+					   title:"请输入专辑标题",
+					   icon:'none'
+				})
 				return
-			} else if (this.value == '') {
-				this.value = "https://cc-video-oss.oss-accelerate.aliyuncs.com/2023/03/20/4bae43e216124cf1966a474594a81612img_nodata.png"
-			}
-
-			this.albumInfo.cover = this.value
-			this.albumInfo.uid = this.uid
-
-			if (this.isupdate) {
-				//修改
-				updateAlbum(this.albumInfo).then(res => {
-					let params = {
-						title: "修改成功",
-						imgUrl: "/static/images/toast/check-circle.png",
-						icon: true
-					}
-					this.$refs.toast.show(params);
-					this.albumInfo.name = ''
-					this.value = ''
-					setTimeout(() => {
-						uni.reLaunch({
-							url: "/pages/user/user?currentTab=" + 1
-						})
-					}, 1000)
+			} else if (that.value == '') {
+				uni.showToast({
+					   title:"请上传一张图片",
+					   icon:'none'
 				})
-			} else {
-				//发布
-
-				saveAlbum(this.albumInfo).then(res => {
-					let params = {
-						title: "发布成功",
-						imgUrl: "/static/images/toast/check-circle.png",
-						icon: true
-					}
-					this.$refs.toast.show(params);
-					this.albumInfo.name = ''
-					this.value = ''
-					setTimeout(() => {
-						uni.reLaunch({
-							url: "/pages/user/user?currentTab=" + 1
-						})
-					}, 1000)
-				})
+				return
 			}
+			
+			that.disabled = true
+			
+			let promise =   that.uploadImg()
+			
+			promise.then(function(res){
+				
+				that.albumInfo.cover = res
+				that.albumInfo.uid = that.uid
+	
+				if (that.isupdate) {
+					//修改
+					updateAlbum(that.albumInfo).then(res => {
+						let params = {
+							title: "修改成功",
+							imgUrl: "/static/images/toast/check-circle.png",
+							icon: true
+						}
+						that.$refs.toast.show(params);
+						that.albumInfo.name = ''
+						that.value = ''
+						setTimeout(() => {
+							uni.reLaunch({
+								url: "/pages/user/user?currentTab=" + 1
+							})
+						}, 1000)
+					})
+				} else {
+					//发布
+					saveAlbum(that.albumInfo).then(res => {
+						let params = {
+							title: "发布成功",
+							imgUrl: "/static/images/toast/check-circle.png",
+							icon: true
+						}
+						that.$refs.toast.show(params);
+						that.albumInfo.name = ''
+						that.value = ''
+						setTimeout(() => {
+							uni.reLaunch({
+								url: "/pages/user/user?currentTab=" + 1
+							})
+						}, 1000)
+					})
+				}
+				
+			})
+		
+
+			
 		},
 		hide() {
 			this.modal = false

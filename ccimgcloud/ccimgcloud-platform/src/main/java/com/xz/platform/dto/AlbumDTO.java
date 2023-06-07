@@ -18,23 +18,24 @@ import java.util.Date;
  * @since 1.0.0 2023-03-16
  */
 @Data
-@ApiModel(value = "")
+@ApiModel(value = "专辑")
 public class AlbumDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@ApiModelProperty(value = "专辑id")
 	private Long id;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "专辑名称")
 	@NotBlank(message = "内容不能为空", groups = DefaultGroup.class)
 	private String name;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "专辑发布的用户id")
 	@NotNull(message = "用户id不能为空", groups = DefaultGroup.class)
 	private Long uid;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "专辑封面")
 	private String cover;
 
-	@ApiModelProperty(value = "")
+	@ApiModelProperty(value = "专辑排序")
 	private Integer sort;
 }

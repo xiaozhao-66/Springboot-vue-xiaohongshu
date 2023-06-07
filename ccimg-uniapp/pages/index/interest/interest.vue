@@ -23,8 +23,11 @@
 
 							<view class="img-list" @click="toMain(item.mid)">
 								<view v-for="(img, index) in item.imgsUrl" :key="index">
-									<image :src="img" mode="aspectFill" :lazy-load='true'/>
+									
+									<image :src="img" mode="aspectFill" :lazy-load='true'  class="fadeImg"/>
+                                    <!-- <ImgFade :src="img" ></ImgFade> -->
 								</view>
+								
 							</view>
 
 							<view class="collection-album" @click="toAlbum(item.albumId)">
@@ -77,9 +80,10 @@ import { getAllFollowTrends } from "@/api/interest.js"
 import { addBrowseRecord } from "@/api/browseRecord.js"
 import TrendComment from "@/components/trendComment.vue"
 import { agree,cancelAgree} from "@/api/agree.js"
+import {timeAgo} from "@/utils/webUtils.js"
 export default {
 	components: {
-		TrendComment
+		TrendComment,
 	},
 	data() {
 		return {
@@ -129,12 +133,20 @@ export default {
 		getAllFollowTrends() {
 
 			let params = {
-				userId: this.userInfo.id
+				uid: this.userInfo.id
 			}
 			getAllFollowTrends(this.page, this.limit, params).then(res => {
-                console.log(res.data)
-				this.dataList = res.data
+                
+			
+				res.data.forEach(e=>{
+					e.time = timeAgo(e.time)
+					e.imgsUrl = JSON.parse(e.imgsUrl)
+					console.log(e)
+					this.dataList.push(e)
+				})
+				
 				this.total = res.data.length
+				
 
 			})
 		},
@@ -151,23 +163,29 @@ export default {
 
 
 		loadData() {
-
+            
 			this.loading = true
 			setTimeout(() => {
-				if (this.total == 0) {
+				if (this.total < this.limit) {
 					this.isEnd = true
 					return
 				}
 				this.page = this.page + 1;
 				let params = {
-					userId: this.userInfo.id
+					uid: this.userInfo.id
 				}
 
 				getAllFollowTrends(this.page, this.limit, params).then(res => {
 
-					this.dataList.push(...res.data)
+					res.data.forEach(e=>{
+						e.time = timeAgo(e.time)
+						e.imgsUrl = JSON.parse(e.imgsUrl)
+						console.log(e)
+						this.dataList.push(e)
+					})
+					
 					this.total = res.data.length
-
+                    console.log(this.total)
 				})
 			}, 1000)
 		},
@@ -392,4 +410,49 @@ li:not(:first-child) {
 	height: 60rpx;
 	text-align: center;
 	color: #bfbfbf;
-}</style>
+}
+
+/* 图片淡入淡出 */
+.fadeImg {
+width: 100px;
+height: 100px;
+background: #fff;
+-webkit-animation: fadeinout 2s linear forwards;
+animation: fadeinout 2s linear forwards;
+}
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 1; }
+50% { opacity: 0.5; }
+100% { opacity: 0; }
+}
+
+@keyframes fadeinout {
+0%{ opacity: 1; }
+50% { opacity: 0.5; }
+100% { opacity: 0; }
+}
+
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity: 0.5; }
+100% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+0%{ opacity:0; }
+50% { opacity: 0.5; }
+100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity:1; }
+}
+
+@keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity:1; }
+}
+</style>

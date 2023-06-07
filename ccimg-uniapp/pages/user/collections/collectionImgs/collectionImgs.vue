@@ -46,15 +46,15 @@ export default {
 			}
 			getAllCollection(this.page,this.limit,params).then(res => {
 		        console.log("所有图片",res.data)
-				this.dataList = res.data.records
-				this.total  = res.data.total
+				this.dataList = res.data
+				this.total  = res.data.length
 			})
 		
 		},
 
 		loadData() {
             this.loading = true
-			if (this.dataList.length >= this.total) {
+			if (this.total<this.limit) {
 				this.isEnd = true
 				return
 			}
@@ -67,26 +67,27 @@ export default {
 
 			getAllCollection(this.page,this.limit,params).then(res => {
 			    console.log("所有图片",res.data)
-				this.dataList.push(...res.data.records)
+				this.dataList.push(...res.data)
+				this.total = res.data.length
 			})
 
 		},
 		getImgInfo(e) {
-
+            console.log('图片信息',e)
 			if (uni.getStorageSync("userInfo").id != null || uni.getStorageSync("userInfo").id != '') {
 				let data = {}
 				data.uid = uni.getStorageSync("userInfo").id
-				data.mid = e.id
+				data.mid = e.collectionId
 
 				addBrowseRecord(data).then(res => {
 					uni.navigateTo({
-						url: "/pages/main/main?mid=" + e.id
+						url: "/pages/main/main?mid=" + e.collectionId
 					})
 				})
 
 			} else {
 				uni.navigateTo({
-					url: "/pages/main/main?mid=" + e.id
+					url: "/pages/main/main?mid=" + e.collectionId
 				})
 			}
 		},

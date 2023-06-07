@@ -4,9 +4,19 @@
 			<tui-tabs :tabs="tabs" :currentTab="currentTab" itemWidth="50%" @change="change" sliderBgColor="#ff0000"
 				selectedColor="#ff0000"></tui-tabs>
 		</tui-navigation-bar>
-		<interest v-if="currentTab == 0"></interest>
-		<dashboard v-if="currentTab == 1" :seed='seed'></dashboard>
-		<hot v-if="currentTab == 2"></hot>
+		
+		<view @touchstart="start" @touchend="end">
+			
+			<interest v-if="currentTab == 0"></interest>
+					
+					
+			<dashboard v-if="currentTab == 1" :seed='seed'></dashboard>
+					
+			<hot v-if="currentTab == 2"></hot>
+			
+		</view>
+
+		
 
 	</view>
 </template>
@@ -37,6 +47,7 @@ export default {
 			],
 			pullDown: false,
 			seed: 0,
+			startData:{},
 		}
 	},
 	onLoad(option) {
@@ -56,8 +67,43 @@ export default {
 			}
 	},
 	methods: {
+		
+		onTabItemTap(e){
+		   
+		  if(e.index == 0){
+			  //重新刷新数据
+			  this.currentTab = 1
+			  console.log('重新刷新数据')
+			  this.seed = Math.random()
+			   
+		  }
+		},
+		
 		change(e) {
 			this.currentTab = e.index
+		},
+		
+		start(e){
+		                    
+		    this.startData.clientX=e.changedTouches[0].clientX;
+		                 
+		    this.startData.clientY=e.changedTouches[0].clientY;
+		},
+		end(e){
+		    // console.log(e)
+		    const subX=e.changedTouches[0].clientX-this.startData.clientX;
+		    const subY=e.changedTouches[0].clientY - this.startData.clientY;
+		    if(subY>50 || subY<-50){
+		        console.log('上下滑')
+		    }else{
+		        if(subX>100){
+					this.currentTab = this.currentTab-1
+		        }else if(subX<-100){
+		           
+					this.currentTab = this.currentTab+1
+		        }else{
+		        }
+		    }
 		},
 		
 		getChatUserList() {

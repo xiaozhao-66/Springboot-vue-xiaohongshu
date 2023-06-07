@@ -17,7 +17,7 @@ function getLocalToken () {
 function refreshToken (token) {
     // instance是当前request.js中已创建的axios实例
     return instance.get(`/auth/auth/refreshToken?token=${token}`).then(res => {
-		    console.log("新的二token",res.data)
+		    console.log("新的token",res.data)
 	})
 }
 

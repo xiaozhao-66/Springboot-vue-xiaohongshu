@@ -34,12 +34,12 @@ public class FollowController {
      *
      * @param page
      * @param limit
-     * @param userId
+     * @param uid
      * @return
      */
     @RequestMapping("getAllFollowTrends/{page}/{limit}")
-    public Result<?> getAllFollowTrends(@PathVariable long page, @PathVariable long limit, String userId) {
-        List<FollowTrendVo> list = followService.getAllFollowTrends(page, limit, userId);
+    public Result<?> getAllFollowTrends(@PathVariable long page, @PathVariable long limit, String uid) {
+        List<FollowTrendVo> list = followService.getAllFollowTrends(page, limit, uid);
         return new Result<List<FollowTrendVo>>().ok(list);
     }
 

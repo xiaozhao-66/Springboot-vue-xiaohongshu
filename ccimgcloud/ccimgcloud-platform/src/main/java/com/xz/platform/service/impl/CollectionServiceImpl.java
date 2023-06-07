@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
-import com.xz.common.service.impl.CrudServiceImpl;
+import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.ConvertUtils;
 import com.xz.common.utils.PageUtils;
 import com.xz.platform.common.constant.Constant;
@@ -21,7 +21,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 /**
  * 
@@ -30,7 +29,7 @@ import java.util.stream.Collectors;
  * @since 1.0.0 2023-03-16
  */
 @Service
-public class CollectionServiceImpl extends CrudServiceImpl<CollectionDao, CollectionEntity, CollectionDTO> implements CollectionService {
+public class CollectionServiceImpl extends BaseServiceImpl<CollectionDao, CollectionEntity> implements CollectionService {
 
 
     @Autowired
@@ -50,18 +49,8 @@ public class CollectionServiceImpl extends CrudServiceImpl<CollectionDao, Collec
 
 
     @Override
-    public QueryWrapper<CollectionEntity> getWrapper(Map<String, Object> params) {
-        String id = (String) params.get("id");
-
-        QueryWrapper<CollectionEntity> wrapper = new QueryWrapper<>();
-        wrapper.eq(StringUtils.isNotBlank(id), "id", id);
-
-        return wrapper;
-    }
-
-
-    @Override
     public Map<String, String> collection(CollectionDTO collectionDTO) {
+
         Map<String, String> res = new HashMap<>();
         CollectionEntity collection = baseDao.selectOne(new QueryWrapper<CollectionEntity>().and(e -> e.eq("uid", collectionDTO.getUid()).eq("collection_id", collectionDTO.getCollectionId())));
         if (collection != null) {
@@ -85,48 +74,53 @@ public class CollectionServiceImpl extends CrudServiceImpl<CollectionDao, Collec
      * @return
      */
     @Override
-    public Page<CollectionVo> getAllCollection(long page, long limit, String uid, Integer type) {
-        //查询所有的收藏数据
-        List<CollectionEntity> collections = baseDao.selectList(new QueryWrapper<CollectionEntity>().and(e -> e.eq("uid", uid).eq("type", type)));
+    public List<CollectionVo> getAllCollection(long page, long limit, String uid, Integer type) {
 
-        if (collections.isEmpty()) {
-            return new Page<>();
-        }
+        return baseDao.getAllCollection(page, limit, uid,type);
 
-        List<CollectionVo> collectionVos = new ArrayList<>();
-        if(type==1){
-            for (CollectionEntity collectionEntity : collections) {
-
-                AlbumEntity albumEntity = albumDao.selectById(collectionEntity.getCollectionId());
-                UserEntity userEntity = userDao.selectById(albumEntity.getUid());
-                CollectionVo collectionVo = ConvertUtils.sourceToTarget(albumEntity, CollectionVo.class);
-                collectionVo.setUid(userEntity.getId())
-                            .setUsername(userEntity.getUsername())
-                            .setAvatar(userEntity.getAvatar())
-                            .setContent(albumEntity.getName())
-                            .setCollectionTime(collectionEntity.getCreateDate());
-                collectionVos.add(collectionVo);
-            }
-        }else{
-            for (CollectionEntity collectionEntity : collections) {
-                ImgDetailsEntity imgDetailsEntity = imgDetailsDao.selectById(collectionEntity.getCollectionId());
-                UserEntity userEntity = userDao.selectById(imgDetailsEntity.getUserId());
-                CollectionVo collectionVo = ConvertUtils.sourceToTarget(imgDetailsEntity, CollectionVo.class);
-                collectionVo.setUid(userEntity.getId())
-                        .setUsername(userEntity.getUsername())
-                        .setAvatar(userEntity.getAvatar())
-                        .setCollectionTime(collectionEntity.getCreateDate());
-                collectionVos.add(collectionVo);
-            }
-        }
-
-        collectionVos.sort((o1, o2) -> o2.getCollectionTime().compareTo(o1.getCollectionTime()));
-
-        return PageUtils.getPages((int) page, (int) limit, collectionVos);
+        //旧方法:查询所有的收藏数据
+//        List<CollectionEntity> collections = baseDao.selectList(new QueryWrapper<CollectionEntity>().and(e -> e.eq("uid", uid).eq("type", type)));
+//
+//        if (collections.isEmpty()) {
+//            return new Page<>();
+//        }
+//
+//        List<CollectionVo> collectionVos = new ArrayList<>();
+//        if(type==1){
+//            for (CollectionEntity collectionEntity : collections) {
+//
+//                AlbumEntity albumEntity = albumDao.selectById(collectionEntity.getCollectionId());
+//                UserEntity userEntity = userDao.selectById(albumEntity.getUid());
+//                CollectionVo collectionVo = ConvertUtils.sourceToTarget(albumEntity, CollectionVo.class);
+//                collectionVo.setUid(userEntity.getId())
+//                            .setUsername(userEntity.getUsername())
+//                            .setAvatar(userEntity.getAvatar())
+//                            .setContent(albumEntity.getName())
+//                            .setCollectionTime(collectionEntity.getCreateDate());
+//                collectionVos.add(collectionVo);
+//            }
+//        }else{
+//            for (CollectionEntity collectionEntity : collections) {
+//                ImgDetailsEntity imgDetailsEntity = imgDetailsDao.selectById(collectionEntity.getCollectionId());
+//                UserEntity userEntity = userDao.selectById(imgDetailsEntity.getUserId());
+//                CollectionVo collectionVo = ConvertUtils.sourceToTarget(imgDetailsEntity, CollectionVo.class);
+//                collectionVo.setUid(userEntity.getId())
+//                        .setUsername(userEntity.getUsername())
+//                        .setAvatar(userEntity.getAvatar())
+//                        .setCollectionTime(collectionEntity.getCreateDate());
+//                collectionVos.add(collectionVo);
+//            }
+//        }
+//
+//        collectionVos.sort((o1, o2) -> o2.getCollectionTime().compareTo(o1.getCollectionTime()));
+//
+//        return PageUtils.getPages((int) page, (int) limit, collectionVos);
     }
 
     @Override
     public Map<String, String> cancalCollection(CollectionDTO collectionDTO) {
+
+
 
         Map<String, String> res = new HashMap<>();
 

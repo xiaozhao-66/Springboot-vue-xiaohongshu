@@ -2,9 +2,8 @@ package com.xz.recommend.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
-import com.xz.common.service.impl.CrudServiceImpl;
+import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.recommend.dao.CategoryDao;
-import com.xz.recommend.dto.CategoryDTO;
 import com.xz.recommend.entity.CategoryEntity;
 import com.xz.recommend.service.CategoryService;
 import org.springframework.cache.annotation.Cacheable;
@@ -21,13 +20,7 @@ import java.util.stream.Collectors;
  * @since 1.0.0 2023-03-13
  */
 @Service
-public class CategoryServiceImpl extends CrudServiceImpl<CategoryDao, CategoryEntity, CategoryDTO> implements CategoryService {
-
-
-    @Override
-    public QueryWrapper<CategoryEntity> getWrapper(Map<String, Object> params) {
-        return null;
-    }
+public class CategoryServiceImpl extends BaseServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
 
     @Override
     @Cacheable(cacheNames = "categoryIds", key = "'categoryIds'", sync = true)

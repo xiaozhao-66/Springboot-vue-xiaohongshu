@@ -1,6 +1,7 @@
 package com.xz.platform.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.service.impl.CrudServiceImpl;
 import com.xz.common.utils.ConvertUtils;
 import com.xz.platform.dao.TagDao;
@@ -21,17 +22,7 @@ import java.util.Map;
  * @since 1.0.0 2023-03-16
  */
 @Service
-public class TagServiceImpl extends CrudServiceImpl<TagDao, TagEntity, TagDTO> implements TagService {
-
-    @Override
-    public QueryWrapper<TagEntity> getWrapper(Map<String, Object> params) {
-        String id = (String) params.get("id");
-
-        QueryWrapper<TagEntity> wrapper = new QueryWrapper<>();
-        wrapper.eq(StringUtils.isNotBlank(id), "id", id);
-
-        return wrapper;
-    }
+public class TagServiceImpl extends BaseServiceImpl<TagDao, TagEntity> implements TagService {
 
 
     @Override

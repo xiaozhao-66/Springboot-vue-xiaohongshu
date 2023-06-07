@@ -18,23 +18,23 @@ public class UserOtherLoginRelationEntity extends BaseEntity {
 
 
     /**
-     *
+     * 用户id
      */
     private Long uid;
     /**
-     *
+     * 第三方登录的用户id
      */
     private String otherUserId;
     /**
-     *
+     * 第三方登录的用户名
      */
     private String otherUsername;
     /**
-     *
+     * 第三方登录的用户头像
      */
     private String otherAvatar;
     /**
-     *
+     *第三方登录的token
      */
     private String otherToken;
 }

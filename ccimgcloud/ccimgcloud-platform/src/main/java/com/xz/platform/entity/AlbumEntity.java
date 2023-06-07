@@ -20,19 +20,19 @@ public class AlbumEntity extends BaseEntity {
 
 
     /**
-     *
+     *专辑名称
      */
     private String name;
     /**
-     *
+     * 专辑发布的用户id
      */
     private Long uid;
     /**
-     *
+     * 专辑封面
      */
     private String cover;
     /**
-     *
+     * 专辑排序
      */
     private Integer sort;
 
@@ -47,14 +47,13 @@ public class AlbumEntity extends BaseEntity {
      */
     private Long collectionCount;
 
-
     /**
-     *
+     * 修改用户
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Long updater;
     /**
-     *
+     * 修改时间
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateDate;

@@ -4,10 +4,10 @@ import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xz.common.service.impl.CrudServiceImpl;
+import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
+import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.ConvertUtils;
 import com.xz.common.utils.PageUtils;
-import com.xz.platform.common.constant.Constant;
 import com.xz.common.utils.RedisUtils;
 import com.xz.platform.dao.BrowseRecordDao;
 import com.xz.platform.dao.ImgDetailsDao;
@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
  * @since 1.0.0 2023-03-16
  */
 @Service
-public class BrowseRecordServiceImpl extends CrudServiceImpl<BrowseRecordDao, BrowseRecordEntity, BrowseRecordDTO> implements BrowseRecordService {
+public class BrowseRecordServiceImpl extends BaseServiceImpl<BrowseRecordDao, BrowseRecordEntity> implements BrowseRecordService {
 
 
     @Autowired
@@ -45,15 +45,7 @@ public class BrowseRecordServiceImpl extends CrudServiceImpl<BrowseRecordDao, Br
     RedisUtils redisUtils;
 
 
-    @Override
-    public QueryWrapper<BrowseRecordEntity> getWrapper(Map<String, Object> params) {
-        String id = (String) params.get("id");
 
-        QueryWrapper<BrowseRecordEntity> wrapper = new QueryWrapper<>();
-        wrapper.eq(StringUtils.isNotBlank(id), "id", id);
-
-        return wrapper;
-    }
 
 
     @Override
@@ -70,7 +62,7 @@ public class BrowseRecordServiceImpl extends CrudServiceImpl<BrowseRecordDao, Br
         }
 
 
-        String brCountKey = Constant.BR_COUNT + browseRecordDTO.getUid() + ":" + browseRecordDTO.getMid();
+        String brCountKey = ImgDetailCacheNames.BR_COUNT + browseRecordDTO.getUid() + ":" + browseRecordDTO.getMid();
 
         ImgDetailsEntity imgDetail = imgDetailsDao.selectById(browseRecordDTO.getMid());
 
@@ -96,7 +88,7 @@ public class BrowseRecordServiceImpl extends CrudServiceImpl<BrowseRecordDao, Br
         String cid = String.valueOf(imgDetail.getCategoryId());
 
         //添加当前用户浏览记录的分类次数(二级分类)  后面用来做推荐
-        String key = Constant.BR_KEY + uid + ":" + cid;
+        String key = ImgDetailCacheNames.BR_KEY + uid + ":" + cid;
 
         if (redisUtils.get(key) == null) {
             //设置7天过期
@@ -107,46 +99,48 @@ public class BrowseRecordServiceImpl extends CrudServiceImpl<BrowseRecordDao, Br
         }
 
         //添加用户浏览记录
-        String key2 = Constant.BR_IMG_KEY + uid;
-        redisUtils.zAdd(key2, String.valueOf(browseRecordDTO.getMid()), System.currentTimeMillis());
+        String key2 = ImgDetailCacheNames.BR_IMG_KEY + uid;
+        redisUtils.lLeftPush(key2,String.valueOf(browseRecordDTO.getMid()));
+        //redisUtils.zAdd(key2, String.valueOf(browseRecordDTO.getMid()), System.currentTimeMillis());
 
     }
 
     @Override
-    public Page<BrowseRecordVo> getAllBrowseRecordByUser(long page, long limit, String uid) {
-
-        List<BrowseRecordEntity> browseRecordList = baseDao.selectList(new QueryWrapper<BrowseRecordEntity>().eq("uid", uid).orderByDesc("update_date"));
-
-        List<BrowseRecordVo> res = new ArrayList<>();
-
-        ImgDetailsEntity imgDetailsEntity = null;
-        BrowseRecordVo browseRecordVo = null;
-        UserEntity user = null;
-        for (BrowseRecordEntity model : browseRecordList) {
-
-            imgDetailsEntity = imgDetailsDao.selectById(model.getMid());
-
-            if (imgDetailsEntity == null) {
-                continue;
-            }
-            browseRecordVo = new BrowseRecordVo();
-
-            user = userDao.selectById(imgDetailsEntity.getUserId());
-            List<String> imgList = JSON.parseArray(imgDetailsEntity.getImgsUrl(), String.class);
-
-            browseRecordVo.setId(model.getId())
-                    .setMid(imgDetailsEntity.getId())
-                    .setUserId(user.getId())
-                    .setUsername(user.getUsername())
-                    .setAvatar(user.getAvatar())
-                    .setImgsUrl(imgList)
-                    .setNums(imgDetailsEntity.getCount())
-                    .setContent(imgDetailsEntity.getContent())
-                    .setCover(imgDetailsEntity.getCover())
-                    .setAgreeCount(imgDetailsEntity.getAgreeCount());
-            res.add(browseRecordVo);
-        }
-        return PageUtils.getPages((int) page, (int) limit, res);
+    public List<BrowseRecordVo> getAllBrowseRecordByUser(long page, long limit, String uid) {
+        return baseDao.getAllBrowseRecordByUser(page, limit, uid);
+//        旧的方法，获取当前用户的所有浏览记录
+//        List<BrowseRecordEntity> browseRecordList = baseDao.selectList(new QueryWrapper<BrowseRecordEntity>().eq("uid", uid).orderByDesc("update_date"));
+//
+//        List<BrowseRecordVo> res = new ArrayList<>();
+//
+//        ImgDetailsEntity imgDetailsEntity = null;
+//        BrowseRecordVo browseRecordVo = null;
+//        UserEntity user = null;
+//        for (BrowseRecordEntity model : browseRecordList) {
+//
+//            imgDetailsEntity = imgDetailsDao.selectById(model.getMid());
+//
+//            if (imgDetailsEntity == null) {
+//                continue;
+//            }
+//            browseRecordVo = new BrowseRecordVo();
+//
+//            user = userDao.selectById(imgDetailsEntity.getUserId());
+//            List<String> imgList = JSON.parseArray(imgDetailsEntity.getImgsUrl(), String.class);
+//
+//            browseRecordVo.setId(model.getId())
+//                    .setMid(imgDetailsEntity.getId())
+//                    .setUserId(user.getId())
+//                    .setUsername(user.getUsername())
+//                    .setAvatar(user.getAvatar())
+//                    .setImgsUrl(imgList)
+//                    .setNums(imgDetailsEntity.getCount())
+//                    .setContent(imgDetailsEntity.getContent())
+//                    .setCover(imgDetailsEntity.getCover())
+//                    .setAgreeCount(imgDetailsEntity.getAgreeCount());
+//            res.add(browseRecordVo);
+//        }
+//        return PageUtils.getPages((int) page, (int) limit, res);
     }
 
     @Override

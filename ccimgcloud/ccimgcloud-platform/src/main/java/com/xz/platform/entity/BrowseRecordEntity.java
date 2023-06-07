@@ -18,10 +18,19 @@ import java.util.Date;
 @TableName("t_browse_record")
 public class BrowseRecordEntity extends BaseEntity {
 
+	/**
+	 * 用户id
+	 */
 	private Long uid;
 
+	/**
+	 * 图片信息id
+	 */
 	private Long mid;
 
+	/**
+	 * 修改用户
+	 */
 	@TableField(fill = FieldFill.INSERT_UPDATE)
 	private Long updater;
 	/**
