@@ -34,6 +34,8 @@
 【联系我】**QQ** 484235492或3044606584 **微信** 18572755162
 ## 运行配置
 
+数据库在`ccimgcloud-admin-vue`包下的`public`包中。有ccimg-admin.sql和ccimg-platform.sql两个数据库文件
+
 **后端启动**
 
 - 首先需要把`redis`，`nacos`环境配置好并启动。
@@ -87,7 +89,7 @@
 
 - Gitee地址：https://gitee.com/xzjsccz/springboot-vue-ccimgcloud
 - Github地址：https://github.com/xiaozhao-66/ccimgcloud-springboot-vue
- 
+
 ## 项目目录
 
 - ccimg-admin-vue 后台管理页面
@@ -136,7 +138,7 @@
 | vueX	  |        -      |   
 |     axios	      |      -       |  
 |     其他组件      |    -          |  
-   
+
 
 
 
