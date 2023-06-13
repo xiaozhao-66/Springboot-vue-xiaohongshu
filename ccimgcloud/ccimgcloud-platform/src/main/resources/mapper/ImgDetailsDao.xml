@@ -61,14 +61,15 @@
             i.agree_count,
             i.count,
             u.username,
-            u.avatar
+            u.avatar,
+            i.status
         FROM
             t_img_details AS i
             LEFT JOIN t_album_img_relation as air on air.mid = i.id
             LEFT JOIN t_user as u on i.user_id = u.id
 
         WHERE
-            air.aid = #{albumId}
+            air.aid = #{albumId} and IF(#{type} =0, i.status = 1, i.status = 1 or i.status = 0)
         ORDER BY
             air.create_date DESC
         LIMIT ${(page-1)*limit},${limit};

@@ -5,7 +5,7 @@
 
 
     <select id="getAllFollowTrends" resultType="com.xz.platform.vo.FollowTrendVo">
-        -- 查询当前用户发布的图片详情47条记录
+        -- 查询当前用户发布的图片详情
 
         SELECT
         i.id as mid,
@@ -27,7 +27,7 @@
         left join t_album as a on a.id = air.aid
         left join t_agree as ag on ag.agree_id = i.id and ag.type =1 and ag.uid = #{uid}
         WHERE
-        (i.user_id in (SELECT fid from t_follow where uid = #{uid} ) or i.user_id = #{uid} )  and a.uid = i.user_id
+        (i.user_id in (SELECT fid from t_follow where uid = #{uid} ) or i.user_id = #{uid} )  and a.uid = i.user_id and i.status = 1
         ORDER BY
         i.update_date DESC
         LIMIT ${(page-1)*limit},${limit};

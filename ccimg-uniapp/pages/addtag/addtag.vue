@@ -36,130 +36,77 @@
 </template>
 
 <script>
-import {getAllTag } from "@/api/tag.js"
-export default {
-	data() {
-		return {
-			content: '',
-			tagList: [],
-			dataList: [],
-			mid: '',
-			type: '',
-		}
-	},
-	onLoad(option) {
-		this.mid = option.mid
-		this.type = option.type
-	},
-	created() {
-		this.getAllTag()
-		if (uni.getStorageSync("tags") != null || uni.getStorageSync("tags") != '') {
-			this.tagList = JSON.parse(uni.getStorageSync("tags"))
-		}
-	},
-	methods: {
-		submit() {
-			if (this.tagList.length >= 5) {
-				let params = {
-					title: "最多支持5个标签",
-				}
-				this.$refs.toast.show(params);
-			} else {
-				let tag = {}
-				tag.name = this.content
-				this.tagList.push(tag)
-				this.content = ''
+	import {
+		getAllTag
+	} from "@/api/tag.js"
+	export default {
+		data() {
+			return {
+				content: '',
+				tagList: [],
+				dataList: [],
+				mid: '',
+				type: '',
 			}
 		},
-		getAllTag() {
-			getAllTag().then(res => {
-
-				this.dataList = res.data
-			})
+		onLoad(option) {
+			this.mid = option.mid
+			this.type = option.type
 		},
-		deltag(index) {
+		created() {
+			this.getAllTag()
 
-			this.tagList.splice(index, 1)
-		},
-		selectTag(item) {
-			if (this.tagList.length >= 5) {
-				let params = {
-					title: "最多支持5个标签",
-				}
-			    this.$refs.toast.show(params);
-			}else{
-				this.tagList.push(item)
+			let tags = JSON.parse(uni.getStorageSync("tags"))
+			if (tags != null) {
+				this.tagList = JSON.parse(uni.getStorageSync("tags"))
 			}
-		
 		},
-		back() {
-			uni.setStorageSync("tags", JSON.stringify(this.tagList))
-			uni.navigateTo({
-				url: "/pages/push/push?mid=" + this.mid + '&type=' + this.type + '&version=' + 2
-			})
+		methods: {
+			submit() {
+				if (this.tagList.length >= 5) {
+					let params = {
+						title: "最多支持5个标签",
+					}
+					this.$refs.toast.show(params);
+				} else {
+					let tag = {}
+					tag.name = this.content
+					this.tagList.push(tag)
+					this.content = ''
+				}
+			},
+			getAllTag() {
+				getAllTag().then(res => {
+
+					this.dataList = res.data
+				})
+			},
+			deltag(index) {
+
+				this.tagList.splice(index, 1)
+			},
+			selectTag(item) {
+				console.log(this.tagList)
+				if (this.tagList.length >= 5) {
+					let params = {
+						title: "最多支持5个标签",
+					}
+					this.$refs.toast.show(params);
+				} else {
+					this.tagList.push(item)
+				}
+
+			},
+			back() {
+				uni.setStorageSync("tags", JSON.stringify(this.tagList))
+				uni.navigateTo({
+					url: "/pages/push/push?mid=" + this.mid + '&type=' + this.type + '&version=' + 2
+				})
+			}
 		}
 	}
-}
 </script>
 
 <style scoped>
-
-.nav {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 95%;
-	margin: auto;
-	height: 80rpx;
-}
-
-.nav p {
-	font-size: 32rpx;
-}
-
-.add-tag {
-	display: flex;
-	border-top: 1px solid #f4f4f4;
-	border-bottom: 1px solid #f4f4f4;
-	min-height: 80rpx;
-	align-items: center;
-	padding-left: 10px;
-	background-color: #f4f4f4;
-}
-
-.ermen {
-	font-size: 32rpx;
-}
-
-.recommend-tag {
-	width: 90%;
-	margin: auto;
-	padding-top: 10px;
-
-}
-
-.tags {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	margin-top: 5px;
-}
-
-
-.tag-input {
-
-	min-height: 80rpx;
-	line-height: 80rpx;
-	padding-left: 10px;
-	border-bottom: 1px solid #f4f4f4;
-}
-
-.badge-item {
-	position: relative;
-}
-
-.shut {
-	position: absolute;
-	top: -15rpx;
-	right: 0px;
-}</style>
+	@import url(./addtag.css);
+</style>

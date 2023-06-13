@@ -6,14 +6,14 @@
 
     <select id="selectRand" resultType="com.xz.recommend.entity.ImgDetailsEntity">
 
-         SELECT * FROM t_img_details ORDER BY RAND() LIMIT #{nums}  ;
+         SELECT * FROM t_img_details where status = 1 ORDER BY RAND() LIMIT #{nums}  ;
 
     </select>
 
 
     <select id="selectLimit" resultType="com.xz.recommend.entity.ImgDetailsEntity">
 
-         SELECT * FROM t_img_details ORDER BY update_date desc LIMIT #{nums}  ;
+         SELECT * FROM t_img_details where status = 1 ORDER BY update_date desc LIMIT #{nums}  ;
 
     </select>
 </mapper>

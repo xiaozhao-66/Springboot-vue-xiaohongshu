@@ -1,0 +1,125 @@
+.container {
+	padding-bottom: env(safe-area-inset-bottom);
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+}
+
+
+.page {
+	height: 85vh;
+}
+
+.tui-item-box {
+	width: 100%;
+	display: flex;
+}
+
+.tui-msg-box {
+	display: flex;
+	align-items: center;
+}
+
+.tui-msg-pic {
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 50%;
+	display: block;
+	margin-right: 24rpx;
+	flex-shrink: 0;
+}
+
+.tui-msg-img {
+	width: 120rpx;
+	height: 160rpx;
+	border-radius: 5px;
+	display: block;
+	margin-right: 24rpx;
+	flex-shrink: 0;
+}
+
+.tui-msg-item {
+	width: 400rpx;
+
+	min-height: 80rpx;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.tui-msg-type {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	font-size: 25rpx;
+}
+
+.tui-msg-type-item{
+	width: 160rpx;
+}
+
+.tui-msg-time {
+	width: 140rpx;
+	font-size: 24rpx;
+	line-height: 24rpx;
+	color: #9397a4;
+}
+
+.tui-msg-name {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 30rpx;
+	line-height: 1;
+	color: #262b3a;
+}
+
+.tui-msg-content {
+	max-width: 380rpx;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 25rpx;
+	line-height: 2;
+	color: #9397a4;
+	margin-left: 10px;
+}
+
+.tui-msg-content::before {
+	content: "|";
+	color: #f90000;
+}
+
+.tui-msg-right {
+	width: 120rpx;
+	height: 88rpx;
+	margin-left: auto;
+	text-align: right;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.tui-msg-right image {
+	  max-width: 88rpx;
+}
+
+.tui-right-dot {
+	height: 76rpx !important;
+	padding-bottom: 10rpx !important;
+
+}
+
+
+
+.loadStyle {
+	margin-top: 20rpx;
+	width: 100%;
+	height: 60rpx;
+	text-align: center;
+	color: #bfbfbf;
+}

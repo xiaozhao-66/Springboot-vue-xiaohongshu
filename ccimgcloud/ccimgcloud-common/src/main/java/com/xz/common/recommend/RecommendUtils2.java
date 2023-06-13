@@ -53,20 +53,18 @@ public class RecommendUtils2 {
 
     public static Double getSimilar(float[] f1, float[] f2){
 
-        double value = FeatureComparison.cosineSim(f1, f2);
-        logger.info("Chinese Similarity: {}", FeatureComparison.cosineSim(f1, f2));
-        return value;
+        return (double) FeatureComparison.cosineSim(f1, f2);
     }
 
-    public static void main(String[] args) throws ModelException, TranslateException, IOException {
-        String input3 = "计算机，代码，前端，大理，旅游，旅行，广州，拍照，恋爱，异地恋";
-        String input4 = "程序员，编程";
-        String input5 = "女朋友";
-        String input6 = "北京";
-
-        float[] embeddings = getEmbeddings(input3);
-        float[] embeddings1 = getEmbeddings(input4);
-        Double similar = getSimilar(embeddings, embeddings1);
-        System.out.println(similar);
-    }
+//    public static void main(String[] args) throws ModelException, TranslateException, IOException {
+//        String input3 = "计算机，代码，前端，大理，旅游，旅行，广州，拍照，恋爱，异地恋";
+//        String input4 = "程序员，编程";
+//        String input5 = "女朋友";
+//        String input6 = "北京";
+//
+//        float[] embeddings = getEmbeddings(input3);
+//        float[] embeddings1 = getEmbeddings(input4);
+//        Double similar = getSimilar(embeddings, embeddings1);
+//        System.out.println(similar);
+//    }
 }

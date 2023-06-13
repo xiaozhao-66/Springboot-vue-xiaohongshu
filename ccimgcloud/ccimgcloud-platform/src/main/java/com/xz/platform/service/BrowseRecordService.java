@@ -1,6 +1,6 @@
 package com.xz.platform.service;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
 import com.xz.common.service.BaseService;
 import com.xz.platform.dto.BrowseRecordDTO;
 import com.xz.platform.entity.BrowseRecordEntity;

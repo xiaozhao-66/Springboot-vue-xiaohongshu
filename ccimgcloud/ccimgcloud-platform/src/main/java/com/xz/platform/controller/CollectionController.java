@@ -1,6 +1,5 @@
 package com.xz.platform.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xz.common.utils.Result;
 import com.xz.platform.dto.CollectionDTO;
 import com.xz.platform.service.CollectionService;
@@ -61,8 +60,8 @@ public class CollectionController {
      * @return
      */
     @RequestMapping("cancalCollection")
-    public Result<?> cancalCollection(@RequestBody CollectionDTO collectionDTO) {
-        Map<String, String> map = collectionService.cancalCollection(collectionDTO);
+    public Result<?> cancelCollection(@RequestBody CollectionDTO collectionDTO) {
+        Map<String, String> map = collectionService.cancelCollection(collectionDTO);
         return new Result<>().ok(map);
     }
 }

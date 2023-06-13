@@ -44,7 +44,7 @@ instance.interceptors.response.use(response => {
 	 
 	
     if (!isRefreshing) {
-      console.log("返回结果111",response.data)
+      
       isRefreshing = true
 	  
 	  

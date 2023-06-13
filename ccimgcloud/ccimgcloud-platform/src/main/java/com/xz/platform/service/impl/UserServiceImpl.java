@@ -1,27 +1,21 @@
 package com.xz.platform.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
 import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.ConvertUtils;
-import com.xz.common.utils.DateUtils;
 import com.xz.common.utils.PageUtils;
 import com.xz.common.utils.RedisUtils;
 import com.xz.platform.dao.*;
-import com.xz.platform.dto.UserDTO;
 import com.xz.platform.entity.*;
 import com.xz.platform.service.UserService;
 import com.xz.platform.vo.FollowVo;
 import com.xz.platform.vo.TrendVo;
 import com.xz.platform.vo.UserVo;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -34,14 +28,6 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl extends BaseServiceImpl<UserDao, UserEntity> implements UserService {
 
-    @Autowired
-    ImgDetailsDao imgDetailsDao;
-
-    @Autowired
-    AlbumDao albumDao;
-
-    @Autowired
-    AlbumImgRelationDao albumImgRelationDao;
 
     @Autowired
     UserRecordDao userRecordDao;
@@ -57,24 +43,17 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, UserEntity> implem
 
     /**
      * TODO 使用缓存
+     *
      * @param page
      * @param limit
      * @param userId
      * @return
      */
     @Override
-    public List<TrendVo> getTrendByUser(long page, long limit, String userId) {
+    public List<TrendVo> getTrendByUser(long page, long limit, String userId, Integer type) {
 
-          List<TrendVo> trendVoList =  baseDao.getTrendByUser(page, limit,userId);
-          return trendVoList;
+        return baseDao.getTrendByUser(page, limit, userId, type);
 
-//        String key = ImgDetailCacheNames.USER_TREND+userId;
-//
-//        if(Boolean.TRUE.equals(redisUtils.hasKey(key))){
-//            String objStr = redisUtils.get(key);
-//            List<TrendVo> trendVos = JSON.parseArray(objStr, TrendVo.class);
-//            return PageUtils.getPages((int) page, (int) limit, trendVos);
-//        }
 
 //        List<TrendVo> res = new ArrayList<>();
 //
@@ -174,14 +153,19 @@ public class UserServiceImpl extends BaseServiceImpl<UserDao, UserEntity> implem
     }
 
     @Override
-    public UserVo searchUserByUsername(String username) {
-        UserEntity userEntity = baseDao.selectOne(new QueryWrapper<UserEntity>().eq("username", username));
-        if(userEntity==null){
-            return null;
+    public List<UserVo> searchUserByUsername(String username) {
+        List<UserEntity> userList = baseDao.selectList(new QueryWrapper<UserEntity>().eq("username", username));
+        if (userList.isEmpty()) {
+            return new ArrayList<>();
         }
-        UserVo userVo = ConvertUtils.sourceToTarget(userEntity, UserVo.class);
-        UserRecordEntity userRecordEntity = userRecordDao.selectOne(new QueryWrapper<UserRecordEntity>().eq("uid", userEntity.getId()));
-        userVo.setFanCount(userRecordEntity.getFanCount());
-        return userVo;
+        List<UserVo> userVoList = new ArrayList<>();
+        for (UserEntity user : userList) {
+            UserVo userVo = ConvertUtils.sourceToTarget(user, UserVo.class);
+            UserRecordEntity userRecordEntity = userRecordDao.selectOne(new QueryWrapper<UserRecordEntity>().eq("uid", user.getId()));
+            userVo.setFanCount(userRecordEntity.getFanCount());
+            userVoList.add(userVo);
+        }
+
+        return userVoList;
     }
 }

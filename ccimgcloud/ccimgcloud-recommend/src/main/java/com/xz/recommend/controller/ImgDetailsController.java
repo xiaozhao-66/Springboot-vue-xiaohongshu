@@ -1,20 +1,15 @@
 package com.xz.recommend.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
-import com.xz.common.utils.RedisUtils;
 import com.xz.common.utils.Result;
-import com.xz.recommend.common.client.RecommendClient;
 import com.xz.recommend.service.ImgDetailsService;
 import com.xz.recommend.vo.ImgDetailVo;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Set;
 
 @RestController
 @RequestMapping("recommend")
@@ -24,12 +19,6 @@ public class ImgDetailsController {
 
     @Autowired
     ImgDetailsService imgDetailsService;
-
-    @Autowired
-    RedisUtils redisUtils;
-
-    @Autowired
-    RecommendClient recommendClient;
 
 
     /**
@@ -55,13 +44,6 @@ public class ImgDetailsController {
      */
     @RequestMapping("recommendToUser2/{page}/{limit}")
     public Result<?> recommendToUser2(@PathVariable long page, @PathVariable long limit, String uid) {
-
-        String ukey = ImgDetailCacheNames.BR_IMG_KEY + uid;
-
-        if (Boolean.FALSE.equals(redisUtils.hasKey(ukey))) {
-            return recommendClient.getPage(page, limit);
-        }
-
         Page<ImgDetailVo> pageInfo = imgDetailsService.recommendToUser2(page, limit, uid);
         return new Result<Page<ImgDetailVo>>().ok(pageInfo);
     }

@@ -16,8 +16,6 @@ export function getUserInfo (params) {
 }
 
 
-
-
 export function updateUser(data){
 	return request.post(appConfig.WEB_API + '/platform/user/updateUser', data)  
 }

@@ -47,4 +47,6 @@ public class ImgDetailVo implements Serializable {
     private Long agreeCount;
 
     private String time;
+
+    private Integer status;
 }

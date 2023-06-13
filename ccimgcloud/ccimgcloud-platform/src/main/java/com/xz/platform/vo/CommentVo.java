@@ -1,8 +1,6 @@
 package com.xz.platform.vo;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import io.swagger.annotations.ApiModelProperty;
+
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -64,10 +62,7 @@ public class CommentVo implements Serializable {
     private String content;
 
     private Long count;
-    /**
-     *
-     */
-    private Boolean children;
+
 
     //重做评论模块
     private List<CommentVo> childrenComments;
@@ -79,4 +74,6 @@ public class CommentVo implements Serializable {
 
     //是否点赞
     private Boolean isAgree;
+
+    private Long twoNums;
 }

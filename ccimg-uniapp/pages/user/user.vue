@@ -20,12 +20,12 @@
 			<!-- 显示图片 -->
 			<view class="image">
 				<image :src="userInfo.cover" v-if="userInfo" mode="aspectFill" />
-				<image src="/static/images/toast/img_nodata.png" v-else  mode="aspectFill" />
+				<image src="/static/images/toast/img_nodata.png" v-else mode="aspectFill" />
 			</view>
 
 			<!-- 主体 -->
 			<view class="main">
-				<view class="top" >
+				<view class="top">
 					<view class="user">
 						<view class="user-left">
 							<image :src="userInfo.avatar" class="avatar" mode="aspectFill" />
@@ -36,7 +36,8 @@
 							</view>
 						</view>
 						<view class="user-right">
-							<tui-button type="danger" shape="circle" @click="editUserInfo" height="60rpx" width="140rpx" :size="28">编辑</tui-button>
+							<tui-button type="danger" shape="circle" @click="editUserInfo" height="60rpx" width="140rpx"
+								:size="28">编辑</tui-button>
 						</view>
 					</view>
 					<view class="info">
@@ -52,7 +53,7 @@
 
 				<view class="zhuti">
 					<view v-if="userInfo">
-						<Trend v-if="currentTab == 0" :uid='uid'> </Trend>
+						<Trend v-if="currentTab == 0" :uid='uid' @cancelUp='cancelUp'> </Trend>
 						<Album v-if="currentTab == 1" :seed='seed' :uid='uid'></Album>
 						<Collection v-if="currentTab == 2" :uid='uid'></Collection>
 					</view>
@@ -61,205 +62,140 @@
 					</view>
 				</view>
 			</view>
+
+			<tui-modal :show="show" @click="confirm" @cancel="hide" content="取消上传" :button="radio" width="50%"
+				padding="15rpx 40rpx" :fadeIn='true'></tui-modal>
 		</tui-navigation-bar>
 	</view>
 </template>
 
 <script>
-import Trend from "@/pages/user/trends/trends"
-import Album from "@/pages/user/albums/albums"
-import Collection from "@/pages/user/collections/collections"
-import { getUserInfo } from "@/api/user.js"
-export default {
-	components: {
-		Trend,
-		Album,
-		Collection
-	},
-	data() {
-		return {
-			current: 0,
-			currentTab: 0,
-			tabs: [{
-				name: "动态"
-			}, {
-				name: "专辑"
-			}, {
-				name: "收藏"
-			}],
-			userInfo: {},
-			seed: 0,
-			uid: '',
-		}
-	},
-	onLoad(option) {
-		if (typeof option.currentTab != 'undefined' || option.currentTab != null) {
-			this.currentTab = option.currentTab
-		}
-	},
-   
-   created() {
-   	
-   },
-	onShow() {
-		this.getUser()
-		this.uid = uni.getStorageSync("userInfo").id
-		this.seed = Math.random()
-	},
-	methods: {
-		change(e) {
-			this.currentTab = e.index
+	import Trend from "@/pages/user/trends/trends"
+	import Album from "@/pages/user/albums/albums"
+	import Collection from "@/pages/user/collections/collections"
+	import {
+		getUserInfo
+	} from "@/api/user.js"
+	import {
+		deleteImgs
+	} from '@/api/imgDetail.js'
+	export default {
+		components: {
+			Trend,
+			Album,
+			Collection
 		},
-		setting() {
-			uni.navigateTo({
-				url: "/pages/setting/setting"
-			})
-		},
-		editUserInfo() {
-			uni.navigateTo({
-				url: "/pages/user/info/info?uid= " + this.uid
-			})
-		},
-		login() {
-			uni.navigateTo({
-				url: "/pages/login/login"
-			})
-		},
-		getUser() {
-            
-			let params = {
-				uid: uni.getStorageSync("userInfo").id
+		data() {
+			return {
+				current: 0,
+				currentTab: 0,
+				tabs: [{
+					name: "动态"
+				}, {
+					name: "专辑"
+				}, {
+					name: "收藏"
+				}],
+				userInfo: {},
+				seed: 0,
+				uid: '',
+				show: false,
+
+				radio: [{
+						text: '取消',
+						type: 'white',
+					},
+					{
+						text: '确定',
+						type: 'red',
+					}
+				],
+
+				mid: '',
+
 			}
-			getUserInfo(params).then(res => {
-				console.log("用户信息",res)
-				this.userInfo = res.data
-			})
+		},
+		onLoad(options) {
+			if (typeof options.currentTab != 'undefined' || options.currentTab != null) {
+				this.currentTab = options.currentTab
+			}
 
 		},
 
-		getAllFriend(type) {
-			uni.navigateTo({
-				url: "/pages/user/allUser/allUser?type=" + type+"&uid="+this.userInfo.id
-			})
+		created() {
+
+		},
+		onShow() {
+			this.getUser()
+			this.uid = uni.getStorageSync("userInfo").id
+			this.seed = Math.random()
+		},
+		methods: {
+			change(e) {
+				this.currentTab = e.index
+			},
+			setting() {
+				uni.navigateTo({
+					url: "/pages/setting/setting"
+				})
+			},
+
+			cancelUp(mid) {
+
+				this.show = true
+				this.mid = mid
+			},
+
+			confirm(e) {
+				let index = e.index;
+				if (e.index == 0) {
+					this.show = false
+				} else {
+					let arr = []
+					arr.push(this.mid)
+					deleteImgs(arr, this.userInfo.id).then(res => {
+						uni.showToast({
+							title: "取消成功"
+						})
+						this.show = false
+					})
+				}
+			},
+			hide() {
+				this.show = false
+			},
+
+			editUserInfo() {
+				uni.navigateTo({
+					url: "/pages/user/info/info?uid= " + this.uid
+				})
+			},
+			login() {
+				uni.navigateTo({
+					url: "/pages/login/login"
+				})
+			},
+			getUser() {
+
+				let params = {
+					uid: uni.getStorageSync("userInfo").id
+				}
+				getUserInfo(params).then(res => {
+
+					this.userInfo = res.data
+				})
+
+			},
+
+			getAllFriend(type) {
+				uni.navigateTo({
+					url: "/pages/user/allUser/allUser?type=" + type + "&uid=" + this.userInfo.id
+				})
+			}
 		}
 	}
-}
 </script>
 
 <style scoped>
-.content {
-	position: relative;
-	width: 100%;
-	background-color: #f4f4f4;
-}
-
-.top {
-	position: relative;
-	height: 60rpx;
-	z-index: 9999;
-}
-
-.top .right {
-	padding-top: 5px;
-	display: flex;
-	justify-content: end;
-}
-
-.top .right .item {
-	margin-right: 15rpx;
-}
-
-.content .image {
-	position: relative;
-	top: -200rpx;
-}
-
-.content .image image {
-	width: 100%;
-}
-
-.content .main {
-	position: relative;
-	top: -200rpx;
-	width: 100%;
-	z-index: 22;
-	
-	
-}
-
-.content .main .top {
-	width: 100%;
-	height: 340rpx;
-	display: block;
-	background-color: #fff;
-	
-}
-
-.content .main .top .user {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	height: 200rpx;
-	border-radius: 10px;
-
-}
-
-.content .main .top .user .user-left {
-	width: 500rpx;
-
-}
-
-.content .main .top .user .user-left image {
-	position: absolute;
-	left: 60rpx;
-	top: -50rpx;
-	width: 120rpx;
-	height: 120rpx;
-	border-radius: 50%
-}
-
-.user-content {
-	margin-top: 80rpx;
-	margin-left: 60rpx;
-}
-
-.user-id {
-	margin-top: 5rpx;
-	margin-bottom: 5rpx;
-	color: #5c5c5c;
-}
-
-.content .main .top .user .user-right {
-	margin-top: 40rpx;
-	width: 200rpx;
-}
-
-.f{
-	font-size: 28rpx;
-}
-
-
-.content .main .top .info {
-
-	display: flex;
-	height: 100rpx;
-	margin-left: 80rpx;
-	margin-right: 80rpx;
-	justify-content: space-between;
-	align-items: center;
-	font-size: 28rpx;
-}
-
-.nologin {
-	padding-top: 120rpx;
-}
-
-.nologin button {
-
-	width: 300rpx;
-	height: 80rpx;
-	color: #fff;
-	background-color: #ff0000;
-	border-radius: 20px;
-	line-height: 80rpx;
-}</style>
+	@import url(./user.css);
+</style>

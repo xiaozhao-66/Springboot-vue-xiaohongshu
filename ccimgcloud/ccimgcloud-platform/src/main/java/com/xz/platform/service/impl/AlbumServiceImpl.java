@@ -3,13 +3,11 @@ package com.xz.platform.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.ConvertUtils;
-import com.xz.common.constant.cacheConstant.AlbumCacheNames;
 import com.xz.platform.dao.AlbumDao;
 import com.xz.platform.dao.AlbumImgRelationDao;
 import com.xz.platform.dao.CollectionDao;
 import com.xz.platform.dao.UserDao;
 import com.xz.platform.dto.AlbumDTO;
-import com.xz.platform.dto.CollectionDTO;
 import com.xz.platform.entity.AlbumEntity;
 import com.xz.platform.entity.AlbumImgRelationEntity;
 import com.xz.platform.entity.CollectionEntity;
@@ -17,16 +15,12 @@ import com.xz.platform.entity.UserEntity;
 import com.xz.platform.service.AlbumService;
 import com.xz.platform.service.ImgDetailsService;
 import com.xz.platform.vo.AlbumVo;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 

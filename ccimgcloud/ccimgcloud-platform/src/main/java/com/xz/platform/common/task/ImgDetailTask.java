@@ -10,7 +10,6 @@ import com.xz.platform.dao.ImgDetailsDao;
 import com.xz.platform.dao.UserDao;
 import com.xz.platform.entity.ImgDetailsEntity;
 import com.xz.platform.entity.UserEntity;
-import com.xz.platform.vo.ImgDetailInfoVo;
 import com.xz.platform.vo.ImgDetailVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -20,8 +19,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 @EnableScheduling   // 1.开启定时任务
@@ -37,40 +38,47 @@ public class ImgDetailTask {
     @Autowired
     UserDao userDao;
 
-    static final String KEY = ImgDetailCacheNames.IMG_DETAIL;
-    static final String HotKEY = ImgDetailCacheNames.HOT;
 
+    static final String HotKEY = ImgDetailCacheNames.HOT;
+    static final String viewRecordKey = ImgDetailCacheNames.IMG_VIEW_RECORD;
     @Async
-    @Scheduled(fixedDelay = 1000)  //间隔1秒
+    @Scheduled(fixedDelay = 1000*60)  //间隔1分
     public void updateViewRecord() {
 
-        Set<String> listKey = redisUtils.getListKey(KEY);
+        Set<String> listKey = redisUtils.getListKey(viewRecordKey);
         if (!listKey.isEmpty()) {
             for (String k : listKey) {
-                if (redisUtils.getExpire(k) <= 4) {
-                    String strObject = redisUtils.get(k);
-                    ImgDetailInfoVo imgDetailInfoVo = JSON.parseObject(strObject, ImgDetailInfoVo.class);
-                    ImgDetailsEntity imgDetailsEntity = imgDetailsDao.selectById(imgDetailInfoVo.getId());
-                    imgDetailsEntity.setAgreeCount(imgDetailInfoVo.getAgreeCount());
-                    imgDetailInfoVo.setCollectionCount(imgDetailInfoVo.getCollectionCount());
+                    String mid = k.split(":")[1];
+                    ImgDetailsEntity imgDetailsEntity = imgDetailsDao.selectById(mid);
+                    imgDetailsEntity.setViewCount(Long.valueOf(redisUtils.get(k)));
                     imgDetailsDao.updateById(imgDetailsEntity);
-                }
             }
         }
     }
+
 
     @Async
     @Scheduled(fixedDelay = 1000*60*10)  //10分钟刷新一次热榜
     public void refreshHot(){
 
-        List<ImgDetailsEntity> imgDetailsEntityList = imgDetailsDao.selectList(new QueryWrapper<ImgDetailsEntity>().orderByDesc("agree_count").ge("agree_count", 1));
+        List<ImgDetailsEntity> imgDetailList = imgDetailsDao.selectList(new QueryWrapper<ImgDetailsEntity>().orderByDesc("agree_count").ge("agree_count", 1));
         List<ImgDetailVo> list = new ArrayList<>();
-        ImgDetailVo imgDetailVo = null;
-        List<String> imgList = null;
-        UserEntity userEntity = null;
-        for (ImgDetailsEntity model : imgDetailsEntityList) {
+
+        List<Long> uids = imgDetailList.stream().map(ImgDetailsEntity::getUserId).collect(Collectors.toList());
+
+        List<UserEntity> userList = userDao.selectBatchIds(uids);
+
+        HashMap<Long,UserEntity> userMap = new HashMap<>();
+        userList.forEach(item->{
+            userMap.put(item.getId(),item);
+        });
+
+        ImgDetailVo imgDetailVo;
+        List<String> imgList;
+        UserEntity userEntity;
+        for (ImgDetailsEntity model : imgDetailList) {
             imgList = JSON.parseArray(model.getImgsUrl(), String.class);
-            userEntity = userDao.selectById(model.getUserId());
+            userEntity = userMap.get(model.getUserId());
             imgDetailVo = ConvertUtils.sourceToTarget(model, ImgDetailVo.class);
             imgDetailVo.setImgsUrl(imgList)
                     .setUsername(userEntity.getUsername())

@@ -3,8 +3,6 @@ package com.xz.platform.entity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import java.util.Date;
-
 /**
  * 
  *

@@ -279,9 +279,9 @@ public class AuthUserServiceImpl extends BaseServiceImpl<AuthUserDao, AuthUser> 
     @Override
     public boolean isRegist(AuthUserDTO authUserDTO) {
 
-        AuthUser currentUser = baseDao.selectOne(new QueryWrapper<AuthUser>().eq("phone", authUserDTO.getPhone()).or().eq("email", authUserDTO.getEmail()));
+        Long count = baseDao.selectCount(new QueryWrapper<AuthUser>().eq("phone", authUserDTO.getPhone()).or().eq("email", authUserDTO.getEmail()));
 
-        return currentUser != null;
+        return count>0;
     }
 
 }

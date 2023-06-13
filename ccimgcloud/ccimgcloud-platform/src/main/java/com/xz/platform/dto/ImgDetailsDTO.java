@@ -8,11 +8,9 @@ import com.xz.platform.entity.TagEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 
@@ -57,7 +55,6 @@ public class ImgDetailsDTO implements Serializable {
 	private Long albumId;
 
 	@ApiModelProperty(value = "专辑")
-	@NotNull(message = "album不能为空", groups = UpdateGroup.class)
 	private AlbumEntity album;
 
 	@ApiModelProperty(value = "图片地址")
@@ -87,4 +84,7 @@ public class ImgDetailsDTO implements Serializable {
 
 	@ApiModelProperty(value = "评论数量")
 	private Long commentCount;
+
+	@ApiModelProperty(value = "0增加图片，1修改图片")
+	private Integer type;
 }

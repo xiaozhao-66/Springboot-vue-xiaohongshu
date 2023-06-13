@@ -2,11 +2,9 @@ package com.xz.platform.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
 import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.ConvertUtils;
-import com.xz.common.utils.PageUtils;
 import com.xz.platform.common.constant.Constant;
 import com.xz.common.utils.RedisUtils;
 import com.xz.platform.dao.*;
@@ -14,13 +12,10 @@ import com.xz.platform.dto.CollectionDTO;
 import com.xz.platform.entity.*;
 import com.xz.platform.service.CollectionService;
 import com.xz.platform.vo.CollectionVo;
-import com.xz.platform.vo.ImgDetailInfoVo;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 /**
  * 
@@ -76,9 +71,9 @@ public class CollectionServiceImpl extends BaseServiceImpl<CollectionDao, Collec
     @Override
     public List<CollectionVo> getAllCollection(long page, long limit, String uid, Integer type) {
 
-        return baseDao.getAllCollection(page, limit, uid,type);
+        return baseDao.getAllCollection(page, limit, uid, type);
 
-        //旧方法:查询所有的收藏数据
+        //旧方法:查询所有的收藏数据(垃圾代码)
 //        List<CollectionEntity> collections = baseDao.selectList(new QueryWrapper<CollectionEntity>().and(e -> e.eq("uid", uid).eq("type", type)));
 //
 //        if (collections.isEmpty()) {
@@ -118,21 +113,18 @@ public class CollectionServiceImpl extends BaseServiceImpl<CollectionDao, Collec
     }
 
     @Override
-    public Map<String, String> cancalCollection(CollectionDTO collectionDTO) {
-
-
+    public Map<String, String> cancelCollection(CollectionDTO collectionDTO) {
 
         Map<String, String> res = new HashMap<>();
 
         if (collectionDTO.getType() == 0) {
-
-            String key = ImgDetailCacheNames.IMG_DETAIL + collectionDTO.getCollectionId();
-
-            if (Boolean.TRUE.equals(redisUtils.hasKey(key))) {
-                String strObject = redisUtils.get(key);
-                ImgDetailInfoVo imgDetailInfoVo = JSON.parseObject(strObject, ImgDetailInfoVo.class);
-                imgDetailInfoVo.setCollectionCount(imgDetailInfoVo.getCollectionCount() - 1);
-                redisUtils.setEx(key, JSON.toJSONString(imgDetailInfoVo), 60, TimeUnit.SECONDS);
+            //取消收藏图片
+            String albumImgRelationKey = ImgDetailCacheNames.ALBUM_IMG_RELATION_KEY + collectionDTO.getCollectionId();
+            if (Boolean.TRUE.equals(redisUtils.hasKey(albumImgRelationKey))) {
+                //存储所有用户点赞信息
+                List<Long> uids = JSON.parseArray(redisUtils.get(albumImgRelationKey), Long.class);
+                uids.remove(collectionDTO.getUid());
+                redisUtils.set(albumImgRelationKey, JSON.toJSONString(uids));
             }
 
             CollectionEntity collectionEntity = baseDao.selectOne(new QueryWrapper<CollectionEntity>().and(e -> e.eq("uid", collectionDTO.getUid()).eq("collection_id", collectionDTO.getCollectionId()).eq("type", collectionDTO.getType())));
@@ -140,18 +132,34 @@ public class CollectionServiceImpl extends BaseServiceImpl<CollectionDao, Collec
                 res.put(Constant.MESSAGE, Constant.COLLECTION_ERROR);
                 return res;
             }
-            List<AlbumImgRelationEntity> albumImgRelationEntityList = albumImgRelationDao.selectList(new QueryWrapper<AlbumImgRelationEntity>().eq("mid", collectionDTO.getCollectionId()));
 
-            for (AlbumImgRelationEntity albumImgRelationEntity : albumImgRelationEntityList) {
+            ImgDetailsEntity imgDetailsEntity = imgDetailsDao.selectById(collectionDTO.getCollectionId());
+            imgDetailsEntity.setCollectionCount(imgDetailsEntity.getCollectionCount() - 1);
+            imgDetailsDao.updateById(imgDetailsEntity);
 
-                AlbumEntity albumEntity = albumDao.selectById(albumImgRelationEntity.getAid());
+            List<AlbumImgRelationEntity> albumImgRelationList = albumImgRelationDao.selectList(new QueryWrapper<AlbumImgRelationEntity>().eq("mid", collectionDTO.getCollectionId()));
 
+            List<Long> albumIds = new ArrayList<>();
+            albumImgRelationList.forEach(item -> {
+                albumIds.add(item.getAid());
+            });
+
+            List<AlbumEntity> albumList = albumDao.selectBatchIds(albumIds);
+
+            Map<Long, AlbumEntity> albumMap = new HashMap<>();
+
+            albumList.forEach(item -> {
+                albumMap.put(item.getId(), item);
+            });
+
+            for (AlbumImgRelationEntity albumImgRelationEntity : albumImgRelationList) {
+                AlbumEntity albumEntity = albumMap.get(albumImgRelationEntity.getAid());
                 //找到当前用户专辑下绑定的图片
                 if (albumEntity.getUid().equals(collectionDTO.getUid())) {
                     albumImgRelationDao.delete(new QueryWrapper<AlbumImgRelationEntity>().and(e -> e.eq("aid", albumImgRelationEntity.getAid()).eq("mid", collectionDTO.getCollectionId())));
+                    break;
                 }
             }
-
         }
 
         CollectionEntity collection = baseDao.selectOne(new QueryWrapper<CollectionEntity>().and(e -> e.eq("uid", collectionDTO.getUid()).eq("collection_id", collectionDTO.getCollectionId())));

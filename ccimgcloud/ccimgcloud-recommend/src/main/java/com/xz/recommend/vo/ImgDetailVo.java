@@ -25,6 +25,8 @@ public class ImgDetailVo implements Serializable {
      */
     private Long userId;
 
+    private Long otherUserId;
+
 
     private String albumName;
 

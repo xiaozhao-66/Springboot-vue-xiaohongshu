@@ -222,7 +222,7 @@ public class DateUtils {
             if(exceedMin<60 && exceedMin>0){
                 return df.format(exceedMin) + "分钟前";
             }else {
-                return df.format(exceedSec)+"秒前";
+                return "刚刚";
             }
 
         }

@@ -4,6 +4,13 @@
 		
 		onLaunch: function() {
 			
+			       if(typeof uni.getStorageSync("imgPublish")=='undefined'||uni.getStorageSync("imgPublish")==null){
+					   uni.showToast({
+					   	title: "有图片在上传中",
+						icon:'none'
+					   })
+					   return
+				   }
 			       
 				   if(uni.getStorageSync('userInfo')!=''){
 					   uni.reLaunch({

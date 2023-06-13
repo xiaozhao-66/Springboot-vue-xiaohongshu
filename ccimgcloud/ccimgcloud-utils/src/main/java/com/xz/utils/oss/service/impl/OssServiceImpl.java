@@ -1,21 +1,31 @@
 package com.xz.utils.oss.service.impl;
 
-
 import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.OSSException;
+import com.google.gson.Gson;
+import com.qiniu.http.Response;
+import com.qiniu.storage.BucketManager;
+import com.qiniu.storage.Configuration;
+import com.qiniu.storage.Region;
+import com.qiniu.storage.UploadManager;
+import com.qiniu.storage.model.DefaultPutRet;
+import com.qiniu.util.Auth;
 import com.xz.utils.constant.OssConstant;
 import com.xz.utils.oss.service.OssService;
+import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.*;
 
 @Service
+@Slf4j
 public class OssServiceImpl implements OssService {
 
     // 工具类获取值
@@ -76,7 +86,7 @@ public class OssServiceImpl implements OssService {
     @Override
     public List<String> uploadFiles(MultipartRequest request, Integer num) {
 
-        //获取上传的图片
+
         List<MultipartFile> files = new ArrayList<>();
         List<String> paths = new ArrayList<>();
         if (num > 0) {
@@ -84,6 +94,7 @@ public class OssServiceImpl implements OssService {
                 files.add(request.getFile("images" + i));
             }
             for (MultipartFile file : files) {
+
                 if (file != null && file.getSize() > 0) {
                     String path = uploadFile(file);
                     paths.add(path);
@@ -99,7 +110,8 @@ public class OssServiceImpl implements OssService {
 
         try {
             // 删除文件或目录。如果要删除目录，目录必须为空。
-            ossClient.deleteObject(bucketName, fileName);
+            String replaceFileName = fileName.replace("https://" + bucketName + "." + endpoint+"/", "");
+            ossClient.deleteObject(bucketName, replaceFileName);
         } catch (OSSException oe) {
             System.out.println("Caught an OSSException, which means your request made it to OSS, "
                     + "but was rejected with an error response for some reason.");
@@ -121,9 +133,100 @@ public class OssServiceImpl implements OssService {
     }
 
     @Override
-    public void deleteFiles(String[] fileNames) {
+    public void deleteFiles(List<String> fileNames) {
         for (String fileName : fileNames) {
             deleteFile(fileName);
+        }
+    }
+
+    @Override
+    public String qiNiuUploadFile(MultipartFile file) {
+        //构造一个带指定 Region 对象的配置类
+        Configuration cfg = new Configuration(Region.beimei());
+        cfg.resumableUploadAPIVersion = Configuration.ResumableUploadAPIVersion.V2;// 指定分片上传版本
+
+        UploadManager uploadManager = new UploadManager(cfg);
+
+
+        String filePath = "";
+
+        String fileName = file.getOriginalFilename();
+
+        //1 在文件名称里面添加随机唯一的值
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        // yuy76t5rew01.jpg
+        fileName = uuid + fileName;
+
+        //2 把文件按照日期进行分类
+        //获取当前日期
+        //   2019/11/12
+        String datePath = new DateTime().toString("yyyy/MM/dd");
+        //拼接
+        //  2019/11/12/ewtqr313401.jpg
+        fileName = datePath + "/" + fileName;
+
+        try {
+
+            byte[] uploadBytes = file.getBytes();
+            // 获取文件流
+            InputStream input = new ByteArrayInputStream(uploadBytes);
+            Auth auth = Auth.create(accessKeyId, accessKeySecret);
+            String upToken = auth.uploadToken(bucketName);
+            Response response = uploadManager.put(input,fileName, upToken, null, null);
+            //解析上传成功的结果
+            DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
+            filePath = "http://"+endpoint + "/" + putRet.key;
+            return filePath;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<String> qiNiuUploadFiles(MultipartRequest request, Integer num) {
+        List<MultipartFile> files = new ArrayList<>();
+        List<String> paths = new ArrayList<>();
+        if (num > 0) {
+            for (int i = 0; i < num; i++) {
+                files.add(request.getFile("images" + i));
+            }
+            for (MultipartFile file : files) {
+
+                if (file != null && file.getSize() > 0) {
+                    String path = qiNiuUploadFile(file);
+                    paths.add(path);
+                }
+            }
+        }
+        return paths;
+    }
+
+    @Override
+    public void qiNiuDeleteFile(String fileName) {
+
+        String replaceFileName = fileName.replace("http://"+endpoint+"/", "");
+
+        Configuration cfg = new Configuration(Region.beimei());
+
+        Auth auth = Auth.create(accessKeyId, accessKeySecret);
+
+        BucketManager bucketManager = new BucketManager(auth, cfg);
+
+        try {
+            bucketManager.delete(bucketName,replaceFileName);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void qiNiuDeleteFiles(List<String> fileNames) {
+        for (String fileName : fileNames) {
+            qiNiuDeleteFile(fileName);
         }
     }
 }

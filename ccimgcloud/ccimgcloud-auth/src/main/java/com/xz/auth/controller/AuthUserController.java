@@ -4,7 +4,6 @@ import com.xz.auth.dto.AuthUserDTO;
 import com.xz.auth.dto.UserOtherLoginRelationDTO;
 import com.xz.auth.entity.AuthUser;
 import com.xz.auth.service.AuthUserService;
-import com.xz.common.utils.JwtUtils;
 import com.xz.common.utils.Result;
 import com.xz.common.validator.ValidatorUtils;
 import com.xz.common.validator.group.AddGroup;

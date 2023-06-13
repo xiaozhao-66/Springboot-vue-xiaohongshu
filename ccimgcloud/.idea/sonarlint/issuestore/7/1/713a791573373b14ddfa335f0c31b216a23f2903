@@ -1,30 +1,5 @@
 
 <
-java:S14523"&Remove usage of generic wildcard type.( ˆ¨Õ
+java:S1452("&Remove usage of generic wildcard type.( ˆ¨Õ
 <
-java:S1452?"&Remove usage of generic wildcard type.(†ò
-W
-java:S1128"<Remove this unused import 'com.xz.common.constant.Constant'.(úÖðäýÿÿÿÿ
-M
-java:S1128"8Remove this unused import 'com.xz.common.page.PageData'.(ŸëäY
-[
-java:S1128"@Remove this unused import 'com.xz.common.validator.AssertUtils'.(Œ»‰ëÿÿÿÿÿ
-^
-java:S1128
-"CRemove this unused import 'com.xz.common.validator.group.AddGroup'.(À‡Ñøÿÿÿÿ
-\
-java:S1128"FRemove this unused import 'com.xz.common.validator.group.UpdateGroup'.(ÇÜ‘†
-M
-java:S1128"7Remove this unused import 'com.xz.platform.vo.AlbumVo'.(ù½©Ñ
-Z
-java:S1128"DRemove this unused import 'io.swagger.annotations.ApiImplicitParam'.(…‡øË
-[
-java:S1128"ERemove this unused import 'io.swagger.annotations.ApiImplicitParams'.(Ó‘×
-V
-java:S1128"@Remove this unused import 'io.swagger.annotations.ApiOperation'.(¡šÜ
-e
-java:S1128"JRemove this unused import 'springfox.documentation.annotations.ApiIgnore'.(µâ¤›ùÿÿÿÿ
-Y
-java:S1128"CRemove this unused import 'javax.servlet.http.HttpServletResponse'.(Á¨ïë
-E
-java:S1128"*Remove this unused import 'java.util.Map'.(¼è½Òþÿÿÿÿ
+java:S14524"&Remove usage of generic wildcard type.(†ò

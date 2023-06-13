@@ -1,0 +1,30 @@
+.container {
+	margin-top: 40rpx;
+}
+
+image {
+	width: 354rpx;
+	height: 400rpx;
+}
+
+.tui-grid {
+	padding: 10rpx 10rpx;
+}
+
+.card {
+	background-color: #fff;
+	border: 1px solid #f4f4f4;
+}
+
+.main .card .cont {
+	margin-left: 10px;
+}
+
+.main .card .cont p {
+	margin-top: 5px;
+	font-size: 12px;
+}
+
+.collection-img {
+	background-color: #fff;
+}

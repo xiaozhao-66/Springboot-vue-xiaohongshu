@@ -3,13 +3,9 @@ package com.xz.platform.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
 import com.xz.common.exception.RenException;
 import com.xz.common.service.impl.BaseServiceImpl;
-import com.xz.common.service.impl.CrudServiceImpl;
-import com.xz.common.utils.ConvertUtils;
 import com.xz.common.utils.DateUtils;
-import com.xz.common.utils.PageUtils;
 import com.xz.common.utils.RedisUtils;
 import com.xz.platform.common.constant.Constant;
 import com.xz.platform.dao.*;
@@ -24,7 +20,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -36,14 +31,6 @@ import java.util.stream.Collectors;
 @Service
 public class FollowServiceImpl extends BaseServiceImpl<FollowDao, FollowEntity> implements FollowService {
 
-    @Autowired
-    ImgDetailsDao imgDetailsDao;
-
-    @Autowired
-    AlbumDao albumDao;
-
-    @Autowired
-    AlbumImgRelationDao albumImgRelationDao;
 
     @Autowired
     UserDao userDao;
@@ -52,13 +39,11 @@ public class FollowServiceImpl extends BaseServiceImpl<FollowDao, FollowEntity> 
     UserRecordDao userRecordDao;
 
     @Autowired
-    AgreeDao agreeDao;
-
-    @Autowired
     RedisUtils redisUtils;
 
 
     /**
+     * TODO 优化缓存机制
      *
      * @param page
      * @param limit
@@ -67,19 +52,10 @@ public class FollowServiceImpl extends BaseServiceImpl<FollowDao, FollowEntity> 
      */
     @Override
     public List<FollowTrendVo> getAllFollowTrends(long page, long limit, String uid) {
-        String key = ImgDetailCacheNames.FOLLOW_TREND+uid+"page:"+page;
 
-        if(Boolean.TRUE.equals(redisUtils.hasKey(key))){
-            String objStr = redisUtils.get(key);
-            List<FollowTrendVo> followTrendVos = JSON.parseArray(objStr, FollowTrendVo.class);
-            Page<FollowTrendVo> pages = PageUtils.getPages((int) page, (int) limit, followTrendVos);
-            assert pages != null;
-            return pages.getRecords();
-        }else{
+        return baseDao.getAllFollowTrends(page, limit, uid);
 
-        List<FollowTrendVo>  followTrendVoList = baseDao.getAllFollowTrends(page, limit, uid);
-
-//            旧方法
+//            旧方法(垃圾代码)
 //            List<FollowTrendVo> res = new ArrayList<>();
 //
 //            List<String> ids = new ArrayList<>();
@@ -136,36 +112,53 @@ public class FollowServiceImpl extends BaseServiceImpl<FollowDao, FollowEntity> 
 //
 //                res.add(followTrendVo);
 //            }
+//
+// 设置缓存失效过期时间为5分钟
 
-            //设置缓存失效过期时间为5分钟
-            redisUtils.setEx(key,JSON.toJSONString(followTrendVoList),5,TimeUnit.MINUTES);
-            return followTrendVoList;
-        }
+
     }
 
     @Override
     public boolean isFollow(String uid, String fid) {
 
         Long count = baseDao.selectCount(new QueryWrapper<FollowEntity>().and(e -> e.eq("uid", uid).eq("fid", fid)));
-        return count>0;
+        return count > 0;
     }
 
 
     @Override
     public Page<FollowVo> getAllFanUser(long page, long limit, String uid) {
+        Page<FollowVo> res = new Page<>();
+
+        //得到所有粉丝
+        Page<FollowEntity> fanPage = baseDao.selectPage(new Page<>(page, limit), new QueryWrapper<FollowEntity>().eq("fid", uid).orderByDesc("create_date"));
+
+        List<FollowEntity> fanList = fanPage.getRecords();
+
+        //所有粉丝的id
+        List<Long> uids = fanList.stream().map(FollowEntity::getUid).collect(Collectors.toList());
+        HashMap<Long, UserEntity> userMap = new HashMap<>();
+
+        List<UserEntity> userList = userDao.selectBatchIds(uids);
+        userList.forEach(item -> {
+            userMap.put(item.getId(), item);
+        });
+
+        //得到当前用户关注的所有用户
+        List<FollowEntity> followList = baseDao.selectList(new QueryWrapper<FollowEntity>().eq("uid", uid));
+        List<Long> fids = followList.stream().map(FollowEntity::getFid).collect(Collectors.toList());
+
+        FollowVo followVo;
+        UserEntity user;
 
         List<FollowVo> list = new ArrayList<>();
-        List<FollowEntity> fanList = baseDao.selectList(new QueryWrapper<FollowEntity>().eq("fid", uid).orderByDesc("create_date"));
-        FollowVo followVo = null;
-        UserEntity user = null;
-        for (FollowEntity model : fanList) {
 
-            user = userDao.selectById(model.getUid());
-            boolean follow = isFollow(uid, String.valueOf(user.getId()));
+        for (FollowEntity model : fanList) {
+            user = userMap.get(model.getUid());
 
             followVo = new FollowVo();
 
-            followVo.setIsfollow(follow)
+            followVo.setIsfollow(fids.contains(model.getUid()))
                     .setUid(user.getId())
                     .setUsername(user.getUsername())
                     .setAvatar(user.getAvatar())
@@ -174,7 +167,10 @@ public class FollowServiceImpl extends BaseServiceImpl<FollowDao, FollowEntity> 
             list.add(followVo);
         }
 
-        return PageUtils.getPages((int) page, (int) limit, list);
+        res.setRecords(list);
+        res.setTotal(fanPage.getTotal());
+
+        return res;
     }
 
 
@@ -182,15 +178,23 @@ public class FollowServiceImpl extends BaseServiceImpl<FollowDao, FollowEntity> 
     @Override
     public void followUser(FollowDTO followDTO) {
 
-        //删除redis中当前用户的关注关注信息
-        String followKey = ImgDetailCacheNames.FOLLOW_TREND + followDTO.getUid();
-        Set<String> listKey = redisUtils.getListKey(followKey);
-
-        if (!listKey.isEmpty()) {
-            for (String e : listKey) {
-                redisUtils.delete(e);
-            }
+        if (followDTO.getUid().equals(followDTO.getFid())) {
+            return;
         }
+
+        //TODO 使用redis缓存优化
+//        String followKey = "follow:"+followDTO.getUid();
+//        if(Boolean.TRUE.equals(redisUtils.hasKey(followKey))){
+//            //存储所有用户点赞信息
+//            List<Long> uids = JSON.parseArray(redisUtils.get(followKey), Long.class);
+//            uids.add(followDTO.getFid());
+//            redisUtils.set(followKey,JSON.toJSONString(uids));
+//        }else{
+//            List<Long> uids = new ArrayList<>();
+//            uids.add(followDTO.getFid());
+//            redisUtils.set(followKey,JSON.toJSONString(uids));
+//        }
+
 
         FollowEntity followEntity = new FollowEntity();
         followEntity.setFid(followDTO.getFid());
@@ -219,29 +223,54 @@ public class FollowServiceImpl extends BaseServiceImpl<FollowDao, FollowEntity> 
     public List<FollowVo> getAllFriend(String uid, Integer type) {
 
         List<FollowVo> list = new ArrayList<>();
-        List<FollowEntity> followList = null;
+        List<FollowEntity> followList;
+        List<Long> uids;
 
         //0查找所有的粉丝
         if (type == 0) {
             followList = baseDao.selectList(new QueryWrapper<FollowEntity>().eq("fid", uid).orderByDesc("create_date"));
+            //所有粉丝的id
+            uids = followList.stream().map(FollowEntity::getUid).collect(Collectors.toList());
+
         } else {
             followList = baseDao.selectList(new QueryWrapper<FollowEntity>().eq("uid", uid).orderByDesc("create_date"));
+            uids = followList.stream().map(FollowEntity::getFid).collect(Collectors.toList());
         }
 
-        FollowVo followVo = null;
-        UserEntity user = null;
-        UserRecordEntity userRecordEntity = null;
+        List<UserEntity> userList = userDao.selectBatchIds(uids);
+
+        List<UserRecordEntity> userRecordList = userRecordDao.selectBatchByUid(uids);
+
+        HashMap<Long, UserEntity> userMap = new HashMap<>();
+        HashMap<Long, UserRecordEntity> userRecordMap = new HashMap<>();
+        userList.forEach(item -> {
+            userMap.put(item.getId(), item);
+        });
+        userRecordList.forEach(item -> {
+            userRecordMap.put(item.getUid(), item);
+        });
+
+        //得到当前用户所有的关注
+        List<FollowEntity> followCurrentUserList = baseDao.selectList(new QueryWrapper<FollowEntity>().eq("uid", uid));
+
+        List<Long> followIds = followCurrentUserList.stream().map(FollowEntity::getFid).collect(Collectors.toList());
+
+        FollowVo followVo;
+        UserEntity user;
+        UserRecordEntity userRecordEntity;
         for (FollowEntity model : followList) {
             followVo = new FollowVo();
+            //查找粉丝
             if (type == 0) {
-                user = userDao.selectById(model.getUid());
+                user = userMap.get(model.getUid());
             } else {
-                user = userDao.selectById(model.getFid());
+                user = userMap.get(model.getFid());
             }
-            boolean follow = isFollow(uid, String.valueOf(user.getId()));
-            userRecordEntity = userRecordDao.selectOne(new QueryWrapper<UserRecordEntity>().eq("uid", user.getId()));
 
-            followVo.setIsfollow(follow)
+            userRecordEntity = userRecordMap.get(user.getId());
+
+
+            followVo.setIsfollow(followIds.contains(model.getUid()))
                     .setUid(user.getId())
                     .setUsername(user.getUsername())
                     .setAvatar(user.getAvatar())
@@ -258,14 +287,8 @@ public class FollowServiceImpl extends BaseServiceImpl<FollowDao, FollowEntity> 
     @Override
     public void clearFollow(FollowDTO followDTO) {
 
-        //删除redis中当前用户的关注关注信息
-        String followKey = ImgDetailCacheNames.FOLLOW_TREND + followDTO.getUid();
-        Set<String> listKey = redisUtils.getListKey(followKey);
-
-        if (!listKey.isEmpty()) {
-            for (String e : listKey) {
-                redisUtils.delete(e);
-            }
+        if (followDTO.getUid().equals(followDTO.getFid())) {
+            return;
         }
 
         UserRecordEntity currentUser = userRecordDao.selectOne(new QueryWrapper<UserRecordEntity>().eq("uid", followDTO.getUid()));

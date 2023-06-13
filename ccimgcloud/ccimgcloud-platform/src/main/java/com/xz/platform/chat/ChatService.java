@@ -6,7 +6,11 @@ import com.xz.platform.vo.MessageVo;
 
 import java.util.List;
 
+/**
+ * @author 48423
+ */
 public interface ChatService {
+
     void addChatRecord(MessageDTO messageDTO);
 
     List<MessageVo> getChatUserList(String uid);

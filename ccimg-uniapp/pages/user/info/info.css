@@ -1,0 +1,189 @@
+ul {
+ 	padding-left: 0rpx;
+ }
+
+ li {
+ 	list-style: none;
+ }
+
+ a {
+ 	text-decoration: none;
+ 	color: black;
+ }
+
+ .content {
+ 	background-color: #f4f4f4;
+ }
+
+ .content .nav {
+ 	display: flex;
+ 	align-items: center;
+ 	background-color: #fff;
+ 	height: 80rpx;
+ }
+
+ .content .nav a {
+ 	margin-left: 10px;
+ 	display: inline-block;
+ 	font-size: 20px;
+ }
+
+ .body {
+ 	background-color: #fff;
+ 	position: relative;
+ }
+
+ .body-img image {
+ 	width: 100%;
+ 	height: 700rpx;
+ }
+
+ .body-img .body-rz {
+ 	display: flex;
+ 	align-items: center;
+ 	line-height: 80rpx;
+ 	height: 80rpx;
+ 	margin-left: 20px;
+ }
+
+ .body-img .body-rz p {
+ 	margin-left: 10rpx;
+ }
+
+ .center {
+ 	position: absolute;
+ 	top: 25%;
+ 	left: 25%;
+ 	width: 400rpx;
+ 	height: 300rpx;
+
+ }
+
+ .avatar {
+ 	text-align: center;
+ }
+
+ .avatar image {
+ 	width: 140rpx;
+ 	height: 140rpx;
+ 	border-radius: 50%;
+ }
+
+ .center-button {
+ 	margin-top: 20px;
+ 	display: flex;
+ 	justify-content: space-between;
+ }
+
+ button {
+ 	width: 160rpx;
+ 	font-size: 20rpx;
+ 	background-color: #888888;
+ 	color: #fff;
+ }
+
+ .info {
+ 	background-color: #fff;
+ 	margin-top: 20px;
+ }
+
+
+ .info-item {
+
+ 	padding: 0 20px;
+ }
+
+ .info-item-zhuti {
+ 	height: 80rpx;
+ 	display: flex;
+ 	justify-content: space-between;
+ 	align-items: center;
+ 	border-bottom: 1px #f4f4f4 solid;
+ }
+
+ .title {
+ 	color: #707070;
+ }
+
+ .fotter {
+ 	height: 50rpx;
+ }
+ 
+ /* picker start*/
+ 
+ 	.tui-mask-screen {
+ 		position: fixed;
+ 		top: 0;
+ 		left: 0;
+ 		right: 0;
+ 		bottom: 0;
+ 		background: rgba(0, 0, 0, 0.6);
+ 		z-index: 99996;
+ 		transition: all 0.3s ease-in-out;
+ 		opacity: 0;
+ 		visibility: hidden;
+ 	}
+ 
+ 	.tui-mask-show {
+ 		opacity: 1;
+ 		visibility: visible;
+ 	}
+ 
+ 	.tui-picker-box {
+ 		width: 100%;
+ 		position: fixed;
+ 		left: 0;
+ 		right: 0;
+ 		bottom: 0;
+ 		z-index: 99999;
+ 		visibility: hidden;
+ 		transform: translate3d(0, 100%, 0);
+ 		transform-origin: center;
+ 		transition: all 0.3s ease-in-out;
+ 		min-height: 20rpx;
+ 		background: #fff;
+ 	}
+ 
+ 	.tui-pickerbox-show {
+ 		transform: translate3d(0, 0, 0);
+ 		visibility: visible;
+ 	}
+ 
+ 	.picker-header {
+ 		width: 100%;
+ 		height: 90rpx;
+ 		padding: 0 46rpx;
+ 		display: flex;
+ 		justify-content: space-between;
+ 		align-items: center;
+ 		box-sizing: border-box;
+ 		font-size: 32rpx;
+ 		background: #fff;
+ 	}
+ 
+ 	.tui-list-item::after {
+ 		left: 0;
+ 	}
+ 
+ 	.btn-cancle {
+ 		padding: 20rpx;
+ 		color: #888;
+ 	}
+ 
+ 	.btn-sure {
+ 		padding: 20rpx;
+ 		color: #5677fc;
+ 	}
+ 
+ 	.picker-view {
+ 		width: 100%;
+ 		height: 260px;
+ 	}
+ 
+ 	.item {
+ 		line-height: 50px;
+ 		text-align: center;
+ 	}
+ 
+ 	/* picker end*/
+ 

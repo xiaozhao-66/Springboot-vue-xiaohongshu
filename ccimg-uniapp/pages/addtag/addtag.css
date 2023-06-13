@@ -1,0 +1,59 @@
+.nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 95%;
+	margin: auto;
+	height: 80rpx;
+}
+
+.nav p {
+	font-size: 32rpx;
+}
+
+.add-tag {
+	display: flex;
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+	min-height: 80rpx;
+	align-items: center;
+	padding-left: 10px;
+	background-color: #f4f4f4;
+}
+
+.ermen {
+	font-size: 32rpx;
+}
+
+.recommend-tag {
+	width: 90%;
+	margin: auto;
+	padding-top: 10px;
+
+}
+
+.tags {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-top: 5px;
+}
+
+
+.tag-input {
+
+	min-height: 80rpx;
+	line-height: 80rpx;
+	padding-left: 10px;
+	border-bottom: 1px solid #f4f4f4;
+}
+
+.badge-item {
+	position: relative;
+}
+
+.shut {
+	position: absolute;
+	top: -15rpx;
+	right: 0px;
+}

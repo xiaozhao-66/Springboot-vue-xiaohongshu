@@ -2,9 +2,7 @@ package com.xz.utils.constant;
 
 public interface OssConstant {
 
-
     String ENDPOINT = "";
-
 
     String KEY_ID = "";
 

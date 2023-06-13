@@ -1,39 +1,25 @@
 package com.xz.recommend.service.impl;
 
-import ai.djl.MalformedModelException;
-import ai.djl.ModelException;
-import ai.djl.repository.zoo.ModelNotFoundException;
-import ai.djl.translate.TranslateException;
-import cn.hutool.core.date.StopWatch;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.google.common.collect.Lists;
-import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
-import com.xz.common.exception.RenException;
-import com.xz.common.recommend.RecommendUtils2;
 import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.ConvertUtils;
 import com.xz.common.utils.PageUtils;
 import com.xz.common.utils.RedisUtils;
-import com.xz.recommend.common.client.EsClient;
-import com.xz.recommend.common.client.RecommendClient;
 import com.xz.recommend.dao.*;
 import com.xz.recommend.entity.*;
 import com.xz.recommend.service.CategoryService;
 import com.xz.recommend.service.ImgDetailsService;
 import com.xz.recommend.utils.PearsonUtils;
 import com.xz.recommend.utils.RecommendUtils;
-import com.xz.recommend.vo.ImgDetailSearchVo;
 import com.xz.recommend.vo.ImgDetailVo;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -66,11 +52,6 @@ public class ImgDetailsServiceImpl extends BaseServiceImpl<ImgDetailsDao, ImgDet
     @Autowired
     TagDao tagDao;
 
-    @Autowired
-    RecommendClient recommendClient;
-
-    @Autowired
-    EsClient esClient;
 
 
     /**

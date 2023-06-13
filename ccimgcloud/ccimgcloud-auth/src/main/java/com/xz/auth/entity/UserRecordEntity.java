@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.xz.common.entity.BaseEntity;
 import lombok.Data;
 
-import java.util.Date;
 
 @Data
 @TableName("t_user_record")

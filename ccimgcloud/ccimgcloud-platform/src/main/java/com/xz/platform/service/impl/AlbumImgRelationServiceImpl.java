@@ -12,14 +12,14 @@ import com.xz.platform.dao.*;
 import com.xz.platform.dto.AlbumImgRelationDTO;
 import com.xz.platform.entity.*;
 import com.xz.platform.service.AlbumImgRelationService;
-import com.xz.platform.vo.ImgDetailInfoVo;
 import com.xz.platform.websocket.WebSocketServer;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * 
@@ -46,39 +46,51 @@ public class AlbumImgRelationServiceImpl extends BaseServiceImpl<AlbumImgRelatio
     CollectionDao collectionDao;
 
 
+    /**
+     * 判断是否收藏
+     * @param uid
+     * @param mid
+     * @return
+     */
     @Override
     public boolean isCollectImgToAlbum(String uid, String mid) {
 
-        Long count = collectionDao.selectCount(new QueryWrapper<CollectionEntity>().and(e -> e.eq("uid", uid).eq("collection_id", mid)));
-        return count > 0;
+        String albumImgRelationKey = ImgDetailCacheNames.ALBUM_IMG_RELATION_KEY+mid;
+
+        if(Boolean.TRUE.equals(redisUtils.hasKey(albumImgRelationKey))){
+            //存储所有用户收藏信息
+            List<Long> uids = JSON.parseArray(redisUtils.get(albumImgRelationKey), Long.class);
+            return uids.contains(Long.valueOf(uid));
+        }
+        return false;
+
     }
 
     /**
      * 保存图片至专辑中
-     *
      * @param albumImgRelationDTO
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void addAlbumImgRelation(AlbumImgRelationDTO albumImgRelationDTO) {
 
+        String albumImgRelationKey = ImgDetailCacheNames.ALBUM_IMG_RELATION_KEY+albumImgRelationDTO.getMid();
+        if(Boolean.TRUE.equals(redisUtils.hasKey(albumImgRelationKey))){
+            //存储所有用户点赞信息
+            List<Long> uids = JSON.parseArray(redisUtils.get(albumImgRelationKey), Long.class);
+            uids.add(albumImgRelationDTO.getUid());
+            redisUtils.set(albumImgRelationKey,JSON.toJSONString(uids));
+        }else{
+            List<Long> uids = new ArrayList<>();
+            uids.add(albumImgRelationDTO.getUid());
+            redisUtils.set(albumImgRelationKey,JSON.toJSONString(uids));
+        }
+
         //如果当前图片是本人发布的则无法添加至专辑中
         ImgDetailsEntity imgDetail = imgDetailsDao.selectOne(new QueryWrapper<ImgDetailsEntity>().eq("id", albumImgRelationDTO.getMid()).select("user_id"));
         if(imgDetail.getUserId().equals(albumImgRelationDTO.getUid())){
             return;
         }
-
-
-        String key = ImgDetailCacheNames.IMG_DETAIL + albumImgRelationDTO.getMid();
-
-        if (Boolean.TRUE.equals(redisUtils.hasKey(key))) {
-            String strObject = redisUtils.get(key);
-            ImgDetailInfoVo imgDetailInfoVo = JSON.parseObject(strObject, ImgDetailInfoVo.class);
-            imgDetailInfoVo.setCollectionCount(imgDetailInfoVo.getCollectionCount() + 1);
-            redisUtils.setEx(key, JSON.toJSONString(imgDetailInfoVo), 60, TimeUnit.SECONDS);
-
-        }
-
 
         AlbumImgRelationEntity albumImgRelationEntity = ConvertUtils.sourceToTarget(albumImgRelationDTO, AlbumImgRelationEntity.class);
         baseDao.insert(albumImgRelationEntity);
@@ -87,6 +99,7 @@ public class AlbumImgRelationServiceImpl extends BaseServiceImpl<AlbumImgRelatio
         ImgDetailsEntity imgDetailsEntity = imgDetailsDao.selectById(albumImgRelationDTO.getMid());
         imgDetailsEntity.setCollectionCount(imgDetailsEntity.getCollectionCount() + 1);
         imgDetailsDao.updateById(imgDetailsEntity);
+
         AlbumEntity albumEntity = albumDao.selectById(albumImgRelationDTO.getAid());
         Long imgCount = albumEntity.getImgCount() + imgDetailsEntity.getCount();
         albumEntity.setImgCount(imgCount);

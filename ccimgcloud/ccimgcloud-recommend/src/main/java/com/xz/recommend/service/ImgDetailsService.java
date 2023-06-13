@@ -1,15 +1,11 @@
 package com.xz.recommend.service;
 
-import ai.djl.ModelException;
-import ai.djl.translate.TranslateException;
+
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xz.common.service.BaseService;
 import com.xz.recommend.entity.ImgDetailsEntity;
 import com.xz.recommend.vo.ImgDetailVo;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
 
 
 /**

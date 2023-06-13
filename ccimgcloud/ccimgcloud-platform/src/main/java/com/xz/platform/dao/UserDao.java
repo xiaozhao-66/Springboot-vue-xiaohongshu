@@ -16,5 +16,5 @@ import java.util.List;
 @Mapper
 public interface UserDao extends BaseDao<UserEntity> {
 
-    List<TrendVo> getTrendByUser(long page, long limit, String userId);
+    List<TrendVo> getTrendByUser(long page, long limit, String userId, Integer type);
 }

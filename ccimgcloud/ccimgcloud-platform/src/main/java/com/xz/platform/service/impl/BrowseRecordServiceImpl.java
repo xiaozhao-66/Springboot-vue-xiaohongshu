@@ -1,13 +1,9 @@
 package com.xz.platform.service.impl;
 
-import cn.hutool.core.date.DateUtil;
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
 import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.ConvertUtils;
-import com.xz.common.utils.PageUtils;
 import com.xz.common.utils.RedisUtils;
 import com.xz.platform.dao.BrowseRecordDao;
 import com.xz.platform.dao.ImgDetailsDao;
@@ -15,10 +11,8 @@ import com.xz.platform.dao.UserDao;
 import com.xz.platform.dto.BrowseRecordDTO;
 import com.xz.platform.entity.BrowseRecordEntity;
 import com.xz.platform.entity.ImgDetailsEntity;
-import com.xz.platform.entity.UserEntity;
 import com.xz.platform.service.BrowseRecordService;
 import com.xz.platform.vo.BrowseRecordVo;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,9 +39,6 @@ public class BrowseRecordServiceImpl extends BaseServiceImpl<BrowseRecordDao, Br
     RedisUtils redisUtils;
 
 
-
-
-
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void addBrowseRecord(BrowseRecordDTO browseRecordDTO) {
@@ -61,28 +52,7 @@ public class BrowseRecordServiceImpl extends BaseServiceImpl<BrowseRecordDao, Br
             this.baseDao.updateById(browseRecord);
         }
 
-
-        String brCountKey = ImgDetailCacheNames.BR_COUNT + browseRecordDTO.getUid() + ":" + browseRecordDTO.getMid();
-
         ImgDetailsEntity imgDetail = imgDetailsDao.selectById(browseRecordDTO.getMid());
-
-        if (Boolean.TRUE.equals(redisUtils.hasKey(brCountKey))) {
-
-            long time = Long.parseLong(redisUtils.get(brCountKey));
-            long curTime = DateUtil.currentSeconds();
-
-            //当前用户60秒之内访问不会增加浏览次数
-            if (curTime - time > 60) {
-                imgDetail.setViewCount(imgDetail.getViewCount() + 1);
-                imgDetailsDao.updateById(imgDetail);
-                redisUtils.set(brCountKey, String.valueOf(curTime));
-            }
-
-        } else {
-            imgDetail.setViewCount(1L);
-            imgDetailsDao.updateById(imgDetail);
-            redisUtils.set(brCountKey, String.valueOf(DateUtil.currentSeconds()));
-        }
 
         String uid = String.valueOf(browseRecordDTO.getUid());
         String cid = String.valueOf(imgDetail.getCategoryId());
@@ -101,8 +71,6 @@ public class BrowseRecordServiceImpl extends BaseServiceImpl<BrowseRecordDao, Br
         //添加用户浏览记录
         String key2 = ImgDetailCacheNames.BR_IMG_KEY + uid;
         redisUtils.lLeftPush(key2,String.valueOf(browseRecordDTO.getMid()));
-        //redisUtils.zAdd(key2, String.valueOf(browseRecordDTO.getMid()), System.currentTimeMillis());
-
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.xz.platform.vo;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.util.List;
 
 @Data
 @Accessors(chain = true)
@@ -20,4 +19,6 @@ public class TrendVo {
     private String time;
 
     private String content;
+
+    private Integer status;
 }

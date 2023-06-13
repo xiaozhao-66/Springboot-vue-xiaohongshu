@@ -253,85 +253,85 @@ public class RecommendUtils {
 
     }
 
-
-    public static void main(String[] args) {
-        String s1 = "计算机，代码，前端，大理，旅游，旅行，广州，拍照，恋爱，异地恋";
-        String s2 = "程序员，编程";
-        String s3 = "女朋友";
-        String s4 = "北京";
-
-
-        //修改内容权重占0.6 标签权重占0.3 分类权重占0.1
-
-        HashMap<String,String> map1 = new HashMap<>();
-        map1.put("content","蜡笔小新壁纸");
-        map1.put("tags","蜡笔小新动漫-头像");
-        map1.put("category","动漫-头像");
-
-
-        RecommendUtils content1 = new RecommendUtils(map1.get("content"), 64);
-        RecommendUtils tags1 = new RecommendUtils(map1.get("tags"), 64);
-        RecommendUtils category1 = new RecommendUtils(map1.get("category"), 64);
-
-
-        HashMap<String,String> map2 = new HashMap<>();
-        map2.put("content","蜡笔小新可爱");
-        map2.put("tags","动漫");
-        map2.put("category","壁纸-头像");
-
-        RecommendUtils content2 = new RecommendUtils(map2.get("content"), 64);
-        RecommendUtils tags2 = new RecommendUtils(map2.get("tags"), 64);
-        RecommendUtils category2 = new RecommendUtils(map2.get("category"), 64);
-
-        HashMap<String,String> map3 = new HashMap<>();
-        map3.put("content","最爱蜡笔小新,壁纸分享");
-        map3.put("tags","主题-动漫");
-        map3.put("category","蜡笔小新-壁纸");
-
-        RecommendUtils content3 = new RecommendUtils(map3.get("content"), 64);
-        RecommendUtils tags3 = new RecommendUtils(map3.get("tags"), 64);
-        RecommendUtils category3 = new RecommendUtils(map3.get("category"), 64);
-
-        HashMap<String,String> map4 = new HashMap<>();
-        map4.put("content","动漫");
-        map4.put("tags","蜡笔小新-头像");
-        map4.put("category","壁纸-壁纸");
-
-        RecommendUtils content4 = new RecommendUtils(map4.get("content"), 64);
-        RecommendUtils tags4 = new RecommendUtils(map4.get("tags"), 64);
-        RecommendUtils category4 = new RecommendUtils(map4.get("category"), 64);
-
-
-        Double content1Similar = content1.getSimilar(content2);
-        Double tags1Similar = tags1.getSimilar(tags2);
-        Double category1Similar = category1.getSimilar(category2);
-
-        Double res1 = content1Similar*0.6+tags1Similar*0.3+category1Similar*0.1;
-        System.out.println(res1);
-
-        Double content2Similar = content1.getSimilar(content3);
-        Double tags2Similar = tags1.getSimilar(tags3);
-        Double category2Similar = category1.getSimilar(category3);
-
-        Double res2 = content2Similar*0.6+tags2Similar*0.3+category2Similar*0.1;
-        System.out.println(res2);
-
-        Double content3Similar = content1.getSimilar(content4);
-        Double tags3Similar = tags1.getSimilar(tags4);
-        Double category3Similar = category1.getSimilar(category4);
-
-        Double res3 = content3Similar*0.6+tags3Similar*0.3+category3Similar*0.1;
-        System.out.println(res3);
-
-        RecommendUtils mySimHash_1 = new RecommendUtils(s1, 64);
-        RecommendUtils mySimHash_2 = new RecommendUtils(s2, 64);
-        RecommendUtils mySimHash_3 = new RecommendUtils(s3, 64);
-        RecommendUtils mySimHash_4 = new RecommendUtils(s4, 64);
-        Double similar1 = mySimHash_1.getSimilar(mySimHash_2);
-        Double similar2 = mySimHash_1.getSimilar(mySimHash_3);
-        Double similar3 = mySimHash_1.getSimilar(mySimHash_4);
-        System.out.println(similar1+"-"+similar2+"-"+similar3);
-
- }
+      //测试
+//    public static void main(String[] args) {
+//        String s1 = "计算机，代码，前端，大理，旅游，旅行，广州，拍照，恋爱，异地恋";
+//        String s2 = "程序员，编程";
+//        String s3 = "女朋友";
+//        String s4 = "北京";
+//
+//
+//        //修改内容权重占0.6 标签权重占0.3 分类权重占0.1
+//
+//        HashMap<String,String> map1 = new HashMap<>();
+//        map1.put("content","蜡笔小新壁纸");
+//        map1.put("tags","蜡笔小新动漫-头像");
+//        map1.put("category","动漫-头像");
+//
+//
+//        RecommendUtils content1 = new RecommendUtils(map1.get("content"), 64);
+//        RecommendUtils tags1 = new RecommendUtils(map1.get("tags"), 64);
+//        RecommendUtils category1 = new RecommendUtils(map1.get("category"), 64);
+//
+//
+//        HashMap<String,String> map2 = new HashMap<>();
+//        map2.put("content","蜡笔小新可爱");
+//        map2.put("tags","动漫");
+//        map2.put("category","壁纸-头像");
+//
+//        RecommendUtils content2 = new RecommendUtils(map2.get("content"), 64);
+//        RecommendUtils tags2 = new RecommendUtils(map2.get("tags"), 64);
+//        RecommendUtils category2 = new RecommendUtils(map2.get("category"), 64);
+//
+//        HashMap<String,String> map3 = new HashMap<>();
+//        map3.put("content","最爱蜡笔小新,壁纸分享");
+//        map3.put("tags","主题-动漫");
+//        map3.put("category","蜡笔小新-壁纸");
+//
+//        RecommendUtils content3 = new RecommendUtils(map3.get("content"), 64);
+//        RecommendUtils tags3 = new RecommendUtils(map3.get("tags"), 64);
+//        RecommendUtils category3 = new RecommendUtils(map3.get("category"), 64);
+//
+//        HashMap<String,String> map4 = new HashMap<>();
+//        map4.put("content","动漫");
+//        map4.put("tags","蜡笔小新-头像");
+//        map4.put("category","壁纸-壁纸");
+//
+//        RecommendUtils content4 = new RecommendUtils(map4.get("content"), 64);
+//        RecommendUtils tags4 = new RecommendUtils(map4.get("tags"), 64);
+//        RecommendUtils category4 = new RecommendUtils(map4.get("category"), 64);
+//
+//
+//        Double content1Similar = content1.getSimilar(content2);
+//        Double tags1Similar = tags1.getSimilar(tags2);
+//        Double category1Similar = category1.getSimilar(category2);
+//
+//        Double res1 = content1Similar*0.6+tags1Similar*0.3+category1Similar*0.1;
+//        System.out.println(res1);
+//
+//        Double content2Similar = content1.getSimilar(content3);
+//        Double tags2Similar = tags1.getSimilar(tags3);
+//        Double category2Similar = category1.getSimilar(category3);
+//
+//        Double res2 = content2Similar*0.6+tags2Similar*0.3+category2Similar*0.1;
+//        System.out.println(res2);
+//
+//        Double content3Similar = content1.getSimilar(content4);
+//        Double tags3Similar = tags1.getSimilar(tags4);
+//        Double category3Similar = category1.getSimilar(category4);
+//
+//        Double res3 = content3Similar*0.6+tags3Similar*0.3+category3Similar*0.1;
+//        System.out.println(res3);
+//
+//        RecommendUtils mySimHash_1 = new RecommendUtils(s1, 64);
+//        RecommendUtils mySimHash_2 = new RecommendUtils(s2, 64);
+//        RecommendUtils mySimHash_3 = new RecommendUtils(s3, 64);
+//        RecommendUtils mySimHash_4 = new RecommendUtils(s4, 64);
+//        Double similar1 = mySimHash_1.getSimilar(mySimHash_2);
+//        Double similar2 = mySimHash_1.getSimilar(mySimHash_3);
+//        Double similar3 = mySimHash_1.getSimilar(mySimHash_4);
+//        System.out.println(similar1+"-"+similar2+"-"+similar3);
+//
+// }
 
 }

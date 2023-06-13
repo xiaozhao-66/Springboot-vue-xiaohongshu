@@ -18,7 +18,7 @@ import java.util.List;
  */
 public interface UserService extends BaseService<UserEntity> {
 
-    List<TrendVo> getTrendByUser(long page, long limit, String userId);
+    List<TrendVo> getTrendByUser(long page, long limit, String userId, Integer type);
 
     UserVo getUserInfo(String uid);
 
@@ -26,5 +26,5 @@ public interface UserService extends BaseService<UserEntity> {
 
     UserEntity updateUser(UserEntity userEntity);
 
-    UserVo searchUserByUsername(String username);
+    List<UserVo> searchUserByUsername(String username);
 }

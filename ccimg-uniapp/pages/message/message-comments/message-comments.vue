@@ -74,7 +74,7 @@ export default {
 				uid: this.uid
 			}
 			getAllReplyComment(this.page, this.limit, params).then(res => {
-				console.log(new Date(res.data[0].createDate).getTime())
+				
 				res.data.forEach(e=>{
 					e.time = timeAgo(new Date(e.createDate).getTime())
 					this.dataList.push(e)
@@ -98,7 +98,6 @@ export default {
 		},
 		loadData() {
 
-            console.log("111")
 			this.page = this.page + 1
 
 			if (this.total<this.limit) {
@@ -129,139 +128,5 @@ export default {
 </script>
 
 <style scoped>
-.container {
-	padding-bottom: env(safe-area-inset-bottom);
-}
-
-.nav {
-	display: flex;
-	align-items: center;
-}
-
-.page {
-	height: 85vh;
-}
-
-.tui-item-box {
-	width: 100%;
-	display: flex;
-}
-
-.tui-msg-box {
-	display: flex;
-}
-
-.tui-msg-pic {
-	width: 100rpx;
-	height: 100rpx;
-	border-radius: 50%;
-	display: block;
-	margin-right: 24rpx;
-	flex-shrink: 0;
-}
-
-.tui-msg-img {
-	width: 120rpx;
-	height: 100rpx;
-	border-radius: 5px;
-	display: block;
-	margin-right: 24rpx;
-	flex-shrink: 0;
-}
-
-.tui-msg-item {
-	width: 400rpx;
-	min-height: 100rpx;
-	overflow: hidden;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.tui-msg-type {
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	font-size: 25rpx;
-}
-
-.tui-msg-type-item{
-	width: 160rpx;
-}
-
-
-.tui-msg-time {
-	width: 140rpx;
-	margin-left: 3px;
-	font-size: 24rpx;
-	line-height: 24rpx;
-	color: #9397a4;
-}
-
-button {
-	background: #f1f1f1;
-	color: #5c5c5c;
-	border: 0rpx solid #f1f1f1;
-	font-size: 18rpx;
-	width: 150rpx;
-	height: 35rpx;
-	margin-left: 0rpx;
-	line-height: 34rpx;
-}
-
-
-.tui-msg-name {
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	font-size: 30rpx;
-	line-height: 1;
-	color: #262b3a;
-}
-
-.tui-msg-content {
-	max-width: 380rpx;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	font-size: 25rpx;
-	line-height: 2;
-	color: #5c5c5c;
-}
-
-.reply {
-	margin-left: 10px;
-	color: #bfbfbf;
-}
-
-.reply::before {
-	content: "|";
-	color: #ff0000;
-	font-weight: bold;
-}
-
-.tui-msg-right {
-	max-width: 120rpx;
-	margin-left: auto;
-	text-align: right;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: flex-end;
-}
-
-
-
-.tui-right-dot {
-	height: 76rpx !important;
-	padding-bottom: 10rpx !important;
-
-}
-
-.loadStyle {
-	margin-top: 20rpx;
-	width: 100%;
-	height: 60rpx;
-	text-align: center;
-	color: #bfbfbf;
-}</style>
+	@import url(./messgae-comments.css);
+</style>

@@ -1,17 +1,11 @@
 package com.xz.platform.service.impl;
 
-import cn.hutool.core.date.StopWatch;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
 import com.xz.common.exception.RenException;
 import com.xz.common.service.impl.BaseServiceImpl;
-import com.xz.common.service.impl.CrudServiceImpl;
 import com.xz.common.utils.ConvertUtils;
-import com.xz.common.utils.DateUtils;
-import com.xz.common.utils.PageUtils;
-import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
-import com.xz.platform.common.client.EsClient;
 import com.xz.platform.common.constant.Constant;
 import com.xz.common.utils.RedisUtils;
 import com.xz.platform.dao.*;
@@ -19,20 +13,15 @@ import com.xz.platform.dto.AgreeDTO;
 import com.xz.platform.entity.*;
 import com.xz.platform.service.AgreeService;
 import com.xz.platform.vo.AgreeVo;
-import com.xz.platform.vo.ImgDetailInfoVo;
-import com.xz.platform.vo.ImgDetailSearchVo;
 import com.xz.platform.websocket.WebSocketServer;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
+
 
 /**
  * 
@@ -43,7 +32,6 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class AgreeServiceImpl extends BaseServiceImpl<AgreeDao, AgreeEntity> implements AgreeService {
 
-
     @Autowired
     ImgDetailsDao imgDetailsDao;
 
@@ -51,16 +39,7 @@ public class AgreeServiceImpl extends BaseServiceImpl<AgreeDao, AgreeEntity> imp
     CommentDao commentDao;
 
     @Autowired
-    AlbumImgRelationDao albumImgRelationDao;
-
-    @Autowired
     AgreeDao agreeDao;
-
-    @Autowired
-    AlbumDao albumDao;
-
-    @Autowired
-    UserDao userDao;
 
     @Autowired
     UserRecordDao userRecordDao;
@@ -68,69 +47,73 @@ public class AgreeServiceImpl extends BaseServiceImpl<AgreeDao, AgreeEntity> imp
     @Autowired
     RedisUtils redisUtils;
 
-    @Autowired
-    EsClient esClient;
-
 
     /**
      * 查看是否点赞
+     *
      * @param agreeDTO
      * @return
      */
     @Override
     public boolean isAgree(AgreeDTO agreeDTO) {
-        Long aLong = baseDao.selectCount(new QueryWrapper<AgreeEntity>().and(e -> e.eq("uid", agreeDTO.getUid()).eq("agree_id", agreeDTO.getAgreeId()).eq("type", agreeDTO.getType())));
-        return aLong>0;
+        if (agreeDTO.getType() == 1) {
+            String agreeImgKey = ImgDetailCacheNames.AGREE_IMG_KEY + agreeDTO.getAgreeId();
+            if (Boolean.TRUE.equals(redisUtils.hasKey(agreeImgKey))) {
+                List<Long> uids = JSON.parseArray(redisUtils.get(agreeImgKey), Long.class);
+                return uids.contains(agreeDTO.getUid());
+            }
+        } else {
+            String agreeCommentKey = ImgDetailCacheNames.AGREE_COMMENT_KEY + agreeDTO.getAgreeId();
+            if (Boolean.TRUE.equals(redisUtils.hasKey(agreeCommentKey))) {
+                List<Long> uids = JSON.parseArray(redisUtils.get(agreeCommentKey), Long.class);
+                return uids.contains(agreeDTO.getUid());
+            }
+        }
+        return false;
     }
 
     /**
      * 点赞评论或者是图片
+     *
      * @param agreeDTO
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void agree(AgreeDTO agreeDTO) {
-
-        //删除redis中当前用户的关注关注信息
-        String followKey = ImgDetailCacheNames.FOLLOW_TREND + agreeDTO.getUid();
-        Set<String> listKey = redisUtils.getListKey(followKey);
-
-        if (!listKey.isEmpty()) {
-            for (String e : listKey) {
-                redisUtils.delete(e);
+        //如果点赞的是图片
+        if (agreeDTO.getType() == 1) {
+            String agreeImgKey = ImgDetailCacheNames.AGREE_IMG_KEY + agreeDTO.getAgreeId();
+            if (Boolean.TRUE.equals(redisUtils.hasKey(agreeImgKey))) {
+                //存储所有用户点赞信息
+                List<Long> uids = JSON.parseArray(redisUtils.get(agreeImgKey), Long.class);
+                uids.add(agreeDTO.getUid());
+                redisUtils.set(agreeImgKey, JSON.toJSONString(uids));
+            } else {
+                List<Long> uids = new ArrayList<>();
+                uids.add(agreeDTO.getUid());
+                redisUtils.set(agreeImgKey, JSON.toJSONString(uids));
             }
-        }
-
-        //直接从redis中获取图片信息
-        String key = ImgDetailCacheNames.IMG_DETAIL + agreeDTO.getAgreeId();
-
-        if (agreeDTO.getType() == 1 && Boolean.TRUE.equals(redisUtils.hasKey(key))) {
-            String strObject = redisUtils.get(key);
-            ImgDetailInfoVo imgDetailInfoVo = JSON.parseObject(strObject, ImgDetailInfoVo.class);
-            imgDetailInfoVo.setAgreeCount(imgDetailInfoVo.getAgreeCount() + 1);
-            redisUtils.setEx(key, JSON.toJSONString(imgDetailInfoVo), 60, TimeUnit.SECONDS);
+        } else {
+            String agreeCommentKey = ImgDetailCacheNames.AGREE_COMMENT_KEY + agreeDTO.getAgreeId();
+            if (Boolean.TRUE.equals(redisUtils.hasKey(agreeCommentKey))) {
+                List<Long> uids = JSON.parseArray(redisUtils.get(agreeCommentKey), Long.class);
+                uids.add(agreeDTO.getUid());
+                redisUtils.set(agreeCommentKey, JSON.toJSONString(uids));
+            } else {
+                List<Long> uids = new ArrayList<>();
+                uids.add(agreeDTO.getUid());
+                redisUtils.set(agreeCommentKey, JSON.toJSONString(uids));
+            }
         }
 
         AgreeEntity agreeEntity = ConvertUtils.sourceToTarget(agreeDTO, AgreeEntity.class);
+        baseDao.insert(agreeEntity);
 
         if (agreeDTO.getType() == 1) {
-            //点赞图片，点赞次数++
+
             ImgDetailsEntity imgEntity = imgDetailsDao.selectById(agreeDTO.getAgreeId());
             imgEntity.setAgreeCount(imgEntity.getAgreeCount() + 1);
             imgDetailsDao.updateById(imgEntity);
-
-
-            ImgDetailSearchVo imgDetailSearchVo = ConvertUtils.sourceToTarget(imgEntity, ImgDetailSearchVo.class);
-
-            UserEntity userEntity = userDao.selectById(imgEntity.getUserId());
-            imgDetailSearchVo.setUsername(userEntity.getUsername());
-            imgDetailSearchVo.setAvatar(userEntity.getAvatar());
-            imgDetailSearchVo.setOtherUserId(userEntity.getUserId());
-            try {
-                esClient.update(imgDetailSearchVo);
-            }catch (IOException e){
-                throw new RenException(Constant.ES_ERROR);
-            }
 
         } else {
             //点赞评论
@@ -139,15 +122,10 @@ public class AgreeServiceImpl extends BaseServiceImpl<AgreeDao, AgreeEntity> imp
             commentDao.updateById(commentEntity);
         }
 
-        baseDao.insert(agreeEntity);
-
-        //更改用户记录表
+        //更改用户记录表 TODO 应该用redis存储
         UserRecordEntity userRecordEntity = userRecordDao.selectOne(new QueryWrapper<UserRecordEntity>().eq("uid", agreeDTO.getAgreeUid()));
         userRecordEntity.setAgreeCollectionCount(userRecordEntity.getAgreeCollectionCount() + 1);
         userRecordDao.updateById(userRecordEntity);
-
-
-
 
         //如果当前点赞的用户是本用户不需要通知
         if (!agreeDTO.getUid().equals(agreeDTO.getAgreeUid())) {
@@ -171,8 +149,8 @@ public class AgreeServiceImpl extends BaseServiceImpl<AgreeDao, AgreeEntity> imp
     @Override
     public List<AgreeVo> getAllAgreeAndCollection(long page, long limit, String uid) {
 
-          return  baseDao.getAllAgreeAndCollection(page, limit, uid);
-//        旧的方法，多张表查询后整合服务
+        return baseDao.getAllAgreeAndCollection(page, limit, uid);
+//        旧的方法，多张表查询后整合服务（垃圾代码）
 //        List<AgreeEntity> agreeList = agreeDao.selectList(new QueryWrapper<AgreeEntity>().eq("agree_uid", uid));
 //
 //        List<AgreeVo> agreeVoList = new ArrayList<>();
@@ -253,59 +231,44 @@ public class AgreeServiceImpl extends BaseServiceImpl<AgreeDao, AgreeEntity> imp
     }
 
     /**
-     * 取消收藏
+     * 取消点赞
+     *
      * @param agreeDTO
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void cancelAgree(AgreeDTO agreeDTO) {
 
-        //删除redis中当前用户的关注关注信息
-        String followKey = ImgDetailCacheNames.FOLLOW_TREND + agreeDTO.getUid();
-        Set<String> listKey = redisUtils.getListKey(followKey);
-
-        if (!listKey.isEmpty()) {
-            for (String e : listKey) {
-                redisUtils.delete(e);
+        //如果点赞的是图片
+        if (agreeDTO.getType() == 1) {
+            String agreeImgKey = ImgDetailCacheNames.AGREE_IMG_KEY + agreeDTO.getAgreeId();
+            if (Boolean.TRUE.equals(redisUtils.hasKey(agreeImgKey))) {
+                //存储所有用户点赞信息
+                List<Long> uids = JSON.parseArray(redisUtils.get(agreeImgKey), Long.class);
+                uids.remove(agreeDTO.getUid());
+                redisUtils.set(agreeImgKey, JSON.toJSONString(uids));
+            }
+        } else {
+            String agreeCommentKey = ImgDetailCacheNames.AGREE_COMMENT_KEY + agreeDTO.getAgreeId();
+            if (Boolean.TRUE.equals(redisUtils.hasKey(agreeCommentKey))) {
+                List<Long> uids = JSON.parseArray(redisUtils.get(agreeCommentKey), Long.class);
+                uids.remove(agreeDTO.getUid());
+                redisUtils.set(agreeCommentKey, JSON.toJSONString(uids));
             }
         }
 
-        String key = ImgDetailCacheNames.IMG_DETAIL + agreeDTO.getAgreeId();
-
-        if (agreeDTO.getType() == 1 && Boolean.TRUE.equals(redisUtils.hasKey(key))) {
-            String strObject = redisUtils.get(key);
-            ImgDetailInfoVo imgDetailInfoVo = JSON.parseObject(strObject, ImgDetailInfoVo.class);
-            imgDetailInfoVo.setAgreeCount(imgDetailInfoVo.getAgreeCount() - 1);
-            redisUtils.setEx(key, JSON.toJSONString(imgDetailInfoVo), 60, TimeUnit.SECONDS);
-        }
-
+        agreeDao.delete(new QueryWrapper<AgreeEntity>().and(e -> e.eq("uid", agreeDTO.getUid()).eq("agree_id", agreeDTO.getAgreeId()).eq("agree_uid", agreeDTO.getAgreeUid())));
 
         if (agreeDTO.getType() == 1) {
-            //点赞图片，点赞次数--
             ImgDetailsEntity imgEntity = imgDetailsDao.selectById(agreeDTO.getAgreeId());
             imgEntity.setAgreeCount(imgEntity.getAgreeCount() - 1);
             imgDetailsDao.updateById(imgEntity);
-
-            ImgDetailSearchVo imgDetailSearchVo = ConvertUtils.sourceToTarget(imgEntity, ImgDetailSearchVo.class);
-
-            UserEntity userEntity = userDao.selectById(imgEntity.getUserId());
-            imgDetailSearchVo.setUsername(userEntity.getUsername());
-            imgDetailSearchVo.setAvatar(userEntity.getAvatar());
-            imgDetailSearchVo.setOtherUserId(userEntity.getUserId());
-            try {
-                esClient.update(imgDetailSearchVo);
-            }catch (IOException e){
-                throw new RenException(Constant.ES_ERROR);
-            }
-
         } else {
             //点赞评论
             CommentEntity commentEntity = commentDao.selectById(agreeDTO.getAgreeId());
             commentEntity.setCount(commentEntity.getCount() - 1);
             commentDao.updateById(commentEntity);
         }
-
-        agreeDao.delete(new QueryWrapper<AgreeEntity>().and(e -> e.eq("uid", agreeDTO.getUid()).eq("agree_id", agreeDTO.getAgreeId()).eq("agree_uid", agreeDTO.getAgreeUid())));
 
         //更改用户记录表
         UserRecordEntity userRecordEntity = userRecordDao.selectOne(new QueryWrapper<UserRecordEntity>().eq("uid", agreeDTO.getAgreeUid()));

@@ -1,6 +1,5 @@
 package com.xz.utils.msm.service.impl;
 
-import com.aliyun.oss.internal.OSSConstants;
 import com.aliyun.tea.TeaException;
 import com.xz.utils.constant.OssConstant;
 import com.xz.utils.msm.service.DmService;

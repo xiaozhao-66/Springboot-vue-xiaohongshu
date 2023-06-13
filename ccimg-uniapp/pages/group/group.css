@@ -1,0 +1,123 @@
+a{
+		  text-decoration:none;
+		  color: black;
+	}
+	li{
+		list-style: none;
+	}
+	.nav{
+			  display: flex;
+			  align-items: center;
+			  justify-content: space-between;
+			  padding-right: 24rpx;
+			  height: 80rpx;
+	}
+	.n-left{
+			 display: flex;
+	}
+	 .nav a{
+		  margin-left: 10px;
+		  display: inline-block;
+		  font-size: 20px;
+	}
+	.content .main{
+		display: flex;
+	}
+	.content .main .left{
+		width: 30%;
+		border-right: 1px solid #f1f1f1;
+	}
+	.right{
+		width: 80%;
+	}
+
+    .tui-list-item{
+		width: 600rpx;
+		width: 100%;
+		display: flex;
+		align-items: center;
+	}
+	
+	.item{
+		display: flex;
+		justify-content: space-between;
+	}
+	
+	.tui-msg-box {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	
+	.tui-msg-pic {
+		width: 100rpx;
+		height: 100rpx;
+		border-radius: 50%;
+		display: block;
+		margin-right: 24rpx;
+		flex-shrink: 0;
+	}
+	
+	.tui-msg-img {
+		width: 120rpx;
+		height: 160rpx;
+		border-radius:5px;
+		display: block;
+		margin-right: 24rpx;
+		flex-shrink: 0;
+	}
+	
+	.tui-msg-item {
+		
+		height: 100rpx;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	
+	
+	
+	.tui-button{
+		background: #fff;
+		border: 1px solid #ff0000;
+		color: #ff0000;
+		width: 120rpx;
+		height: 60rpx;
+		
+	}
+	
+	.tui-msg-type {
+		max-width: 280rpx;
+		min-height: 60rpx;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		
+		justify-content: space-between;
+		font-size: 25rpx;
+	}
+	
+	
+	.tui-msg-name {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		font-size: 30rpx;
+		line-height: 1;
+		color: #262b3a;
+	}
+	
+	.tui-right-dot {
+		height: 76rpx !important;
+		padding-bottom: 10rpx !important;
+	
+	}
+	
+	.tui-content{
+		background-color: #FD3B31;
+		color: #fff;
+		height: 80rpx;
+		text-align: center;
+		line-height: 80rpx;
+	}

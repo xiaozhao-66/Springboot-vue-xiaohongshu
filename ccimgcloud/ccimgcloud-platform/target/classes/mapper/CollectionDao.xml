@@ -16,7 +16,7 @@
 
 
     <select id="getAllCollection" resultType="com.xz.platform.vo.CollectionVo">
-        -- 查询收藏数据
+
         -- 查询收藏数据
         SELECT
         c.id,

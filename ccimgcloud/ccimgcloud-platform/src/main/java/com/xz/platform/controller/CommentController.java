@@ -6,7 +6,6 @@ import com.xz.common.utils.Result;
 import com.xz.common.validator.ValidatorUtils;
 import com.xz.common.validator.group.DefaultGroup;
 import com.xz.platform.dto.CommentDTO;
-import com.xz.platform.entity.CommentEntity;
 import com.xz.platform.service.CommentService;
 import com.xz.platform.vo.CommentVo;
 import io.swagger.annotations.Api;

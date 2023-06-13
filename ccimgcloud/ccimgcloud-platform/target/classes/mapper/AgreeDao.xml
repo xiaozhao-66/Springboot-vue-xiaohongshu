@@ -6,7 +6,6 @@
    <select id="getAllAgreeAndCollection"  resultType="com.xz.platform.vo.AgreeVo">
 
        -- 查询点赞记录和相关信息
-       -- 查询点赞记录和相关信息
        SELECT
        t_agree.uid,
        t_user.avatar,
@@ -78,12 +77,7 @@
        WHERE
        t_agree.agree_uid = #{uid} AND t_agree.uid != #{uid} and t_agree.type=0
 
-
        ORDER BY create_date DESC
-
-
-
-
 
        LIMIT ${(page-1)*limit},${limit};
 

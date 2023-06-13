@@ -4,7 +4,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
 import java.util.List;
-import java.util.Map;
 
 public interface OssService {
     //上传头像到oss
@@ -14,6 +13,13 @@ public interface OssService {
 
     void deleteFile(String fileName);
 
-    void deleteFiles(String[] fileNames);
+    void deleteFiles(List<String> fileNames);
 
+    String qiNiuUploadFile(MultipartFile file);
+
+    List<String> qiNiuUploadFiles(MultipartRequest request, Integer num);
+
+    void qiNiuDeleteFile(String fileName);
+
+    void qiNiuDeleteFiles(List<String> fileNames);
 }

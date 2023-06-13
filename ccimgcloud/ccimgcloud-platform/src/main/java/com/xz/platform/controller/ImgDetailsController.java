@@ -10,9 +10,9 @@ import com.xz.common.validator.group.AddGroup;
 import com.xz.common.validator.group.DefaultGroup;
 import com.xz.common.validator.group.UpdateGroup;
 import com.xz.platform.dto.ImgDetailsDTO;
+import com.xz.platform.entity.ImgDetailsEntity;
 import com.xz.platform.service.ImgDetailsService;
 import com.xz.platform.vo.ImgDetailInfoVo;
-import com.xz.platform.vo.ImgDetailSearchVo;
 import com.xz.platform.vo.ImgDetailVo;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,8 +60,8 @@ public class ImgDetailsController {
      * @return
      */
     @RequestMapping("getAllImgByAlbum/{page}/{limit}")
-    public Result<?> getAllImgByAlbum(@PathVariable long page, @PathVariable long limit, String albumId) {
-        List<ImgDetailVo> imgDetailVoList = imgDetailsService.getAllImgByAlbum(page, limit, albumId);
+    public Result<?> getAllImgByAlbum(@PathVariable long page, @PathVariable long limit, String albumId, Integer type) {
+        List<ImgDetailVo> imgDetailVoList = imgDetailsService.getAllImgByAlbum(page, limit, albumId, type);
         return new Result<List<ImgDetailVo>>().ok(imgDetailVoList);
     }
 
@@ -84,9 +84,15 @@ public class ImgDetailsController {
      * @return
      */
     @RequestMapping("publish")
-    public Result<?> publish(@RequestBody ImgDetailsDTO imgDetailsDTO) throws MalformedModelException, ModelNotFoundException, IOException, TranslateException {
+    public Result<?> publish(@RequestBody ImgDetailsDTO imgDetailsDTO){
         ValidatorUtils.validateEntity(imgDetailsDTO, AddGroup.class, DefaultGroup.class);
-        imgDetailsService.publish(imgDetailsDTO);
+        ImgDetailsEntity imgDetailsEntity = imgDetailsService.publish(imgDetailsDTO);
+        return new Result<ImgDetailsEntity>().ok(imgDetailsEntity);
+    }
+
+    @RequestMapping("updateStatus")
+    public Result<?> updateStatus(@RequestBody ImgDetailsDTO imgDetailsDTO){
+        imgDetailsService.updateStatus(imgDetailsDTO);
         return new Result<>().ok();
     }
 
@@ -125,8 +131,8 @@ public class ImgDetailsController {
     @RequestMapping("updateImgDetail")
     public Result<?> updateImgDetail(@RequestBody ImgDetailsDTO imgDetailsDTO) throws MalformedModelException, ModelNotFoundException, IOException, TranslateException {
         ValidatorUtils.validateEntity(imgDetailsDTO, UpdateGroup.class, DefaultGroup.class);
-        imgDetailsService.updateImgDetail(imgDetailsDTO);
-        return new Result<>().ok();
+        ImgDetailsEntity imgDetailsEntity = imgDetailsService.updateImgDetail(imgDetailsDTO);
+        return new Result<>().ok(imgDetailsEntity);
     }
 
     /**

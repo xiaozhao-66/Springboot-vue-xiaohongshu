@@ -4,17 +4,15 @@ package com.xz.utils.oss.controller;
 
 import com.xz.common.utils.Result;
 import com.xz.utils.oss.service.OssService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * oss对象存储模块
@@ -44,14 +42,14 @@ public class OssController {
 
     //删除文件
     @RequestMapping("deleteFile")
-    public Result<?> deleteFile(String fileName) {
+    public Result<?> deleteFile(@RequestParam String fileName) {
         ossService.deleteFile(fileName);
         return new Result<>().ok();
     }
 
     //删除文件
     @RequestMapping("deleteFiles")
-    public Result<?> deleteFiles(String[] fileNames) {
+    public Result<?> deleteFiles(List<String> fileNames) {
         ossService.deleteFiles(fileNames);
         return new Result<>().ok();
     }

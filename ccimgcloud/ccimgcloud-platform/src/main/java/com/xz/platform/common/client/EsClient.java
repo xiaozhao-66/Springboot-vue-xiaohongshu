@@ -17,9 +17,6 @@ public interface EsClient {
     @RequestMapping("/search/search/addBulkData")
     void addBulkData(@RequestBody List<ImgDetailSearchVo> dataList) throws IOException;
 
-//    @RequestMapping("/search/search/esSearch/{page}/{limit}")
-//    List<ImgDetailSearchVo> esSearch(@PathVariable long page, @PathVariable long limit, String keyword) throws IOException;
-
     @RequestMapping("/search/search/addData")
     void addData(@RequestBody ImgDetailSearchVo imgDetailSearchVo) throws IOException;
 

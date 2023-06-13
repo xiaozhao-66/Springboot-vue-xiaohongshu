@@ -1,6 +1,5 @@
 package com.xz.platform.service;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xz.common.service.BaseService;
 import com.xz.platform.dto.AgreeDTO;
 import com.xz.platform.entity.AgreeEntity;
@@ -16,11 +15,33 @@ import java.util.List;
  */
 public interface AgreeService extends BaseService<AgreeEntity> {
 
+    /**
+     * 查看是否点赞
+     * @param agreeDTO
+     * @return
+     */
     boolean isAgree(AgreeDTO agreeDTO);
 
+    /**
+     * 点赞
+     * @param agreeDTO
+     */
     void agree(AgreeDTO agreeDTO);
 
+    /**
+     * 得到当前用户所有的赞和收藏
+     *
+     * @param page
+     * @param limit
+     * @param uid
+     * @return
+     */
     List<AgreeVo> getAllAgreeAndCollection(long page, long limit, String uid);
 
+    /**
+     * 取消点赞
+     * @param agreeDTO
+     * @return
+     */
     void cancelAgree(AgreeDTO agreeDTO);
 }

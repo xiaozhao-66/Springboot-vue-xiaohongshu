@@ -1,17 +1,11 @@
 package com.xz.auth.dto;
 
-import com.xz.common.validator.group.AddGroup;
-import com.xz.common.validator.group.DefaultGroup;
-import io.swagger.models.auth.In;
-import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import com.xz.common.validator.group.DefaultGroup;
+import lombok.Data;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
-import java.util.Date;
+
 
 @Data
 public class AuthUserDTO implements Serializable {

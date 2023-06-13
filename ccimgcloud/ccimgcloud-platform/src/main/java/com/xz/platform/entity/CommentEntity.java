@@ -4,8 +4,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.xz.common.entity.BaseEntity;
 import lombok.Data;
 
-import java.util.Date;
-
 /**
  * 
  *
@@ -64,4 +62,6 @@ public class CommentEntity extends BaseEntity {
      * 点赞次数
      */
     private Long count;
+
+    private Long twoNums;
 }

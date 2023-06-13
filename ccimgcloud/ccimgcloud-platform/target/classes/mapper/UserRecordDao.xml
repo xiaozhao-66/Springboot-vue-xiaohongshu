@@ -4,4 +4,14 @@
 <mapper namespace="com.xz.platform.dao.UserRecordDao">
 
 
+    <select id="selectBatchByUid" resultType="com.xz.platform.entity.UserRecordEntity">
+
+        select * from t_user_record
+        where uid IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+
+
+    </select>
 </mapper>

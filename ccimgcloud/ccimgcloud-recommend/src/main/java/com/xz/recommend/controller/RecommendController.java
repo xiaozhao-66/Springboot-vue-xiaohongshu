@@ -2,11 +2,7 @@ package com.xz.recommend.controller;
 
 import ai.djl.ModelException;
 import ai.djl.translate.TranslateException;
-import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
-import com.xz.common.utils.RedisUtils;
 import com.xz.common.utils.Result;
-import com.xz.recommend.common.client.RecommendClient;
-import com.xz.recommend.service.ImgDetailsService;
 import com.xz.recommend.service.RecommendService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +24,6 @@ public class RecommendController {
     @Autowired
     RecommendService recommendService;
 
-    @Autowired
-    RedisUtils redisUtils;
-
-    @Autowired
-    RecommendClient recommendClient;
-
     /**
      * 只看这一个方法就行了
      * @param page
@@ -46,13 +36,6 @@ public class RecommendController {
      */
     @RequestMapping("newRecommendToUser/{page}/{limit}")
     public Result<?> newRecommendToUser(@PathVariable long page, @PathVariable long limit, String uid) throws ModelException, IOException, TranslateException {
-
-        String ukey = ImgDetailCacheNames.BR_IMG_KEY + uid;
-
-        if (Boolean.FALSE.equals(redisUtils.hasKey(ukey))) {
-            return recommendClient.getPage(page, limit);
-        }
-
         HashMap<String, Object> map = recommendService.newRecommendToUser(page, limit, uid);
         return new Result<HashMap<String, Object>>().ok(map);
     }

@@ -22,220 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0840add4-c316-453a-90ee-09da3938f768" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/apk/__UNI__83A0CAE_cm.apk" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/apk/__UNI__83A0CAE_cm.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/apk/apkurl" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/apk/apkurl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/apk/cmManifestCache.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/apk/cmManifestCache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/wgt/__UNI__83A0CAE/app-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/wgt/__UNI__83A0CAE/app-service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/wgt/__UNI__83A0CAE/app-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/cache/wgt/__UNI__83A0CAE/app-view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/build/app-plus/app-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/build/app-plus/app-service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/build/app-plus/app-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/build/app-plus/app-view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/.automator/app-plus/.automator.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/__uniappchooselocation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/__uniapperror.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/__uniappes6.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/__uniappopenlocation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/__uniapppicker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/__uniappquill.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/__uniappquillimageresize.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/__uniappscan.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/__uniappsuccess.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/__uniappview.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/androidPrivacy.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/app-config-service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/app-config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/app-service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/app-view.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/components/bottom-navigation/icon_menu_gray.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/components/bottom-navigation/icon_menu_white.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/components/cropper/img_rotate.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/components/scroll-top/icon_index_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/components/scroll-top/icon_share_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/components/scroll-top/icon_top_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/fonts/thorui.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/basic/badge.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/basic/button.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/basic/card.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/basic/color.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/basic/flex.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/basic/footer.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/basic/grid.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/basic/icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/basic/layout.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/basic/list.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/basic/loading.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/basic/tag.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/chat/fail.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/chat/voice.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/classify/Icewash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/classify/bed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/classify/boutique.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/classify/heater.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/classify/kongtiao.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/fab/fab_about.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/fab/fab_reward.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/fab/fab_share.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/basic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/cancle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/canvas.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/class.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/drawer.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/fire.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/home_icon_choose_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/icon_down.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/icon_next_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/icon_right.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/img_fuwuquan_blue_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/img_fuwuquan_gray_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/index.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/map.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/nav.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/refresh.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/search.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/swipe.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/index/template.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/login/bg_login.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/login/github.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/login/qq.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/login/wechat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/luck/luck-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/luck/luck-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/luck/luck-3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/luck/luck-4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/Search_2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/activity/activity_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/activity/activity_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/banner/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/banner/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/banner/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/banner/4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/banner/5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/category/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/category/10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/category/11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/category/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/category/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/category/4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/category/5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/category/6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/category/66.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/category/7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/category/8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/category/9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/img_recharge_success.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_addr_edit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_daifahuo_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_daifukuan_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_daishouhuo_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_fanxian_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_gift_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_kaipiao_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_kefu_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_pingjia_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_purse_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_shezhi_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_tab_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_ticket_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_tuan_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_tuikuan_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_vip_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_xiaoxi_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/icon_zhihuan_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/my/img_addr_bg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/new/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/new/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/new/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/new/4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/new/5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/new/6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/new/discount.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/new/new.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/pay/icon_pay_balance.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/pay/icon_pay_weixin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/pay/icon_pay_zhifubao.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/product/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/product/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/product/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/product/4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/product/5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/product/6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/mall/shopCart_2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/maps/current.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/maps/location.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/applets.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/call.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/feedback.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/github_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/go.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/icon_out_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/icon_thorui_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/icon_thouUI_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/log.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/mine_bg_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/mine_def_touxiang_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/mine_icon_bianji_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/mine_icon_chongdian_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/mine_icon_jiayouzhan_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/mine_icon_tingche_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/reward.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/my/thorui.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/news/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/news/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/news/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/news/4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/news/avatar_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/news/avatar_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/news/banner_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/news/banner_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/news/banner_3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/news/icon_back.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/news/list_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/news/list_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/news/list_3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/news/list_4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/product/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/product/11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/product/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/product/22.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/product/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/product/33.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/product/4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/product/44.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/product/5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/product/55.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/share/icon_moments.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/share/icon_qq.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/share/icon_sina.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/share/icon_wechat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/tabbar/add-one.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/tabbar/copy.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/tabbar/copy_activate.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/tabbar/home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/tabbar/home_activate.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/tabbar/message.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/tabbar/message_activate.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/tabbar/people.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/tabbar/people_activate.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/toast/check-circle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/toast/fail-circle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/toast/img_nodata.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/toast/img_noorder_3x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/images/toast/info-circle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/style/thorui.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/static/style/thorui.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/uni_modules/evan-emoji/static/icon/del_icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/view.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/dist/dev/app-plus/view.umd.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/release/apk/烟火.apk" beforeDir="false" afterPath="$PROJECT_DIR$/../ccimg-uniapp/unpackage/release/apk/烟火.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-platform/src/main/resources/mapper/AgreeDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-platform/src/main/resources/mapper/AgreeDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-platform/src/main/resources/mapper/CollectionDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-platform/src/main/resources/mapper/CollectionDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ccimgcloud-platform/src/main/resources/mapper/FollowDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ccimgcloud-platform/src/main/resources/mapper/FollowDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../烟火.apk" beforeDir="false" />
-    </list>
+    <list default="true" id="0840add4-c316-453a-90ee-09da3938f768" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -277,7 +64,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../mogu_blog_v2" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -294,6 +81,9 @@
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\48423\Desktop\项目jar包\springboot-vue-ccimgcloud\ccimgcloud\ccimgcloud-utils\src\test\java" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.xz.platform" />
     </key>
@@ -312,26 +102,13 @@
       <recent name="D:\project\xzcc-root\master\springboot-vue-ccimgcloud\ccimgcloud\ccimgcloud-recommend\src\main\java\com\xz\recommend\common\recommend" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.KeywordsExtractor (1)">
+  <component name="RunManager" selected="Spring Boot.UtilApplication">
     <configuration name="KeywordsExtractor (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.xz.recommend.utils.KeywordsExtractor" />
       <module name="ccimgcloud-recommend" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.xz.recommend.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="KeywordsExtractor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.xz.recommend.common.jsceg.KeywordsExtractor" />
-      <module name="ccimgcloud-recommend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.xz.recommend.common.jsceg.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -352,33 +129,47 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JcsegTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ccimgcloud-recommend" />
+    <configuration name="WebUtils" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.xz.platform.common.utils.WebUtils" />
+      <module name="ccimgcloud-platform" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.xz.recommend.jcseg.*" />
+          <option name="PATTERN" value="com.xz.platform.common.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.xz.recommend.jcseg" />
-      <option name="MAIN_CLASS_NAME" value="com.xz.recommend.jcseg.JcsegTest" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RedisTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ccimgcloud-platform" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.xz.platform.daoTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.xz.platform.daoTest" />
+      <option name="MAIN_CLASS_NAME" value="com.xz.platform.daoTest.RedisTest" />
       <option name="METHOD_NAME" value="test" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RecommendApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ccimgcloud-recommend" />
+    <configuration name="UtilsApplicationTests.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ccimgcloud-utils" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.xz.recommend.*" />
+          <option name="PATTERN" value="com.xz.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.xz.recommend" />
-      <option name="MAIN_CLASS_NAME" value="com.xz.recommend.RecommendApplicationTests" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="com.xz.utils" />
+      <option name="MAIN_CLASS_NAME" value="com.xz.utils.UtilsApplicationTests" />
+      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -447,11 +238,11 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.KeywordsExtractor" />
       <item itemvalue="Application.KeywordsExtractor (1)" />
       <item itemvalue="Application.RecommendUtils2" />
-      <item itemvalue="JUnit.JcsegTest.test" />
-      <item itemvalue="JUnit.RecommendApplicationTests" />
+      <item itemvalue="Application.WebUtils" />
+      <item itemvalue="JUnit.RedisTest.test" />
+      <item itemvalue="JUnit.UtilsApplicationTests.test1" />
       <item itemvalue="Spring Boot.GeneratorApplication" />
       <item itemvalue="Spring Boot.RecommendApplication" />
       <item itemvalue="Spring Boot.ManageApplication" />
@@ -464,11 +255,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UtilsApplicationTests.test1" />
         <item itemvalue="Application.KeywordsExtractor (1)" />
+        <item itemvalue="Application.WebUtils" />
+        <item itemvalue="JUnit.RedisTest.test" />
         <item itemvalue="Application.RecommendUtils2" />
-        <item itemvalue="Application.KeywordsExtractor" />
-        <item itemvalue="JUnit.RecommendApplicationTests" />
-        <item itemvalue="JUnit.JcsegTest.test" />
       </list>
     </recent_temporary>
   </component>
@@ -603,6 +394,17 @@
       <workItem from="1685924934720" duration="28097000" />
       <workItem from="1685962252543" duration="3111000" />
       <workItem from="1686103240860" duration="1731000" />
+      <workItem from="1686152367364" duration="1845000" />
+      <workItem from="1686179425672" duration="10455000" />
+      <workItem from="1686284951933" duration="1395000" />
+      <workItem from="1686286790533" duration="6084000" />
+      <workItem from="1686352501736" duration="5115000" />
+      <workItem from="1686358888524" duration="4579000" />
+      <workItem from="1686452782083" duration="1917000" />
+      <workItem from="1686531980159" duration="1690000" />
+      <workItem from="1686533693190" duration="3536000" />
+      <workItem from="1686559872721" duration="7667000" />
+      <workItem from="1686618599077" duration="2238000" />
     </task>
     <servers />
   </component>
@@ -651,12 +453,13 @@
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="600" y="314" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1707.1027@0.0.1707.1027" timestamp="1681029584068" />
-    <state x="680" y="222" key="#com.intellij.ide.util.MemberChooser" timestamp="1686023480329">
-      <screen x="0" y="0" width="1707" height="1027" />
+    <state x="3325" y="225" key="#com.intellij.ide.util.MemberChooser" timestamp="1686560947364">
+      <screen x="2560" y="0" width="1920" height="1040" />
     </state>
+    <state x="612" y="176" key="#com.intellij.ide.util.MemberChooser/0.0.1536.816/1920.7.1920.1032@0.0.1536.816" timestamp="1686132591820" />
     <state x="612" y="176" key="#com.intellij.ide.util.MemberChooser/0.0.1536.816@0.0.1536.816" timestamp="1686013619114" />
     <state x="680" y="222" key="#com.intellij.ide.util.MemberChooser/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023480329" />
-    <state x="3325" y="225" key="#com.intellij.ide.util.MemberChooser/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1684128204188" />
+    <state x="3325" y="225" key="#com.intellij.ide.util.MemberChooser/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1686560947364" />
     <state x="680" y="222" key="#com.intellij.ide.util.MemberChooser/0.0.1707.1027@0.0.1707.1027" timestamp="1684976976894" />
     <state x="674" y="204" width="391" height="619" key="#com.intellij.openapi.keymap.impl.ui.EditKeymapsDialog" timestamp="1684729990198">
       <screen x="0" y="0" width="1707" height="1027" />
@@ -677,109 +480,124 @@
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="591" y="393" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1707.1027@0.0.1707.1027" timestamp="1680949349641" />
-    <state x="609" y="220" width="887" height="587" key="#xdebugger.evaluate" timestamp="1685070926387">
+    <state x="609" y="220" width="887" height="587" key="#xdebugger.evaluate" timestamp="1686185905706">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
+    <state x="609" y="220" key="#xdebugger.evaluate/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686185905706" />
     <state x="609" y="220" width="887" height="587" key="#xdebugger.evaluate/0.0.1707.1027@0.0.1707.1027" timestamp="1685070926387" />
-    <state width="735" height="367" key="DebuggerActiveHint" timestamp="1686027608470">
-      <screen x="0" y="0" width="1536" height="816" />
+    <state width="438" height="466" key="DebuggerActiveHint" timestamp="1686567156305">
+      <screen x="2560" y="0" width="1920" height="1040" />
     </state>
+    <state width="736" height="368" key="DebuggerActiveHint/0.0.1536.816/1920.7.1920.1032@0.0.1536.816" timestamp="1686224980112" />
     <state width="735" height="367" key="DebuggerActiveHint/0.0.1536.816@0.0.1536.816" timestamp="1686027608470" />
-    <state width="438" height="466" key="DebuggerActiveHint/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1679019945090" />
+    <state width="817" height="462" key="DebuggerActiveHint/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686357384556" />
+    <state width="438" height="466" key="DebuggerActiveHint/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1686567156305" />
     <state width="816" height="461" key="DebuggerActiveHint/0.0.1707.1027@0.0.1707.1027" timestamp="1684983916979" />
     <state x="93" y="93" width="1521" height="841" key="DiffContextDialog" timestamp="1685112430007">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="93" y="93" width="1521" height="841" key="DiffContextDialog/0.0.1707.1027@0.0.1707.1027" timestamp="1685112430007" />
-    <state x="658" y="271" key="FileChooserDialogImpl" timestamp="1685870461530">
+    <state x="658" y="271" key="FileChooserDialogImpl" timestamp="1686209525326">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state x="658" y="271" key="FileChooserDialogImpl/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1685870461530" />
+    <state x="658" y="271" key="FileChooserDialogImpl/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686209525326" />
     <state x="3300" y="274" key="FileChooserDialogImpl/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1678931896461" />
     <state x="658" y="271" key="FileChooserDialogImpl/0.0.1707.1027@0.0.1707.1027" timestamp="1685693432356" />
-    <state width="1493" height="244" key="GridCell.Tab.0.bottom" timestamp="1686033258162">
-      <screen x="0" y="0" width="1536" height="816" />
+    <state width="1877" height="300" key="GridCell.Tab.0.bottom" timestamp="1686567252473">
+      <screen x="2560" y="0" width="1920" height="1040" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1686033258162" />
-    <state width="1663" height="283" key="GridCell.Tab.0.bottom/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023908515" />
-    <state width="1877" height="289" key="GridCell.Tab.0.bottom/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1685966314609" />
+    <state width="1493" height="370" key="GridCell.Tab.0.bottom/0.0.1536.816/1920.7.1920.1032@0.0.1536.816" timestamp="1686286333459" />
+    <state width="1493" height="252" key="GridCell.Tab.0.bottom/0.0.1536.816@0.0.1536.816" timestamp="1686472197711" />
+    <state width="1663" height="286" key="GridCell.Tab.0.bottom/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686533784554" />
+    <state width="1877" height="300" key="GridCell.Tab.0.bottom/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1686567252473" />
     <state width="1663" height="230" key="GridCell.Tab.0.bottom/0.0.1707.1027@0.0.1707.1027" timestamp="1685803618671" />
-    <state width="1493" height="244" key="GridCell.Tab.0.center" timestamp="1686033258162">
-      <screen x="0" y="0" width="1536" height="816" />
+    <state width="1877" height="300" key="GridCell.Tab.0.center" timestamp="1686567252473">
+      <screen x="2560" y="0" width="1920" height="1040" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1686033258162" />
-    <state width="1663" height="283" key="GridCell.Tab.0.center/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023908515" />
-    <state width="1877" height="289" key="GridCell.Tab.0.center/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1685966314608" />
+    <state width="1493" height="370" key="GridCell.Tab.0.center/0.0.1536.816/1920.7.1920.1032@0.0.1536.816" timestamp="1686286333457" />
+    <state width="1493" height="252" key="GridCell.Tab.0.center/0.0.1536.816@0.0.1536.816" timestamp="1686472197711" />
+    <state width="1663" height="286" key="GridCell.Tab.0.center/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686533784553" />
+    <state width="1877" height="300" key="GridCell.Tab.0.center/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1686567252473" />
     <state width="1663" height="230" key="GridCell.Tab.0.center/0.0.1707.1027@0.0.1707.1027" timestamp="1685803618671" />
-    <state width="1493" height="244" key="GridCell.Tab.0.left" timestamp="1686033258162">
-      <screen x="0" y="0" width="1536" height="816" />
+    <state width="1877" height="300" key="GridCell.Tab.0.left" timestamp="1686567252473">
+      <screen x="2560" y="0" width="1920" height="1040" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1686033258162" />
-    <state width="1663" height="283" key="GridCell.Tab.0.left/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023908515" />
-    <state width="1877" height="289" key="GridCell.Tab.0.left/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1685966314608" />
+    <state width="1493" height="370" key="GridCell.Tab.0.left/0.0.1536.816/1920.7.1920.1032@0.0.1536.816" timestamp="1686286333457" />
+    <state width="1493" height="252" key="GridCell.Tab.0.left/0.0.1536.816@0.0.1536.816" timestamp="1686472197711" />
+    <state width="1663" height="286" key="GridCell.Tab.0.left/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686533784552" />
+    <state width="1877" height="300" key="GridCell.Tab.0.left/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1686567252473" />
     <state width="1663" height="230" key="GridCell.Tab.0.left/0.0.1707.1027@0.0.1707.1027" timestamp="1685803618671" />
-    <state width="1493" height="244" key="GridCell.Tab.0.right" timestamp="1686033258162">
-      <screen x="0" y="0" width="1536" height="816" />
+    <state width="1877" height="300" key="GridCell.Tab.0.right" timestamp="1686567252473">
+      <screen x="2560" y="0" width="1920" height="1040" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1686033258162" />
-    <state width="1663" height="283" key="GridCell.Tab.0.right/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023908515" />
-    <state width="1877" height="289" key="GridCell.Tab.0.right/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1685966314608" />
+    <state width="1493" height="370" key="GridCell.Tab.0.right/0.0.1536.816/1920.7.1920.1032@0.0.1536.816" timestamp="1686286333457" />
+    <state width="1493" height="252" key="GridCell.Tab.0.right/0.0.1536.816@0.0.1536.816" timestamp="1686472197711" />
+    <state width="1663" height="286" key="GridCell.Tab.0.right/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686533784554" />
+    <state width="1877" height="300" key="GridCell.Tab.0.right/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1686567252473" />
     <state width="1663" height="230" key="GridCell.Tab.0.right/0.0.1707.1027@0.0.1707.1027" timestamp="1685803618671" />
-    <state width="1493" height="244" key="GridCell.Tab.1.bottom" timestamp="1686033258162">
-      <screen x="0" y="0" width="1536" height="816" />
+    <state width="1877" height="300" key="GridCell.Tab.1.bottom" timestamp="1686567252473">
+      <screen x="2560" y="0" width="1920" height="1040" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1686033258162" />
-    <state width="1663" height="283" key="GridCell.Tab.1.bottom/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023199908" />
-    <state width="1877" height="289" key="GridCell.Tab.1.bottom/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1685966314610" />
+    <state width="1493" height="370" key="GridCell.Tab.1.bottom/0.0.1536.816/1920.7.1920.1032@0.0.1536.816" timestamp="1686286333459" />
+    <state width="1493" height="252" key="GridCell.Tab.1.bottom/0.0.1536.816@0.0.1536.816" timestamp="1686472197711" />
+    <state width="1663" height="286" key="GridCell.Tab.1.bottom/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686363653195" />
+    <state width="1877" height="300" key="GridCell.Tab.1.bottom/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1686567252473" />
     <state width="1663" height="230" key="GridCell.Tab.1.bottom/0.0.1707.1027@0.0.1707.1027" timestamp="1685803618671" />
-    <state width="1493" height="244" key="GridCell.Tab.1.center" timestamp="1686033258162">
-      <screen x="0" y="0" width="1536" height="816" />
+    <state width="1877" height="300" key="GridCell.Tab.1.center" timestamp="1686567252473">
+      <screen x="2560" y="0" width="1920" height="1040" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1686033258162" />
-    <state width="1663" height="283" key="GridCell.Tab.1.center/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023199908" />
-    <state width="1877" height="289" key="GridCell.Tab.1.center/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1685966314610" />
+    <state width="1493" height="370" key="GridCell.Tab.1.center/0.0.1536.816/1920.7.1920.1032@0.0.1536.816" timestamp="1686286333459" />
+    <state width="1493" height="252" key="GridCell.Tab.1.center/0.0.1536.816@0.0.1536.816" timestamp="1686472197711" />
+    <state width="1663" height="286" key="GridCell.Tab.1.center/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686363653195" />
+    <state width="1877" height="300" key="GridCell.Tab.1.center/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1686567252473" />
     <state width="1663" height="230" key="GridCell.Tab.1.center/0.0.1707.1027@0.0.1707.1027" timestamp="1685803618671" />
-    <state width="1493" height="244" key="GridCell.Tab.1.left" timestamp="1686033258162">
-      <screen x="0" y="0" width="1536" height="816" />
+    <state width="1877" height="300" key="GridCell.Tab.1.left" timestamp="1686567252473">
+      <screen x="2560" y="0" width="1920" height="1040" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1686033258162" />
-    <state width="1663" height="283" key="GridCell.Tab.1.left/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023199908" />
-    <state width="1877" height="289" key="GridCell.Tab.1.left/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1685966314609" />
+    <state width="1493" height="370" key="GridCell.Tab.1.left/0.0.1536.816/1920.7.1920.1032@0.0.1536.816" timestamp="1686286333459" />
+    <state width="1493" height="252" key="GridCell.Tab.1.left/0.0.1536.816@0.0.1536.816" timestamp="1686472197711" />
+    <state width="1663" height="286" key="GridCell.Tab.1.left/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686363653195" />
+    <state width="1877" height="300" key="GridCell.Tab.1.left/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1686567252473" />
     <state width="1663" height="230" key="GridCell.Tab.1.left/0.0.1707.1027@0.0.1707.1027" timestamp="1685803618671" />
-    <state width="1493" height="244" key="GridCell.Tab.1.right" timestamp="1686033258162">
-      <screen x="0" y="0" width="1536" height="816" />
+    <state width="1877" height="300" key="GridCell.Tab.1.right" timestamp="1686567252473">
+      <screen x="2560" y="0" width="1920" height="1040" />
     </state>
-    <state width="1493" height="244" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1686033258162" />
-    <state width="1663" height="283" key="GridCell.Tab.1.right/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686023199908" />
-    <state width="1877" height="289" key="GridCell.Tab.1.right/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1685966314610" />
+    <state width="1493" height="370" key="GridCell.Tab.1.right/0.0.1536.816/1920.7.1920.1032@0.0.1536.816" timestamp="1686286333459" />
+    <state width="1493" height="252" key="GridCell.Tab.1.right/0.0.1536.816@0.0.1536.816" timestamp="1686472197711" />
+    <state width="1663" height="286" key="GridCell.Tab.1.right/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686363653195" />
+    <state width="1877" height="300" key="GridCell.Tab.1.right/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1686567252473" />
     <state width="1663" height="230" key="GridCell.Tab.1.right/0.0.1707.1027@0.0.1707.1027" timestamp="1685803618671" />
-    <state width="1493" height="275" key="GridCell.Tab.2.bottom" timestamp="1686027976641">
-      <screen x="0" y="0" width="1536" height="816" />
+    <state width="1877" height="300" key="GridCell.Tab.2.bottom" timestamp="1686567252473">
+      <screen x="2560" y="0" width="1920" height="1040" />
     </state>
-    <state width="1493" height="275" key="GridCell.Tab.2.bottom/0.0.1536.816@0.0.1536.816" timestamp="1686027976641" />
-    <state width="1877" height="348" key="GridCell.Tab.2.bottom/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1679025425646" />
-    <state width="1877" height="362" key="GridCell.Tab.2.bottom/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1683966316686" />
+    <state width="1493" height="275" key="GridCell.Tab.2.bottom/0.0.1536.816/1920.7.1920.1032@0.0.1536.816" timestamp="1686225047249" />
+    <state width="1493" height="275" key="GridCell.Tab.2.bottom/0.0.1536.816@0.0.1536.816" timestamp="1686363116968" />
+    <state width="1663" height="296" key="GridCell.Tab.2.bottom/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686357595106" />
+    <state width="1877" height="300" key="GridCell.Tab.2.bottom/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1686567252473" />
     <state width="1663" height="237" key="GridCell.Tab.2.bottom/0.0.1707.1027@0.0.1707.1027" timestamp="1685070950785" />
-    <state width="1493" height="275" key="GridCell.Tab.2.center" timestamp="1686027976641">
-      <screen x="0" y="0" width="1536" height="816" />
+    <state width="1877" height="300" key="GridCell.Tab.2.center" timestamp="1686567252473">
+      <screen x="2560" y="0" width="1920" height="1040" />
     </state>
-    <state width="1493" height="275" key="GridCell.Tab.2.center/0.0.1536.816@0.0.1536.816" timestamp="1686027976641" />
-    <state width="1877" height="348" key="GridCell.Tab.2.center/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1679025425646" />
-    <state width="1877" height="362" key="GridCell.Tab.2.center/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1683966316686" />
+    <state width="1493" height="275" key="GridCell.Tab.2.center/0.0.1536.816/1920.7.1920.1032@0.0.1536.816" timestamp="1686225047249" />
+    <state width="1493" height="275" key="GridCell.Tab.2.center/0.0.1536.816@0.0.1536.816" timestamp="1686363116968" />
+    <state width="1663" height="296" key="GridCell.Tab.2.center/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686357595106" />
+    <state width="1877" height="300" key="GridCell.Tab.2.center/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1686567252473" />
     <state width="1663" height="237" key="GridCell.Tab.2.center/0.0.1707.1027@0.0.1707.1027" timestamp="1685070950785" />
-    <state width="1493" height="275" key="GridCell.Tab.2.left" timestamp="1686027976641">
-      <screen x="0" y="0" width="1536" height="816" />
+    <state width="1877" height="300" key="GridCell.Tab.2.left" timestamp="1686567252473">
+      <screen x="2560" y="0" width="1920" height="1040" />
     </state>
-    <state width="1493" height="275" key="GridCell.Tab.2.left/0.0.1536.816@0.0.1536.816" timestamp="1686027976641" />
-    <state width="1877" height="348" key="GridCell.Tab.2.left/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1679025425646" />
-    <state width="1877" height="362" key="GridCell.Tab.2.left/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1683966316686" />
+    <state width="1493" height="275" key="GridCell.Tab.2.left/0.0.1536.816/1920.7.1920.1032@0.0.1536.816" timestamp="1686225047249" />
+    <state width="1493" height="275" key="GridCell.Tab.2.left/0.0.1536.816@0.0.1536.816" timestamp="1686363116967" />
+    <state width="1663" height="296" key="GridCell.Tab.2.left/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686357595106" />
+    <state width="1877" height="300" key="GridCell.Tab.2.left/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1686567252473" />
     <state width="1663" height="237" key="GridCell.Tab.2.left/0.0.1707.1027@0.0.1707.1027" timestamp="1685070950785" />
-    <state width="1493" height="275" key="GridCell.Tab.2.right" timestamp="1686027976641">
-      <screen x="0" y="0" width="1536" height="816" />
+    <state width="1877" height="300" key="GridCell.Tab.2.right" timestamp="1686567252473">
+      <screen x="2560" y="0" width="1920" height="1040" />
     </state>
-    <state width="1493" height="275" key="GridCell.Tab.2.right/0.0.1536.816@0.0.1536.816" timestamp="1686027976641" />
-    <state width="1877" height="348" key="GridCell.Tab.2.right/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1679025425646" />
-    <state width="1877" height="362" key="GridCell.Tab.2.right/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1683966316686" />
+    <state width="1493" height="275" key="GridCell.Tab.2.right/0.0.1536.816/1920.7.1920.1032@0.0.1536.816" timestamp="1686225047249" />
+    <state width="1493" height="275" key="GridCell.Tab.2.right/0.0.1536.816@0.0.1536.816" timestamp="1686363116968" />
+    <state width="1663" height="296" key="GridCell.Tab.2.right/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686357595106" />
+    <state width="1877" height="300" key="GridCell.Tab.2.right/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1686567252473" />
     <state width="1663" height="237" key="GridCell.Tab.2.right/0.0.1707.1027@0.0.1707.1027" timestamp="1685070950785" />
     <state x="434" y="248" key="IDE.errors.dialog" timestamp="1681437832772">
       <screen x="0" y="0" width="1707" height="1027" />
@@ -794,11 +612,11 @@
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="669" y="447" key="ReplaceDuplicatesPrompt/0.0.1707.1027@0.0.1707.1027" timestamp="1681313791742" />
-    <state x="226" y="0" width="1224" height="1027" key="SettingsEditor" timestamp="1684771198626">
+    <state x="334" y="88" width="1224" height="1027" key="SettingsEditor" timestamp="1686532244107">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="264" y="83" width="1055" height="707" key="SettingsEditor/0.0.1536.816@0.0.1536.816" timestamp="1682837972810" />
-    <state x="334" y="88" key="SettingsEditor/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1678619057334" />
+    <state x="334" y="88" key="SettingsEditor/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686532244107" />
     <state x="3051" y="96" key="SettingsEditor/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1679188470714" />
     <state x="226" y="0" width="1224" height="1027" key="SettingsEditor/0.0.1707.1027@0.0.1707.1027" timestamp="1684771198626" />
     <state width="860" height="520" key="XDebugger.FullValuePopup" timestamp="1681905798751">
@@ -831,12 +649,17 @@
     </state>
     <state x="882" y="236" key="extract.method.dialog/0.0.1536.816@0.0.1536.816" timestamp="1686010416857" />
     <state x="980" y="297" key="extract.method.dialog/0.0.1707.1027@0.0.1707.1027" timestamp="1681884333132" />
-    <state x="302" y="351" width="1024" height="626" key="find.popup" timestamp="1685801485937">
-      <screen x="0" y="0" width="1707" height="1027" />
+    <state x="526" y="269" width="607" height="532" key="find.popup" timestamp="1686197832724">
+      <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="585" y="338" width="674" height="616" key="find.popup/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1678689616731" />
+    <state x="526" y="269" width="607" height="532" key="find.popup/0.0.1536.816@0.0.1536.816" timestamp="1686197832724" />
+    <state x="585" y="338" width="674" height="616" key="find.popup/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1686190027818" />
     <state x="3167" y="416" width="759" height="624" key="find.popup/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1679013892004" />
     <state x="302" y="351" width="1024" height="626" key="find.popup/0.0.1707.1027@0.0.1707.1027" timestamp="1685801485937" />
+    <state width="600" height="428" key="javadoc.popup" timestamp="1686286382057">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state width="600" height="428" key="javadoc.popup/0.0.1536.816/1920.7.1920.1032@0.0.1536.816" timestamp="1686286382057" />
     <state x="297" y="178" key="new project wizard" timestamp="1679378980144">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
@@ -851,11 +674,11 @@
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="510" y="238" key="run.anything.popup/0.0.1707.1027@0.0.1707.1027" timestamp="1681108761600" />
-    <state x="516" y="222" width="672" height="678" key="search.everywhere.popup" timestamp="1685944587091">
-      <screen x="0" y="0" width="1707" height="1027" />
+    <state x="3140" y="224" width="756" height="688" key="search.everywhere.popup" timestamp="1686566669638">
+      <screen x="2560" y="0" width="1920" height="1040" />
     </state>
     <state x="516" y="222" width="672" height="678" key="search.everywhere.popup/0.0.1707.1027/2560.0.1920.1040@0.0.1707.1027" timestamp="1685944587091" />
-    <state x="3140" y="225" width="756" height="687" key="search.everywhere.popup/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1683964614424" />
+    <state x="3140" y="224" width="756" height="688" key="search.everywhere.popup/0.0.1707.1027/2560.0.1920.1040@2560.0.1920.1040" timestamp="1686566669638" />
     <state x="516" y="222" width="672" height="678" key="search.everywhere.popup/0.0.1707.1027@0.0.1707.1027" timestamp="1685760422492" />
   </component>
   <component name="XDebuggerManager">
@@ -863,13 +686,83 @@
       <breakpoints>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/ccimgcloud-platform/src/main/java/com/xz/platform/service/impl/FollowServiceImpl.java</url>
-          <line>183</line>
+          <line>179</line>
           <option name="timeStamp" value="150" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/ccimgcloud-platform/src/main/java/com/xz/platform/service/impl/CommentServiceImpl.java</url>
           <line>198</line>
           <option name="timeStamp" value="153" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ccimgcloud-platform/src/main/java/com/xz/platform/service/impl/ImgDetailsServiceImpl.java</url>
+          <line>230</line>
+          <option name="timeStamp" value="179" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ccimgcloud-platform/src/main/java/com/xz/platform/service/impl/CommentServiceImpl.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="180" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ccimgcloud-auth/src/main/java/com/xz/auth/AuthApplication.java</url>
+          <line>8</line>
+          <option name="timeStamp" value="181" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ccimgcloud-search/src/main/java/com/xz/search/SearchApplication.java</url>
+          <line>8</line>
+          <option name="timeStamp" value="182" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ccimgcloud-platform/src/test/java/com/xz/platform/daoTest/RedisTest.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="183" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ccimgcloud-recommend/src/main/java/com/xz/recommend/service/impl/RecommendServiceImpl.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="185" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ccimgcloud-platform/src/main/java/com/xz/platform/service/impl/ImgDetailsServiceImpl.java</url>
+          <line>401</line>
+          <option name="timeStamp" value="187" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ccimgcloud-platform/src/main/java/com/xz/platform/service/impl/ImgDetailsServiceImpl.java</url>
+          <line>460</line>
+          <option name="timeStamp" value="189" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ccimgcloud-recommend/src/main/java/com/xz/recommend/service/impl/RecommendServiceImpl.java</url>
+          <line>169</line>
+          <option name="timeStamp" value="191" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ccimgcloud-utils/src/main/java/com/xz/utils/oss/service/impl/OssServiceImpl.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="192" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ccimgcloud-recommend/src/main/java/com/xz/recommend/service/impl/RecommendServiceImpl.java</url>
+          <line>189</line>
+          <option name="timeStamp" value="193" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ccimgcloud-utils/src/main/java/com/xz/utils/oss/controller/OssController.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="195" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ccimgcloud-utils/src/main/java/com/xz/utils/oss/service/impl/OssServiceImpl.java</url>
+          <line>169</line>
+          <option name="timeStamp" value="196" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/ccimgcloud-utils/src/main/java/com/xz/utils/oss/controller/QiniuOssController.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="197" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

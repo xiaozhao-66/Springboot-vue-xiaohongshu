@@ -31,6 +31,8 @@ public class ImgDetailSearchVo implements Serializable {
     private Long otherUserId;
 
 
+    private Long  albumId;
+
     private String albumName;
 
     //专辑的图片数量

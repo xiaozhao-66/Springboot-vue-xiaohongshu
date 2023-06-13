@@ -1,7 +1,6 @@
 package com.xz.platform.controller;
 
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xz.common.utils.Result;
 import com.xz.common.validator.ValidatorUtils;
 import com.xz.common.validator.group.AddGroup;

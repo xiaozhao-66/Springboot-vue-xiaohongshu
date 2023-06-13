@@ -6,18 +6,18 @@ import ai.djl.translate.TranslateException;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xz.common.constant.cacheConstant.AlbumCacheNames;
 import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
 import com.xz.common.exception.ErrorCode;
 import com.xz.common.exception.RenException;
-import com.xz.common.recommend.RecommendUtils2;
 import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.ConvertUtils;
 import com.xz.common.utils.DateUtils;
 import com.xz.common.utils.PageUtils;
 import com.xz.platform.common.client.EsClient;
+import com.xz.platform.common.client.OSSClient;
 import com.xz.platform.common.constant.Constant;
 import com.xz.common.utils.RedisUtils;
+import com.xz.platform.common.utils.WebUtils;
 import com.xz.platform.dao.*;
 import com.xz.platform.dto.AlbumImgRelationDTO;
 import com.xz.platform.dto.ImgDetailsDTO;
@@ -38,7 +38,6 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 
 /**
@@ -73,6 +72,9 @@ public class ImgDetailsServiceImpl extends BaseServiceImpl<ImgDetailsDao, ImgDet
     UserRecordDao userRecordDao;
 
     @Autowired
+    OSSClient ossClient;
+
+    @Autowired
     EsClient esClient;
 
     @Autowired
@@ -81,11 +83,15 @@ public class ImgDetailsServiceImpl extends BaseServiceImpl<ImgDetailsDao, ImgDet
     @Autowired
     CollectionDao collectionDao;
 
+
     @Autowired
     AlbumImgRelationService albumImgRelationService;
 
     @Autowired
     RedisUtils redisUtils;
+
+
+    private static final String imgDetailKey = ImgDetailCacheNames.IMG_DETAIL_LIST_KEY;
 
 
     @NotNull
@@ -117,10 +123,10 @@ public class ImgDetailsServiceImpl extends BaseServiceImpl<ImgDetailsDao, ImgDet
 
     @Override
     public Page<ImgDetailVo> getPage(long page, long limit) {
-        List<ImgDetailsEntity> imgDetailsEntityList = baseDao.selectList(new QueryWrapper<ImgDetailsEntity>().orderByDesc("update_date"));
+        List<ImgDetailsEntity> imgDetailsEntityList = baseDao.selectList(new QueryWrapper<ImgDetailsEntity>().eq("status", 1).orderByDesc("update_date"));
 
         List<ImgDetailVo> res = new ArrayList<>();
-        ImgDetailVo imgDetailVo = null;
+        ImgDetailVo imgDetailVo;
         for (ImgDetailsEntity model : imgDetailsEntityList) {
             imgDetailVo = getImgDetailVo(model);
             res.add(imgDetailVo);
@@ -131,22 +137,13 @@ public class ImgDetailsServiceImpl extends BaseServiceImpl<ImgDetailsDao, ImgDet
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void publish(ImgDetailsDTO imgDetailsDTO) throws MalformedModelException, ModelNotFoundException, TranslateException, IOException {
-
-        String followKey = ImgDetailCacheNames.FOLLOW_TREND+imgDetailsDTO.getUserId();
-        Set<String> listKey = redisUtils.getListKey(followKey);
-        if(!listKey.isEmpty()){
-            for(String e : listKey){
-                redisUtils.delete(e);
-            }
-        }
-
-        String userTrendKey = ImgDetailCacheNames.USER_TREND+imgDetailsDTO.getUserId();
-        if(redisUtils.hasKey(userTrendKey)){
-            redisUtils.delete(userTrendKey);
-        }
+    public ImgDetailsEntity publish(ImgDetailsDTO imgDetailsDTO) {
 
         ImgDetailsEntity imgDetailsEntity = ConvertUtils.sourceToTarget(imgDetailsDTO, ImgDetailsEntity.class);
+        imgDetailsEntity.setCollectionCount(0L);
+        imgDetailsEntity.setCommentCount(0L);
+        imgDetailsEntity.setAgreeCount(0L);
+        imgDetailsEntity.setViewCount(0L);
         baseDao.insert(imgDetailsEntity);
 
         AlbumImgRelationEntity albumImgRelationEntity = new AlbumImgRelationEntity();
@@ -173,31 +170,55 @@ public class ImgDetailsServiceImpl extends BaseServiceImpl<ImgDetailsDao, ImgDet
 
         userRecordDao.updateById(userRecord);
 
-
-        ImgDetailSearchVo imgDetailVo = ConvertUtils.sourceToTarget(imgDetailsEntity, ImgDetailSearchVo.class);
-
-        UserEntity userEntity = userDao.selectById(imgDetailsEntity.getUserId());
-        imgDetailVo.setUsername(userEntity.getUsername())
-                .setAvatar(userEntity.getAvatar())
-                .setAgreeCount(0L)
-                .setOtherUserId(userEntity.getUserId())
-                .setTime(imgDetailsEntity.getUpdateDate());
-
-        try {
-            esClient.addData(imgDetailVo);
-        } catch (Exception e) {
-            throw new RenException(Constant.ES_ERROR);
-        }
+        return imgDetailsEntity;
 
 
     }
 
     @Override
-    public List<ImgDetailVo> getAllImgByAlbum(long page, long limit, String albumId) {
+    @Transactional(rollbackFor = Exception.class)
+    public void updateStatus(ImgDetailsDTO imgDetailsDTO) {
 
+        baseDao.updateById(ConvertUtils.sourceToTarget(imgDetailsDTO, ImgDetailsEntity.class));
 
-        return baseDao.getAllImgByAlbum(page, limit, albumId);
+        ImgDetailsEntity imgDetailsEntity = baseDao.selectById(imgDetailsDTO.getId());
 
+        ImgDetailSearchVo imgDetailSearchVo = ConvertUtils.sourceToTarget(imgDetailsEntity, ImgDetailSearchVo.class);
+
+        UserEntity userEntity = userDao.selectById(imgDetailsEntity.getUserId());
+        imgDetailSearchVo.setUsername(userEntity.getUsername())
+                .setAvatar(userEntity.getAvatar())
+                .setOtherUserId(userEntity.getUserId())
+                .setTime(imgDetailsEntity.getUpdateDate());
+
+//        if (imgDetailsDTO.getType() == 0) {
+//
+//            redisUtils.hPut(imgDetailKey, String.valueOf(imgDetailsEntity.getId()), JSON.toJSONString(imgDetailsEntity));
+//
+//            try {
+//                esClient.addData(imgDetailSearchVo);
+//            } catch (Exception e) {
+//                throw new RenException(Constant.ES_ERROR);
+//            }
+//        } else {
+//
+//            redisUtils.hDelete(imgDetailKey, String.valueOf(imgDetailsEntity.getId()));
+//            redisUtils.hPut(imgDetailKey, String.valueOf(imgDetailsEntity.getId()), JSON.toJSONString(imgDetailsEntity));
+//
+//            try {
+//                esClient.update(imgDetailSearchVo);
+//            } catch (Exception e) {
+//                throw new RenException(Constant.ES_ERROR);
+//            }
+//        }
+
+    }
+
+    @Override
+    public List<ImgDetailVo> getAllImgByAlbum(long page, long limit, String albumId, Integer type) {
+
+        return baseDao.getAllImgByAlbum(page, limit, albumId, type);
+//（垃圾代码）
 //        List<AlbumImgRelationEntity> albumImgRelation = albumImgRelationDao.selectList(new QueryWrapper<AlbumImgRelationEntity>().eq("aid", albumId));
 //
 //        List<String> idList = albumImgRelation.stream().map(e -> String.valueOf(e.getMid())).collect(Collectors.toList());
@@ -223,81 +244,130 @@ public class ImgDetailsServiceImpl extends BaseServiceImpl<ImgDetailsDao, ImgDet
     @Override
     public ImgDetailInfoVo getOne(String id) {
 
-        //首先先查看缓存中是否有数据
-        String key = ImgDetailCacheNames.IMG_DETAIL+ id;
+        //视频浏览记录
+        String viewRecordKey = ImgDetailCacheNames.IMG_VIEW_RECORD + id;
 
-        if (Boolean.TRUE.equals(redisUtils.hasKey(key))) {
-            String strObject = redisUtils.get(key);
-            ImgDetailInfoVo imgDetailInfoVo = JSON.parseObject(strObject, ImgDetailInfoVo.class);
-            //imgDetailInfoVo.setViewCount(imgDetailInfoVo.getViewCount() + 1);
-            redisUtils.setEx(key, JSON.toJSONString(imgDetailInfoVo), 60, TimeUnit.SECONDS);
-            return imgDetailInfoVo;
+        if (Boolean.TRUE.equals(redisUtils.hasKey(viewRecordKey))) {
+            int count = Integer.parseInt(redisUtils.get(viewRecordKey));
+            redisUtils.set(viewRecordKey, String.valueOf(count + 1));
         } else {
+            redisUtils.set(viewRecordKey, "1");
+        }
 
-            ImgDetailsEntity imgDetailsEntity = baseDao.selectById(id);
-            CategoryEntity categoryEntity = categoryDao.selectById(imgDetailsEntity.getCategoryId());
-            CategoryEntity categoryParentEntity = categoryDao.selectById(imgDetailsEntity.getCategoryPid());
-            List<String> imgList = JSON.parseArray(imgDetailsEntity.getImgsUrl(), String.class);
-            UserEntity user = userDao.selectById(imgDetailsEntity.getUserId());
+        String imgInfoKey = ImgDetailCacheNames.IMG_INFO_KEY + id;
+        String agreeImgKey = ImgDetailCacheNames.AGREE_IMG_KEY + id;
+        String albumImgRelationKey = ImgDetailCacheNames.ALBUM_IMG_RELATION_KEY + id;
 
-            ImgDetailInfoVo imgDetailInfoVo = ConvertUtils.sourceToTarget(imgDetailsEntity, ImgDetailInfoVo.class);
-
-
-            imgDetailInfoVo.setCategoryName(categoryEntity.getName())
-                    .setCategoryPName(categoryParentEntity.getName())
-                    .setImgsUrl(imgList)
-                    .setUserId(user.getId())
-                    .setUsername(user.getUsername())
-                    .setAvatar(user.getAvatar())
-                    .setTime(DateUtils.timeUtile(imgDetailsEntity.getUpdateDate()));
-
-            //得到当前图像的所有标签
-            TagImgRelationEntity tagImgRelation = tagImgRelationDao.selectOne(new QueryWrapper<TagImgRelationEntity>().eq("mid", id));
-            String strTagIds = tagImgRelation.getTagIds();
-
-            List<String> ids = new ArrayList<>();
-            if (StringUtils.isNotEmpty(strTagIds)) {
-                String[] split = strTagIds.split(";");
-                ids.addAll(Arrays.asList(split));
+        if (Boolean.TRUE.equals(redisUtils.hasKey(imgInfoKey))) {
+            ImgDetailInfoVo imgDetailInfoVo = JSON.parseObject(redisUtils.get(imgInfoKey), ImgDetailInfoVo.class);
+            int viewCount = Integer.parseInt(redisUtils.get(viewRecordKey));
+            int agreeCount = 0;
+            int collectCount = 0;
+            if (Boolean.TRUE.equals(redisUtils.hasKey(agreeImgKey))) {
+                agreeCount = JSON.parseArray(redisUtils.get(agreeImgKey), Long.class).size();
+            }
+            if (Boolean.TRUE.equals(redisUtils.hasKey(albumImgRelationKey))) {
+                collectCount = JSON.parseArray(redisUtils.get(albumImgRelationKey), Long.class).size();
             }
 
-            if (!ids.isEmpty()) {
-                List<TagEntity> tagList = tagDao.selectBatchIds(ids);
-                imgDetailInfoVo.setTagList(tagList);
-            }
-
-            //得到专辑
-            List<AlbumEntity> albumList = albumDao.selectList(new QueryWrapper<AlbumEntity>().eq("uid", user.getId()));
-            List<AlbumImgRelationEntity> albumImgRelationList = null;
-            //修改
-            for (AlbumEntity model : albumList) {
-                albumImgRelationList = albumImgRelationDao.selectList(new QueryWrapper<AlbumImgRelationEntity>().eq("aid", model.getId()));
-                for (AlbumImgRelationEntity e : albumImgRelationList) {
-                    if (StringUtils.equals(String.valueOf(e.getMid()), id)) {
-                        imgDetailInfoVo.setAlbum(model);
-                        break;
-                    }
-                }
-            }
-
-            //设置key
-            redisUtils.setEx(key, JSON.toJSONString(imgDetailInfoVo), 60, TimeUnit.SECONDS);
+            imgDetailInfoVo.setViewCount((long) viewCount);
+            imgDetailInfoVo.setAgreeCount((long) agreeCount);
+            imgDetailInfoVo.setCollectionCount((long) collectCount);
             return imgDetailInfoVo;
         }
 
+        ImgDetailsEntity imgDetailsEntity = baseDao.selectById(id);
+
+        List<String> imgList = JSON.parseArray(imgDetailsEntity.getImgsUrl(), String.class);
+        UserEntity user = userDao.selectById(imgDetailsEntity.getUserId());
+
+        List<Long> categoryIds = new ArrayList<>();
+        categoryIds.add(imgDetailsEntity.getCategoryId());
+        categoryIds.add(imgDetailsEntity.getCategoryPid());
+        List<CategoryEntity> categoryList = categoryDao.selectBatchIds(categoryIds);
+        HashMap<Integer, CategoryEntity> categoryMap = new HashMap<>();
+
+        categoryList.forEach(item -> {
+            if (item.getPid() == 0) {
+                categoryMap.put(0, item);
+            } else {
+                categoryMap.put(1, item);
+            }
+        });
+
+
+        ImgDetailInfoVo imgDetailInfoVo = ConvertUtils.sourceToTarget(imgDetailsEntity, ImgDetailInfoVo.class);
+
+        imgDetailInfoVo.setImgsUrl(imgList)
+                .setCategoryId(categoryMap.get(1).getId())
+                .setCategoryName(categoryMap.get(1).getName())
+                .setCategoryPid(categoryMap.get(0).getId())
+                .setCategoryPName(categoryMap.get(0).getName())
+                .setUserId(user.getId())
+                .setUsername(user.getUsername())
+                .setAvatar(user.getAvatar())
+                .setTime(DateUtils.timeUtile(imgDetailsEntity.getUpdateDate()));
+
+        //得到当前图像的所有标签
+        TagImgRelationEntity tagImgRelation = tagImgRelationDao.selectOne(new QueryWrapper<TagImgRelationEntity>().eq("mid", id));
+        String strTagIds = tagImgRelation.getTagIds();
+
+        List<String> ids = new ArrayList<>();
+        if (StringUtils.isNotEmpty(strTagIds)) {
+            String[] split = strTagIds.split(";");
+            ids.addAll(Arrays.asList(split));
+        }
+
+        if (!ids.isEmpty()) {
+            List<TagEntity> tagList = tagDao.selectBatchIds(ids);
+            imgDetailInfoVo.setTagList(tagList);
+        }
+
+        //得到专辑
+        List<AlbumEntity> albumList = albumDao.selectList(new QueryWrapper<AlbumEntity>().eq("uid", user.getId()));
+        //图片绑定多个专辑
+        List<AlbumImgRelationEntity> albumImgRelationList = albumImgRelationDao.selectList(new QueryWrapper<AlbumImgRelationEntity>().eq("mid", id));
+
+        HashMap<Long, AlbumEntity> albumMap = new HashMap<>();
+
+        albumList.forEach(item -> {
+            albumMap.put(item.getId(), item);
+        });
+
+
+        for (AlbumImgRelationEntity item : albumImgRelationList) {
+            if (albumMap.containsKey(item.getAid())) {
+                AlbumEntity albumEntity = albumMap.get(item.getAid());
+                imgDetailInfoVo.setAlbum(albumEntity);
+                break;
+            }
+        }
+        redisUtils.setEx(imgInfoKey, JSON.toJSONString(imgDetailInfoVo), 5, TimeUnit.DAYS);
+        return imgDetailInfoVo;
     }
 
+    /**
+     * 项目运行前先要把所有数据导入到es中
+     */
     @Override
     public void addBulkData() {
         List<ImgDetailsEntity> imgDetailsEntityList = baseDao.selectList(null);
         List<ImgDetailSearchVo> res = new ArrayList<>();
-        ImgDetailSearchVo imgDetailVo = null;
-        UserEntity user = null;
-        List<String> imgList = null;
+        ImgDetailSearchVo imgDetailVo;
+        UserEntity user;
+        List<String> imgList;
+
+        List<Long> uids = imgDetailsEntityList.stream().map(ImgDetailsEntity::getUserId).collect(Collectors.toList());
+        List<UserEntity> userList = userDao.selectBatchIds(uids);
+        HashMap<Long, UserEntity> userMap = new HashMap<>();
+
+        userList.forEach(item -> {
+            userMap.put(item.getId(), item);
+        });
+
         for (ImgDetailsEntity model : imgDetailsEntityList) {
             imgList = JSON.parseArray(model.getImgsUrl(), String.class);
-            user = userDao.selectOne(new QueryWrapper<UserEntity>().eq("id", model.getUserId()));
-
+            user = userMap.get(model.getUserId());
             imgDetailVo = ConvertUtils.sourceToTarget(model, ImgDetailSearchVo.class);
             imgDetailVo.setImgsUrl(imgList)
                     .setUserId(user.getId())
@@ -323,62 +393,83 @@ public class ImgDetailsServiceImpl extends BaseServiceImpl<ImgDetailsDao, ImgDet
         }
         //删除图片
         List<String> idList = Arrays.asList(ids);
+
         List<ImgDetailsEntity> imgDetailsEntityList = baseDao.selectBatchIds(idList);
-        List<AlbumImgRelationEntity> albumImgRelationList = null;
+
+        List<AlbumImgRelationEntity> albumImgRelationList;
 
         //删除图片收藏
         collectionDao.deleteBatchIdList(idList);
+
+
         //---
         for (ImgDetailsEntity model : imgDetailsEntityList) {
+            //图片绑定专辑
             albumImgRelationList = albumImgRelationDao.selectList(new QueryWrapper<AlbumImgRelationEntity>().eq("mid", model.getId()));
+
+            //所有绑定的专辑
+            List<Long> albumIds = albumImgRelationList.stream().map(AlbumImgRelationEntity::getAid).collect(Collectors.toList());
+
+            List<AlbumEntity> albumList = albumDao.selectBatchIds(albumIds);
+
+            HashMap<Long, AlbumEntity> albumMap = new HashMap<>();
+
+            albumList.forEach(item -> {
+                albumMap.put(item.getId(), item);
+            });
+
+
             if (String.valueOf(model.getUserId()).equals(uid)) {
+
                 for (AlbumImgRelationEntity albumImgRelationModel : albumImgRelationList) {
-                    AlbumEntity albumEntity = albumDao.selectById(albumImgRelationModel.getAid());
+                    AlbumEntity albumEntity = albumMap.get(albumImgRelationModel.getAid());
+
                     if (albumEntity.getImgCount() >= model.getCount()) {
                         albumEntity.setImgCount(albumEntity.getImgCount() - model.getCount());
                         albumDao.updateById(albumEntity);
                     }
+
                     albumImgRelationDao.delete(new QueryWrapper<AlbumImgRelationEntity>().and(e -> e.eq("mid", model.getId()).eq("aid", albumEntity.getId())));
-                    //删除缓存中的数据
-                    String key = ImgDetailCacheNames.IMG_DETAIL + model.getId();
-                    if (Boolean.TRUE.equals(redisUtils.hasKey(key))) {
-                        redisUtils.delete(key);
-                    }
 
-                    //删除关注用户中的数据
-                    String followKey = ImgDetailCacheNames.FOLLOW_TREND+model.getUserId();
-                    Set<String> listKey = redisUtils.getListKey(followKey);
-                    if(!listKey.isEmpty()){
-                        for(String e : listKey){
-                            redisUtils.delete(e);
-                        }
-                    }
 
-                    //删除用户动态中的数据
-                    String userTrendKey = ImgDetailCacheNames.USER_TREND+model.getUserId();
-                    if(Boolean.TRUE.equals(redisUtils.hasKey(userTrendKey))){
-                        redisUtils.delete(userTrendKey);
+                    String viewRecordKey = ImgDetailCacheNames.IMG_VIEW_RECORD + model.getId();
+                    if (Boolean.TRUE.equals(redisUtils.hasKey(viewRecordKey))) {
+                        redisUtils.delete(viewRecordKey);
                     }
-
 
                     //删除推荐系统中缓存的数据
-                    String recommendKey = ImgDetailCacheNames.RECOMMEND+model.getId();
-                    if(Boolean.TRUE.equals(redisUtils.hasKey(recommendKey))){
+                    String recommendKey = ImgDetailCacheNames.RECOMMEND + model.getId();
+                    if (Boolean.TRUE.equals(redisUtils.hasKey(recommendKey))) {
                         redisUtils.delete(recommendKey);
                     }
 
-                    //删除es种的数据
-                    try {
-                        esClient.delData(String.valueOf(model.getId()));
-                    } catch (Exception e) {
-                        throw new RenException(ErrorCode.JOB_ERROR);
+                    //删除hmap中的图片信息
+                    redisUtils.hDelete(imgDetailKey, String.valueOf(model));
+
+                    if (model.getStatus() == 1) {
+                        //删除es中的数据
+                        try {
+                            esClient.delData(String.valueOf(model.getId()));
+                        } catch (Exception e) {
+                            throw new RenException(ErrorCode.JOB_ERROR);
+                        }
                     }
+
+                    //删除oss对象存储中的图片
+                    List<String> fileNames = JSON.parseArray(model.getImgsUrl(), String.class);
+
+                    for (String item : fileNames) {
+                        if (WebUtils.isHttpUrl(item)) {
+                            ossClient.deleteFile(item);
+                        }
+                    }
+
                     baseDao.deleteById(model.getId());
                 }
             } else {
                 //找到当前图片所属专辑
                 for (AlbumImgRelationEntity albumImgRelationModel : albumImgRelationList) {
-                    AlbumEntity albumEntity = albumDao.selectById(albumImgRelationModel.getAid());
+                    AlbumEntity albumEntity = albumMap.get(albumImgRelationModel.getAid());
                     if (String.valueOf(albumEntity.getUid()).equals(uid)) {
                         albumImgRelationDao.delete(new QueryWrapper<AlbumImgRelationEntity>().and(e -> e.eq("mid", model.getId()).eq("aid", albumImgRelationModel.getAid())));
                     }
@@ -395,54 +486,55 @@ public class ImgDetailsServiceImpl extends BaseServiceImpl<ImgDetailsDao, ImgDet
     @Override
     public Page<ImgDetailVo> getHot(long page, long limit) {
 
+        Page<ImgDetailVo> resPage = new Page<>();
+
         String key = ImgDetailCacheNames.HOT;
-        if(Boolean.TRUE.equals(redisUtils.hasKey(key))) {
+        if (Boolean.TRUE.equals(redisUtils.hasKey(key))) {
             String objStr = redisUtils.get(key);
             List<ImgDetailVo> imgDetailVos = JSON.parseArray(objStr, ImgDetailVo.class);
             return PageUtils.getPages((int) page, (int) limit, imgDetailVos);
         }
 
-        List<ImgDetailsEntity> imgDetailsEntityList = baseDao.selectList(new QueryWrapper<ImgDetailsEntity>().orderByDesc("agree_count").ge("agree_count", 1));
+
+        Page<ImgDetailsEntity> imgDetailsEntityPage = baseDao.selectPage(new Page<>(page, limit), new QueryWrapper<ImgDetailsEntity>().orderByDesc("agree_count").ge("agree_count", 1));
+
         List<ImgDetailVo> list = new ArrayList<>();
-        ImgDetailVo imgDetailVo = null;
-        List<String> imgList = null;
-        UserEntity userEntity = null;
-        for (ImgDetailsEntity model : imgDetailsEntityList) {
+
+        List<ImgDetailsEntity> imgDetailList = imgDetailsEntityPage.getRecords();
+
+        List<Long> uids = imgDetailList.stream().map(ImgDetailsEntity::getUserId).collect(Collectors.toList());
+
+        List<UserEntity> userList = userDao.selectBatchIds(uids);
+
+        HashMap<Long, UserEntity> userMap = new HashMap<>();
+        userList.forEach(item -> {
+            userMap.put(item.getId(), item);
+        });
+
+
+        ImgDetailVo imgDetailVo;
+        List<String> imgList;
+        UserEntity userEntity;
+
+        for (ImgDetailsEntity model : imgDetailList) {
             imgList = JSON.parseArray(model.getImgsUrl(), String.class);
-            userEntity = userDao.selectById(model.getUserId());
+            userEntity = userMap.get(model.getUserId());
             imgDetailVo = ConvertUtils.sourceToTarget(model, ImgDetailVo.class);
             imgDetailVo.setImgsUrl(imgList)
                     .setUsername(userEntity.getUsername())
                     .setAvatar(userEntity.getAvatar());
             list.add(imgDetailVo);
         }
-        return PageUtils.getPages((int) page, (int) limit, list);
+        resPage.setRecords(list);
+        resPage.setTotal(imgDetailsEntityPage.getTotal());
 
+        return resPage;
 
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateImgDetail(ImgDetailsDTO imgDetailsDTO) throws MalformedModelException, ModelNotFoundException, TranslateException, IOException {
-        String key = ImgDetailCacheNames.IMG_DETAIL+ imgDetailsDTO.getId();
-
-        if (Boolean.TRUE.equals(redisUtils.hasKey(key))) {
-            redisUtils.delete(key);
-        }
-
-        String followKey = ImgDetailCacheNames.FOLLOW_TREND+imgDetailsDTO.getUserId();
-        Set<String> listKey = redisUtils.getListKey(followKey);
-        if(!listKey.isEmpty()){
-            for(String e : listKey){
-                redisUtils.delete(e);
-            }
-        }
-
-        String userTrendKey = ImgDetailCacheNames.USER_TREND+imgDetailsDTO.getUserId();
-        if(redisUtils.hasKey(userTrendKey)){
-            redisUtils.delete(userTrendKey);
-        }
-
+    public ImgDetailsEntity updateImgDetail(ImgDetailsDTO imgDetailsDTO) throws MalformedModelException, ModelNotFoundException, TranslateException, IOException {
 
         ImgDetailsEntity imgDetailsEntity = ConvertUtils.sourceToTarget(imgDetailsDTO, ImgDetailsEntity.class);
         baseDao.updateById(imgDetailsEntity);
@@ -458,12 +550,9 @@ public class ImgDetailsServiceImpl extends BaseServiceImpl<ImgDetailsDao, ImgDet
             albumImgRelationService.deleteAlbumImgRelation(albumImgRelationDTO);
         }
 
-
         AlbumEntity albumEntity = albumDao.selectById(imgDetailsDTO.getAlbumId());
         albumEntity.setImgCount(imgDetailsDTO.getCount() + albumEntity.getImgCount());
         albumDao.updateById(albumEntity);
-
-
 
         //插入新的绑定关系
         AlbumImgRelationEntity albumImgRelationEntity = new AlbumImgRelationEntity();
@@ -477,9 +566,10 @@ public class ImgDetailsServiceImpl extends BaseServiceImpl<ImgDetailsDao, ImgDet
 
         StringBuilder stringBuilder = getStringBuilder(imgDetailsDTO);
 
-        tagImgRelation.setTagIds(stringBuilder.toString());
-        tagImgRelationDao.updateById(tagImgRelation);
-
+        if (stringBuilder.toString().length() > 0) {
+            tagImgRelation.setTagIds(stringBuilder.toString());
+            tagImgRelationDao.updateById(tagImgRelation);
+        }
 
         ImgDetailSearchVo imgDetailVo = ConvertUtils.sourceToTarget(imgDetailsEntity, ImgDetailSearchVo.class);
 
@@ -488,28 +578,12 @@ public class ImgDetailsServiceImpl extends BaseServiceImpl<ImgDetailsDao, ImgDet
         imgDetailVo.setAvatar(userEntity.getAvatar());
         imgDetailVo.setOtherUserId(userEntity.getUserId());
 
-        String recommendKey = ImgDetailCacheNames.RECOMMEND+imgDetailsEntity.getId();
+        String recommendKey = ImgDetailCacheNames.RECOMMEND + imgDetailsEntity.getId();
 
-        if(Boolean.TRUE.equals(redisUtils.hasKey(recommendKey))){
+        if (Boolean.TRUE.equals(redisUtils.hasKey(recommendKey))) {
             redisUtils.delete(recommendKey);
         }
 
-
-
-        try {
-            esClient.update(imgDetailVo);
-        } catch (Exception e) {
-            throw new RenException(Constant.ES_ERROR);
-        }
-
+        return imgDetailsEntity;
     }
-
-//    @Override
-//    public List<ImgDetailSearchVo> search(long page, long limit, String keyword) {
-//        try {
-//            return esClient.esSearch(page, limit, keyword);
-//        } catch (Exception e) {
-//            throw new RenException(Constant.ES_ERROR);
-//        }
-//    }
 }

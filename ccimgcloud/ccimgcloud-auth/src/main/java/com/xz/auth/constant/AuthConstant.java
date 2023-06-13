@@ -1,5 +1,8 @@
 package com.xz.auth.constant;
 
+/**
+ * @author 48423
+ */
 public interface AuthConstant {
 
     Integer ERROR_STATUE = 0;

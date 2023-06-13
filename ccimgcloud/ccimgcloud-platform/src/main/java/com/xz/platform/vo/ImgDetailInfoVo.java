@@ -52,5 +52,7 @@ public class ImgDetailInfoVo implements Serializable {
 //
     private Long collectionCount;
 
+    private Long commentCount;
+
     private String time;
 }

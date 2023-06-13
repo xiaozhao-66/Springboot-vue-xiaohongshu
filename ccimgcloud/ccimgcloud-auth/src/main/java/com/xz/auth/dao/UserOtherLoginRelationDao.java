@@ -1,7 +1,6 @@
 package com.xz.auth.dao;
 
 import com.xz.auth.entity.UserOtherLoginRelationEntity;
-import com.xz.auth.entity.UserRecordEntity;
 import com.xz.common.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 

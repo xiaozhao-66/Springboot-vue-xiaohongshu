@@ -1,6 +1,6 @@
 package com.xz.platform.dto;
 
-import com.xz.common.utils.DateUtils;
+
 import com.xz.common.validator.group.DefaultGroup;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -8,7 +8,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
-import java.util.Date;
+
 
 
 /**

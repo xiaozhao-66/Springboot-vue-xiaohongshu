@@ -2,6 +2,8 @@ import { request } from '../utils/request.js'
 import { appConfig } from '../config/config.js'
 
 
+
+
 export function followUser (data) {
   return request.post(appConfig.WEB_API + `/platform/follow/followUser`, data)  
 }

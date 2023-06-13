@@ -1,11 +1,6 @@
 package com.xz.platform.websocket;
 
-import com.alibaba.fastjson.JSON;
-import com.xz.common.utils.RedisUtils;
-import com.xz.platform.entity.UserEntity;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;

@@ -1,12 +1,9 @@
 package com.xz.platform.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xz.common.utils.Result;
 import com.xz.platform.dto.SearchRecordDTO;
 import com.xz.platform.service.SearchRecordService;
-import com.xz.platform.vo.ImgDetailVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

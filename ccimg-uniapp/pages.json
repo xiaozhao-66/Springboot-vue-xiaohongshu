@@ -202,15 +202,6 @@
             
         },
 		{
-		    "path" : "pages/index/dashboard/dashboard",
-		    "style" :                                                                                    
-		    {
-		        "navigationBarTitleText": "",
-		        "enablePullDownRefresh": false
-		    }
-		    
-		},
-		{
 		    "path" : "pages/user/albums/albums",
 		    "style" :                                                                                    
 		    {
@@ -368,6 +359,7 @@
             }
             
         }
+        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
@@ -387,7 +379,8 @@
 				"iconWidth": "50px",
 				"text": "发布"
 			},
-			"list": [{
+			"list": [
+				{
 					"pagePath": "pages/index/index",
 					"text": "首页",
 					"iconPath": "/static/images/tabbar/home.png",

@@ -2,8 +2,12 @@ import { request } from '../utils/request.js'
 import { appConfig } from '../config/config.js'
 
 
-export function publish (imgInfo) {
-  return request.post(appConfig.WEB_API + '/platform/imgdetails/publish', imgInfo)  
+export function publish (data) {
+  return request.post(appConfig.WEB_API + '/platform/imgdetails/publish', data)  
+}
+
+export function updateStatus (data) {
+  return request.post(appConfig.WEB_API + '/platform/imgdetails/updateStatus', data)  
 }
 
 

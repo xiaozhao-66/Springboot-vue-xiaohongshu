@@ -19,5 +19,5 @@ public interface ImgDetailsDao extends BaseDao<ImgDetailsEntity> {
 
     List<ImgDetailsEntity> selectBatch(Map<String, Object> map);
 
-    List<ImgDetailVo> getAllImgByAlbum(long page, long limit, String albumId);
+    List<ImgDetailVo> getAllImgByAlbum(long page, long limit, String albumId,Integer type);
 }

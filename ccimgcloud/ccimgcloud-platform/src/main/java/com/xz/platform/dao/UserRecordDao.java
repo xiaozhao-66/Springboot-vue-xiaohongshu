@@ -4,6 +4,8 @@ import com.xz.common.dao.BaseDao;
 import com.xz.platform.entity.UserRecordEntity;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * 
  *
@@ -12,5 +14,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserRecordDao extends BaseDao<UserRecordEntity> {
-	
+
+    List<UserRecordEntity> selectBatchByUid(List<Long> uids);
 }

@@ -2,7 +2,6 @@ package com.xz.platform.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xz.common.service.BaseService;
-import com.xz.common.service.CrudService;
 import com.xz.platform.dto.FollowDTO;
 import com.xz.platform.entity.FollowEntity;
 import com.xz.platform.vo.FollowTrendVo;
@@ -29,4 +28,5 @@ public interface FollowService extends BaseService<FollowEntity> {
     List<FollowVo> getAllFriend(String uid, Integer type);
 
     void clearFollow(FollowDTO followDTO);
+
 }

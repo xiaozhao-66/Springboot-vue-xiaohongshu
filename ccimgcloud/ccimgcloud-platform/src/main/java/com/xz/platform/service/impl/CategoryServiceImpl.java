@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xz.common.service.impl.BaseServiceImpl;
 import com.xz.common.utils.ConvertUtils;
-import com.xz.common.utils.PageUtils;
 import com.xz.common.utils.TreeUtils;
 import com.xz.common.constant.cacheConstant.CategoryCacheNames;
 import com.xz.platform.dao.CategoryDao;
@@ -19,8 +18,8 @@ import com.xz.platform.vo.ImgDetailVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.*;
 
 /**
  * 
@@ -51,31 +50,48 @@ public class CategoryServiceImpl extends BaseServiceImpl<CategoryDao, CategoryEn
     @Override
     public Page<ImgDetailVo> getImgListByCategory(long page, long limit, String id, Integer type) {
 
-        List<ImgDetailsEntity> imgDetailsEntityList = null;
+        Page<ImgDetailVo> pages = new Page<>();
+        Page<ImgDetailsEntity> imgDetailPage;
         if (type == 1) {
             //随便看看
-            imgDetailsEntityList = imgDetailsDao.selectList(new QueryWrapper<ImgDetailsEntity>().eq("category_pid", id).orderByDesc("update_date"));
+            imgDetailPage = imgDetailsDao.selectPage(new Page<>(page, limit), new QueryWrapper<ImgDetailsEntity>().eq("category_pid", id).orderByDesc("update_date"));
         } else if (type == 2) {
             //获取热门
-            imgDetailsEntityList = imgDetailsDao.selectList(new QueryWrapper<ImgDetailsEntity>().eq("category_pid", id).orderByDesc("agree_count"));
+            imgDetailPage = imgDetailsDao.selectPage(new Page<>(page, limit), new QueryWrapper<ImgDetailsEntity>().eq("category_pid", id).orderByDesc("agree_count").orderByDesc("update_date"));
         } else {
             //获取二级分类下的所有笔记
-            imgDetailsEntityList = imgDetailsDao.selectList(new QueryWrapper<ImgDetailsEntity>().eq("category_id", id).orderByDesc("agree_count"));
+            imgDetailPage = imgDetailsDao.selectPage(new Page<>(page, limit), new QueryWrapper<ImgDetailsEntity>().eq("category_id", id).orderByDesc("agree_count").orderByDesc("update_date"));
         }
 
-        List<ImgDetailVo> res = new ArrayList<>();
-        ImgDetailVo imgDetailVo = null;
-        UserEntity userEntity = null;
-        for (ImgDetailsEntity model : imgDetailsEntityList) {
-            userEntity = userDao.selectById(model.getUserId());
+        List<ImgDetailsEntity> imgDetailList = imgDetailPage.getRecords();
 
+        Collection<Long> uids = new HashSet<>();
+
+        imgDetailList.forEach(item -> {
+            uids.add(item.getUserId());
+        });
+
+        List<UserEntity> userList = userDao.selectBatchIds(uids);
+        HashMap<Long, UserEntity> userMap = new HashMap<>();
+
+        userList.forEach(item -> {
+            userMap.put(item.getId(), item);
+        });
+
+        List<ImgDetailVo> res = new ArrayList<>();
+        ImgDetailVo imgDetailVo;
+        UserEntity userEntity;
+        for (ImgDetailsEntity model : imgDetailPage.getRecords()) {
             imgDetailVo = ConvertUtils.sourceToTarget(model, ImgDetailVo.class);
+            userEntity = userMap.get(model.getUserId());
             imgDetailVo.setUserId(userEntity.getId())
                     .setUsername(userEntity.getUsername())
                     .setAvatar(userEntity.getAvatar());
             res.add(imgDetailVo);
         }
+        pages.setRecords(res);
+        pages.setTotal(imgDetailPage.getTotal());
 
-        return PageUtils.getPages((int) page, (int) limit, res);
+        return pages;
     }
 }

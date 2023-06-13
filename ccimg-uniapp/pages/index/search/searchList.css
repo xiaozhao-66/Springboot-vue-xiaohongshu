@@ -1,0 +1,196 @@
+a {
+	text-decoration: none;
+	color: #7a7a7a;
+}
+
+ul {
+	padding-left: 0rpx;
+}
+
+li {
+	list-style: none;
+}
+
+/*  */
+.navbar {
+  height: 80rpx;
+  width: 100%;
+  border-bottom: 1rpx solid #cccccc ;
+  margin-bottom: 10rpx;
+}
+
+.nav-list {
+  width: 95%;
+  margin: auto;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-item {
+	display: inline-block;
+    font-size: 24rpx;
+    margin-right: 10px;
+  
+}
+
+.nav-link {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+.activated{
+	border-bottom: 2px solid #ff0000;
+}
+
+.dropdown-menu {
+  position: absolute;
+  background-color: #fff;
+  width: 120rpx;
+  z-index: 999;
+}
+
+.dropdown-menu li{
+	padding: 10px;
+	text-align: center;
+}
+
+.dropdown-menu li:not(:last-child){
+	margin-bottom: 20rpx;
+}
+
+.menu-activated{
+	background-color: #d2d2d2;
+}
+
+.container {
+	
+}
+
+.main {
+	/* column-count: 2;
+	column-gap: 0rpx; */
+	width: 95%;
+	margin: auto;
+	background-color: #f4f4f4;
+}
+
+
+
+
+.page {
+	height: 90vh;
+}
+
+
+
+.tui-content-box {
+	width: 100%;
+	height: 44px;
+	padding: 0 30rpx;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+}
+
+.tui-avatar-box {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #eaeef1;
+	flex-shrink: 0;
+}
+
+
+.tui-search-box {
+	width: 100%;
+	height: 32px;
+	margin: 0 28rpx;
+	border-radius: 18px;
+	font-size: 14px;
+	background-color: #f1f1f1;
+	padding: 0 12px;
+	box-sizing: border-box;
+	color: #bfbfbf;
+	display: flex;
+	align-items: center;
+}
+
+
+
+.tui-search-text {
+	padding-left: 10rpx;
+}
+
+.tui-notice-box {
+	position: relative;
+	flex-shrink: 0;
+	font-size: 44rpx;
+	color: #fff;
+}
+
+
+.loadStyle {
+	margin-top: 20rpx;
+	width: 100%;
+	height: 60rpx;
+	text-align: center;
+	color: #bfbfbf;
+}
+
+
+/* 用户列表 */
+.tui-item-box {
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.tui-msg-box {
+	display: flex;
+	align-items: center;
+}
+
+.tui-msg-pic {
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 50%;
+	display: block;
+	margin-right: 24rpx;
+	flex-shrink: 0;
+}
+
+.tui-msg-img {
+	width: 120rpx;
+	height: 160rpx;
+	border-radius: 5px;
+	display: block;
+	margin-right: 24rpx;
+	flex-shrink: 0;
+}
+
+.tui-msg-item {
+	max-width: 500rpx;
+	min-height: 100rpx;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.tui-msg-right {
+	max-width: 120rpx;
+	height: 88rpx;
+	margin-left: auto;
+	text-align: right;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-end;
+}

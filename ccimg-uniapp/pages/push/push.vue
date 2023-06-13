@@ -20,19 +20,20 @@
 					<image :src="item" @click="previewImgae(index)" mode="aspectFill"></image>
 				</view>
 				<view class="img-item">
-					
+
 					<view class="upload">
 						<view class="img-icon" @click="chooseImg">
 							<tui-icon name="plus"></tui-icon>
 						</view>
 					</view>
-					
+
 				</view>
 			</view>
 
 			<view class="content">
 
-				<textarea placeholder="请输入内容" maxlength="300" class="content-input" v-model="imgInfo.content"></textarea>
+				<textarea placeholder="请输入内容" maxlength="300" class="content-input"
+					v-model="imgInfo.content"></textarea>
 
 			</view>
 			<view class="tag">
@@ -103,400 +104,250 @@
 </template>s
 
 <script>
-import { getCategory } from "@/api/category.js"
-import { getOne } from '@/api/imgDetail.js'
-export default {
-	data() {
-		return {
-			popupShow: false,
-			imgList: [],
-			imgInfo: {},
-			imgsUrl: '',
-			tagList: [],
-			tagcontent: '',
-			categoryList: [],
-			categoryOne: {},
-			categoryArr: [],
-			modal: false,
-			type: 'add',
-			mid: '',
-			version: 0,
-		}
-	},
-	onLoad(option) {
-
-		if (option.mid != null && option.type != null && option.version == 0) {
-			this.mid = option.mid
-			this.type = option.type
-			this.getOne(this.mid)
-		} else {
-			this.mid = option.mid
-			this.type = option.type
-		}
-	},
-	onShow() {
-		this.getTagContent()
-	},
-	created() {
-		this.imgList = JSON.parse(uni.getStorageSync("imgList"))
-	},
-	onBackPress(options) {
-		/**
-		 * 由于 uni.navigateBack() 同样会触发 onBackPress 函数。
-		 * 因此在 onBackPress 中直接调用 uni.navigateBack() 并始终返回 true 会引发死循环。
-		 * 此时，需要根据onBackPress的回调对象中的from值来做处理，当来源是'navigateBack'时，返回 false 。
-		*/
-		// console.log("----------onBackPress---------", options)
-		if (options.from === 'navigateBack') {
-			return false;
-		}
-		this.back();
-		return true;
-	},
-
-	methods: {
-		back() {
-			this.modal = true
-		},
-		handleClick(e) {
-			let index = e.index;
-			if (index == 1) {
-				uni.removeStorageSync("imgList")
-				uni.removeStorageSync("tags")
-				uni.removeStorageSync("imgInfo")
-				uni.switchTab({
-					url: "/pages/index/index"
-				})
+	import {
+		getCategory
+	} from "@/api/category.js"
+	import {
+		getOne
+	} from '@/api/imgDetail.js'
+	export default {
+		data() {
+			return {
+				popupShow: false,
+				imgList: [],
+				imgInfo: {},
+				imgsUrl: '',
+				tagList: [],
+				tagcontent: '',
+				categoryList: [],
+				categoryOne: {},
+				categoryArr: [],
+				modal: false,
+				type: 'add',
+				mid: '',
+				version: 0,
 			}
-			this.hide();
 		},
-		hide() {
-			this.modal = false
-		},
-		show() {
-			this.popupShow = true
-			getCategory().then(res => {
+		onLoad(option) {
 
-				this.categoryList = res.data
-			})
-		},
-		
-		chooseImg(){
-			let that = this
-			
-			if(that.imgList.length>=9){
-				uni.showToast({
-					title:"图片上限"
-				})
-				return 
-			}
-			
-			let maxCount = 9 - that.imgList.length
-			uni.chooseImage({
-				  count: maxCount, // 最多可以选择的图片张数，默认9
-				  sizeType: ['original'], //original 原图，compressed 压缩图，默认二者都有
-				  sourceType: ['album'], //album 从相册选图，camera 使用相机，默认二者都有。如需直接开相机或直接选相册，请只使用一个选项
-				  success: function(res) {
-					  that.imgList.push(...res.tempFilePaths)
-					  uni.setStorageSync("imgList",JSON.stringify(that.imgList))
-				}
-			  }) 
-						
-		},
-		
-		previewImgae(index) {
-			let that = this
-			uni.previewImage({
-				current: index,     // 当前显示图片的索引值
-				urls: that.imgList,    // 需要预览的图片列表，photoList要求必须是数组
-				longPressActions: {
-					itemList: ['删除'],
-					success: function(data) {
-						console.log('选中了第' + (data.tapIndex + 1) + '个按钮,第' + (data.index + 1) + '张图片');
-						that.imgList.splice(data.index, 1)
-						uni.setStorageSync("imgList",JSON.stringify(that.imgList))
-						uni.closePreviewImage()
-					},
-					fail: function(err) {
-						console.log(err.errMsg);
-					}
-				}
-			})
-		},
-
-		getCategoryTwo(category) {
-			this.categoryOne = category
-			this.categoryArr[0] = category.name
-		},
-		getCategoryInfo(category) {
-
-			this.categoryArr[1] = category.name
-			this.imgInfo.categoryId = category.id
-			this.imgInfo.categoryPid = category.pid
-			this.popupShow = false
-			this.imgInfo.categoryStr = this.categoryArr[0] + '-' + this.categoryArr[1]
-		},
-		popup() {
-			this.popupShow = false
-		},
-		getTagContent() {
-			let that = this
-			that.tagList = JSON.parse(uni.getStorageSync('tags'))
-			that.imgInfo = JSON.parse(uni.getStorageSync("imgInfo"))
-			let str = ''
-
-			for (let i = 0; i < that.tagList.length; i++) {
-				str += '#' + that.tagList[i].name
-			}
-			that.tagcontent = str
-		},
-		nextAddTag() {
-
-			//这两行非常重要
-			this.imgInfo.tags = this.tagList
-			uni.setStorageSync('imgInfo', JSON.stringify(this.imgInfo))
-
-			if (this.type == 'update') {
-
-				uni.navigateTo({
-					url: "/pages/addtag/addtag?mid=" + this.mid + '&type=update'
-				})
-
+			if (option.mid != null && option.type != null && option.version == 0) {
+				this.mid = option.mid
+				this.type = option.type
+				this.getOne(this.mid)
 			} else {
-				uni.navigateTo({
-					url: "/pages/addtag/addtag?mid=" + this.mid + '&type=add'
-				})
+				this.mid = option.mid
+				this.type = option.type
 			}
-
-
 		},
-		next() {
+		onShow() {
+			this.getTagContent()
+		},
+		created() {
+			this.imgList = JSON.parse(uni.getStorageSync("imgList"))
+		},
+		onBackPress(options) {
+			/**
+			 * 由于 uni.navigateBack() 同样会触发 onBackPress 函数。
+			 * 因此在 onBackPress 中直接调用 uni.navigateBack() 并始终返回 true 会引发死循环。
+			 * 此时，需要根据onBackPress的回调对象中的from值来做处理，当来源是'navigateBack'时，返回 false 。
+			 */
+			// console.log("----------onBackPress---------", options)
+			if (options.from === 'navigateBack') {
+				return false;
+			}
+			this.back();
+			return true;
+		},
 
-			let that = this
-
-			let userInfo = uni.getStorageSync("userInfo")
-
-			if (userInfo.username == null) {
-				let params = {
-					title: "请先登录",
+		methods: {
+			back() {
+				this.modal = true
+			},
+			handleClick(e) {
+				let index = e.index;
+				if (index == 1) {
+					uni.removeStorageSync("imgList")
+					uni.removeStorageSync("tags")
+					uni.removeStorageSync("imgInfo")
+					uni.switchTab({
+						url: "/pages/index/index"
+					})
 				}
-				that.$refs.toast.show(params);
-			} else {
+				this.hide();
+			},
+			hide() {
+				this.modal = false
+			},
+			show() {
+				this.popupShow = true
+				getCategory().then(res => {
 
+					this.categoryList = res.data
+				})
+			},
 
-				if (typeof that.imgInfo.content == 'undefined' || that.imgInfo.content == '') {
-					let params = {
-						title: "请输入内容",
+			chooseImg() {
+				let that = this
+
+				if (that.imgList.length >= 9) {
+					uni.showToast({
+						title: "图片上限"
+					})
+					return
+				}
+
+				let maxCount = 9 - that.imgList.length
+				uni.chooseImage({
+					count: maxCount, // 最多可以选择的图片张数，默认9
+					sizeType: ['original'], //original 原图，compressed 压缩图，默认二者都有
+					sourceType: ['album'], //album 从相册选图，camera 使用相机，默认二者都有。如需直接开相机或直接选相册，请只使用一个选项
+					success: function(res) {
+						that.imgList.push(...res.tempFilePaths)
+						uni.setStorageSync("imgList", JSON.stringify(that.imgList))
 					}
-					that.$refs.toast.show(params);
-				} else if (typeof that.imgInfo.categoryStr == 'undefined' || that.imgInfo.categoryStr == '') {
+				})
+
+			},
+
+			previewImgae(index) {
+				let that = this
+				uni.previewImage({
+					current: index, // 当前显示图片的索引值
+					urls: that.imgList, // 需要预览的图片列表，photoList要求必须是数组
+					longPressActions: {
+						itemList: ['删除'],
+						success: function(data) {
+
+							that.imgList.splice(data.index, 1)
+							uni.setStorageSync("imgList", JSON.stringify(that.imgList))
+							uni.closePreviewImage()
+						},
+						fail: function(err) {
+							console.log(err.errMsg);
+						}
+					}
+				})
+			},
+
+			getCategoryTwo(category) {
+				this.categoryOne = category
+				this.categoryArr[0] = category.name
+			},
+			getCategoryInfo(category) {
+
+				this.categoryArr[1] = category.name
+				this.imgInfo.categoryId = category.id
+				this.imgInfo.categoryPid = category.pid
+				this.popupShow = false
+				this.imgInfo.categoryStr = this.categoryArr[0] + '-' + this.categoryArr[1]
+			},
+			popup() {
+				this.popupShow = false
+			},
+			getTagContent() {
+				let that = this
+				that.tagList = JSON.parse(uni.getStorageSync('tags'))
+				that.imgInfo = JSON.parse(uni.getStorageSync("imgInfo"))
+				let str = ''
+
+				for (let i = 0; i < that.tagList.length; i++) {
+					str += '#' + that.tagList[i].name
+				}
+				that.tagcontent = str
+			},
+			nextAddTag() {
+
+				//这两行非常重要
+				this.imgInfo.tags = this.tagList
+				uni.setStorageSync('imgInfo', JSON.stringify(this.imgInfo))
+
+				if (this.type == 'update') {
+
+					uni.navigateTo({
+						url: "/pages/addtag/addtag?mid=" + this.mid + '&type=update'
+					})
+
+				} else {
+					uni.navigateTo({
+						url: "/pages/addtag/addtag?mid=" + this.mid + '&type=add'
+					})
+				}
+
+
+			},
+			next() {
+
+				let that = this
+
+				let userInfo = uni.getStorageSync("userInfo")
+
+				if (userInfo.username == null) {
 					let params = {
-						title: "请选择一个分区",
+						title: "请先登录",
 					}
 					that.$refs.toast.show(params);
 				} else {
-					uni.getStorage({
-						key: 'tags',
-						success: function (res) {
-							that.tagList = JSON.parse(res.data)
+
+
+					if (typeof that.imgInfo.content == 'undefined' || that.imgInfo.content == '') {
+						let params = {
+							title: "请输入内容",
 						}
-					})
+						that.$refs.toast.show(params);
+					} else if (typeof that.imgInfo.categoryStr == 'undefined' || that.imgInfo.categoryStr == '') {
+						let params = {
+							title: "请选择一个分区",
+						}
+						that.$refs.toast.show(params);
+					} else {
+						uni.getStorage({
+							key: 'tags',
+							success: function(res) {
+								that.tagList = JSON.parse(res.data)
+							}
+						})
 
-					that.imgInfo.userId = userInfo.id
-					that.imgInfo.tags = that.tagList
+						that.imgInfo.userId = userInfo.id
+						that.imgInfo.tags = that.tagList
 
-					uni.setStorageSync('imgInfo', JSON.stringify(that.imgInfo))
+						uni.setStorageSync('imgInfo', JSON.stringify(that.imgInfo))
 
-					uni.navigateTo({
-						url: '/pages/addalbum/addalbum?type=' + that.type
-					})
+						uni.navigateTo({
+							url: '/pages/addalbum/addalbum?type=' + that.type
+						})
+					}
 				}
-			}
-		},
+			},
 
 
 
-		// ---------------编辑操作
-		getOne(mid) {
-			let params = {
-				id: mid
-			}
-			getOne(params).then(res => {
-
-				this.imgInfo = res.data
-				this.imgList = res.data.imgsUrl
-				this.tagList = res.data.tagList
-				this.imgInfo.categoryStr = res.data.categoryPName + '-' + res.data.categoryName;
-
-				uni.setStorageSync('tags', JSON.stringify(this.tagList))
-				uni.setStorageSync('imgList', JSON.stringify(this.imgList))
-				let str = ''
-
-				for (let i = 0; i < this.tagList.length; i++) {
-					str += '#' + this.tagList[i].name
+			// ---------------编辑操作
+			getOne(mid) {
+				let params = {
+					id: mid
 				}
-				this.tagcontent = str
+				getOne(params).then(res => {
 
-			})
-		},
+					this.imgInfo = res.data
+					this.imgList = res.data.imgsUrl
+					this.tagList = res.data.tagList
+					this.imgInfo.categoryStr = res.data.categoryPName + '-' + res.data.categoryName;
+
+					uni.setStorageSync('tags', JSON.stringify(this.tagList))
+					uni.setStorageSync('imgList', JSON.stringify(this.imgList))
+					let str = ''
+
+					for (let i = 0; i < this.tagList.length; i++) {
+						str += '#' + this.tagList[i].name
+					}
+					this.tagcontent = str
+
+				})
+			},
+		}
 	}
-}
 </script>
 
 <style scoped>
-a {
-	text-decoration: none;
-	color: black;
-}
-
-.nav {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding-right: 24rpx;
-	height: 80rpx;
-}
-
-.n-left {
-	display: flex;
-	align-items: center;
-	
-}
-
-.next{
-	font-size:26rpx;
-	color: #4d4d4d;
-}
-
-.tui-grid {
-	padding: 0rpx;
-
-}
-
-.card {
-	background-color: red;
-}
-
-
-.img-list {
-	/* display: flex;
-	flex-wrap: wrap;
-	width: 96%; */
-	margin: auto;
-	width: 95%;
-	overflow: hidden;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-
-.img-item{
-	 display: inline-block;
-}
-
-
-
-
-image {
-	width: 240rpx;
-	height: 240rpx;
-}
-
-.content {
-	width: 90%;
-	margin: auto;
-	
-}
-
-.tag {
-	width: 90%;
-	margin: auto;
-	height: 80rpx;
-	border-top: 1px solid #f4f4f4;
-	border-bottom: 1px solid #f4f4f4;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.icon {
-	display: flex;
-	align-items: center;
-	color: #adadad;
-}
-
-.tag-item {
-	width: 300rpx;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	color: #e40000;
-}
-
-
-
-.categoryBox {
-	display: flex;
-	height: 500rpx;
-
-	width: 100%;
-}
-
-.category-left {
-	width: 25%;
-
-}
-
-.category-right {
-	width: 75%;
-	/* overflow-y: scroll; */
-}
-
-.desc {
-	font-size: 24rpx;
-	width: 75vw;
-	clear: both;
-	/* 清除左右浮动 */
-	word-break: break-word;
-	/* 文本行的任意字内断开，就算是一个单词也会分开 */
-
-	word-wrap: break-word;
-	/* IE */
-
-	white-space: -moz-pre-wrap;
-	/* Mozilla */
-
-	white-space: -hp-pre-wrap;
-	/* HP printers */
-
-	white-space: -o-pre-wrap;
-	/* Opera 7 */
-
-	white-space: -pre-wrap;
-	/* Opera 4-6 */
-
-	white-space: pre;
-	/* CSS2 */
-
-	white-space: pre-wrap;
-	/* CSS 2.1 */
-
-	white-space: pre-line;
-	/* CSS 3 (and 2.1 as well, actually) */
-}
-
-/* picker end*/
-.upload {
-	width: 240rpx;
-	height: 240rpx;
-	background-color: #f4f4f4;
-	position: relative;
-
-}
-
-.img-icon {
-	position: absolute;
-	left: 35%;
-	top: 35%;
-}
-
+	@import url(./push.css);
 </style>

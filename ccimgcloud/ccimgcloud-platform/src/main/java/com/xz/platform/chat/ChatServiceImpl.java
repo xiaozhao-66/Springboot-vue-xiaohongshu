@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author xiaozhao
@@ -100,9 +101,18 @@ public class ChatServiceImpl implements ChatService {
         List<MessageUserRelationEntity> fromUserList = messageUserRelationDao.selectList(new QueryWrapper<MessageUserRelationEntity>().eq("accept_id", uid));
         List<MessageVo> messageVoList = new ArrayList<>();
 
+        List<Long> sendUids = fromUserList.stream().map(MessageUserRelationEntity::getSendId).collect(Collectors.toList());
+        List<UserEntity> userList = userDao.selectBatchIds(sendUids);
+        HashMap<Long, UserEntity> userMap = new HashMap<>();
+
+        userList.forEach(item -> {
+            userMap.put(item.getId(), item);
+        });
+
+
         for (MessageUserRelationEntity model : fromUserList) {
             MessageVo messageVo = ConvertUtils.sourceToTarget(model, MessageVo.class);
-            UserEntity userEntity = userDao.selectById(model.getSendId());
+            UserEntity userEntity = userMap.get(model.getSendId());
             messageVo.setSendId(String.valueOf(model.getSendId()))
                     .setAcceptId(String.valueOf(model.getAcceptId()))
                     .setDate(DateUtils.timeUtile(model.getUpdateDate()))
@@ -118,33 +128,34 @@ public class ChatServiceImpl implements ChatService {
         //得到所有的聊天记录
         List<MessageEntity> messageEntities = messageDao.selectList(new QueryWrapper<MessageEntity>().and(e -> e.eq("send_id", sendUid).eq("accept_id", acceptUid)));
 
+        UserEntity sendUser = userDao.selectById(sendUid);
         List<MessageVo> messageVoList = new ArrayList<>();
         for (MessageEntity model : messageEntities) {
-            UserEntity userEntity = userDao.selectById(sendUid);
             MessageVo messageVo = new MessageVo();
             messageVo.setSendId(sendUid)
                     .setAcceptId(acceptUid)
                     .setContent(model.getContent())
                     .setTime(model.getTime())
                     .setDate(DateUtils.timeUtile(model.getCreateDate()))
-                    .setUsername(userEntity.getUsername())
-                    .setAvatar(userEntity.getAvatar());
+                    .setUsername(sendUser.getUsername())
+                    .setAvatar(sendUser.getAvatar());
             messageVoList.add(messageVo);
         }
 
         List<MessageEntity> messageEntities2 = messageDao.selectList(new QueryWrapper<MessageEntity>().and(e -> e.eq("send_id", acceptUid).eq("accept_id", sendUid)));
 
+        UserEntity acceptUser = userDao.selectById(acceptUid);
         List<MessageVo> messageVoList2 = new ArrayList<>();
         for (MessageEntity model : messageEntities2) {
-            UserEntity userEntity = userDao.selectById(acceptUid);
+
             MessageVo messageVo = new MessageVo();
             messageVo.setAcceptId(sendUid)
                     .setSendId(acceptUid)
                     .setContent(model.getContent())
                     .setTime(model.getTime())
                     .setDate(DateUtils.timeUtile(model.getCreateDate()))
-                    .setUsername(userEntity.getUsername())
-                    .setAvatar(userEntity.getAvatar());
+                    .setUsername(acceptUser.getUsername())
+                    .setAvatar(acceptUser.getAvatar());
             messageVoList2.add(messageVo);
         }
         messageVoList.addAll(messageVoList2);

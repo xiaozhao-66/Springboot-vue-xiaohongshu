@@ -36,8 +36,8 @@ public class UserController {
      * @return
      */
     @RequestMapping("/getTrendByUser/{page}/{limit}")
-    public Result<?> getTrendByUser(@PathVariable long page, @PathVariable long limit, String userId) {
-        List<TrendVo> trendVoList = userService.getTrendByUser(page, limit, userId);
+    public Result<?> getTrendByUser(@PathVariable long page, @PathVariable long limit, String userId, Integer type) {
+        List<TrendVo> trendVoList = userService.getTrendByUser(page, limit, userId, type);
         return new Result<List<TrendVo>>().ok(trendVoList);
     }
 
@@ -87,7 +87,7 @@ public class UserController {
      */
     @RequestMapping("searchUserByUsername")
     public Result<?> searchUserByUsername(String keyword) {
-        UserVo user = userService.searchUserByUsername(keyword);
-        return new Result<>().ok(user);
+        List<UserVo> userVoList = userService.searchUserByUsername(keyword);
+        return new Result<>().ok(userVoList);
     }
 }

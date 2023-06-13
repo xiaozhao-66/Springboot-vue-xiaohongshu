@@ -2,6 +2,7 @@ package com.xz.search.service.impl;
 
 import cn.hutool.core.util.RandomUtil;
 import com.alibaba.fastjson.JSON;
+import com.xz.common.constant.cacheConstant.ImgDetailCacheNames;
 import com.xz.common.utils.RedisUtils;
 import com.xz.search.config.EsConstant;
 import com.xz.search.dto.ImgDetailSearchDTO;
@@ -53,6 +54,15 @@ public class EsServiceImpl implements EsService {
     RestHighLevelClient restHighLevelClient;
 
 
+    @Autowired
+    RedisUtils redisUtils;
+
+
+    private static final String records = "records";
+    private static final String total = "total";
+
+
+
     @Override
     public HashMap<String, Object> esSearch(long page, long limit, ImgDetailSearchDTO imgDetailSearchDTO) throws IOException {
         HashMap<String, Object> map = new HashMap<>();
@@ -91,10 +101,20 @@ public class EsServiceImpl implements EsService {
         for (SearchHit documentFields : hits.getHits()) {
             String sourceAsString = documentFields.getSourceAsString();
             ImgDetailSearchVo imgDetailSearchVo = JSON.parseObject(sourceAsString, ImgDetailSearchVo.class);
+
+            String agreeImgKey = ImgDetailCacheNames.AGREE_IMG_KEY+imgDetailSearchVo.getId();
+
+            if(Boolean.TRUE.equals(redisUtils.hasKey(agreeImgKey))){
+                int agreeCount = JSON.parseArray(redisUtils.get(agreeImgKey),Long.class).size();
+                imgDetailSearchVo.setAgreeCount((long)agreeCount);
+            }
+
             res.add(imgDetailSearchVo);
         }
-        map.put("records", res);
-        map.put("total", totalHits.value);
+
+
+        map.put(records, res);
+        map.put(total, totalHits.value);
         return map;
     }
 

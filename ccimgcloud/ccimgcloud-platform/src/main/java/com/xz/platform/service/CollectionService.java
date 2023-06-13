@@ -1,6 +1,6 @@
 package com.xz.platform.service;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+
 import com.xz.common.service.BaseService;
 import com.xz.platform.dto.CollectionDTO;
 import com.xz.platform.entity.CollectionEntity;
@@ -21,5 +21,5 @@ public interface CollectionService extends BaseService<CollectionEntity> {
 
     List<CollectionVo> getAllCollection(long page, long limit, String uid, Integer type);
 
-    Map<String,String> cancalCollection(CollectionDTO collectionDTO);
+    Map<String,String> cancelCollection(CollectionDTO collectionDTO);
 }

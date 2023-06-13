@@ -38,7 +38,6 @@ const send = (url, data = {}, method = 'POST', showLoading = true) => {
             success: (res) => {
                 uni.hideLoading()
 	
-	            console.log("执行登录")
 				if(res.statusCode==401){
 					 uni.showToast({
 						icon: "none",
