@@ -1,0 +1,36 @@
+server:
+  port: 88
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: yanhuo-auth
+          uri: lb://yanhuo-auth
+          predicates:
+            - Path=/api/auth/**
+#          filters:
+#            - RewritePath=/api/auth/(?<segment>.*),/auth/$\{segment}
+        - id: yanhuo-search
+          uri: lb://yanhuo-search
+          predicates:
+            - Path=/api/search/**
+        - id: yanhuo-recommend
+          uri: lb://yanhuo-recommend
+          predicates:
+            - Path=/api/recommend/**
+        - id: yanhuo-util
+          uri: lb://yanhuo-util
+          predicates:
+            - Path=/api/util/**
+        - id: yanhuo-platform
+          uri: lb://yanhuo-platform
+          predicates:
+            - Path=/api/platform/**
+        - id: yanhuo-admin
+          uri: lb://yanhuo-admin
+          predicates:
+            - Path=/api/admin/**

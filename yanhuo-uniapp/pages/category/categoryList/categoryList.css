@@ -1,0 +1,28 @@
+
+.page {
+	margin: auto;
+	width: 95%;
+	height: 95vh;
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-right: 24rpx;
+	height: 80rpx;
+}
+
+.n-left {
+	display: flex;
+	align-items: center;
+}
+
+.loadStyle {
+	margin-top: 20rpx;
+	width: 100%;
+	height: 60rpx;
+	text-align: center;
+	color: #bfbfbf;
+}
+

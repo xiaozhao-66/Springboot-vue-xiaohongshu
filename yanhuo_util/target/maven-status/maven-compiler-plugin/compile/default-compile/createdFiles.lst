@@ -1,0 +1,12 @@
+com\yanhuo\util\UtilApplication.class
+com\yanhuo\util\msm\service\impl\DmServiceImpl.class
+com\yanhuo\util\oss\service\impl\OssServiceImpl.class
+com\yanhuo\util\oss\controller\OssController.class
+com\yanhuo\util\msm\service\impl\MsmServiceImpl.class
+com\yanhuo\util\constant\OssConstant.class
+com\yanhuo\util\constant\OssConstant$CloudService.class
+com\yanhuo\util\msm\service\MsmService.class
+com\yanhuo\util\oss\service\OssService.class
+com\yanhuo\util\msm\controller\MsmController.class
+com\yanhuo\util\msm\service\DmService.class
+com\yanhuo\util\msm\controller\DmController.class

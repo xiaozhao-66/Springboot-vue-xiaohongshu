@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yanhuo.platform.dao.TagDao">
+
+    <select id="selectTagsNums" resultType="com.yanhuo.xo.model.Tag">
+
+        select * from t_tag order by count desc limit 0,#{nums};
+
+    </select>
+
+</mapper>

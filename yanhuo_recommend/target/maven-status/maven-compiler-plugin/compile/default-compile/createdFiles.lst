@@ -1,0 +1,10 @@
+com\yanhuo\recommend\dao\TagImgRelationDao.class
+com\yanhuo\recommend\RecommendApplication.class
+com\yanhuo\recommend\service\impl\RecommendServiceImpl.class
+com\yanhuo\recommend\controller\RecommendController.class
+com\yanhuo\recommend\dao\UserDao.class
+com\yanhuo\recommend\dao\CategoryDao.class
+com\yanhuo\recommend\service\RecommendService.class
+com\yanhuo\recommend\utils\KeywordsExtractor.class
+com\yanhuo\recommend\dao\TagDao.class
+com\yanhuo\recommend\dao\ImgDetailDao.class

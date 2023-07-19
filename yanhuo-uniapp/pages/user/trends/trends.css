@@ -1,0 +1,214 @@
+ul {
+	padding: 0rpx;
+}
+
+li {
+
+	list-style: none;
+}
+
+.container {
+	margin-top: 40rpx;
+	
+	background-color: #f4f4f4;
+}
+
+.page {
+	height: 91vh;
+	
+}
+
+.item {
+	background-color: #fff;
+	border-bottom: 1px solid #f4f4f4;
+}
+
+.item .top{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.upload-loading{
+	font-size: 28rpx;
+	color: #9c9c9c;
+	margin-right: 40rpx;
+}
+
+li:not(:first-child) {
+	margin-top: 20px;
+}
+
+
+
+.avatar-user {
+	display: flex;
+	align-items: center;
+	margin-left: 10px;
+	padding-top: 10px;
+
+}
+
+.avatar-user image {
+	width: 80rpx;
+	height: 80rpx;
+	border-radius: 50%;
+}
+
+.name {
+	font-size: 35rpx;
+}
+
+.time {
+	color: #9c9c9c;
+	font-size: 24rpx;
+}
+
+.main {
+	padding-top: 10px;
+}
+
+
+.img-list {
+	margin-left: 10px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.img-list image {
+	width: 230rpx;
+	height: 230rpx;
+	margin-right: 5px;
+	border-radius: 8px;
+}
+
+.collection-album {
+	display: flex;
+	height: 60rpx;
+	align-items: center;
+	margin-left: 10px;
+	margin-right: 10px;
+	justify-content: space-between;
+}
+
+.collection-album .left {
+	display: flex;
+	align-items: center;
+	font-size: 24rpx;
+}
+
+.content1 {
+	margin: 0 5rpx;
+	color: #9c9c9c;
+}
+
+.content2 {
+
+	color: #fd6d49;
+}
+
+.fotter {
+	width: 94%;
+	height: 40rpx;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.content {
+	margin-left: 10px;
+	font-size: 32rpx;
+	clear: both;
+	/* 清除左右浮动 */
+	word-break: break-word;
+	/* 文本行的任意字内断开，就算是一个单词也会分开 */
+
+	word-wrap: break-word;
+	/* IE */
+
+	white-space: -moz-pre-wrap;
+	/* Mozilla */
+
+	white-space: -hp-pre-wrap;
+	/* HP printers */
+
+	white-space: -o-pre-wrap;
+	/* Opera 7 */
+
+	white-space: -pre-wrap;
+	/* Opera 4-6 */
+
+	white-space: pre;
+	/* CSS2 */
+
+	white-space: pre-wrap;
+	/* CSS 2.1 */
+
+	white-space: pre-line;
+	/* CSS 3 (and 2.1 as well, actually) */
+}
+
+.icon {
+	display: flex;
+	align-items: center;
+
+}
+
+.count {
+	color: #5c5c5c;
+	font-size: 30rpx;
+}
+
+.loadStyle {
+	margin-top: 20rpx;
+	width: 100%;
+	height: 60rpx;
+	text-align: center;
+	color: #bfbfbf;
+}
+
+
+/* 图片淡入淡出 */
+.fadeImg {
+width: 100px;
+height: 100px;
+background: #fff;
+-webkit-animation: fadeinout 2s linear forwards;
+animation: fadeinout 2s linear forwards;
+}
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 1; }
+50% { opacity: 0.5; }
+100% { opacity: 0; }
+}
+
+@keyframes fadeinout {
+0%{ opacity: 1; }
+50% { opacity: 0.5; }
+100% { opacity: 0; }
+}
+
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity: 0.5; }
+100% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+0%{ opacity:0; }
+50% { opacity: 0.5; }
+100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity:1; }
+}
+
+@keyframes fadeinout {
+0%{ opacity: 0; }
+50% { opacity:1; }
+}

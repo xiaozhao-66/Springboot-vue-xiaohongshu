@@ -1,7 +1,0 @@
-
-G
-java:S1602l",Remove useless curly braces around statement(Ëí—şûÿÿÿÿ
-^
-java:S1192<"HDefine a constant instead of duplicating this literal "send_id" 6 times.(Í¼·ÿ
-`
-java:S1192<"JDefine a constant instead of duplicating this literal "accept_id" 7 times.(Í¼·ÿ

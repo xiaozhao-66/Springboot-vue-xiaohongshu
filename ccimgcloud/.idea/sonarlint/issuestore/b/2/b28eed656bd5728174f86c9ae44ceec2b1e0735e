@@ -1,14 +1,0 @@
-
-o	java:S115^"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(æÆ¿Ž
-W	java:S125Â"<This block of commented-out lines of code should be removed.(­ÍÚ³ûÿÿÿÿ
-W	java:S125Þ"<This block of commented-out lines of code should be removed.(á’«“ýÿÿÿÿ
-B
-java:S1602Í",Remove useless curly braces around statement(„ñ¾
-H
-java:S1602ì",Remove useless curly braces around statement(Ëí—þûÿÿÿÿ
-i
-java:S3776…"RRefactor this method to reduce its Cognitive Complexity from 45 to the 15 allowed.(¼‘âÂ
-B
-java:S1602¡",Remove useless curly braces around statement(„ñ¾
-H
-java:S1602þ",Remove useless curly braces around statement(Ëí—þûÿÿÿÿ

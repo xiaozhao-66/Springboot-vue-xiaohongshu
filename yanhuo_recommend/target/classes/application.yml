@@ -1,0 +1,10 @@
+
+spring:
+  application:
+    name: yanhuo-recommend
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848

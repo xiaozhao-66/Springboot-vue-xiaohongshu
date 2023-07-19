@@ -1,0 +1,12 @@
+
+spring:
+  application:
+    name: yanhuo-admin
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+

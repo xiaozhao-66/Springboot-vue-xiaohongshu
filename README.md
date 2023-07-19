@@ -1,7 +1,7 @@
-# 烟火app
+# 烟火app 2.0
 
 <p align=center>
-    <img src="./ccimg-admin-vue/public/title.png" alt="烟火" style="width:200px;height:200px">
+    <img src="./doc/title.png" alt="烟火" style="width:200px;height:200px">
 </p>
 <p align=center>
    烟火app，一个基于微服务架构的前后端分离项目
@@ -20,10 +20,14 @@
 
 
 
-[项目介绍](#项目介绍) | [运行配置](#运行配置) | [测试账号](#测试账号) | [项目技术](#项目特点及功能) | [技术选型](#技术选型) |   | [关注&交流](#关注&交流) | [赞赏](#赞赏) | [项目截图](#项目截图)
 
+[项目介绍](#项目介绍) | [运行配置](#运行配置) | [测试账号](#测试账号) | [项目技术](#项目特点及功能) | [技术选型](#技术选型) |  [关注&交流](#关注&交流) | [赞赏](#赞赏) | [项目截图](#项目截图)
 
 ## 项目介绍
+
+#### **2.0版本发布，优化数据库和优化代码结构，管理员平台不再使用人人开源管理系统，准备自己从新搭建一个后台管理平台（正在开发中）**
+
+**需要旧版本请切换分支**
 
 烟火app一个**基于微服务架构的前后端分离系统**。**Web** 端使用 **Vue** + **ElementUi** , 移动端使用 **uniapp** 和 **ThorUI**。后端使用 **SpringCloud** + **SpringBoot** + **Mybatis-plus**进行开发，使用 **ElasticSearch**  作为全文检索服务，使用**webSocket**做聊天和消息推送，文件支持**七牛云**和**阿里云上传**.并支持本地**QQ**,**微信**和**微博**登录。
 
@@ -34,25 +38,26 @@
 【联系我】**QQ** 484235492或3044606584 **微信** 18572755162
 ## 运行配置
 
-数据库在`ccimgcloud-admin-vue`包下的`public`包中。有ccimg-admin.sql和ccimg-platform.sql两个数据库文件
+数据库在`doc`包中。`yanhuo.sql`
 
 **后端启动**
 
 - 首先需要把`redis`，`nacos`环境配置好并启动。
 
-- 启动`ccimgcloud-auth`,`ccimgcloud-gateway`,`ccimgcloud-platform`,`ccimgcloud-recommend`这四个服务就可以正常浏览项目。
+- 启动`yanhuo-auth`,`yanhuo-gateway`,`yanhuo-platform`,`yanhuo-recommend`这四个服务就可以正常浏览项目。
 
-- 如果需要使用图片上传,短信，邮箱,搜索功能，需要配置es环境并启动，并在`ccimgcloud-utils`模块中连接自己的oss账号，然后启动`ccimgcloud-search`和`ccimgcloud-utils`这两个服务。
+- 如果需要使用图片上传,短信，邮箱,搜索功能，需要配置es环境并启动，并在`yanhuo-util`模块中连接自己的`oss`账号，然后启动`yanhuo-search`和`yanhuo-util`这两个服务。
 
-- 如果只需要运行后台页面，则启动`ccimgcloud-admin`和`ccimgcloud-manage`模块即可
+- 如果只需要运行后台页面，则启动`yanhuo-admin`即可(暂未完成)
 
 **前端启动**
-- 将`ccimg-uniapp`项目导入到`hbuilder`中，正常启动即可
-- `ccimg-admin-vue`直接启动即可
+
+- 将`yanhuo-uniapp`项目导入到`hbuilder`中，正常启动即可
+- `yanhuo-admin-vue`直接启动即可
 
 ## 测试账号
 
-仓库中有apk测试文件，欢迎大家下载测试。当然也可以导入项目以后只在hbuilder中启动ccimg-uniapp也是可以正常浏览项目。
+仓库中有apk测试文件，欢迎大家下载测试。当然也可以导入项目以后只在hbuilder中启动yanhuo-uniapp也是可以正常浏览项目。
 
 烟火app测试账号 xiaozhao \
 烟火app测试密码 123456
@@ -65,7 +70,7 @@
 
 ## 后期维护
 
-项目移动端基本所有功能都做完，web端使用的人人开源管理项目，web端只实现了部分功能，后续有时间再完善。
+项目移动端基本所有功能都做完，后期准备把后台管理平台完成。。。
 
 
 
@@ -88,24 +93,20 @@
 目前项目托管在 **Gitee** 和 **Github** 平台上中，欢迎大家 **Star** 和 **Fork** 支持~
 
 - Gitee地址：https://gitee.com/xzjsccz/springboot-vue-ccimgcloud
-- Github地址：https://github.com/xiaozhao-66/ccimgcloud-springboot-vue
+- Github地址：https://github.com/xiaozhao-66/ccimgcloud-springboot-vue （github是旧版本）
 
 ## 项目目录
 
-- ccimg-admin-vue 后台管理页面
-- ccimg-uniapp 移动端页面
-- ccimgcloud-admin 后台管理服务
-- ccimgcloud-api 提供外部访问的api接口（未开发）
-- ccimgcloud-auth 认证服务
-- ccimgcloud-common 公共模块,存放一些工具类或公用类
-- ccimgcloud-datasource 数据源配置
-- ccimgcloud-generator 代码生成器（不重要）
-- ccimgcloud-manager 后台服务管理，主要是管理烟火app各个功能的后台服务。
-- ccimgcloud-platform 烟火app主要功能模块
-- ccimgcloud-recommend 推荐系统模块
-- ccimgcloud-search 搜索模块
-- ccimgcloud-utils  第三方服务模块，邮箱短信，oss对象存储服务
-  
+- yanhuo-admin-vue 后台管理页面
+- yanhuo-uniapp 移动端页面
+- yanhuo-admin 后台管理服务
+- yanhuo-auth 认证服务
+- yanhuo-common 公共模块,存放一些工具类或公用类
+- yanhuo-platform 烟火app主要功能模块
+- yanhuo-recommend 推荐系统模块
+- yanhuo-search 搜索模块
+- yanhuo-util  第三方服务模块，邮箱短信，oss对象存储服务
+- yanhuo-xo  对象存放模块
 
 ## 技术选型
 
@@ -133,10 +134,9 @@
 | :------------: | :-----------------------: 
 |   nodejs	   |         12.14.0（最好一致）    |  
 |  vue		   |    -     |   
-| Shiro |        -    |  
 |  uniapp	  |              -        |          
 | vueX	  |        -      |   
-|     axios	      |      -       |  
+|    axios	      |      -       |  
 |     其他组件      |    -          |  
 
 
@@ -155,26 +155,26 @@
 
 ## 项目截图
 
-|                        Admin端                         |                                                       |
+|                        移动端                         |                                                       |
 | :----------------------------------------------------: | :---------------------------------------------------: |
-|      ![image text](./ccimg-admin-vue/public/img/login.png)       |    ![image text](./ccimg-admin-vue/public/img/regist.png)    |
-|        ![image text](./ccimg-admin-vue/public/img/index.png)       |    ![image text](./ccimg-admin-vue/public/img/follow.png)     |
-|    ![image text](./ccimg-admin-vue/public/img/hot.png)    |     ![image text](./ccimg-admin-vue/public/img/main.png)      |
-|      ![image text](./ccimg-admin-vue/public/img/main-down.png)      |   ![image text](./ccimg-admin-vue/public/img/main-edit.png)   |
-|      ![image text](./ccimg-admin-vue/public/img/batchSave.png)      |    ![image text](./ccimg-admin-vue/public/img/search.png)     |
-|      ![image text](./ccimg-admin-vue/public/img/search-input.png)      |       ![image text](./ccimg-admin-vue/public/img/searchImg.png)        |
-|      ![image text](./ccimg-admin-vue/public/img/category.png)      |       ![image text](./ccimg-admin-vue/public/img/chatList.png)       |
-|      ![image text](./ccimg-admin-vue/public/img/agree-collect.png)      |  ![image text](./ccimg-admin-vue/public/img/addfollow.png)    |
+|      ![image text](./doc/img/login.png)       |    ![image text](./doc/img/regist.png)    |
+|        ![image text](./doc/img/index.png)       |    ![image text](./doc/img/follow.png)     |
+|    ![image text](./doc/img/hot.png)    |     ![image text](./doc/img/main.png)      |
+|      ![image text](./doc/img/main-down.png)      |   ![image text](./doc/img/main-edit.png)   |
+|      ![image text](./doc/img/batchSave.png)      |    ![image text](./doc/img/search.png)     |
+|      ![image text](./doc/img/search-input.png)      |       ![image text](./doc/img/searchImg.png)        |
+|      ![image text](./doc/img/category.png)      |       ![image text](./doc/img/chatList.png)       |
+|      ![image text](./doc/img/agree-collect.png)      |  ![image text](./doc/img/addfollow.png)    |
 |                                                        |                                                       |
-|      ![image text](./ccimg-admin-vue/public/img/addcomment.png)      |    ![image text](./ccimg-admin-vue/public/img/chat.png)    |
-|      ![image text](./ccimg-admin-vue/public/img/user.png)      |    ![image text](./ccimg-admin-vue/public/img/albums.png)      |
-|     ![image text](./ccimg-admin-vue/public/img/collection-img.png)       |  ![image text](./ccimg-admin-vue/public/img/collection-album.png)   |
+|      ![image text](./doc/img/addcomment.png)      |    ![image text](./doc/img/chat.png)    |
+|      ![image text](./doc/img/user.png)      |    ![image text](./doc/img/albums.png)      |
+|     ![image text](./doc/img/collection-img.png)       |  ![image text](./doc/img/collection-album.png)   |
 |                                                        |                                                       |
-|   ![image text](./ccimg-admin-vue/public/img/userInfo.png)    | ![image text](./ccimg-admin-vue/public/img/otherUser.png)  |
-|   ![image text](./ccimg-admin-vue/public/img/createAlbum.png)    | ![image text](./ccimg-admin-vue/public/img/albumInfo.png)  |
-|   ![image text](./ccimg-admin-vue/public/img/album-edit.png)    | ![image text](./ccimg-admin-vue/public/img/albumIndo-delete.png)  |
-|   ![image text](./ccimg-admin-vue/public/img/publish.png)    | ![image text](./ccimg-admin-vue/public/img/tags.png)  |
-|   ![image text](./ccimg-admin-vue/public/img/addAlbum.png)    |  |
+|   ![image text](./doc/img/userInfo.png)    | ![image text](./doc/img/otherUser.png)  |
+|   ![image text](./doc/img/createAlbum.png)    | ![image text](./doc/img/albumInfo.png)  |
+|   ![image text](./doc/img/album-edit.png)    | ![image text](./doc/img/albumIndo-delete.png)  |
+|   ![image text](./doc/img/publish.png)    | ![image text](./doc/img/tags.png)  |
+|   ![image text](./doc/img/addAlbum.png)    |  |
 
 |                       **Web端**                        
-|    ![image text](./ccimg-admin-vue/public/img/admin.jpg)     
+|    ![image text](./doc/img/admin.jpg)     

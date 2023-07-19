@@ -1,0 +1,71 @@
+
+a	java:S112Ê"FDefine and throw a dedicated exception instead of using a generic one.(èİÎÑşÿÿÿÿ
+t	java:S115 "ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ã‰·èÿÿÿÿÿ
+t	java:S115""ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¡èî˜şÿÿÿÿ
+n	java:S115'"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ü’À
+o	java:S115)"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ËêÉè
+m
+java:S3008"RRename this field "VERBOSE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡™‚çúÿÿÿÿ
+[
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(Ã¨
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(ùôÄúÿÿÿÿ
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(éªúıÿÿÿÿ
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(¡™‚çúÿÿÿÿ
+`
+java:S1124 "EReorder the modifiers to comply with the Java Language Specification.(Ã‰·èÿÿÿÿÿ
+`
+java:S1124""EReorder the modifiers to comply with the Java Language Specification.(¡èî˜şÿÿÿÿ
+Z
+java:S1124'"EReorder the modifiers to comply with the Java Language Specification.(ü’À
+[
+java:S1124)"EReorder the modifiers to comply with the Java Language Specification.(ËêÉè
+>
+java:S3066G"#Lower the visibility of this field.(‚¯¥ùÿÿÿÿ
+h
+java:S2786+"RRemove this redundant "static" qualifier; nested enum types are implicitly static.(Œ´ğ
+[
+java:S1124+"EReorder the modifiers to comply with the Java Language Specification.(Œ´ğ
+`
+java:S1124J"EReorder the modifiers to comply with the Java Language Specification.(ù§Ã“úÿÿÿÿ
+`
+java:S1124\"EReorder the modifiers to comply with the Java Language Specification.(£Õ†øÿÿÿÿ
+W
+java:S1854Ÿ";Remove this useless assignment to local variable "ivBytes".(õ÷³¬øÿÿÿÿ
+[
+java:S1124z"EReorder the modifiers to comply with the Java Language Specification.(‰¯ø 
+5
+java:S2119¬"Save and re-use this "Random".(ˆ·âÓ
+T	java:S106°"9Replace this use of System.out or System.err by a logger.(Ö„Òşÿÿÿÿÿ
+U
+java:S4719´"9Replace charset name argument with StandardCharsets.UTF_8(·¦Ûşùÿÿÿÿ
+\
+java:S1124É"EReorder the modifiers to comply with the Java Language Specification.(´ûÀ‹
+>
+java:S3329×"'Use a dynamically-generated, random IV.(ÃÒä†
+a
+java:S1124ß"EReorder the modifiers to comply with the Java Language Specification.(öØÁıÿÿÿÿÿ
+a
+java:S1124ä"EReorder the modifiers to comply with the Java Language Specification.(ÆÉ¿“üÿÿÿÿ
+O	java:S106æ"9Replace this use of System.out or System.err by a logger.(™Ãø¤
+l	java:S117©"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í©ú…üÿÿÿÿ
+n
+java:S1104"SMake VERBOSE a static final constant or non-public and provide accessors if needed.(¡™‚çúÿÿÿÿ
+l
+java:S1104G"QMake value a static final constant or non-public and provide accessors if needed.(‚¯¥ùÿÿÿÿ
+k
+java:S1104K"PMake code a static final constant or non-public and provide accessors if needed.(Ù¶”‘ùÿÿÿÿ
+i
+java:S1104L"SMake message a static final constant or non-public and provide accessors if needed.(ÕÃØ·
+f
+java:S1104`"PMake data a static final constant or non-public and provide accessors if needed.(ñ‹Ôƒ
+f
+java:S1104e"QMake error a static final constant or non-public and provide accessors if needed.(Ú»äE
+H
+java:S1444"-Make this "public static VERBOSE" field final(¡™‚çúÿÿÿÿ
+S
+java:S4973‡"<Strings and Boxed types should be compared using "equals()".(Ûöíö
+X
+java:S4973"<Strings and Boxed types should be compared using "equals()".(Ö¦•°úÿÿÿÿ

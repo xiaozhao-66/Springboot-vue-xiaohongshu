@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="93d9e53a-b7f8-40b3-b4c6-75251cdc0092" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/5/050e94363f2343d90016aeb5c200e3970738efaf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/b/3b6b8e46355a9824bc75e781a6c6e36e7a4ef96f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/c/3c22ffcbcc402d1e3279bbc496201a06b0dc8de1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/445179ddcf4ed60b169f2bcfce38ab7cc1db6b6d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/44f3c2b18ee7e39a7ab88e0daca4e4349f3fce31" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/a/4a680e2f44c8bb7d3e234f6ad5fe3a227478fd4a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/c/4cb52cf439cdf46e8e300810cd9f4caa3d3c8ec1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/b/7b595e969c5e705d71a2ac791d95d1fd7b08c675" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/8/8818fe1bb0fd4c3073971183375e0e649095a195" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/b/9b933db944faf18dc16bb23aecc1ff1557391308" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/8/e8d0d39b201652f167c956acca14dc4e79ad228b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/b/eb6261ddffdb4edc5452cb412640d78c94851efd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yanhuo-uniapp/config/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/yanhuo-uniapp/config/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/AgreeCollectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/AgreeCollectServiceImpl.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectId" id="2S8UeShutlXV4RlfX9DeKFLp0hl" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15429688" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.yanhuo.common.config" />
+      <recent name="com.yanhuo.xo.vo" />
+      <recent name="com.yanhuo.xo.dto.platform" />
+      <recent name="com.yanhuo.common.utils" />
+      <recent name="com.yanhuo.platform.task" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\48423\Desktop\yanhuocloud2\yanhuo_admin\src\main\resources" />
+      <recent name="C:\Users\48423\Desktop\yanhuocloud2\yanhuo_platform\src\main\java\com\yanhuo\platform" />
+      <recent name="C:\Users\48423\Desktop\yanhuocloud\yanhuo_platform\src" />
+      <recent name="C:\Users\48423\Desktop\yanhuocloud\yanhuo_platform\src\main\java\com\yanhuo\platform" />
+      <recent name="C:\Users\48423\Desktop\yanhuocloud\yanhuo_common\src\main\java\com\yanhuo\common\utils" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.PlatformApplication">
+    <configuration name="AdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="yanhuo_admin" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yanhuo.admin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yanhuo.admin.AdminApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="yanhuo_auth" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yanhuo.auth.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yanhuo.auth.AuthApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="yanhuo_gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yanhuo.gateway.GatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlatformApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="yanhuo_platform" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yanhuo.platform.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yanhuo.platform.PlatformApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RecommendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="yanhuo_recommend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yanhuo.recommend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yanhuo.recommend.RecommendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SearchApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="yanhuo_search" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yanhuo.search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yanhuo.search.SearchApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UtilApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="yanhuo_util" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yanhuo.util.UtilApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.PlatformApplication" />
+        <item itemvalue="Spring Boot.AuthApplication" />
+        <item itemvalue="Spring Boot.SearchApplication" />
+        <item itemvalue="Spring Boot.AdminApplication" />
+        <item itemvalue="Spring Boot.RecommendApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="93d9e53a-b7f8-40b3-b4c6-75251cdc0092" name="Default Changelist" comment="" />
+      <created>1688527796835</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1688527796835</updated>
+      <workItem from="1688527799370" duration="7659000" />
+      <workItem from="1688541881920" duration="9922000" />
+      <workItem from="1688553275939" duration="3133000" />
+      <workItem from="1688567320013" duration="4462000" />
+      <workItem from="1688608263469" duration="5473000" />
+      <workItem from="1688687234364" duration="24637000" />
+      <workItem from="1688778477696" duration="30356000" />
+      <workItem from="1688825635796" duration="4271000" />
+      <workItem from="1688865834867" duration="14162000" />
+      <workItem from="1688952110887" duration="5506000" />
+      <workItem from="1689039047928" duration="2220000" />
+      <workItem from="1689426173273" duration="6428000" />
+      <workItem from="1689725286756" duration="2051000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2861" y="0" key="#Project_Structure" timestamp="1688693476849">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state x="334" y="88" key="#Project_Structure/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688612992366" />
+    <state x="2861" y="0" key="#Project_Structure/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1688693476849" />
+    <state x="2783" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1689425106898">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state x="2783" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689425106898" />
+    <state x="3153" y="176" key="#com.intellij.ide.util.MemberChooser" timestamp="1689428056879">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state x="593" y="174" key="#com.intellij.ide.util.MemberChooser/0.0.1536.816@0.0.1536.816" timestamp="1688555799291" />
+    <state x="659" y="219" key="#com.intellij.ide.util.MemberChooser/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688612698590" />
+    <state x="3153" y="176" key="#com.intellij.ide.util.MemberChooser/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689428056879" />
+    <state x="3086" y="279" width="483" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1689425170244">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state x="3086" y="279" width="483" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689425170244" />
+    <state x="3084" y="114" key="#xdebugger.evaluate" timestamp="1688743418128">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state x="3084" y="114" key="#xdebugger.evaluate/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1688743418126" />
+    <state width="769" height="466" key="DebuggerActiveHint" timestamp="1689425843872">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state width="769" height="466" key="DebuggerActiveHint/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689425843872" />
+    <state x="3130" y="215" key="FileChooserDialogImpl" timestamp="1688900294000">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state x="634" y="268" key="FileChooserDialogImpl/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688567379204" />
+    <state x="3130" y="215" key="FileChooserDialogImpl/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1688900294000" />
+    <state width="1493" height="180" key="GridCell.Tab.0.bottom" timestamp="1689726117246">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state width="1663" height="239" key="GridCell.Tab.0.bottom/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1689686041837" />
+    <state width="1493" height="180" key="GridCell.Tab.0.bottom/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726117246" />
+    <state width="1493" height="180" key="GridCell.Tab.0.center" timestamp="1689726117246">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state width="1663" height="239" key="GridCell.Tab.0.center/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1689686041837" />
+    <state width="1493" height="180" key="GridCell.Tab.0.center/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726117246" />
+    <state width="1493" height="180" key="GridCell.Tab.0.left" timestamp="1689726117246">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state width="1663" height="239" key="GridCell.Tab.0.left/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1689686041836" />
+    <state width="1493" height="180" key="GridCell.Tab.0.left/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726117246" />
+    <state width="1493" height="180" key="GridCell.Tab.0.right" timestamp="1689726117246">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state width="1663" height="239" key="GridCell.Tab.0.right/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1689686041837" />
+    <state width="1493" height="180" key="GridCell.Tab.0.right/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726117246" />
+    <state width="1493" height="180" key="GridCell.Tab.1.bottom" timestamp="1689726117246">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state width="1663" height="311" key="GridCell.Tab.1.bottom/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688867006537" />
+    <state width="1493" height="180" key="GridCell.Tab.1.bottom/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726117246" />
+    <state width="1493" height="180" key="GridCell.Tab.1.center" timestamp="1689726117246">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state width="1663" height="311" key="GridCell.Tab.1.center/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688867006537" />
+    <state width="1493" height="180" key="GridCell.Tab.1.center/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726117246" />
+    <state width="1493" height="180" key="GridCell.Tab.1.left" timestamp="1689726117246">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state width="1663" height="311" key="GridCell.Tab.1.left/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688867006536" />
+    <state width="1493" height="180" key="GridCell.Tab.1.left/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726117246" />
+    <state width="1493" height="180" key="GridCell.Tab.1.right" timestamp="1689726117246">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state width="1663" height="311" key="GridCell.Tab.1.right/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688867006537" />
+    <state width="1493" height="180" key="GridCell.Tab.1.right/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726117246" />
+    <state width="1493" height="273" key="GridCell.Tab.2.bottom" timestamp="1689426070784">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state width="1663" height="342" key="GridCell.Tab.2.bottom/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688535592435" />
+    <state width="1493" height="273" key="GridCell.Tab.2.bottom/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689426070784" />
+    <state width="1493" height="273" key="GridCell.Tab.2.center" timestamp="1689426070784">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state width="1663" height="342" key="GridCell.Tab.2.center/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688535592435" />
+    <state width="1493" height="273" key="GridCell.Tab.2.center/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689426070784" />
+    <state width="1493" height="273" key="GridCell.Tab.2.left" timestamp="1689426070784">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state width="1663" height="342" key="GridCell.Tab.2.left/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688535592435" />
+    <state width="1493" height="273" key="GridCell.Tab.2.left/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689426070784" />
+    <state width="1493" height="273" key="GridCell.Tab.2.right" timestamp="1689426070784">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state width="1663" height="342" key="GridCell.Tab.2.right/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688535592435" />
+    <state width="1493" height="273" key="GridCell.Tab.2.right/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689426070784" />
+    <state x="2809" y="0" key="SettingsEditor" timestamp="1689039292118">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state x="2809" y="0" key="SettingsEditor/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689039292118" />
+    <state x="2863" y="141" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1688736816137">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state x="2863" y="141" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1688736816137" />
+    <state x="2560" y="0" width="1466" height="911" key="dock-window-1" timestamp="1688550573342">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state x="2560" y="0" width="1466" height="911" key="dock-window-1/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688550573342" />
+    <state x="2770" y="270" key="extract.method.dialog" timestamp="1689726169846">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state x="68" y="423" key="extract.method.dialog/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688959601815" />
+    <state x="2770" y="270" key="extract.method.dialog/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726169846" />
+    <state x="2777" y="140" key="new project wizard" timestamp="1688809645921">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state x="241" y="174" key="new project wizard/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688528050835" />
+    <state x="2777" y="140" key="new project wizard/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1688809645921" />
+    <state x="2985" y="187" key="run.anything.popup" timestamp="1688712059015">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state x="2985" y="187" key="run.anything.popup/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1688712059015" />
+    <state x="2991" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1688815372176">
+      <screen x="2560" y="0" width="1536" height="824" />
+    </state>
+    <state x="2991" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1688815372176" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/ImgDetailService.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
+          <line>189</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_recommend/src/main/java/com/yanhuo/recommend/service/impl/RecommendServiceImpl.java</url>
+          <line>267</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/FollowServiceImpl.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_search/src/main/java/com/yanhuo/search/service/impl/EsServiceImpl.java</url>
+          <line>133</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
+          <line>252</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/controller/BrowseRecordController.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
+          <line>631</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
+          <line>591</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
+          <line>616</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
+          <line>607</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
+          <line>359</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/controller/ImgDetailController.java</url>
+          <line>143</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_util/src/main/java/com/yanhuo/util/oss/controller/OssController.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_search/src/main/java/com/yanhuo/search/controller/ImgDetailEsController.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
+          <line>480</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo typeName="com.sun.proxy.$Proxy122" fieldName="h" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+</project>

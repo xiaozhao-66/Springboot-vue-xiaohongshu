@@ -1,0 +1,15 @@
+server:
+  port: 8805
+
+spring:
+  application:
+    name: yanhuo-util
+  servlet:
+    multipart:
+      max-file-size: 1024MB
+      max-request-size: 1024MB
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
