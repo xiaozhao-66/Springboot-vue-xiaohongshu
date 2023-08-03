@@ -69,6 +69,9 @@
 	import {
 		loginOut
 	} from "@/api/login.js"
+	import {
+		tokenUtil
+	} from "@/utils/token.js"
 	export default {
 		methods: {
 			back() {
@@ -78,9 +81,10 @@
 			},
 			loginOut() {
 				let user = uni.getStorageSync("userInfo")
-
+                
 				loginOut(user).then(res => {
 					uni.removeStorageSync("userInfo")
+					tokenUtil.clear()
 					setTimeout(() => {
 						uni.navigateTo({
 							url: "/pages/login/login?close=" + true

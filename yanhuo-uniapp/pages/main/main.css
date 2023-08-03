@@ -193,7 +193,10 @@ li {
 	height: 50px;
 	background-color: #fff;
 	z-index: 999;
+}
 
+.fotter-none {
+	display: none;
 }
 
 .fotter-info {

@@ -16,7 +16,8 @@
     </parent>
 
     <modules>
-        <module>yanhuo_admin</module>
+        <module>renren-fast</module>
+        <module>renren-generator</module>
         <module>yanhuo_common</module>
         <module>yanhuo_xo</module>
         <module>yanhuo_platform</module>

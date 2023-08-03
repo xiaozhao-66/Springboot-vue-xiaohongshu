@@ -22,10 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -96,23 +93,19 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
             agreeByType(agreeCollectDTO, agreeCommentKey);
         }
 
-
         AgreeCollect agreeCollect = ConvertUtils.sourceToTarget(agreeCollectDTO, AgreeCollect.class);
         this.save(agreeCollect);
 
         if (agreeCollectDTO.getType() == 1) {
-
             ImgDetail imgDetail = imgDetailService.getById(agreeCollect.getAgreeCollectId());
             imgDetail.setAgreeCount(imgDetail.getAgreeCount() + 1);
             imgDetailService.updateById(imgDetail);
-
         } else if (agreeCollectDTO.getType() == 0) {
             //点赞评论
             Comment comment = commentService.getById(agreeCollect.getAgreeCollectId());
             comment.setCount(comment.getCount() + 1);
             commentService.updateById(comment);
         }
-
         agreeCollectNotice(agreeCollectDTO, agreeCollect);
     }
 
@@ -208,7 +201,7 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
                         .setUid(user.getId())
                         .setAvatar(user.getAvatar())
                         .setUsername(user.getUsername())
-                        .setType(0)
+                        .setType(item.getType())
                         .setCreateDate(item.getCreateDate())
                         //评论的内容
                         .setContent(commentVo.getContent());
@@ -221,7 +214,7 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
                         .setAvatar(user.getAvatar())
                         .setUid(user.getId())
                         .setUsername(user.getUsername())
-                        .setType(3)
+                        .setType(item.getType())
                         .setCreateDate(item.getCreateDate())
                         .setContent(album.getName());
 
@@ -291,16 +284,14 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
     @Override
     public Page<AgreeCollectVo> getAllCollection(long page, long limit, String uid, Integer type) {
         Page<AgreeCollectVo> resPage = new Page<>();
-        Page<AgreeCollect> agreeCollectPage = this.page(new Page<>(page, limit), new QueryWrapper<AgreeCollect>().and(e -> e.eq("uid", uid).eq("type", type)).orderByAsc("create_date"));
+        Page<AgreeCollect> agreeCollectPage = this.page(new Page<>(page, limit), new QueryWrapper<AgreeCollect>().and(e -> e.eq("uid", uid).eq("type", type)).orderByDesc("create_date"));
 
         List<AgreeCollect> agreeCollectList = agreeCollectPage.getRecords();
 
         if (agreeCollectList.isEmpty()) {
             return resPage;
         }
-
         long total = agreeCollectPage.getTotal();
-
         List<Long> ids = agreeCollectList.stream().map(AgreeCollect::getAgreeCollectId).collect(Collectors.toList());
         List<AgreeCollectVo> agreeCollectVoList = new ArrayList<>();
 
@@ -310,9 +301,7 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
 
             HashMap<Long, User> userMap = new HashMap<>();
             HashMap<Long, ImgDetail> imgDetailMap = new HashMap<>();
-
             List<ImgDetail> imgDetailList = imgDetailService.listByIds(ids);
-
             List<User> userList = userService.listByIds(uids);
 
             imgDetailList.forEach(item -> {
@@ -321,7 +310,6 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
             userList.forEach(item -> {
                 userMap.put(item.getId(), item);
             });
-
 
             AgreeCollectVo agreeCollectVo;
             ImgDetail imgDetail;
@@ -343,8 +331,6 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
 
                 agreeCollectVoList.add(agreeCollectVo);
             }
-
-
         } else if (type == 3) {
             //所有收藏的专辑
             List<Album> albumList = albumService.listByIds(ids);
@@ -354,11 +340,11 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
                 agreeCollectVo.setAid(album.getId());
                 agreeCollectVoList.add(agreeCollectVo);
             }
+            Collections.reverse(agreeCollectList);
         }
 
         resPage.setRecords(agreeCollectVoList);
         resPage.setTotal(total);
-
         return resPage;
     }
 

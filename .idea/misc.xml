@@ -19,6 +19,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/yanhuo-rabbitmq/pom.xml" />
+        <option value="$PROJECT_DIR$/yanhuo_admin/pom.xml" />
       </set>
     </option>
   </component>

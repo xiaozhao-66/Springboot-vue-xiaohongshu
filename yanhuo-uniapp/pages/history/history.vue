@@ -31,7 +31,7 @@
 								<image class="cover" :src="item.cover" mode="aspectFill" :lazy-load="true" />
 							</view>
 							<view class="card-nums">
-								{{ item.nums }}
+								{{ item.count }}
 							</view>
 							<view class="cont">
 								<view class="content">{{ item.content }}</view>
@@ -108,9 +108,7 @@
 				let params = {
 					uid: this.userInfo.id
 				}
-
 				getAllBrowseRecordByUser(this.page, this.limit, params).then(res => {
-					console.log(res.data)
 					this.dataList = res.data
 					this.total = res.data.length
 				})
@@ -136,6 +134,8 @@
 				}, 1000)
 			},
 			toMain(mid) {
+				
+				
 				let data = {}
 				data.uid = this.userInfo.id
 				data.mid = mid

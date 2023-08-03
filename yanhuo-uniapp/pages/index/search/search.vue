@@ -36,7 +36,7 @@
 				</view>
 			</view>
 
-			<view class="search-item" v-for="(item,index) in searchData" @click="selectTag(item.keyWord)"
+			<view class="search-item" v-for="(item,index) in searchData" @click="selectTag(item.keyword)"
 				v-html="item.highLightKeyword"></view>
 		</view>
 

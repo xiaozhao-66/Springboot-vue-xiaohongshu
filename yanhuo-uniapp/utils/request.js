@@ -26,10 +26,9 @@ const send = (url, data = {}, method = 'POST', showLoading = true) => {
             header: (() => {
                 const tokeValue = tokenUtil.get()
                 let config = {
-                    
 					'Content-Type': 'application/json'
                 }
-				
+		
                 if (tokeValue) {
                     config[appConfig.tokenKey] = tokeValue
                 }
@@ -37,8 +36,7 @@ const send = (url, data = {}, method = 'POST', showLoading = true) => {
             })(),
             success: (res) => {
                 uni.hideLoading()
-	
-				if(res.statusCode==401){
+				if(res.data.code==401){
 					 uni.showToast({
 						icon: "none",
 						title: "用户未认证或登录过期,请重新登录"
@@ -50,7 +48,6 @@ const send = (url, data = {}, method = 'POST', showLoading = true) => {
 						});
 					}, 1000);
 				}else{
-					
 					//如果时间小于1小时，则刷新token
 					if(jetLag<1&&!isRefresh){
 						isRefresh = true
@@ -61,13 +58,11 @@ const send = (url, data = {}, method = 'POST', showLoading = true) => {
 							  data: userInfo,
 							  header: (() => {
 							      let config = {
-							          // 'Content-Type': 'application/x-www-form-urlencoded'
 							  		'Content-Type': 'application/json'
 							      }
 							      return config
 							  })(),
 							   success: (response) => {
-						
 								   let refreshToken = response.data.data.Jwt_token
 								   uni.setStorageSync("expiration", response.data.data.expiration)
 								   tokenUtil.set(refreshToken)

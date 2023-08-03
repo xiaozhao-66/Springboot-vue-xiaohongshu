@@ -26,7 +26,12 @@
 								</view>
 							</view>
 
-							<view class="item-main" @click="clickItem(commentOne, index)">
+							<view class="item-main" @click="commentOperate(commentOne,index,null)"
+								v-if="commentOne.uid == uid">
+								{{ commentOne.content }}<span class="time">{{ commentOne.time }}</span>
+							</view>
+
+							<view class="item-main" @click="clickItem(commentOne, index)" v-else>
 								{{ commentOne.content }}<span class="time">{{ commentOne.time }}</span>
 							</view>
 						</view>
@@ -53,8 +58,13 @@
 										<view class="ziti">{{ commentTwo.count }}</view>
 									</view>
 								</view>
+								
+								<view class="item-main" @click="commentOperate(commentTwo,index,index2)" v-if="commentTwo.uid == uid">
+									回复<span class="reply">{{ commentTwo.replyName }}</span>:{{ commentTwo.content }}
+									<span class="time">{{ commentTwo.time }}</span>
+								</view>
 
-								<view class="item-main" @click="clickItem(commentTwo, index)">
+								<view class="item-main" @click="clickItem(commentTwo, index)" v-else>
 									回复<span class="reply">{{ commentTwo.replyName }}</span>:{{ commentTwo.content }}
 									<span class="time">{{ commentTwo.time }}</span>
 								</view>
@@ -93,21 +103,27 @@
 
 									</view>
 								</view>
+								
+								<view class="item-main" @click="commentOperate(commentTwo, index,index2)" v-if="commentTwo.uid == uid">
+									回复<span class="reply">{{ commentTwo.replyName }}</span>:{{ commentTwo.content }}
+									<span class="time">{{ commentTwo.time }}</span>
+								</view>
 
-								<view class="item-main" @click="clickItem(commentTwo, index2)">
+								<view class="item-main" @click="clickItem(commentTwo, index)" v-else>
 									回复<span class="reply">{{ commentTwo.replyName }}</span>:{{ commentTwo.content }}
 									<span class="time">{{ commentTwo.time }}</span>
 								</view>
 							</view>
 						</view>
 					</view>
-
-
-
 				</view>
-
 			</li>
 		</ul>
+
+
+		<tui-actionsheet :show="showActionSheet" :item-list="itemList" @click="itemClick" @cancel="closeActionSheet">
+		</tui-actionsheet>
+
 		<view class="loadStyle" v-if="isEnd">我也是有底线的~</view>
 	</view>
 </template>
@@ -117,7 +133,8 @@
 		getAllComment,
 		getAllTwoCommentByOneId,
 		getComment,
-		getAllTwoComment
+		getAllTwoComment,
+		delComment
 	} from "@/api/comment.js"
 	import {
 		timeAgo
@@ -150,6 +167,7 @@
 
 				//点击索引
 				index: -1,
+				index2:-1,
 
 				//添加的记录id用户筛选
 				commentIds: [],
@@ -160,6 +178,18 @@
 				scrollTwoData: [],
 
 				search: false,
+
+
+				showActionSheet: false,
+
+				itemList: [{
+					text: "回复",
+					color: "#2B2B2B"
+				}, {
+					text: "删除",
+					color: "#ff0000"
+				}],
+				clickComment:{},
 
 			};
 		},
@@ -204,7 +234,6 @@
 
 		methods: {
 
-
 			getUserInfo(uid) {
 				uni.navigateTo({
 					url: "/pages/otherUser/otherUser?uid=" + uid
@@ -231,7 +260,6 @@
 
 						this.dataList.push(item)
 					})
-
 
 					this.total1 = res.data.total
 
@@ -296,8 +324,6 @@
 								this.dataList[index].childrenComments.push(item)
 								this.commentIds.push(item.id)
 							}
-
-
 						})
 
 					} else {
@@ -335,6 +361,41 @@
 						this.dataList[this.index].twoNums = this.dataList[this.index].twoNums * 1 + 1
 						this.dataList[this.index].childrenComments.unshift(comment)
 					}
+				}
+			},
+
+			//隐藏组件
+			closeActionSheet() {
+				this.showActionSheet = false
+				this.$emit('delComment', false);
+			},
+			//调用此方法显示组件
+			commentOperate(comment,index,index2) {
+				this.clickComment = comment;
+				this.index = index;
+				this.index2 = index2
+				this.showActionSheet = true;
+				this.$emit('delComment', true);
+			},
+			itemClick(e) {
+				console.log(e)
+				let index = e.index;
+				this.closeActionSheet();
+				if(index==0){
+					//点击回复
+					this.clickItem(this.clickComment,this.index)
+				}else{
+					//点击删除
+					if(this.clickComment.pid==0){
+						this.dataList.splice(this.index, 1)
+					}else{
+						this.dataList[this.index].twoNums = this.dataList[this.index].twoNums * 1 - 1
+						this.dataList[this.index].childrenComments.splice(this.index2,1)
+					}
+					let params={
+						id:this.clickComment.id
+					}
+					delComment(params).then()
 				}
 			},
 

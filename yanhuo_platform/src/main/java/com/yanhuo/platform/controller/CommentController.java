@@ -128,4 +128,11 @@ public class CommentController {
 
     }
 
+    @RequestMapping("delComment")
+    public Result<?> delComment(String id) {
+        commentService.delComment(id);
+        return Result.ok(null);
+
+    }
+
 }

@@ -20,23 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="93d9e53a-b7f8-40b3-b4c6-75251cdc0092" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/5/050e94363f2343d90016aeb5c200e3970738efaf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/b/3b6b8e46355a9824bc75e781a6c6e36e7a4ef96f" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/c/3c22ffcbcc402d1e3279bbc496201a06b0dc8de1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/445179ddcf4ed60b169f2bcfce38ab7cc1db6b6d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/44f3c2b18ee7e39a7ab88e0daca4e4349f3fce31" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/a/4a680e2f44c8bb7d3e234f6ad5fe3a227478fd4a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/c/4cb52cf439cdf46e8e300810cd9f4caa3d3c8ec1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/b/7b595e969c5e705d71a2ac791d95d1fd7b08c675" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/8/8818fe1bb0fd4c3073971183375e0e649095a195" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/b/9b933db944faf18dc16bb23aecc1ff1557391308" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/8/e8d0d39b201652f167c956acca14dc4e79ad228b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/b/eb6261ddffdb4edc5452cb412640d78c94851efd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/3/83ff7787ab18e6471eaf669a9631d47c62f3ec93" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yanhuo-uniapp/config/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/yanhuo-uniapp/config/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/AgreeCollectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/AgreeCollectServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yanhuo-uniapp/pages/user/allUser/allUser.vue" beforeDir="false" afterPath="$PROJECT_DIR$/yanhuo-uniapp/pages/user/allUser/allUser.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yanhuo-uniapp/unpackage/dist/dev/app-plus/androidPrivacy.json" beforeDir="false" afterPath="$PROJECT_DIR$/yanhuo-uniapp/unpackage/dist/dev/app-plus/androidPrivacy.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yanhuo-uniapp/unpackage/dist/dev/app-plus/app-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/yanhuo-uniapp/unpackage/dist/dev/app-plus/app-service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yanhuo-uniapp/unpackage/dist/dev/app-plus/app-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/yanhuo-uniapp/unpackage/dist/dev/app-plus/app-view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yanhuo-uniapp/unpackage/dist/dev/app-plus/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/yanhuo-uniapp/unpackage/dist/dev/app-plus/manifest.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +47,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
   </component>
@@ -63,8 +62,9 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
+    <option name="showVisibilityIcons" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RequestMappingsPanelOrder0" value="0" />
@@ -88,6 +88,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15429688" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
@@ -101,14 +102,61 @@
       <recent name="com.yanhuo.platform.task" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\48423\Desktop\yanhuocloud2\yanhuo_admin\src\main\resources" />
-      <recent name="C:\Users\48423\Desktop\yanhuocloud2\yanhuo_platform\src\main\java\com\yanhuo\platform" />
-      <recent name="C:\Users\48423\Desktop\yanhuocloud\yanhuo_platform\src" />
-      <recent name="C:\Users\48423\Desktop\yanhuocloud\yanhuo_platform\src\main\java\com\yanhuo\platform" />
-      <recent name="C:\Users\48423\Desktop\yanhuocloud\yanhuo_common\src\main\java\com\yanhuo\common\utils" />
+      <recent name="C:\Users\48423\Desktop\项目jar包\yanhuo_v2\renren-fast\src\main\resources\mapper\platform" />
+      <recent name="C:\Users\48423\Desktop\项目jar包\yanhuo_v2\renren-fast\src\main\java\io\renren\modules\platform\controller" />
+      <recent name="C:\Users\48423\Desktop\项目jar包\yanhuo_v2\renren-fast\src\main\java\io\renren\modules\platform\dao" />
+      <recent name="C:\Users\48423\Desktop\项目jar包\yanhuo_v2\renren-fast\src\main\java\io\renren\modules\platform\service\impl" />
+      <recent name="C:\Users\48423\Desktop\项目jar包\yanhuo_v2\renren-fast\src\main\java\io\renren\modules\platform\entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.PlatformApplication">
+  <component name="RunManager" selected="Spring Boot.GatewayApplication">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="yanhuo_admin" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="yanhuo_admin" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="yanhuo_admin" />
       <extension name="coverage">
@@ -155,15 +203,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RecommendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="RecommendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="yanhuo_recommend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yanhuo.recommend.RecommendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RenrenApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="renren-generator" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.yanhuo.recommend.*" />
+          <option name="PATTERN" value="io.renren.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yanhuo.recommend.RecommendApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="io.renren.RenrenApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RenrenApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="renren-fast" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="io.renren.RenrenApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -193,8 +255,8 @@
         <item itemvalue="Spring Boot.PlatformApplication" />
         <item itemvalue="Spring Boot.AuthApplication" />
         <item itemvalue="Spring Boot.SearchApplication" />
+        <item itemvalue="Spring Boot.RenrenApplication (1)" />
         <item itemvalue="Spring Boot.AdminApplication" />
-        <item itemvalue="Spring Boot.RecommendApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -220,7 +282,17 @@
       <workItem from="1688952110887" duration="5506000" />
       <workItem from="1689039047928" duration="2220000" />
       <workItem from="1689426173273" duration="6428000" />
-      <workItem from="1689725286756" duration="2051000" />
+      <workItem from="1689725286756" duration="3224000" />
+      <workItem from="1689747530194" duration="8268000" />
+      <workItem from="1689842114202" duration="13082000" />
+      <workItem from="1689920109769" duration="6061000" />
+      <workItem from="1690201601504" duration="581000" />
+      <workItem from="1690531264454" duration="1075000" />
+      <workItem from="1690541941863" duration="601000" />
+      <workItem from="1690558317889" duration="4000" />
+      <workItem from="1690592953253" duration="1943000" />
+      <workItem from="1690785965780" duration="3538000" />
+      <workItem from="1691063890768" duration="787000" />
     </task>
     <servers />
   </component>
@@ -240,102 +312,111 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2861" y="0" key="#Project_Structure" timestamp="1688693476849">
-      <screen x="2560" y="0" width="1536" height="824" />
+    <state x="334" y="88" key="#Project_Structure" timestamp="1690595973654">
+      <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state x="334" y="88" key="#Project_Structure/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688612992366" />
+    <state x="334" y="88" key="#Project_Structure/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1690595973654" />
     <state x="2861" y="0" key="#Project_Structure/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1688693476849" />
     <state x="2783" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1689425106898">
       <screen x="2560" y="0" width="1536" height="824" />
     </state>
     <state x="2783" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689425106898" />
-    <state x="3153" y="176" key="#com.intellij.ide.util.MemberChooser" timestamp="1689428056879">
+    <state x="3153" y="176" key="#com.intellij.ide.util.MemberChooser" timestamp="1689860246583">
       <screen x="2560" y="0" width="1536" height="824" />
     </state>
     <state x="593" y="174" key="#com.intellij.ide.util.MemberChooser/0.0.1536.816@0.0.1536.816" timestamp="1688555799291" />
     <state x="659" y="219" key="#com.intellij.ide.util.MemberChooser/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688612698590" />
-    <state x="3153" y="176" key="#com.intellij.ide.util.MemberChooser/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689428056879" />
+    <state x="3153" y="176" key="#com.intellij.ide.util.MemberChooser/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689860246583" />
     <state x="3086" y="279" width="483" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1689425170244">
       <screen x="2560" y="0" width="1536" height="824" />
     </state>
     <state x="3086" y="279" width="483" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689425170244" />
-    <state x="3084" y="114" key="#xdebugger.evaluate" timestamp="1688743418128">
+    <state x="3084" y="114" key="#xdebugger.evaluate" timestamp="1689849527261">
       <screen x="2560" y="0" width="1536" height="824" />
     </state>
-    <state x="3084" y="114" key="#xdebugger.evaluate/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1688743418126" />
-    <state width="769" height="466" key="DebuggerActiveHint" timestamp="1689425843872">
+    <state x="3084" y="114" key="#xdebugger.evaluate/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689849527261" />
+    <state width="769" height="466" key="DebuggerActiveHint" timestamp="1689853533264">
       <screen x="2560" y="0" width="1536" height="824" />
     </state>
-    <state width="769" height="466" key="DebuggerActiveHint/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689425843872" />
-    <state x="3130" y="215" key="FileChooserDialogImpl" timestamp="1688900294000">
-      <screen x="2560" y="0" width="1536" height="824" />
+    <state width="769" height="466" key="DebuggerActiveHint/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689853533264" />
+    <state x="634" y="268" key="FileChooserDialogImpl" timestamp="1689747535658">
+      <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state x="634" y="268" key="FileChooserDialogImpl/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688567379204" />
+    <state x="634" y="268" key="FileChooserDialogImpl/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1689747535658" />
     <state x="3130" y="215" key="FileChooserDialogImpl/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1688900294000" />
-    <state width="1493" height="180" key="GridCell.Tab.0.bottom" timestamp="1689726117246">
-      <screen x="2560" y="0" width="1536" height="824" />
+    <state width="1663" height="316" key="GridCell.Tab.0.bottom" timestamp="1691064655078">
+      <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state width="1663" height="239" key="GridCell.Tab.0.bottom/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1689686041837" />
-    <state width="1493" height="180" key="GridCell.Tab.0.bottom/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726117246" />
-    <state width="1493" height="180" key="GridCell.Tab.0.center" timestamp="1689726117246">
-      <screen x="2560" y="0" width="1536" height="824" />
+    <state width="1663" height="316" key="GridCell.Tab.0.bottom/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1690598982091" />
+    <state width="1493" height="241" key="GridCell.Tab.0.bottom/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689951061078" />
+    <state width="1663" height="316" key="GridCell.Tab.0.bottom/0.0.1707.1027@0.0.1707.1027" timestamp="1691064655078" />
+    <state width="1663" height="316" key="GridCell.Tab.0.center" timestamp="1691064655078">
+      <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state width="1663" height="239" key="GridCell.Tab.0.center/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1689686041837" />
-    <state width="1493" height="180" key="GridCell.Tab.0.center/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726117246" />
-    <state width="1493" height="180" key="GridCell.Tab.0.left" timestamp="1689726117246">
-      <screen x="2560" y="0" width="1536" height="824" />
+    <state width="1663" height="316" key="GridCell.Tab.0.center/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1690598982091" />
+    <state width="1493" height="241" key="GridCell.Tab.0.center/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689951061078" />
+    <state width="1663" height="316" key="GridCell.Tab.0.center/0.0.1707.1027@0.0.1707.1027" timestamp="1691064655078" />
+    <state width="1663" height="316" key="GridCell.Tab.0.left" timestamp="1691064655078">
+      <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state width="1663" height="239" key="GridCell.Tab.0.left/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1689686041836" />
-    <state width="1493" height="180" key="GridCell.Tab.0.left/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726117246" />
-    <state width="1493" height="180" key="GridCell.Tab.0.right" timestamp="1689726117246">
-      <screen x="2560" y="0" width="1536" height="824" />
+    <state width="1663" height="316" key="GridCell.Tab.0.left/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1690598982091" />
+    <state width="1493" height="241" key="GridCell.Tab.0.left/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689951061078" />
+    <state width="1663" height="316" key="GridCell.Tab.0.left/0.0.1707.1027@0.0.1707.1027" timestamp="1691064655078" />
+    <state width="1663" height="316" key="GridCell.Tab.0.right" timestamp="1691064655078">
+      <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state width="1663" height="239" key="GridCell.Tab.0.right/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1689686041837" />
-    <state width="1493" height="180" key="GridCell.Tab.0.right/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726117246" />
-    <state width="1493" height="180" key="GridCell.Tab.1.bottom" timestamp="1689726117246">
-      <screen x="2560" y="0" width="1536" height="824" />
+    <state width="1663" height="316" key="GridCell.Tab.0.right/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1690598982091" />
+    <state width="1493" height="241" key="GridCell.Tab.0.right/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689951061078" />
+    <state width="1663" height="316" key="GridCell.Tab.0.right/0.0.1707.1027@0.0.1707.1027" timestamp="1691064655078" />
+    <state width="1663" height="316" key="GridCell.Tab.1.bottom" timestamp="1691064655078">
+      <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state width="1663" height="311" key="GridCell.Tab.1.bottom/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688867006537" />
-    <state width="1493" height="180" key="GridCell.Tab.1.bottom/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726117246" />
-    <state width="1493" height="180" key="GridCell.Tab.1.center" timestamp="1689726117246">
-      <screen x="2560" y="0" width="1536" height="824" />
+    <state width="1663" height="316" key="GridCell.Tab.1.bottom/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1690598982091" />
+    <state width="1493" height="241" key="GridCell.Tab.1.bottom/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689951061079" />
+    <state width="1663" height="316" key="GridCell.Tab.1.bottom/0.0.1707.1027@0.0.1707.1027" timestamp="1691064655078" />
+    <state width="1663" height="316" key="GridCell.Tab.1.center" timestamp="1691064655078">
+      <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state width="1663" height="311" key="GridCell.Tab.1.center/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688867006537" />
-    <state width="1493" height="180" key="GridCell.Tab.1.center/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726117246" />
-    <state width="1493" height="180" key="GridCell.Tab.1.left" timestamp="1689726117246">
-      <screen x="2560" y="0" width="1536" height="824" />
+    <state width="1663" height="316" key="GridCell.Tab.1.center/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1690598982091" />
+    <state width="1493" height="241" key="GridCell.Tab.1.center/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689951061078" />
+    <state width="1663" height="316" key="GridCell.Tab.1.center/0.0.1707.1027@0.0.1707.1027" timestamp="1691064655078" />
+    <state width="1663" height="316" key="GridCell.Tab.1.left" timestamp="1691064655078">
+      <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state width="1663" height="311" key="GridCell.Tab.1.left/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688867006536" />
-    <state width="1493" height="180" key="GridCell.Tab.1.left/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726117246" />
-    <state width="1493" height="180" key="GridCell.Tab.1.right" timestamp="1689726117246">
-      <screen x="2560" y="0" width="1536" height="824" />
+    <state width="1663" height="316" key="GridCell.Tab.1.left/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1690598982091" />
+    <state width="1493" height="241" key="GridCell.Tab.1.left/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689951061078" />
+    <state width="1663" height="316" key="GridCell.Tab.1.left/0.0.1707.1027@0.0.1707.1027" timestamp="1691064655078" />
+    <state width="1663" height="316" key="GridCell.Tab.1.right" timestamp="1691064655078">
+      <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state width="1663" height="311" key="GridCell.Tab.1.right/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688867006537" />
-    <state width="1493" height="180" key="GridCell.Tab.1.right/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726117246" />
-    <state width="1493" height="273" key="GridCell.Tab.2.bottom" timestamp="1689426070784">
+    <state width="1663" height="316" key="GridCell.Tab.1.right/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1690598982091" />
+    <state width="1493" height="241" key="GridCell.Tab.1.right/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689951061078" />
+    <state width="1663" height="316" key="GridCell.Tab.1.right/0.0.1707.1027@0.0.1707.1027" timestamp="1691064655078" />
+    <state width="1493" height="272" key="GridCell.Tab.2.bottom" timestamp="1689853626113">
       <screen x="2560" y="0" width="1536" height="824" />
     </state>
     <state width="1663" height="342" key="GridCell.Tab.2.bottom/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688535592435" />
-    <state width="1493" height="273" key="GridCell.Tab.2.bottom/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689426070784" />
-    <state width="1493" height="273" key="GridCell.Tab.2.center" timestamp="1689426070784">
+    <state width="1493" height="272" key="GridCell.Tab.2.bottom/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689853626113" />
+    <state width="1493" height="272" key="GridCell.Tab.2.center" timestamp="1689853626113">
       <screen x="2560" y="0" width="1536" height="824" />
     </state>
     <state width="1663" height="342" key="GridCell.Tab.2.center/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688535592435" />
-    <state width="1493" height="273" key="GridCell.Tab.2.center/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689426070784" />
-    <state width="1493" height="273" key="GridCell.Tab.2.left" timestamp="1689426070784">
+    <state width="1493" height="272" key="GridCell.Tab.2.center/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689853626113" />
+    <state width="1493" height="272" key="GridCell.Tab.2.left" timestamp="1689853626113">
       <screen x="2560" y="0" width="1536" height="824" />
     </state>
     <state width="1663" height="342" key="GridCell.Tab.2.left/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688535592435" />
-    <state width="1493" height="273" key="GridCell.Tab.2.left/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689426070784" />
-    <state width="1493" height="273" key="GridCell.Tab.2.right" timestamp="1689426070784">
+    <state width="1493" height="272" key="GridCell.Tab.2.left/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689853626113" />
+    <state width="1493" height="272" key="GridCell.Tab.2.right" timestamp="1689853626113">
       <screen x="2560" y="0" width="1536" height="824" />
     </state>
     <state width="1663" height="342" key="GridCell.Tab.2.right/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688535592435" />
-    <state width="1493" height="273" key="GridCell.Tab.2.right/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689426070784" />
-    <state x="2809" y="0" key="SettingsEditor" timestamp="1689039292118">
-      <screen x="2560" y="0" width="1536" height="824" />
+    <state width="1493" height="272" key="GridCell.Tab.2.right/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689853626113" />
+    <state x="277" y="0" key="SettingsEditor" timestamp="1690789897091">
+      <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="2809" y="0" key="SettingsEditor/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689039292118" />
+    <state x="277" y="0" key="SettingsEditor/0.0.1707.1027@0.0.1707.1027" timestamp="1690789897091" />
     <state x="2863" y="141" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1688736816137">
       <screen x="2560" y="0" width="1536" height="824" />
     </state>
@@ -349,11 +430,11 @@
     </state>
     <state x="68" y="423" key="extract.method.dialog/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688959601815" />
     <state x="2770" y="270" key="extract.method.dialog/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689726169846" />
-    <state x="2777" y="140" key="new project wizard" timestamp="1688809645921">
+    <state x="2777" y="140" key="new project wizard" timestamp="1689739414675">
       <screen x="2560" y="0" width="1536" height="824" />
     </state>
     <state x="241" y="174" key="new project wizard/0.0.1707.1027/2560.0.1536.824@0.0.1707.1027" timestamp="1688528050835" />
-    <state x="2777" y="140" key="new project wizard/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1688809645921" />
+    <state x="2777" y="140" key="new project wizard/0.0.1707.1027/2560.0.1536.824@2560.0.1536.824" timestamp="1689739414675" />
     <state x="2985" y="187" key="run.anything.popup" timestamp="1688712059015">
       <screen x="2560" y="0" width="1536" height="824" />
     </state>
@@ -388,7 +469,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/yanhuo_search/src/main/java/com/yanhuo/search/service/impl/EsServiceImpl.java</url>
-          <line>133</line>
+          <line>131</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -403,23 +484,13 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
-          <line>631</line>
+          <line>623</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
-          <line>591</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
-          <line>616</line>
+          <line>593</line>
           <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
-          <line>607</line>
-          <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
@@ -445,6 +516,11 @@
           <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
           <line>480</line>
           <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/renren-fast/src/main/java/io/renren/modules/platform/controller/MemberController.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

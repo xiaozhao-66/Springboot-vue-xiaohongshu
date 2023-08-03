@@ -25,7 +25,7 @@ public class LoginMvcConfigurerAdapter extends WebMvcConfigurationSupport {
 
         registry.addInterceptor(new UserLoginInterceptor(redisUtils))
                  .addPathPatterns("/api/**")
-                .excludePathPatterns("/api/auth/**","/api/util/**","/api/search/**","/api/admin/**");
+                .excludePathPatterns("/api/auth/**","/api/util/**","/api/search/**");
         super.addInterceptors(registry);
     }
 

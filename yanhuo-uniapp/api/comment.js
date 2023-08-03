@@ -40,3 +40,7 @@ export function getAllTrendCommentByImage(page, limit, params) {
 export function getAllComment(page, limit, params) {
 	return request.get(appConfig.WEB_API + `/platform/comment/getAllComment/${page}/${limit}`, params)
 }
+
+export function delComment(params) {
+	return request.get(appConfig.WEB_API + `/platform/comment/delComment`, params)
+}

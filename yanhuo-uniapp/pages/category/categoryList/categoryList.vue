@@ -110,7 +110,7 @@
 
 			},
 			getImgInfo(mid) {
-
+                 
 				if (uni.getStorageSync("userInfo").id != null || uni.getStorageSync("userInfo").id != '') {
 					let data = {}
 					data.uid = uni.getStorageSync("userInfo").id

@@ -2,7 +2,6 @@
 	<view class="container">
 		<tui-navigation-bar backgroundColor="#fff" :isFixed="false" :isOpacity="false">
 			<view class="nav">
-
 				<view @click="back">
 					<tui-icon name="arrowleft" size="25"></tui-icon>
 				</view>

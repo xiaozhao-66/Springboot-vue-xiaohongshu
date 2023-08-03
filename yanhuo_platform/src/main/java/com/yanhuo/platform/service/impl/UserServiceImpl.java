@@ -141,7 +141,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
     public UserRecordVo getUserRecord(String uid) {
         String userRecordKey = PlatformConstant.USER_RECORD + uid;
         UserRecordVo userRecordVo = new UserRecordVo();
-        if (redisUtils.hasKey(userRecordKey)) {
+        if (Boolean.TRUE.equals(redisUtils.hasKey(userRecordKey))) {
             userRecordVo = JsonUtils.parseObject(redisUtils.get(userRecordKey), UserRecordVo.class);
         }
         return userRecordVo;

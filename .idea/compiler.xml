@@ -7,11 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="yanhuo_admin" />
         <module name="yanhuo_search" />
+        <module name="renren-generator" />
         <module name="yanhuo_auth" />
         <module name="yanhuo_xo" />
         <module name="yanhuo_util" />
+        <module name="renren-fast" />
         <module name="yanhuo_common" />
         <module name="yanhuo_recommend" />
         <module name="yanhuo_platform" />
@@ -23,10 +24,13 @@
       <module name="common_utils" target="1.8" />
       <module name="platform_auth" target="1.8" />
       <module name="yanhuo-rabbitmq" target="8" />
+      <module name="yanhuo_admin" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="renren-fast" options="-parameters" />
+      <module name="renren-generator" options="-parameters" />
       <module name="yanhuo-rabbitmq" options="-parameters" />
       <module name="yanhuo_admin" options="-parameters" />
       <module name="yanhuo_auth" options="-parameters" />

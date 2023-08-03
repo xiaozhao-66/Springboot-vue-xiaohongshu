@@ -111,7 +111,6 @@ public class AlbumImgRelationServiceImpl extends ServiceImpl<AlbumImgRelationDao
         album.setCollectionCount(album.getCollectionCount() + 1);
         albumService.updateById(album);
 
-
         AgreeCollect agreeCollect = new AgreeCollect();
         agreeCollect.setUid(albumImgRelationDTO.getUid());
         agreeCollect.setAgreeCollectId(albumImgRelationDTO.getMid());
@@ -131,7 +130,6 @@ public class AlbumImgRelationServiceImpl extends ServiceImpl<AlbumImgRelationDao
             } catch (Exception e) {
                 throw new YanHuoException(Constant.MSG_ERROR);
             }
-
         }
     }
 

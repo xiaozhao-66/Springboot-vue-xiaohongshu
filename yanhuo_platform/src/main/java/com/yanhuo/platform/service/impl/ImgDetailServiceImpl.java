@@ -489,7 +489,7 @@ public class ImgDetailServiceImpl extends ServiceImpl<ImgDetailDao, ImgDetail> i
 
                     for (String item : fileNames) {
                         if (WebUtils.isHttpUrl(item)) {
-                            ossClient.deleteFile(item,2);
+                            ossClient.deleteFile(item, 2);
                         }
                     }
                     this.removeById(model);
@@ -583,35 +583,12 @@ public class ImgDetailServiceImpl extends ServiceImpl<ImgDetailDao, ImgDetail> i
 
     @Override
     public List<ImgDetailVo> getAllBrowseRecordByUser(long page, long limit, String uid) {
-
         List<ImgDetailVo> imgDetailVoList = new ArrayList<>();
         String userBrowseRecordKey = PlatformConstant.BR_IMG_KEY + uid;
-        List<String> mids;
         if (Boolean.TRUE.equals(redisUtils.hasKey(userBrowseRecordKey))) {
-            mids = redisUtils.lRange(userBrowseRecordKey, (page - 1) * limit, page * limit);
-            List<ImgDetail> imgDetailList = this.listByIds(mids);
-
-            Map<Long, User> userMap = new HashMap<>();
-            List<Long> uids = imgDetailList.stream().map(ImgDetail::getUserId).collect(Collectors.toList());
-            List<User> userList = userService.listByIds(uids);
-            userList.forEach(item -> {
-                userMap.put(item.getId(), item);
-            });
-
-            Map<Long, ImgDetail> imgDetailMap = new HashMap<>();
-            imgDetailList.forEach(item -> {
-                imgDetailMap.put(item.getId(), item);
-            });
-
-            ImgDetailVo imgDetailVo;
-            User user;
-            for (String id : mids) {
-                ImgDetail imgDetail = imgDetailMap.get(Long.valueOf(id));
-                imgDetailVo = ConvertUtils.sourceToTarget(imgDetail, ImgDetailVo.class);
-                user = userMap.get(imgDetail.getUserId());
-                imgDetailVo.setUsername(user.getUsername())
-                        .setAvatar(user.getAvatar());
-                imgDetailVoList.add(imgDetailVo);
+            List<String> strings = redisUtils.lRange(userBrowseRecordKey, (page - 1) * limit, page * limit);
+            for (String e : strings) {
+                imgDetailVoList.add(JSON.parseObject(e, ImgDetailVo.class));
             }
         }
         return imgDetailVoList;
@@ -621,17 +598,39 @@ public class ImgDetailServiceImpl extends ServiceImpl<ImgDetailDao, ImgDetail> i
     public void addBrowseRecord(BrowseRecordDTO browseRecordDTO) {
         String userBrowseRecordKey = PlatformConstant.BR_IMG_KEY + browseRecordDTO.getUid();
         if (Boolean.TRUE.equals(redisUtils.hasKey(userBrowseRecordKey))) {
-            redisUtils.lRemove(userBrowseRecordKey, 0, String.valueOf(browseRecordDTO.getMid()));
+            List<String> objs = redisUtils.lRange(userBrowseRecordKey, 0, -1);
+            for (String s : objs) {
+                ImgDetailVo imgDetailVo = JSON.parseObject(s, ImgDetailVo.class);
+                if (imgDetailVo.getId().equals(browseRecordDTO.getMid())) {
+                    redisUtils.lRemove(userBrowseRecordKey, 0, s);
+                    break;
+                }
+            }
         }
-        redisUtils.lLeftPush(userBrowseRecordKey, String.valueOf(browseRecordDTO.getMid()));
+
+        ImgDetail imgDetail = this.getById(browseRecordDTO.getMid());
+        ImgDetailVo imgDetailVo = ConvertUtils.sourceToTarget(imgDetail, ImgDetailVo.class);
+
+        User user = userService.getById(imgDetail.getUserId());
+        imgDetailVo.setUsername(user.getUsername())
+                .setAvatar(user.getAvatar());
+
+        redisUtils.lLeftPush(userBrowseRecordKey, JSON.toJSONString(imgDetailVo));
     }
 
     @Override
     public void delRecord(String uid, List<String> idList) {
         String userBrowseRecordKey = PlatformConstant.BR_IMG_KEY + uid;
         if (Boolean.TRUE.equals(redisUtils.hasKey(userBrowseRecordKey))) {
+            List<String> objs = redisUtils.lRange(userBrowseRecordKey, 0, -1);
             for (String mid : idList) {
-                redisUtils.lRemove(userBrowseRecordKey, 0, mid);
+                for (String s : objs) {
+                    ImgDetailVo imgDetailVo = JSON.parseObject(s, ImgDetailVo.class);
+                    if (imgDetailVo.getId().equals(Long.valueOf(mid))) {
+                        redisUtils.lRemove(userBrowseRecordKey, 0, s);
+                        break;
+                    }
+                }
             }
         }
     }
@@ -641,13 +640,13 @@ public class ImgDetailServiceImpl extends ServiceImpl<ImgDetailDao, ImgDetail> i
         List<ImgDetail> imgDetailList = this.list(null);
         List<Long> uids = imgDetailList.stream().map(ImgDetail::getUserId).collect(Collectors.toList());
         List<User> userList = userService.listByIds(uids);
-        HashMap<Long,User> userMap = new HashMap<>();
-        userList.forEach(item->{
-            userMap.put(item.getId(),item);
+        HashMap<Long, User> userMap = new HashMap<>();
+        userList.forEach(item -> {
+            userMap.put(item.getId(), item);
         });
         String key = PlatformConstant.IMG_DETAIL_LIST_KEY;
-        for (ImgDetail model: imgDetailList) {
-            redisUtils.hPut(key,String.valueOf(model.getId()), JSON.toJSONString(model));
+        for (ImgDetail model : imgDetailList) {
+            redisUtils.hPut(key, String.valueOf(model.getId()), JSON.toJSONString(model));
         }
     }
 }

@@ -27,7 +27,7 @@ public class ChatController {
     ChatService chatService;
 
     /**
-     * 得到zim的token信息
+     * 得到zim的token信息（如果使用zim组件）
      *
      * @param userId 用户的id
      */

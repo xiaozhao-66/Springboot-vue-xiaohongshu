@@ -23,10 +23,10 @@
 						</view>
 						<view class="tui-msg-right">
 
-							<tui-button v-if="item.isfollow" @click="clearFollow(item.uid)" type="gray" height="50rpx"
+							<tui-button v-if="item.isfollow" @click="clearFollow(item.uid,index)" type="gray" height="50rpx"
 								size="22" width="100rpx" shape="circle" plain>已关注</tui-button>
 
-							<tui-button v-else @click="follow(item.uid)" type="danger" height="50rpx" size="22"
+							<tui-button v-else @click="follow(item.uid,index)" type="danger" height="50rpx" size="22"
 								width="100rpx" shape="circle" plain>关注</tui-button>
 						</view>
 					</view>
@@ -77,7 +77,6 @@
 					type: 0
 				}
 				getAllFriend(this.page, this.limit, params).then(res => {
-					console.log(res)
 					res.data.records.forEach((e) => {
 						e.time = timeAgo(e.time)
 						this.dataList.push(e)
@@ -107,25 +106,25 @@
 			},
 
 			//关注用户
-			follow(fid) {
+			follow(fid ,index) {
 
 				let followDTo = {}
 				followDTo.uid = this.uid
 				followDTo.fid = fid
 				//添加关注
 				followUser(followDTo).then(res => {
-					this.getAllFanUser()
+					this.dataList[index].isfollow = true
 				})
 			},
 
-			clearFollow(fid) {
+			clearFollow(fid,index) {
 
 				let user = uni.getStorageSync("userInfo")
 				let followDTo = {}
 				followDTo.uid = user.id
 				followDTo.fid = fid
 				clearFollow(followDTo).then(res => {
-					this.getAllFanUser()
+					this.dataList[index].isfollow = false
 				})
 			},
 

@@ -30,6 +30,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * 
@@ -199,6 +200,29 @@ public class CommentServiceImpl extends ServiceImpl<CommentDao, Comment> impleme
         return this.baseMapper.getAllReplyComment(page, limit, uid);
     }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void delComment(String id) {
+        String agreeCommentKey = PlatformConstant.AGREE_COMMENT_KEY + id;
+        if(Boolean.TRUE.equals(redisUtils.hasKey(agreeCommentKey))){
+            redisUtils.delete(agreeCommentKey);
+        }
+        Comment comment = this.getById(id);
+
+        if(comment.getPid()==0){
+            //要把下面的所有二级评论给删了
+            List<Comment> twoCommentList = this.list(new QueryWrapper<Comment>().eq("pid", comment.getId()));
+            List<Long> cids = twoCommentList.stream().map(Comment::getId).collect(Collectors.toList());
+            List<String> keys = twoCommentList.stream().map(e->PlatformConstant.AGREE_COMMENT_KEY+e.getId()).collect(Collectors.toList());
+            redisUtils.delete(keys);
+            this.removeBatchByIds(cids);
+        }else{
+            Comment oneComment = this.getById(comment.getPid());
+            oneComment.setTwoNums(oneComment.getTwoNums()-1);
+            this.updateById(oneComment);
+        }
+        this.removeById(id);
+    }
 
     @NotNull
     private IPage<CommentVo> getCommentVoIPage(String uid, Page<CommentVo> resPage, Page<Comment> commentOnePage) {

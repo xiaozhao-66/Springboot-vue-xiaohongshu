@@ -3,12 +3,11 @@ package com.yanhuo.common.auth;
 import com.alibaba.fastjson.JSON;
 import com.yanhuo.common.constant.auth.AuthConstant;
 import com.yanhuo.common.entity.UserLogin;
-import com.yanhuo.common.utils.ConvertUtils;
+import com.yanhuo.common.exception.YanHuoException;
+import com.yanhuo.common.result.ResultCodeEnum;
 import com.yanhuo.common.utils.JwtUtils;
 import com.yanhuo.common.utils.RedisUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,11 +23,11 @@ public class UserLoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
-                             Object handler) throws Exception {
-
-
-        return this.getUserLoginVo(request);
-
+                             Object handler){
+        if(this.getUserLoginVo(request)){
+            return true;
+        }
+        throw new YanHuoException(ResultCodeEnum.TOKEN_FAIL.getMessage(),ResultCodeEnum.TOKEN_FAIL.getCode());
     }
 
     private boolean getUserLoginVo(HttpServletRequest request) {
@@ -42,13 +41,11 @@ public class UserLoginInterceptor implements HandlerInterceptor {
 
             //根据userId到Redis获取用户信息
             UserLogin userLogin = JSON.parseObject(redisUtils.get(AuthConstant.USER_KEY + userId),UserLogin.class);
-
             //获取数据放到ThreadLocal里面
             if(userLogin!=null) {
                 AuthContextHolder.setUserId(userLogin.getId());
                 return true;
             }
-
         }
         return false;
     }

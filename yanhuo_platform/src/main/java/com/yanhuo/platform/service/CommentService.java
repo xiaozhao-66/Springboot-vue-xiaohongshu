@@ -76,4 +76,10 @@ public interface CommentService extends IService<Comment> {
      * @return
      */
     List<CommentVo> getAllReplyComment(long page, long limit, String uid);
+
+    /**
+     * 删除一条评论
+     * @param id
+     */
+    void delComment(String id);
 }

@@ -89,8 +89,6 @@
 				type: [Array],
 				default: [],
 			},
-
-
 		},
 		data() {
 			return {

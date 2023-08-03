@@ -133,7 +133,7 @@
 				<!--  scrollTop，comArr实现评论跳转，-->
 				<comment :mid='imgInfo.id' @getComment="getComment" @addAgree="addAgree" @scrollTop="getScrollTop"
 					@cancelAgreeComment="cancelAgreeComment" :page="page" :parentId="parentId" :comArr='comArr'
-					:commentInfo='commentInfo'  :currentUid='imgInfo.userId'>
+					:commentInfo='commentInfo'  :currentUid='imgInfo.userId'  @delComment='delComment'>
 				</comment>
 				<!-- 评论功能 -->
 			</view>
@@ -142,7 +142,7 @@
 		</scroll-view>
 
 		<!-- 底部输入框 -->
-		<view class="fotter">
+		<view :class="fn?'fotter fotter-none':'fotter'" >
 
 			<view v-if="!useful_flag" class="fotter-info">
 				<view class="fotter-content" @click="active">{{ placeholder }}</view>
@@ -334,6 +334,8 @@
 				useful_flag: false,
 				cursor: false,
 				show: false,
+				
+				fn:false,
 
 				//
 				commentInfo: {},
@@ -481,6 +483,10 @@
 				this.$nextTick(function() {
 					this.scrollTop = top
 				});
+			},
+			
+			delComment(flag){
+				this.fn = flag
 			},
 
 			back() {

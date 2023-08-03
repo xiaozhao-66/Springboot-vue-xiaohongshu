@@ -301,7 +301,7 @@
 						this.dataList.push(...res.data.records)
 
 					})
-				}, 500)
+				}, 100)
 			},
 
 			getImgInfo(mid, status) {

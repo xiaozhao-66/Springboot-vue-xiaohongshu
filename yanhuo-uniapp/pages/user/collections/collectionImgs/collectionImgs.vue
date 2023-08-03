@@ -50,7 +50,7 @@
 
 			getItem(item) {
 				return {
-					id: item.collectionId,
+					id: item.mid,
 					image: item.cover,
 					content: item.content,
 					count: item.count,
@@ -94,7 +94,8 @@
 
 			},
 			getImgInfo(mid) {
-
+                console.log(mid)
+                  
 				if (uni.getStorageSync("userInfo").id != null || uni.getStorageSync("userInfo").id != '') {
 					let data = {}
 					data.uid = uni.getStorageSync("userInfo").id

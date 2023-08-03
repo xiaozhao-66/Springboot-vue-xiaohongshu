@@ -10,7 +10,8 @@
 			"path": "pages/login/login",
 			
 			"style": {
-				// "navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		},
 		{

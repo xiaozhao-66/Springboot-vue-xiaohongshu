@@ -30,7 +30,3 @@ spring:
           uri: lb://yanhuo-platform
           predicates:
             - Path=/api/platform/**
-        - id: yanhuo-admin
-          uri: lb://yanhuo-admin
-          predicates:
-            - Path=/api/admin/**

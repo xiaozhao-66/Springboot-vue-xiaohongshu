@@ -164,8 +164,6 @@
 				})
 			},
 
-
-
 			onRefresh() {
 				this.triggered = true;
 
@@ -221,7 +219,7 @@
 						this.total = res.data.length
 
 					})
-				}, 1000)
+				}, 100)
 			},
 
 			getUserInfo(uid) {

@@ -151,7 +151,7 @@
 							this.dataList.push(e)
 						})
 					})
-				}, 500)
+				}, 100)
 			},
 
 			cancelUpload(mid) {

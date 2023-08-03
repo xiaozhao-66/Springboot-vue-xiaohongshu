@@ -5,6 +5,10 @@
 				selectedColor="#ff0000"></tui-tabs>
 		</tui-navigation-bar>
 
+
+
+
+
 		<view @touchstart="start" @touchend="end">
 
 			<interest v-if="currentTab == 0"></interest>
@@ -12,23 +16,11 @@
 
 			<view v-if="currentTab == 1">
 
+
 				<scroll-view scroll-y class="page" @scrolltolower="loadData" refresher-enabled="true"
 					:refresher-triggered="triggered" @refresherrefresh="onRefresh" @scroll="scroll"
 					:scroll-top="scrollTop">
-					<view class="tui-content-box">
-						<view class="tui-avatar-box">
-							<view @click="openDrawer" v-if="userInfo">
-								<image :src="userInfo.avatar" class="tui-avatar" mode="aspectFill" />
-							</view>
-							<view v-else>
-								<image src="/static/images/toast/img_nodata.png" class="tui-avatar" />
-							</view>
-						</view>
-						<view class="tui-search-box" @click="toSearch">
-							<tui-icon name="search-2" :size="18" color="#bfbfbf"></tui-icon>
-							<view class="tui-search-text">请输入内容</view>
-						</view>
-					</view>
+
 					<view>
 						<tui-drawer mode="left" :visible="visiable" @close="closeDrawer">
 							<view class="d-container">
@@ -80,6 +72,21 @@
 								</view>
 							</view>
 						</tui-drawer>
+					</view>
+
+					<view class="tui-content-box">
+						<view class="tui-avatar-box">
+							<view @click="openDrawer" v-if="userInfo">
+								<image :src="userInfo.avatar" class="tui-avatar" mode="aspectFill" />
+							</view>
+							<view v-else>
+								<image src="/static/images/toast/img_nodata.png" class="tui-avatar" />
+							</view>
+						</view>
+						<view class="tui-search-box" @click="toSearch">
+							<tui-icon name="search-2" :size="18" color="#bfbfbf"></tui-icon>
+							<view class="tui-search-text">请输入内容</view>
+						</view>
 					</view>
 
 
@@ -278,12 +285,17 @@
 				list2: [], // 瀑布流第二列数据
 
 				needRefresh: false,
+
+				stickyScrollTop: 0,
 			}
 		},
 		watch: {
 			seed(newVal, oldVal) {
 				this.userInfo = uni.getStorageSync("userInfo")
 			},
+		},
+		onPageScroll(e) {
+			this.stickyScrollTop = e.stickyScrollTop
 		},
 		created() {
 
@@ -301,7 +313,7 @@
 
 		onHide() {
 			this.needRefresh = false
-			
+
 		},
 
 		onTabItemTap(e) {
@@ -317,7 +329,7 @@
 				this.needRefresh = true
 			}
 
-            //  双击事件
+			//  双击事件
 			// if (this.tabClick) { // 200ms 内再次点击
 			// 	// 这里就是模拟的双击事件，可以写类似数据刷新相关处理
 			// 	this.onRefresh()
@@ -329,6 +341,11 @@
 		},
 
 		methods: {
+
+			changeSticky(e) {
+				console.log(e)
+			},
+
 			change(e) {
 				this.currentTab = e.index
 			},
@@ -340,7 +357,7 @@
 				this.startData.clientY = e.changedTouches[0].clientY;
 			},
 			end(e) {
-				
+
 				const subX = e.changedTouches[0].clientX - this.startData.clientX;
 				const subY = e.changedTouches[0].clientY - this.startData.clientY;
 				if (subY > 50 || subY < -50) {
@@ -473,7 +490,7 @@
 				let params = {}
 				getPage(this.page, this.limit, params).then(res => {
 					this.total = res.data.total
-					
+
 					this.getMoreData(res.data.records)
 				})
 			},
@@ -507,12 +524,12 @@
 					uid: this.userInfo.id
 				}
 				getRecommend(this.page, this.size, params).then(res => {
-                   
+
 					if (res.data == null) {
 						this.isFirst = true
 						this.getPage()
 					} else {
-                        
+
 						this.total = res.data.total
 						this.getMoreData(res.data.records)
 
@@ -553,7 +570,6 @@
 						}
 					}
 
-
 					this.page = this.page + 1;
 
 					if (this.isSearchByCategory) {
@@ -573,9 +589,9 @@
 							uid: this.userInfo.id
 						}
 						getRecommend(this.page, this.size, params).then(res => {
-							
 
- 
+
+
 							if (res.data == null) {
 								getPage(this.page, this.limit, params).then(res => {
 									this.getMoreData(res.data.records)
@@ -589,7 +605,7 @@
 						})
 					}
 
-				}, 500)
+				}, 100)
 			},
 			getImgInfo(mid) {
 				this.isFirst = false

@@ -55,10 +55,10 @@
             },
             "icons" : {
                 "android" : {
-                    "hdpi" : "C:/Users/48423/Desktop/项目jar包/yanhuo_v2/doc/title.png",
-                    "xhdpi" : "C:/Users/48423/Desktop/项目jar包/yanhuo_v2/doc/title.png",
-                    "xxhdpi" : "C:/Users/48423/Desktop/项目jar包/yanhuo_v2/doc/title.png",
-                    "xxxhdpi" : "C:/Users/48423/Desktop/项目jar包/yanhuo_v2/doc/title.png"
+                    "hdpi" : "C:/Users/48423/Desktop/yanhuo_v2/doc/title.png",
+                    "xhdpi" : "C:/Users/48423/Desktop/yanhuo_v2/doc/title.png",
+                    "xxhdpi" : "C:/Users/48423/Desktop/yanhuo_v2/doc/title.png",
+                    "xxxhdpi" : "C:/Users/48423/Desktop/yanhuo_v2/doc/title.png"
                 }
             },
             "splashscreen" : {
@@ -108,7 +108,17 @@
     "vueVersion" : "2",
     "h5" : {
         "unipush" : {
-            "enable" : true
+            "enable" : false
+        },
+        "title" : "烟火",
+        "devServer" : {
+            "https" : false,
+            "port" : 2000
+        },
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : true
+            }
         }
     }
 }

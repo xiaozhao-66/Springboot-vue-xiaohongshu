@@ -71,7 +71,6 @@
 				})
 			},
 			loadData() {
-
 				if (this.dataList.length >= this.total) {
 					this.isEnd = true
 					return
@@ -79,7 +78,6 @@
 				this.page = this.page + 1;
 
 				getHot(this.page, this.limit).then(res => {
-
 					this.dataList.push(...res.data.records)
 				})
 			},

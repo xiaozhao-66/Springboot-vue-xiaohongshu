@@ -26,11 +26,11 @@
 						</view>
 						<view class="tui-msg-right" v-if="uid==loginUid">
 							<view v-if="type == 1">
-								<tui-button @click="clearFollow(item.uid)" height="60rpx" width="120rpx" type="gray"
-									:size="24">取消关注</tui-button>
+								<tui-button @click="clearFollow(item.uid, index)" height="60rpx" width="120rpx"
+									type="gray" :size="24">取消关注</tui-button>
 							</view>
 							<view v-if="type == 0">
-								<tui-button v-if='!item.isfollow' @click="follow(item.uid)" height="60rpx"
+								<tui-button v-if='!item.isfollow' @click="follow(item.uid ,index)" height="60rpx"
 									width="120rpx" type="danger" :size="24">关注</tui-button>
 							</view>
 						</view>
@@ -136,7 +136,7 @@
 			},
 
 
-			follow(fid) {
+			follow(fid, index) {
 				let user = uni.getStorageSync("userInfo")
 				let followDTo = {}
 				followDTo.uid = user.id
@@ -147,14 +147,14 @@
 				})
 			},
 
-			clearFollow(fid) {
+			clearFollow(fid, index) {
 
 				let user = uni.getStorageSync("userInfo")
 				let followDTo = {}
 				followDTo.uid = user.id
 				followDTo.fid = fid
 				clearFollow(followDTo).then(res => {
-					this.getAllFriend(user.id, 1)
+					this.dataList.splice(index, 1)
 				})
 			}
 

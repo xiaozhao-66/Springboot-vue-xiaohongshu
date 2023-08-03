@@ -9,7 +9,7 @@
 								<image :src="item.cover" mode="aspectFill" :lazy-load='true' />
 							</view>
 							<view class="cont">
-								<h5>{{ item.content }}</h5>
+								<h5>{{ item.name }}</h5>
 								<p>{{ item.imgCount }}张图片 | {{ item.collectionCount }}人收藏</p>
 							</view>
 						</view>
@@ -54,7 +54,6 @@
 					type: 3
 				}
 				getAllCollection(this.page, this.limit, params).then(res => {
-					console.log('12', res)
 					this.dataList = res.data.records
 					this.total = res.data.length
 				})
@@ -81,7 +80,6 @@
 				}
 				getAllCollection(this.page, this.limit, params).then(res => {
 					this.dataList.push(...res.data)
-
 				})
 			}
 

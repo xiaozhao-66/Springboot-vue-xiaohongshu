@@ -61,7 +61,7 @@ public class EsServiceImpl implements EsService {
         // 精确查询，添加查询条件
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
 
-        if(imgDetailSearchDTO.getKeyword()!=null){
+        if (imgDetailSearchDTO.getKeyword() != null) {
             MatchQueryBuilder contentQueryBuilder = QueryBuilders.matchQuery("content", imgDetailSearchDTO.getKeyword());
             MatchQueryBuilder usernameQueryBuilder = QueryBuilders.matchQuery("username", imgDetailSearchDTO.getKeyword());
             BoolQueryBuilder should = boolQueryBuilder.should(contentQueryBuilder).should(usernameQueryBuilder);
@@ -91,11 +91,11 @@ public class EsServiceImpl implements EsService {
             String sourceAsString = documentFields.getSourceAsString();
             ImgDetailVo imgDetailSearchVo = JSON.parseObject(sourceAsString, ImgDetailVo.class);
 
-            String agreeImgKey = SearchConstant.AGREE_IMG_KEY+imgDetailSearchVo.getId();
+            String agreeImgKey = SearchConstant.AGREE_IMG_KEY + imgDetailSearchVo.getId();
 
-            if(Boolean.TRUE.equals(redisUtils.hasKey(agreeImgKey))){
-                int agreeCount = JSON.parseArray(redisUtils.get(agreeImgKey),Long.class).size();
-                imgDetailSearchVo.setAgreeCount((long)agreeCount);
+            if (Boolean.TRUE.equals(redisUtils.hasKey(agreeImgKey))) {
+                int agreeCount = JSON.parseArray(redisUtils.get(agreeImgKey), Long.class).size();
+                imgDetailSearchVo.setAgreeCount((long) agreeCount);
             }
 
             res.add(imgDetailSearchVo);
@@ -105,8 +105,6 @@ public class EsServiceImpl implements EsService {
         map.put(SearchConstant.TOTAL, totalHits.value);
         return map;
     }
-
-
 
 
     @Override
@@ -188,7 +186,7 @@ public class EsServiceImpl implements EsService {
     public List<SearchRecordVo> esSearchRecordList(String keyword) throws IOException {
         List<SearchRecordVo> results = new ArrayList<SearchRecordVo>();
 
-        if(!EsClientUtil.checkIndexExist(SearchConstant.RECORD_INDEX)){
+        if (!EsClientUtil.checkIndexExist(SearchConstant.RECORD_INDEX)) {
             return results;
         }
 
@@ -197,10 +195,7 @@ public class EsServiceImpl implements EsService {
 
         if (keyword != null) {
             // 精确查询，添加查询条件
-            BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
-            MatchQueryBuilder contentQueryBuilder = QueryBuilders.matchQuery("keyWord", keyword);
-            BoolQueryBuilder should = boolQueryBuilder.should(contentQueryBuilder);
-            searchSourceBuilder.query(should);    // 分页
+            searchSourceBuilder.query(QueryBuilders.matchQuery("keyword", keyword));
         }
 
         searchSourceBuilder.timeout(new TimeValue(60, TimeUnit.SECONDS));
@@ -259,8 +254,8 @@ public class EsServiceImpl implements EsService {
     public List<Map<String, Object>> esSearchRecord(String keyword) throws IOException {
         List<Map<String, Object>> results = new ArrayList<>();
 
-        if(!EsClientUtil.checkIndexExist(SearchConstant.RECORD_INDEX)){
-            return  results;
+        if (!EsClientUtil.checkIndexExist(SearchConstant.RECORD_INDEX)) {
+            return results;
         }
         SearchRequest searchRequest = new SearchRequest(SearchConstant.RECORD_INDEX);
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
