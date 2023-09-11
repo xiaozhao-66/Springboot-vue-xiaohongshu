@@ -1,0 +1,154 @@
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-right: 24rpx;
+	height: 80rpx;
+}
+
+.n-left {
+	display: flex;
+	align-items: center;
+	
+}
+
+.next{
+	font-size:26rpx;
+	color: #4d4d4d;
+}
+
+.tui-grid {
+	padding: 0rpx;
+
+}
+
+.card {
+	background-color: red;
+}
+
+
+.img-list {
+	/* display: flex;
+	flex-wrap: wrap;
+	width: 96%; */
+	margin: auto;
+	width: 95%;
+	overflow: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.img-item{
+	 display: inline-block;
+}
+
+
+
+
+image {
+	width: 240rpx;
+	height: 240rpx;
+}
+
+.content {
+	width: 90%;
+	margin: auto;
+	
+}
+
+.tag {
+	width: 90%;
+	margin: auto;
+	height: 80rpx;
+	border-top: 1px solid #f4f4f4;
+	border-bottom: 1px solid #f4f4f4;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.icon {
+	display: flex;
+	align-items: center;
+	color: #adadad;
+}
+
+.tag-item {
+	width: 300rpx;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #e40000;
+}
+
+
+
+.categoryBox {
+	display: flex;
+	height: 500rpx;
+
+	width: 100%;
+}
+
+.category-left {
+	width: 25%;
+
+}
+
+.category-right {
+	width: 75%;
+	/* overflow-y: scroll; */
+}
+
+.desc {
+	font-size: 24rpx;
+	width: 75vw;
+	clear: both;
+	/* 清除左右浮动 */
+	word-break: break-word;
+	/* 文本行的任意字内断开，就算是一个单词也会分开 */
+
+	word-wrap: break-word;
+	/* IE */
+
+	white-space: -moz-pre-wrap;
+	/* Mozilla */
+
+	white-space: -hp-pre-wrap;
+	/* HP printers */
+
+	white-space: -o-pre-wrap;
+	/* Opera 7 */
+
+	white-space: -pre-wrap;
+	/* Opera 4-6 */
+
+	white-space: pre;
+	/* CSS2 */
+
+	white-space: pre-wrap;
+	/* CSS 2.1 */
+
+	white-space: pre-line;
+	/* CSS 3 (and 2.1 as well, actually) */
+}
+
+/* picker end*/
+.upload {
+	width: 240rpx;
+	height: 240rpx;
+	background-color: #f4f4f4;
+	position: relative;
+
+}
+
+.img-icon {
+	position: absolute;
+	left: 35%;
+	top: 35%;
+}

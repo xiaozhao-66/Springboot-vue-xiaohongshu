@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/renren-fast/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/renren-fast/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/renren-generator/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yanhuo_auth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yanhuo_auth/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yanhuo_common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yanhuo_common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yanhuo_gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yanhuo_gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yanhuo_platform/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yanhuo_platform/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yanhuo_recommend/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yanhuo_recommend/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yanhuo_search/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yanhuo_search/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yanhuo_util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yanhuo_util/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yanhuo_xo/src/main/java" charset="UTF-8" />
+  </component>
+</project>

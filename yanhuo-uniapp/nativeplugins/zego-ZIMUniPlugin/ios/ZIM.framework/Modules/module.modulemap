@@ -1,0 +1,6 @@
+framework module ZIM {
+  umbrella header "ZIM.h"
+
+  export *
+  module * { export * }
+}

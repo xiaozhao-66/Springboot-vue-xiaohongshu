@@ -1,0 +1,14 @@
+
+Q
+java:S1874"6Remove this use of "ReturnCallback"; it is deprecated.(îœÚÎÿÿÿÿÿ
+T
+java:S1874"9Remove this use of "setReturnCallback"; it is deprecated.(««íÙûÿÿÿÿ
+S	java:S106#"9Replace this use of System.out or System.err by a logger.(‹šÏ£ýÿÿÿÿ
+S	java:S106%"9Replace this use of System.out or System.err by a logger.(€½·æúÿÿÿÿ
+S	java:S1063"9Replace this use of System.out or System.err by a logger.(¸É×âýÿÿÿÿ
+N	java:S1064"9Replace this use of System.out or System.err by a logger.(¶ý†å
+S	java:S1065"9Replace this use of System.out or System.err by a logger.(©Ô§…þÿÿÿÿ
+N	java:S1066"9Replace this use of System.out or System.err by a logger.(µÂÇß
+S	java:S1067"9Replace this use of System.out or System.err by a logger.(úá·Áûÿÿÿÿ
+g
+java:S1128"ERemove this unused import 'org.springframework.stereotype.Component'.(Þ÷Ñ¸ÿÿÿÿÿ8ó†ê¿•1

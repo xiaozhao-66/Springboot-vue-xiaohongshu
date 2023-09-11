@@ -1,0 +1,20 @@
+
+b
+java:S1192"GDefine a constant instead of duplicating this literal "userId" 3 times.(ëïÎûÿÿÿÿ
+e	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜Í·v
+u
+java:S1488"`Immediately return this expression instead of assigning it to the temporary variable "JwtToken".(˜Í·v
+a
+java:S2184"FCast one of the operands of this multiplication operation to a "long".(Ù›©ôıÿÿÿÿ
+P
+java:S1118":Add a private constructor to hide the implicit public one.(Š¦ûÂ
+X
+java:S6437!"6Revoke and change this password, as it is compromised.(èîßßûÿÿÿÿ8²Ìßà 1
+X
+java:S64372"6Revoke and change this password, as it is compromised.(·Ú‹öøÿÿÿÿ8ºÌßà 1
+S
+java:S6437@"6Revoke and change this password, as it is compromised.(Õ¯„À8»Ìßà 1
+X
+java:S6437P"6Revoke and change this password, as it is compromised.(·Ú‹öøÿÿÿÿ8¿Ìßà 1
+S
+java:S6437b"6Revoke and change this password, as it is compromised.(Õ¯„À8ÁÌßà 1

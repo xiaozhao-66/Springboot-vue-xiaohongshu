@@ -1,0 +1,39 @@
+.container {
+
+	margin-top: 40rpx;
+}
+
+image {
+	width: 340rpx;
+	height: 400rpx;
+}
+
+.content .create {
+	padding-top: 10px;
+	padding-bottom: 5px;
+}
+
+.create-btn{
+	display: flex;
+	justify-content: center;
+}
+
+
+.main .tui-grid {
+	padding: 10rpx 20rpx;
+}
+
+.main .tui-grid .card {
+	background-color: #fff;
+	width: 340rpx;
+	height: 550rpx;
+}
+
+.main .card .cont {
+	margin-left: 10px;
+}
+
+.main .card .cont p {
+	margin-top: 5px;
+	font-size: 12px;
+}

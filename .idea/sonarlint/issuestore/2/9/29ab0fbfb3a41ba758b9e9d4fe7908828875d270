@@ -1,0 +1,11 @@
+
+`	java:S112D"FDefine and throw a dedicated exception instead of using a generic one.(íÚ²Œùÿÿÿÿ
+J
+java:S3740"/Provide the parametrized type for this generic.(“õÜÄıÿÿÿÿ
+D
+java:S3740 "/Provide the parametrized type for this generic.(šÆ·r
+L
+java:S2696%"6Make the enclosing method "static" or remove this set.(ñÚşÍ
+K
+java:S2209%"5Change this instance-reference to a static reference.(ñÚşÍ
+P	java:S125\"<This block of commented-out lines of code should be removed.(ÎÂ‡I

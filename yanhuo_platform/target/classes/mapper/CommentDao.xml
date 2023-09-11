@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yanhuo.platform.dao.CommentDao">
+    <select id="getAllReplyComment" resultType="com.yanhuo.xo.vo.CommentVo">
+        SELECT
+        c.id,
+        c.content,
+        c.create_date,
+        c.uid,
+        c.username,
+        c.avatar,
+        c.reply_id,
+        c.reply_name,
+        null as  reply_uid,
+        null  as reply_content,
+        i.id as mid,
+        i.cover as cover
+
+        FROM
+        t_comment c
+        JOIN t_img_detail i ON c.mid = i.id
+        WHERE
+        i.user_id = #{uid} and c.uid != #{uid}
+        AND c.pid = 0
+
+        union
+
+        SELECT DISTINCT
+        c.id,
+        c.content,
+        c.create_date,
+        c.uid,
+        c.username,
+        c.avatar,
+        c.reply_id,
+        c.reply_name,
+        s.uid as reply_uid,
+        s.content AS reply_content,
+        i.id as mid,
+        i.cover as cover
+
+        FROM
+        t_comment c
+        inner JOIN t_img_detail i ON c.mid = i.id
+
+        left join   t_comment s ON c.reply_id = s.id
+
+        WHERE
+        i.user_id = #{uid} and c.uid != #{uid}
+        AND c.pid != 0
+
+
+        union
+
+        SELECT
+        s.id,
+        s.content,
+        s.create_date,
+        s.uid,
+        s.username,
+        s.avatar,
+        s.reply_id,
+        s.reply_name,
+        c.uid as reply_uid,
+        c.content AS reply_content,
+        i.id as mid,
+        i.cover as cover
+        FROM
+        t_comment c
+
+        left join  t_comment s ON  s.reply_id = c.id
+
+        left join t_img_detail i on s.mid = i.id
+
+        WHERE
+        c.uid = #{uid} and s.uid != #{uid}
+
+        order by
+        create_date desc
+
+         LIMIT ${(page-1)*limit},${limit};
+
+    </select>
+</mapper>

@@ -1,0 +1,107 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-bottom: 175rpx;
+  display: flex;
+  flex-direction: column;
+}
+.container .header {
+  flex-shrink: 0;
+  padding: 0px 40rpx 60rpx 40rpx;
+}
+.container .header .nav {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 10px;
+}
+.container .content {
+  margin-top: 52px;
+  flex-grow: 1;
+  overflow: auto;
+  height: 90vh;
+}
+.container .content .message {
+  margin: 0px 40rpx 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.container .content .message .message-content {
+  width: auto;
+  max-width: calc(100vw - 80rpx);
+  word-wrap: break-word;
+  box-sizing: border-box;
+  padding: 32rpx;
+  line-height: 48rpx;
+  background: pink;
+  border-radius: 16rpx 0px 16rpx 16rpx;
+}
+.container .content .message .message-time {
+  line-height: 32rpx;
+  margin-top: 16rpx;
+}
+.container .content .tui-flex-end {
+  justify-content: flex-end;
+}
+.container .content .tui-chat-item {
+  width: 100%;
+  padding: 30rpx 30rpx 0 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+}
+.container .content .tui-chat-item .tui-chat-box {
+  max-width: 70%;
+}
+.container .content .tui-chat-item .tui-chat-box .tui-user-name {
+  font-size: 24rpx;
+  color: #999;
+}
+.container .content .tui-chat-item .tui-chat-box .tui-chat-text {
+  width: 100%;
+  min-width: 40rpx;
+  padding: 18rpx 24rpx;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  word-break: break-all;
+  box-sizing: border-box;
+}
+.container .content .tui-chat-item .tui-user-avatar {
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.container .content .tui-chat-item .tui-mr {
+  margin-right: 24rpx;
+}
+.container .content .tui-chat-item .tui-ml {
+  margin-left: 24rpx;
+}
+.bottom-textarea {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: #fff;
+  border-top: 1rpx solid #f4f4f4;
+  padding: 6px 20px;
+  display: flex;
+  align-items: flex-end;
+}
+.bottom-textarea .textarea-container {
+  flex: 1;
+  min-height: 60rpx;
+  background: #f2f2f2;
+  border-radius: 8rpx;
+  box-sizing: border-box;
+  padding: 20rpx 16rpx;
+}
+.bottom-textarea .textarea-container > textarea {
+  max-height: 250rpx;
+  font-size: 36rpx;
+  color: #080808;
+  width: auto;
+}

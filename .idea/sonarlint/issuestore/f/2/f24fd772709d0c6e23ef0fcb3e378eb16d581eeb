@@ -1,0 +1,11 @@
+
+Q
+java:S18742";Remove this use of "RestHighLevelClient"; it is deprecated.(é¤Ş
+W	java:S125Œ"<This block of commented-out lines of code should be removed.(ÊëÓ¶ûÿÿÿÿ
+p
+java:S2293»"YReplace the type specification in this constructor call with the diamond operator ("<>").(†·á±
+h
+java:S1192"QDefine a constant instead of duplicating this literal "highLightKeyword" 4 times.(É¥™š
+g	java:S117ª"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±†ĞÍ
+]
+java:S2259i"GA "NullPointerException" could be thrown; "totalHits" is nullable here.(¯÷ÚÁ

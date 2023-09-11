@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="93d9e53a-b7f8-40b3-b4c6-75251cdc0092" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectId" id="2S8UeShutlXV4RlfX9DeKFLp0hl" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/48423/Desktop/yanhuo_v2_dev/doc",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "spring.configuration.checksum": "3bdeb2f4dc14b00c81c814b1a445ab61",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\48423\Desktop\yanhuo_v2_dev\doc" />
+      <recent name="C:\Users\48423\Desktop\项目jar包\yanhuo_v2\renren-fast\src\main\resources\mapper\platform" />
+      <recent name="C:\Users\48423\Desktop\项目jar包\yanhuo_v2\renren-fast\src\main\java\io\renren\modules\platform\controller" />
+      <recent name="C:\Users\48423\Desktop\项目jar包\yanhuo_v2\renren-fast\src\main\java\io\renren\modules\platform\dao" />
+      <recent name="C:\Users\48423\Desktop\项目jar包\yanhuo_v2\renren-fast\src\main\java\io\renren\modules\platform\service\impl" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.yanhuo.common.config" />
+      <recent name="com.yanhuo.xo.vo" />
+      <recent name="com.yanhuo.xo.dto.platform" />
+      <recent name="com.yanhuo.common.utils" />
+      <recent name="com.yanhuo.platform.task" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.PlatformApplication">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="yanhuo_admin" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="yanhuo_admin" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="yanhuo_admin" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yanhuo.admin.AdminApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yanhuo.admin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AuthApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="yanhuo_auth" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yanhuo.auth.AuthApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yanhuo.auth.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="yanhuo_gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yanhuo.gateway.GatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PlatformApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="yanhuo_platform" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yanhuo.platform.PlatformApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yanhuo.platform.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RecommendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="yanhuo_recommend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yanhuo.recommend.RecommendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RenrenApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="renren-generator" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="io.renren.RenrenApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="io.renren.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RenrenApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="renren-fast" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="io.renren.RenrenApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SearchApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="yanhuo_search" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yanhuo.search.SearchApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.yanhuo.search.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UtilApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="yanhuo_util" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.yanhuo.util.UtilApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.AuthApplication" />
+        <item itemvalue="Spring Boot.PlatformApplication" />
+        <item itemvalue="Spring Boot.SearchApplication" />
+        <item itemvalue="Spring Boot.RenrenApplication (1)" />
+        <item itemvalue="Spring Boot.AdminApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="93d9e53a-b7f8-40b3-b4c6-75251cdc0092" name="Default Changelist" comment="" />
+      <created>1688527796835</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1688527796835</updated>
+      <workItem from="1688527799370" duration="7659000" />
+      <workItem from="1688541881920" duration="9922000" />
+      <workItem from="1688553275939" duration="3133000" />
+      <workItem from="1688567320013" duration="4462000" />
+      <workItem from="1688608263469" duration="5473000" />
+      <workItem from="1688687234364" duration="24637000" />
+      <workItem from="1688778477696" duration="30356000" />
+      <workItem from="1688825635796" duration="4271000" />
+      <workItem from="1688865834867" duration="14162000" />
+      <workItem from="1688952110887" duration="5506000" />
+      <workItem from="1689039047928" duration="2220000" />
+      <workItem from="1689426173273" duration="6428000" />
+      <workItem from="1689725286756" duration="3224000" />
+      <workItem from="1689747530194" duration="8268000" />
+      <workItem from="1689842114202" duration="13082000" />
+      <workItem from="1689920109769" duration="6061000" />
+      <workItem from="1690201601504" duration="581000" />
+      <workItem from="1690531264454" duration="1075000" />
+      <workItem from="1690541941863" duration="601000" />
+      <workItem from="1690558317889" duration="4000" />
+      <workItem from="1690592953253" duration="1943000" />
+      <workItem from="1690785965780" duration="3538000" />
+      <workItem from="1691063890768" duration="1559000" />
+      <workItem from="1691412409408" duration="1005000" />
+      <workItem from="1691665030898" duration="2000" />
+      <workItem from="1692184850255" duration="14000" />
+      <workItem from="1692185408636" duration="2205000" />
+      <workItem from="1692411957950" duration="1489000" />
+      <workItem from="1692413470908" duration="8000" />
+      <workItem from="1692413490854" duration="18000" />
+      <workItem from="1692413550454" duration="58000" />
+      <workItem from="1692413961140" duration="10776000" />
+      <workItem from="1693032043882" duration="2842000" />
+      <workItem from="1693110059628" duration="982000" />
+      <workItem from="1693707686962" duration="18000" />
+      <workItem from="1694089490649" duration="365000" />
+      <workItem from="1694431378418" duration="1162000" />
+      <workItem from="1694432762883" duration="9000" />
+      <workItem from="1694433397401" duration="1333000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/ImgDetailService.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
+          <line>189</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_recommend/src/main/java/com/yanhuo/recommend/service/impl/RecommendServiceImpl.java</url>
+          <line>267</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/FollowServiceImpl.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_search/src/main/java/com/yanhuo/search/service/impl/EsServiceImpl.java</url>
+          <line>131</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
+          <line>252</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/controller/BrowseRecordController.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
+          <line>623</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
+          <line>593</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
+          <line>359</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/controller/ImgDetailController.java</url>
+          <line>143</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_util/src/main/java/com/yanhuo/util/oss/controller/OssController.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_search/src/main/java/com/yanhuo/search/controller/ImgDetailEsController.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/ImgDetailServiceImpl.java</url>
+          <line>480</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/renren-fast/src/main/java/io/renren/modules/platform/controller/MemberController.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

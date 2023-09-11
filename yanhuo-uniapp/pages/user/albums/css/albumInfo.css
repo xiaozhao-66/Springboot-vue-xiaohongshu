@@ -1,0 +1,264 @@
+.container {
+
+	background-color: #f4f4f4;
+}
+
+.page {
+	height: 94vh;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-right: 24rpx;
+	height: 80rpx;
+}
+
+.n-left {
+	display: flex;
+	align-items: center;
+}
+
+.nav a {
+	margin-left: 10px;
+	display: inline-block;
+	font-size: 20px;
+}
+
+.cover {
+	width: 100%;
+	height: 400rpx;
+	;
+}
+
+.info {
+	background-color: #fff;
+
+}
+
+.info-center {
+	width: 400rpx;
+
+	margin: auto;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.title {
+	font-size: 40rpx;
+	margin-top: 30px;
+}
+
+.count {
+	margin-top: 10px;
+	font-size: 24rpx;
+	color: #5c5c5c;
+}
+
+.avatar image {
+	margin-top: 10px;
+	width: 80rpx;
+	height: 80rpx;
+	border-radius: 50%;
+}
+
+.username {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.tui-grid {
+	padding: 3px 3px;
+
+}
+
+.card {
+	position: relative;
+
+	border-radius: 8px;
+	
+	box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.card .cont {
+	margin-left: 10px;
+	padding-bottom: 4px;
+}
+
+.card .cont p {
+	margin-top: 5px;
+	font-size: 12px;
+}
+
+.del-title {
+	position: absolute;
+	top: 340rpx;
+	left: 10rpx;
+	z-index: 999;
+}
+
+.card .card-nums {
+	position: absolute;
+	top: 350rpx;
+	left: 320rpx;
+	background-color: #7a7a7a;
+	width: 30rpx;
+	height: 45rpx;
+	text-align: center;
+	color: #fff;
+	opacity: 0.5;
+}
+
+.cont .content {
+	width: 300rpx;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 28rpx;
+	
+}
+
+.userInfo {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-right: 5px;
+	font-size: 24rpx;
+}
+
+.avatar-usrname image {
+	width: 60rpx;
+	height: 60rpx;
+	border-radius: 50%;
+}
+
+.avatar-usrname {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+}
+
+.loadStyle {
+	margin-top: 20rpx;
+	width: 100%;
+	height: 60rpx;
+	text-align: center;
+	color: #bfbfbf;
+}
+
+/* 底部分享 */
+.tui-share {
+	background: #e8e8e8;
+	position: relative;
+}
+
+.tui-share-title {
+	font-size: 26rpx;
+	color: #7E7E7E;
+	text-align: center;
+	line-height: 26rpx;
+	padding: 20rpx 0 50rpx 0;
+}
+
+.tui-share-top,
+.tui-share-bottom {
+	min-width: 101%;
+	padding: 0 20rpx 0 30rpx;
+	white-space: nowrap;
+}
+
+.tui-mt {
+	margin-top: 30rpx;
+	padding-bottom: 150rpx;
+}
+
+.tui-share-item {
+	width: 126rpx;
+	display: inline-block;
+	margin-right: 24rpx;
+	text-align: center;
+}
+
+.tui-item-last {
+	margin: 0;
+}
+
+.tui-empty {
+	display: inline-block;
+	width: 30rpx;
+	visibility: hidden;
+}
+
+.tui-share-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #fafafa;
+	height: 126rpx;
+	width: 126rpx;
+	border-radius: 32rpx;
+}
+
+.tui-share-text {
+	font-size: 24rpx;
+	color: #7E7E7E;
+	line-height: 24rpx;
+	padding: 20rpx 0;
+	white-space: nowrap;
+}
+
+.tui-btn-cancle {
+	width: 100%;
+	height: 100rpx;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: #f6f6f6;
+	font-size: 36rpx;
+	color: #3e3e3e;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.tui-hover {
+	background: rgba(0, 0, 0, 0.2)
+}
+
+.fotter {
+	position: fixed;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
+	height: 80px;
+	background-color: #fff;
+	z-index: 999;
+}
+
+.f-left {
+	margin-left: 10px;
+	display: flex;
+	align-items: center;
+}
+
+
+.f-right {
+	display: flex;
+	width: 220rpx;
+	margin-right: 10px;
+}

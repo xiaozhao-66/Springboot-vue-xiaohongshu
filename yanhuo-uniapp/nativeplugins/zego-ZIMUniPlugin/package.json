@@ -1,0 +1,43 @@
+{
+	"name": "Zego ZIM 即时通讯 SDK",
+	"id": "zego-ZIMUniPlugin",
+	"version": "2.7.1",
+	"description": "Zego ZIM uni-app 原生插件",
+	"_dp_type": "nativeplugin",
+	"_dp_nativeplugin": {
+		"ios": {
+			"plugins": [{
+				"type": "module",
+				"name": "zego-ZIMUniPlugin_ZIMUniEngine",
+				"class": "ZIMUniEngine"
+			}],
+			"frameworks": [
+				"ZIM.framework"
+			],
+			"embedFrameworks": [
+				"ZIM.xcframework"
+			],
+			"integrateType": "framework",
+			"deploymentTarget": "11.0",
+			"validArchitectures": [
+				"arm64"
+			]
+		},
+		"android": {
+			"plugins": [{
+				"type": "module",
+				"name": "zego-ZIMUniPlugin_ZIMUniEngine",
+				"class": "im.zego.zim_uniapp_sdk.ZIMUniEngine"
+			}],
+			"abis": [
+				"armeabi-v7a",
+				"arm64-v8a",
+                "x86"
+			],
+			"dependencies": [
+				"im.zego:zim:2.7.1"
+			],
+			"integrateType": "aar"
+		}
+	}
+}

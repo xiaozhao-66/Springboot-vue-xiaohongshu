@@ -1,0 +1,34 @@
+
+P
+java:S1118":Add a private constructor to hide the implicit public one.(Ò®ÜÄ
+[
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(óú¹Ü
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(ê‡ó¾úÿÿÿÿ
+T
+java:S1854Ó"=Remove this useless assignment to local variable "exceedSec".(Â…ÃÄ
+O
+java:S1854Ê"8Remove this useless assignment to local variable "year".(‚ˆÅá
+@
+java:S1481Ê")Remove this unused "year" local variable.(‚ˆÅá
+W	java:S125Í"<This block of commented-out lines of code should be removed.(›Èâñýÿÿÿÿ
+=
+java:S2185Ð"&Remove this silly call to "Math.floor"(Àëº„
+=
+java:S2185Ñ"&Remove this silly call to "Math.floor"(ëà¦´
+=
+java:S2185Ò"&Remove this silly call to "Math.floor"(Éô”È
+=
+java:S2185Ó"&Remove this silly call to "Math.floor"(Â…ÃÄ
+E
+java:S1481Ó".Remove this unused "exceedSec" local variable.(Â…ÃÄ
+W	java:S125æ"<This block of commented-out lines of code should be removed.(ªé°’þÿÿÿÿ
+W	java:S125ö"<This block of commented-out lines of code should be removed.(¼›¦Åúÿÿÿÿ
+Y
+java:S2184Ð"BCast one of the operands of this division operation to a "double".(Àëº„
+Y
+java:S2184Ñ"BCast one of the operands of this division operation to a "double".(ëà¦´
+Y
+java:S2184Ò"BCast one of the operands of this division operation to a "double".(Éô”È
+Y
+java:S2184Ó"BCast one of the operands of this division operation to a "double".(Â…ÃÄ

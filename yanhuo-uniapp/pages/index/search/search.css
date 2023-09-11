@@ -1,0 +1,207 @@
+p{
+	max-width: 250rpx;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	
+}	
+
+.w{
+	width: 90%;
+	margin: auto;
+}
+
+
+	
+.nav {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-right: 24rpx;
+	height: 80rpx;
+}
+
+.n-left {
+	display: flex;
+}
+
+.tui-search-box {
+	width: 100%;
+	height: 32px;
+	margin: 0 28rpx;
+	border-radius: 18px;
+	font-size: 14px;
+	background-color: #f1f1f1;
+	padding: 0 12px;
+	box-sizing: border-box;
+	color: #bfbfbf;
+	display: flex;
+	align-items: center;
+}
+
+
+.search-list{
+	width: 90%;
+	margin: auto;
+}
+
+.search-item{
+	height: 80rpx;
+	border-bottom: 1px solid #d2d2d2;
+	line-height: 80rpx;
+	font-size: 28rpx;
+	color: #787878;
+}
+
+
+.top{
+	display: flex;
+	justify-content: space-between;
+    font-size: 28rpx;
+	color: #646464;
+	padding-top: 20rpx;
+	padding-bottom: 10rpx;
+}
+
+
+.his-main{
+	display: flex;
+	flex-wrap:wrap;
+}
+
+.all-del{
+	display: flex;
+}
+
+.tag-item{
+	position: relative;
+}
+
+.del-tag{
+	position: absolute;
+	right: 10rpx;
+	top: -8rpx;
+}
+
+	
+.gus-main{
+	column-count: 2;
+	column-gap: 0rpx;
+	font-size: 28rpx;
+}
+
+.gus-item{
+	margin-top: 20rpx;
+}
+
+.hot-main{
+	width: 95%;
+	margin: auto;
+}
+
+.hot-title{
+	margin-top: 20rpx;
+	margin-bottom: 20rpx;
+}
+
+.hot-item{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 100rpx;
+	border-bottom: 1px solid #d2d2d2;
+	line-height: 100rpx;
+}
+
+.hot-item-l{
+	display: flex;
+	align-items: center;
+}
+
+.con-tag{
+	margin-left: 5rpx;
+	border-radius: 5px;
+	background-color: #ffaa00;
+	width: 40rpx;
+	height: 40rpx;
+	line-height: 40rpx;
+	text-align: center;
+	color: #fff;
+	font-size: 24rpx;
+}
+
+.new-tag{
+	background-color: #ffaa00;
+}
+
+.hot-tag{
+	background-color: #ff5500;
+}
+
+.hot-item-r{
+	font-size: 20rpx;
+	color: #828282;
+}
+	
+.hot-content{
+	margin-left: 10rpx;
+	color: #2e2e2e;
+	font-size: 28rpx;
+}
+
+.hot-search{
+	
+}
+
+
+/* 用户列表 */
+.tui-item-box {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #d2d2d2;
+	font-size: 28rpx;
+}
+
+.tui-msg-box {
+	display: flex;
+	align-items: center;
+}
+
+.tui-msg-pic {
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 50%;
+	display: block;
+	margin-right: 24rpx;
+	flex-shrink: 0;
+}
+
+.tui-msg-img {
+	width: 120rpx;
+	height: 160rpx;
+	border-radius: 5px;
+	display: block;
+	margin-right: 24rpx;
+	flex-shrink: 0;
+}
+
+.tui-msg-item {
+	max-width: 500rpx;
+	min-height: 100rpx;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.tui-msg-right {
+	max-width: 120rpx;
+	height: 88rpx;
+	margin-left: auto;
+	text-align: right;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-end;
+}

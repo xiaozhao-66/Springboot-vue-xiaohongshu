@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yanhuo.platform.dao.FollowDao">
+
+    <select id="getAllFollowTrends" resultType="com.yanhuo.xo.vo.TrendVo">
+        -- 查询当前用户发布的图片详情
+
+        SELECT
+        i.id as mid,
+        i.imgs_url,
+        i.content,
+        i.agree_count,
+        i.comment_count,
+        i.update_date as time,
+        a.id as album_id,
+        a.name as album_name,
+        u.id AS user_id,
+        u.username AS username,
+        u.avatar AS avatar,
+        if(ac.uid != '' ,1,0)as is_agree
+        FROM
+        t_img_detail AS i
+        LEFT JOIN t_user AS u ON i.user_id = u.id
+        LEFT JOIN t_album_img_relation as air on i.id = air.mid
+        left join t_album as a on a.id = air.aid
+        left join t_agree_collect as ac on ac.agree_collect_id = i.id and ac.type =1 and ac.uid = #{uid}
+        WHERE
+        (i.user_id in (SELECT fid from t_follow where uid = #{uid} ) or i.user_id = #{uid} )  and a.uid = i.user_id and i.status = 1
+        ORDER BY
+        i.update_date DESC
+        LIMIT ${(page-1)*limit},${limit};
+    </select>
+</mapper>

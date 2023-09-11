@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="yanhuo_platform" />
+        <module name="yanhuo_auth" />
+        <module name="yanhuo_recommend" />
+        <module name="yanhuo_search" />
+        <module name="yanhuo_util" />
+        <module name="yanhuo_xo" />
+        <module name="yanhuo_common" />
+        <module name="yanhuo_gateway" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="admin_security" target="1.8" />
+      <module name="common_utils" target="1.8" />
+      <module name="platform_auth" target="1.8" />
+      <module name="renren-fast" target="1.8" />
+      <module name="renren-generator" target="1.8" />
+      <module name="yanhuo-rabbitmq" target="8" />
+      <module name="yanhuo_admin" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="renren-fast" options="-parameters" />
+      <module name="renren-generator" options="-parameters" />
+      <module name="yanhuo-rabbitmq" options="-parameters" />
+      <module name="yanhuo_admin" options="-parameters" />
+      <module name="yanhuo_auth" options="-parameters" />
+      <module name="yanhuo_common" options="-parameters" />
+      <module name="yanhuo_gateway" options="-parameters" />
+      <module name="yanhuo_platform" options="-parameters" />
+      <module name="yanhuo_recommend" options="-parameters" />
+      <module name="yanhuo_search" options="-parameters" />
+      <module name="yanhuo_util" options="-parameters" />
+      <module name="yanhuo_xo" options="-parameters" />
+    </option>
+  </component>
+</project>
