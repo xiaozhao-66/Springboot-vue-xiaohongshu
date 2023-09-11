@@ -1,6 +1,0 @@
-framework module ZIMUniPlugin {
-  umbrella header "ZIMUniPlugin.h"
-
-  export *
-  module * { export * }
-}

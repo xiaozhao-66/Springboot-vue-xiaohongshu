@@ -1,6 +1,0 @@
-com\yanhuo\auth\service\AuthUserService.class
-com\yanhuo\auth\dao\AuthUserDao.class
-com\yanhuo\auth\AuthApplication.class
-com\yanhuo\auth\service\impl\AuthUserServiceImpl.class
-com\yanhuo\auth\dao\UserOtherLoginRelationDao.class
-com\yanhuo\auth\controller\AuthUserController.class
