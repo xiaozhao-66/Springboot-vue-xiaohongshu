@@ -37,9 +37,10 @@
 						</view>
 					</view>
 
-					<view v-if="commentOne.twoNums>0 && !isScroll">
+					<view v-if="commentOne.twoNums>0">
 						<view class="comment-two" v-for="(commentTwo, index2) in  commentOne.childrenComments"
-							:key="index2">
+							:key="index2" :id="'two-' + commentTwo.id"
+							:style="bgcolorId == commentTwo.id ? 'background-color:#f2f2f2' : 'background-color:#fff'">
 							<view class="comment-item">
 								<view class="item-top">
 									<view class="left">
@@ -58,8 +59,9 @@
 										<view class="ziti">{{ commentTwo.count }}</view>
 									</view>
 								</view>
-								
-								<view class="item-main" @click="commentOperate(commentTwo,index,index2)" v-if="commentTwo.uid == uid">
+
+								<view class="item-main" @click="commentOperate(commentTwo,index,index2)"
+									v-if="commentTwo.uid == uid">
 									回复<span class="reply">{{ commentTwo.replyName }}</span>:{{ commentTwo.content }}
 									<span class="time">{{ commentTwo.time }}</span>
 								</view>
@@ -76,50 +78,11 @@
 								v-if="commentOne.twoNums>1&&commentOne.childrenComments.length<commentOne.twoNums">
 								点击加载更多</view>
 						</view>
-
 					</view>
 
-
-					<view v-if="commentOne.twoNums>0 && isScroll">
-						<view class="comment-two" v-for="(commentTwo, index2) in scrollTwoData " :key="index2"
-							v-if="commentTwo.pid == commentOne.id" :id="'two-' + commentTwo.id"
-							:style="bgcolorId == commentTwo.id ? 'background-color:#f2f2f2' : 'background-color:#fff'">
-							<view class="comment-item">
-								<view class="item-top">
-									<view class="left">
-										<image :src="commentTwo.avatar" mode="aspectFill"
-											@click="getUserInfo(commentTwo.uid)" />
-										<view class="username">{{ commentTwo.username }}</view>
-										<tui-tag type="gray" shape="circle" margin="5rpx" padding="10rpx" size="18rpx"
-											v-if="commentTwo.uid == currentUid">作者</tui-tag>
-									</view>
-
-									<view class="right">
-										<tui-icon v-if="commentTwo.isAgree" name="like-fill" size="15"
-											@click="cancelAgree(commentTwo,index2)"></tui-icon>
-										<tui-icon v-else @click="addAgree(commentTwo, index2)" name="like"
-											size="15"></tui-icon>
-										<view class="ziti">{{ commentTwo.count }}</view>
-
-									</view>
-								</view>
-								
-								<view class="item-main" @click="commentOperate(commentTwo, index,index2)" v-if="commentTwo.uid == uid">
-									回复<span class="reply">{{ commentTwo.replyName }}</span>:{{ commentTwo.content }}
-									<span class="time">{{ commentTwo.time }}</span>
-								</view>
-
-								<view class="item-main" @click="clickItem(commentTwo, index)" v-else>
-									回复<span class="reply">{{ commentTwo.replyName }}</span>:{{ commentTwo.content }}
-									<span class="time">{{ commentTwo.time }}</span>
-								</view>
-							</view>
-						</view>
-					</view>
 				</view>
 			</li>
 		</ul>
-
 
 		<tui-actionsheet :show="showActionSheet" :item-list="itemList" @click="itemClick" @cancel="closeActionSheet">
 		</tui-actionsheet>
@@ -132,9 +95,8 @@
 	import {
 		getAllComment,
 		getAllTwoCommentByOneId,
-		getComment,
-		getAllTwoComment,
-		delComment
+		delComment,
+		scrollComment
 	} from "@/api/comment.js"
 	import {
 		timeAgo
@@ -145,7 +107,7 @@
 		props: {
 			mid: String,
 			seed: Number,
-			page: Number,
+			val: Number,
 			commentInfo: Object,
 			currentUid: String,
 			//滑动评论
@@ -157,7 +119,7 @@
 				page1: 1,
 				limit1: 6,
 				total1: 0,
-				page2: 0,
+				page2: 1,
 				limit2: 4,
 				total2: 0,
 
@@ -167,7 +129,7 @@
 
 				//点击索引
 				index: -1,
-				index2:-1,
+				index2: -1,
 
 				//添加的记录id用户筛选
 				commentIds: [],
@@ -189,7 +151,7 @@
 					text: "删除",
 					color: "#ff0000"
 				}],
-				clickComment:{},
+				clickComment: {},
 
 			};
 		},
@@ -202,9 +164,8 @@
 				this.dataList = []
 				this.getAllComment()
 			},
-			page(newVal, oldVal) {
-
-				this.page1 = newVal
+			val(newVal, oldVal) {
+				this.page1 = this.page1 + 1
 				this.loadData()
 			},
 			commentInfo(newVal, oldVal) {
@@ -214,22 +175,19 @@
 		},
 
 		mounted() {
+			this.twoMap = new Map()
+			this.uid = uni.getStorageSync("userInfo").id
 
-			if (this.comArr[0] != null && this.comArr[1] == 0) {
+			if (this.comArr[0] != null) {
 				this.scrollComment(this.comArr[0])
-			} else if (this.comArr[0] != null) {
-				this.isScroll = true
-				//先得到当前一级评论，再滑倒二级评论
-				this.getScrollTwoComment(this.comArr[0])
+			} else {
+				this.getAllComment()
 			}
+
 		},
 
 		created() {
 
-			this.twoMap = new Map()
-
-			this.uid = uni.getStorageSync("userInfo").id
-			this.getAllComment()
 		},
 
 		methods: {
@@ -241,6 +199,7 @@
 			},
 
 			getAllComment() {
+				console.log('得到所有评论')
 
 				let params = {
 					mid: this.mid,
@@ -271,6 +230,7 @@
 
 
 			loadData() {
+
 				if (this.dataList.length >= this.total1) {
 					this.isEnd = true
 					return
@@ -298,11 +258,11 @@
 
 			loadMore(cid, index) {
 
-				let page2 = this.twoMap.get(index)
+				this.page2 = this.twoMap.get(index)
 
-				page2 = page2 + 1
+				this.page2 = this.page2 + 1
 
-				this.twoMap.set(index, page2)
+				this.twoMap.set(index, this.page2)
 
 				let params = {
 					id: cid,
@@ -310,9 +270,9 @@
 				}
 
 
-				getAllTwoCommentByOneId(page2, this.limit2, params).then(res => {
+				getAllTwoCommentByOneId(this.page2, this.limit2, params).then(res => {
 
-					if (page2 == 1) {
+					if (this.page2 == 1) {
 						let twoData = []
 						res.data.records.splice(0, 1)
 						twoData = res.data.records
@@ -370,7 +330,7 @@
 				this.$emit('delComment', false);
 			},
 			//调用此方法显示组件
-			commentOperate(comment,index,index2) {
+			commentOperate(comment, index, index2) {
 				this.clickComment = comment;
 				this.index = index;
 				this.index2 = index2
@@ -378,22 +338,22 @@
 				this.$emit('delComment', true);
 			},
 			itemClick(e) {
-				console.log(e)
+
 				let index = e.index;
 				this.closeActionSheet();
-				if(index==0){
+				if (index == 0) {
 					//点击回复
-					this.clickItem(this.clickComment,this.index)
-				}else{
+					this.clickItem(this.clickComment, this.index)
+				} else {
 					//点击删除
-					if(this.clickComment.pid==0){
+					if (this.clickComment.pid == 0) {
 						this.dataList.splice(this.index, 1)
-					}else{
+					} else {
 						this.dataList[this.index].twoNums = this.dataList[this.index].twoNums * 1 - 1
-						this.dataList[this.index].childrenComments.splice(this.index2,1)
+						this.dataList[this.index].childrenComments.splice(this.index2, 1)
 					}
-					let params={
-						id:this.clickComment.id
+					let params = {
+						id: this.clickComment.id
 					}
 					delComment(params).then()
 				}
@@ -425,37 +385,81 @@
 				this.$emit('cancelAgreeComment', comment);
 			},
 
-
-
-
-			getScrollTwoComment(id) {
+			scrollComment(cid) {
+				console.log("滚动评论")
 				let params = {
-					id: id
-				}
-				getComment(params).then(res => {
-					//得到当前评论
-					let comment = res.data
-					//进行滑动
-					this.getAllTwoComment(comment.pid, id)
-				})
-			},
-
-			getAllTwoComment(pid, cid) {
-
-				this.pid = pid
-				let params = {
-					id: pid,
+					id: cid,
+					mid: this.mid,
 					uid: this.uid
 				}
-				getAllTwoComment(params).then(res => {
 
-					this.scrollTwoData = res.data
-					this.scrollComment(cid)
-				})
+				if (this.comArr[1] == 0) {
+
+					scrollComment(params).then(res => {
+
+						res.data.records.forEach(item => {
+							item.time = timeAgo(new Date(item.createDate))
+
+							if (item.childrenComments.length)
+
+								if (item.twoNums > 0) {
+									item.childrenComments[0].time = timeAgo(new Date(item.childrenComments[
+											0]
+										.createDate))
+									this.commentIds.push(item.childrenComments[0].id)
+								}
+
+							this.dataList.push(item)
+						})
+
+						this.total1 = res.data.total
+
+						for (var i = 0; i < this.total1; i++) {
+							this.twoMap.set(i, 0);
+						}
+
+						this.page1 = res.data.page1
+
+					})
+				} else {
+					scrollComment(params).then(res => {
+						const data = res.data.records
+						let index = 0
+
+						for (var i = 0; i < data.length; i++) {
+							data[i].time = timeAgo(new Date(data[i].createDate))
+							if (data[i].childrenComments != null) {
+								let childs = data[i].childrenComments
+
+								for (var j = 0; j < childs.length; j++) {
+									childs[j].time = timeAgo(new Date(childs[j].createDate))
+									if (childs[j].id == cid) {
+										index = i;
+									}
+								}
+							}
+
+							this.dataList.push(data[i])
+						}
+
+						this.total1 = res.data.total
+
+						for (var i = 0; i < this.total1; i++) {
+							this.twoMap.set(i, 0);
+						}
+
+						this.page1 = res.data.page1
+						this.page2 = res.data.page2
+						this.twoMap.set(index, this.page2)
+					})
+				}
+
+				this.scroll(cid)
+
 			},
 
 			//滚动到当前评论
-			scrollComment(commentId) {
+			scroll(commentId) {
 
 				this.bgcolorId = commentId
 

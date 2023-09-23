@@ -1,11 +1,11 @@
 package com.yanhuo.util.msm.controller;
 
+import com.yanhuo.common.constant.auth.AuthConstant;
 import com.yanhuo.common.utils.RedisUtils;
 import com.yanhuo.util.msm.service.MsmService;
+import com.yanhuo.xo.dto.auth.AuthUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -25,12 +25,12 @@ public class MsmController {
     /**
      * 发送短信
      *
-     * @param phone
+     * @param
      * @throws Exception
      */
-    @RequestMapping("sendMsm/{phone}")
-    public void sendMsm(@PathVariable String phone) throws Exception {
-        String code = msmService.sendMsm(phone);
-        redisUtils.set("code", code, 60 * 5L);
+    @PostMapping("sendMsm")
+    public void sendMsm(@RequestBody AuthUserDTO authUserDTO) throws Exception {
+        String code = msmService.sendMsm(authUserDTO.getPhone());
+        redisUtils.set(AuthConstant.CODE+authUserDTO.getPhone(), code, 60 * 5L);
     }
 }

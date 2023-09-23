@@ -11,9 +11,9 @@
         "nvueStyleCompiler" : "uni-app",
         "compilerVersion" : 3,
         "splashscreen" : {
-            "alwaysShowBeforeRender" : true,
+            "alwaysShowBeforeRender" : false,
             "waiting" : true,
-            "autoclose" : true,
+            "autoclose" : false,
             "delay" : 0
         },
         /* 模块配置 */
@@ -55,10 +55,10 @@
             },
             "icons" : {
                 "android" : {
-                    "hdpi" : "C:/Users/48423/Desktop/yanhuo_v2/doc/title.png",
-                    "xhdpi" : "C:/Users/48423/Desktop/yanhuo_v2/doc/title.png",
-                    "xxhdpi" : "C:/Users/48423/Desktop/yanhuo_v2/doc/title.png",
-                    "xxxhdpi" : "C:/Users/48423/Desktop/yanhuo_v2/doc/title.png"
+                    "hdpi" : "C:/Users/48423/Desktop/yanhuo_v2_dev/doc/title.png",
+                    "xhdpi" : "C:/Users/48423/Desktop/yanhuo_v2_dev/doc/title.png",
+                    "xxhdpi" : "C:/Users/48423/Desktop/yanhuo_v2_dev/doc/title.png",
+                    "xxxhdpi" : "C:/Users/48423/Desktop/yanhuo_v2_dev/doc/title.png"
                 }
             },
             "splashscreen" : {
@@ -66,22 +66,7 @@
                 "androidStyle" : "common"
             }
         },
-        "nativePlugins" : {
-            "zego-ZIMUniPlugin" : {
-                "__plugin_info__" : {
-                    "name" : "Zego ZIM 即时通讯 SDK",
-                    "description" : "Zego ZIM uni-app 原生插件",
-                    "platforms" : "Android,iOS",
-                    "url" : "",
-                    "android_package_name" : "",
-                    "ios_bundle_id" : "",
-                    "isCloud" : false,
-                    "bought" : -1,
-                    "pid" : "",
-                    "parameters" : {}
-                }
-            }
-        }
+        "nativePlugins" : {}
     },
     /* 快应用特有相关 */
     "quickapp" : {},

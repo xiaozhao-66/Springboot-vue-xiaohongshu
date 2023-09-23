@@ -32,6 +32,7 @@ import static com.yanhuo.common.utils.DateUtils.DATE_TIME_PATTERN;
 
 /**
  * @author xiaozhao
+ * 已整合第三方聊天工具，这里的代码废弃
  */
 @Service
 public class ChatServiceImpl implements ChatService {

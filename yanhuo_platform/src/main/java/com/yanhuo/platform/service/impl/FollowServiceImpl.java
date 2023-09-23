@@ -7,9 +7,11 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yanhuo.common.constant.Constant;
 import com.yanhuo.common.constant.platform.PlatformConstant;
+import com.yanhuo.common.constant.platform.PlatformMqConstant;
 import com.yanhuo.common.exception.YanHuoException;
 import com.yanhuo.common.utils.JsonUtils;
 import com.yanhuo.common.utils.RedisUtils;
+import com.yanhuo.common.utils.SendMessageMq;
 import com.yanhuo.platform.dao.FollowDao;
 import com.yanhuo.platform.service.FollowService;
 import com.yanhuo.platform.service.UserService;
@@ -43,6 +45,9 @@ public class FollowServiceImpl extends ServiceImpl<FollowDao, Follow> implements
 
     @Autowired
     RedisUtils redisUtils;
+
+    @Autowired
+    SendMessageMq sendMessageMq;
 
     //TODO 直接在数据库中关联查询，暂无其他好的方法
     @Override
@@ -122,9 +127,15 @@ public class FollowServiceImpl extends ServiceImpl<FollowDao, Follow> implements
 
         this.save(follow);
 
+
         User currentUser = userService.getById(followDTO.getUid());
         currentUser.setFollowCount(currentUser.getFollowCount() + 1);
-        userService.updateById(currentUser);
+        sendMessageMq.sendMessage(PlatformMqConstant.USER_STATE_EXCHANGE, PlatformMqConstant.USER_STATE_KEY, currentUser);
+
+        User followUser = userService.getById(followDTO.getFid());
+        followUser.setFanCount(followUser.getFanCount() + 1);
+        sendMessageMq.sendMessage(PlatformMqConstant.USER_STATE_EXCHANGE, PlatformMqConstant.USER_STATE_KEY, followUser);
+
 
         //更改用户记录表
         String followerKey = PlatformConstant.USER_RECORD + followDTO.getFid();
@@ -157,11 +168,14 @@ public class FollowServiceImpl extends ServiceImpl<FollowDao, Follow> implements
         }
         User currentUser = userService.getById(followDTO.getUid());
         currentUser.setFollowCount(currentUser.getFollowCount() - 1);
+        sendMessageMq.sendMessage(PlatformMqConstant.USER_STATE_EXCHANGE, PlatformMqConstant.USER_STATE_KEY, currentUser);
+
 
         User follower = userService.getById(followDTO.getFid());
         follower.setFanCount(follower.getFanCount() - 1);
-        userService.updateById(currentUser);
-        userService.updateById(follower);
+        sendMessageMq.sendMessage(PlatformMqConstant.USER_STATE_EXCHANGE, PlatformMqConstant.USER_STATE_KEY, follower);
+
+
         this.remove(new QueryWrapper<Follow>().and(e -> e.eq("uid", followDTO.getUid()).eq("fid", followDTO.getFid())));
     }
 }

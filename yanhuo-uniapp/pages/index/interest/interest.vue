@@ -4,7 +4,7 @@
 			:refresher-triggered="triggered" @refresherrefresh="onRefresh" :scroll-top="scrollTop" @scroll="scroll">
 			<ul>
 
-				<uni-list :data='dataList' :total='total'>
+				<!-- <uni-list :data='dataList' :total='total'> -->
 					<li v-for="(item, index) in dataList" :key="index">
 						<view class="item">
 							<view class="top">
@@ -65,7 +65,7 @@
 						</view>
 					</li>
 
-				</uni-list>
+				<!-- </uni-list> -->
 			</ul>
 
 			<view class="loadStyle" v-if="!isEnd && loading">

@@ -1,20 +1,26 @@
 <script>
-
+import {
+		tokenUtil
+	} from "@/utils/token.js"
 	export default {
 		
 		onLaunch: function() {
-			       if(typeof uni.getStorageSync("imgPublish")=='undefined'||uni.getStorageSync("imgPublish")==null){
-					   uni.showToast({
-					   	title: "有图片在上传中",
-						icon:'none'
-					   })
-					   return
-				   }
 			       
-				   if(uni.getStorageSync('userInfo')!=''){
-					   uni.reLaunch({
-					   	 url:"/pages/index/index"
-					   })
+				   let token = tokenUtil.get()
+				   console.log("toekn",token)
+				   		       
+				   if(token){
+					   plus.navigator.closeSplashscreen();
+					   
+					   
+					   if(typeof uni.getStorageSync("imgPublish")=='undefined'||uni.getStorageSync("imgPublish")==null){
+						   uni.showToast({
+							title: "有图片在上传中",
+							icon:'none'
+						   })
+						   return
+					   }
+					   
 					   
 					   uni.onTabBarMidButtonTap(()=>{
 					   		
@@ -32,7 +38,17 @@
 								}
 							  }) 
 					   	})
-				   }   		
+				   }else{
+					   uni.reLaunch({
+							url: "/pages/login/login",
+							success: () => {
+								// #ifdef APP-PLUS
+								plus.navigator.closeSplashscreen();
+								// #endif
+							}
+						})
+
+				   }		
 		},
 		
 		onShow: function() {

@@ -1,4 +1,6 @@
 <template>
+	
+	<!-- 更改使用message2 -->
 	<view class="content">
 		<tui-navigation-bar backgroundColor="#fff" :isFixed="false" :isOpacity="false">
 			<view class="nav">

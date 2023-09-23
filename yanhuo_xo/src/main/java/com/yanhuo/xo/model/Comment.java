@@ -25,15 +25,6 @@ public class Comment extends BaseEntity {
     private Long uid;
 
     /**
-     * 发布评论的用户名
-     */
-    private String username;
-
-    /**
-     * 发布评论的用户头像
-     */
-    private String avatar;
-    /**
      * 评论的父id
      */
     private Long pid;
@@ -41,10 +32,12 @@ public class Comment extends BaseEntity {
      * 回复某一条评论的id
      */
     private Long replyId;
+
     /**
-     * 回复某一条评论的用户
+     * 回复某一条评论的用户id
      */
-    private String replyName;
+    private Long replyUid;
+
     /**
      * 评论等级
      */

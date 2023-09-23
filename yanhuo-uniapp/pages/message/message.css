@@ -1,3 +1,14 @@
+/deep/.uni-scroll-view-refresh__spinner>circle{
+   color:#8c8c8c !important;
+}
+/deep/.uni-scroll-view-refresh-inner>svg {	
+   fill: #8c8c8c  !important;
+}
+
+/deep/.uni-scroll-view-refresh-inner{
+	box-shadow: 0 0 0 #fff;
+}
+
 .content .nav {
 	display: flex;
 	align-items: center;

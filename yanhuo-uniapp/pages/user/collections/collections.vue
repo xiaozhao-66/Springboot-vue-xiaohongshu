@@ -10,7 +10,7 @@
 		</view>
 		<view class="main">
 			<collection-album v-if="currentTab == 0" :uid='uid'></collection-album>
-			<collection-img v-if="currentTab == 1" :uid='uid'></collection-img>
+			<collection-img v-if="currentTab == 1" :uid='uid' :seed="seed"></collection-img>
 		</view>
 	</view>
 </template>
@@ -25,6 +25,7 @@
 		},
 		props: {
 			uid: String,
+			seed:Number,
 		},
 		data() {
 			return {
@@ -38,10 +39,7 @@
 				}],
 			}
 		},
-
-		created() {
-
-		},
+		
 		methods: {
 			change(e) {
 				this.currentTab = e.index

@@ -67,7 +67,9 @@
 							})
 							isR = true
 						} else {
-							sendMsm(this.value).then(res => {
+							let data={}
+							data.phone = this.value
+							sendMsm(data).then(res => {
 								uni.showToast({
 									title: "发送成功"
 								})
@@ -87,7 +89,9 @@
 							})
 							isR = true
 						} else {
-							sendDm(this.value).then(res => {
+							let data={}
+							data.email = this.value
+							sendDm(data).then(res => {
 								uni.showToast({
 									title: "发送成功"
 								})

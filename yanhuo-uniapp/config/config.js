@@ -1,6 +1,8 @@
 export const appConfig = {
 
 	tokenKey: 'Jwt_token',
+	
+	ImKey:'',
 
 	// 演示环境
 	WEB_API: 'http://ccimgvideo.top:35530/api',

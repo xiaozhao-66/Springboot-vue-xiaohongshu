@@ -131,8 +131,8 @@
 				<view style="font-weight: bold;margin-left: 40rpx;">所有评论</view>
 				<!--  scrollTop，comArr实现评论跳转，-->
 				<comment :mid='imgInfo.id' @getComment="getComment" @addAgree="addAgree" @scrollTop="getScrollTop"
-					@cancelAgreeComment="cancelAgreeComment" :page="page" :parentId="parentId" :comArr='comArr'
-					:commentInfo='commentInfo'  :currentUid='imgInfo.userId'  @delComment='delComment'>
+					@cancelAgreeComment="cancelAgreeComment" :val="val" :parentId="parentId" :comArr='comArr'
+					:commentInfo='commentInfo' :currentUid='imgInfo.userId' @delComment='delComment'>
 				</comment>
 				<!-- 评论功能 -->
 			</view>
@@ -141,12 +141,12 @@
 		</scroll-view>
 
 		<!-- 底部输入框 -->
-		<view :class="fn?'fotter fotter-none':'fotter'" >
+		<view :class="fn?'fotter fotter-none':'fotter'">
 
 			<view v-if="!useful_flag" class="fotter-info">
 				<view class="fotter-content" @click="active">{{ placeholder }}</view>
-				<tui-icon name="star-fill" size="20" v-if="isCollection" @click="cancalCollection"></tui-icon>
-				<tui-icon name="star" size="20" v-else @click="saveImgToAlbum"></tui-icon>
+				<tui-icon name="star-fill" size="20" v-if="isCollection" @click="cancelCollect()"></tui-icon>
+				<tui-icon name="star" size="20" v-else @click="saveImgToAlbum()"></tui-icon>
 				<view class="fotter-c-a">{{ imgInfo.collectionCount }}</view>
 
 				<tui-icon name="agree-fill" size="20" v-if="userIsAgree" @click="cancelAgreeImg()"></tui-icon>
@@ -294,7 +294,8 @@
 	import {
 		agree,
 		isAgree,
-		cancelAgree
+		cancelAgree,
+		cancelCollection
 	} from "@/api/agreeCollect.js"
 	import {
 		isFollow,
@@ -321,7 +322,7 @@
 				comment: {},
 
 				placeholder: '请输入内容~',
-				page: 1,
+				val: 0,
 				parentId: '',
 				comArr: [],
 				isCollection: false,
@@ -333,8 +334,8 @@
 				useful_flag: false,
 				cursor: false,
 				show: false,
-				
-				fn:false,
+
+				fn: false,
 
 				//
 				commentInfo: {},
@@ -428,7 +429,6 @@
 			this.imgInfo.id = option.mid
 
 			if (option.cid != null) {
-
 				this.comArr[0] = option.cid
 				this.comArr[1] = option.rid
 			}
@@ -483,8 +483,8 @@
 					this.scrollTop = top
 				});
 			},
-			
-			delComment(flag){
+
+			delComment(flag) {
 				this.fn = flag
 			},
 
@@ -621,16 +621,17 @@
 				cancelAgree(data).then()
 			},
 
-			cancalCollection() {
+			cancelCollect() {
 
 				if (this.imgInfo.userId == uni.getStorageSync("userInfo").id) {
 					return
 				}
 				let data = {}
 				data.uid = uni.getStorageSync("userInfo").id
-				data.collectionId = this.imgInfo.id
-				data.type = 0
-				cancalCollection(data).then(res => {
+				data.agreeCollectId = this.imgInfo.id
+				data.agreeCollectUid = this.imgInfo.userId
+				data.type = 2
+				cancelCollection(data).then(res => {
 					this.isCollection = false
 					this.imgInfo.collectionCount = this.imgInfo.collectionCount * 1 - 1
 				})
@@ -705,7 +706,7 @@
 				})
 			},
 			loadData() {
-				this.page = this.page + 1
+				this.val = Math.random()
 			},
 
 			getComment(comment) {
@@ -727,18 +728,17 @@
 					commentInfo.content = this.content
 					commentInfo.uid = userInfo.id
 					commentInfo.mid = this.imgInfo.id
-					commentInfo.avatar = userInfo.avatar
-					commentInfo.username = userInfo.username
 					//添加一级评论
 					if (this.comment.id == null) {
 						commentInfo.pid = 0
 						commentInfo.replyId = 0
+						commentInfo.replyUid = 0
 						commentInfo.level = 1
 
 					} else {
-						commentInfo.replyName = this.comment.username
 						commentInfo.level = 2
 						commentInfo.replyId = this.comment.id
+						commentInfo.replyUid = this.comment.uid
 						//添加二级评论
 						if (this.comment.pid == 0) {
 							commentInfo.pid = this.comment.id

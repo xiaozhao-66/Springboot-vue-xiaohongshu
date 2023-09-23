@@ -6,10 +6,13 @@ com\yanhuo\xo\model\TagImgRelation.class
 com\yanhuo\xo\model\ImgDetail.class
 com\yanhuo\xo\vo\CommentVo.class
 com\yanhuo\xo\vo\TrendVo.class
+com\yanhuo\xo\state\AlbumState.class
 com\yanhuo\xo\model\Tag.class
 com\yanhuo\xo\validate\InValues.class
+com\yanhuo\xo\state\UserState.class
 com\yanhuo\xo\model\Comment.class
 com\yanhuo\xo\dto\platform\TagDTO.class
+com\yanhuo\xo\state\CommentState.class
 com\yanhuo\xo\model\MessageUserRelation.class
 com\yanhuo\xo\vo\ImgDetailVo.class
 com\yanhuo\xo\vo\TagVo.class
@@ -33,6 +36,7 @@ com\yanhuo\xo\model\Message.class
 com\yanhuo\xo\validate\InValueConstraintValidator.class
 com\yanhuo\xo\dto\auth\UserOtherLoginRelationDTO.class
 com\yanhuo\xo\model\User.class
+com\yanhuo\xo\state\ImgDetailState.class
 com\yanhuo\xo\vo\CategoryVo.class
 com\yanhuo\xo\vo\UserRecordVo.class
 com\yanhuo\xo\dto\platform\BrowseRecordDTO.class

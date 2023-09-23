@@ -1,14 +1,13 @@
 package com.yanhuo.util.msm.controller;
 
 import cn.hutool.core.util.RandomUtil;
+import com.yanhuo.common.constant.auth.AuthConstant;
 import com.yanhuo.common.result.Result;
 import com.yanhuo.common.utils.RedisUtils;
 import com.yanhuo.util.msm.service.DmService;
+import com.yanhuo.xo.dto.auth.AuthUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -27,15 +26,15 @@ public class DmController {
     /**
      * 发生邮件
      *
-     * @param email
+     * @param
      * @return
      */
-    @GetMapping("sendDm/{email}")
-    public Result<?> sendDm(@PathVariable String email) {
+    @PostMapping("sendDm")
+    public Result<?> sendDm(@RequestBody AuthUserDTO authUserDTO) {
         try {
             String content = RandomUtil.randomNumbers(4);
-            dmService.sendDm(email, content);
-            redisUtils.set("code", content, 60 * 5L);
+            dmService.sendDm(authUserDTO.getEmail(), content);
+            redisUtils.set(AuthConstant.CODE+authUserDTO.getEmail(), content, 60 * 5L);
         } catch (Exception e) {
             e.printStackTrace();
         }

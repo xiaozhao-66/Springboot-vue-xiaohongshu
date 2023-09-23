@@ -6,16 +6,16 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/yanhuo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
     username: root
-    password: mogu2018
+    password: root
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
 
   rabbitmq:
-    host: 192.168.57.128
+    host: localhost
     port: 5672
-    username: admin
-    password: mogu2018
+    username: guest
+    password: guest
     publisher-confirm-type: CORRELATED
     publisher-returns: true
     listener:

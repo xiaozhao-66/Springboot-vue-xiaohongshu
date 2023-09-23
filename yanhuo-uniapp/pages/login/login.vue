@@ -65,6 +65,10 @@
 				userInfo: {},
 			}
 		},
+		
+		created() {
+			uni.hideTabBar()
+		},
 
 		methods: {
 			login() {
@@ -84,6 +88,7 @@
 							let user = res.data.userInfo
 							tokenUtil.set(res.data.Jwt_token)
 							uni.setStorageSync("userInfo", user)
+							
 							
 							setTimeout(() => {
 								uni.reLaunch({
@@ -158,7 +163,6 @@
 									let user = res.data.userInfo
 									tokenUtil.set(res.data.Jwt_token)
 									uni.setStorageSync("userInfo", user)
-
 
 									setTimeout(() => {
 										uni.reLaunch({

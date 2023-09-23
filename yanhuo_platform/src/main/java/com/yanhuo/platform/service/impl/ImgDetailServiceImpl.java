@@ -7,11 +7,13 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yanhuo.common.constant.Constant;
 import com.yanhuo.common.constant.platform.PlatformConstant;
+import com.yanhuo.common.constant.platform.PlatformMqConstant;
 import com.yanhuo.common.exception.YanHuoException;
 import com.yanhuo.common.result.ResultCodeEnum;
 import com.yanhuo.common.utils.*;
 import com.yanhuo.platform.client.EsClient;
 import com.yanhuo.platform.client.OSSClient;
+import com.yanhuo.platform.common.PlatformDataToCache;
 import com.yanhuo.platform.dao.ImgDetailDao;
 import com.yanhuo.platform.service.*;
 import com.yanhuo.xo.dto.platform.AlbumImgRelationDTO;
@@ -66,6 +68,12 @@ public class ImgDetailServiceImpl extends ServiceImpl<ImgDetailDao, ImgDetail> i
 
     @Autowired
     OSSClient ossClient;
+
+    @Autowired
+    SendMessageMq sendMessageMq;
+
+    @Autowired
+    PlatformDataToCache platformDataToCache;
 
 
     @Override
@@ -156,38 +164,15 @@ public class ImgDetailServiceImpl extends ServiceImpl<ImgDetailDao, ImgDetail> i
     @Override
     public ImgDetailVo getImgDetail(String id) {
         //视频浏览记录
-        String viewRecordKey = PlatformConstant.IMG_VIEW_RECORD + id;
-
-        if (Boolean.TRUE.equals(redisUtils.hasKey(viewRecordKey))) {
-            int count = Integer.parseInt(redisUtils.get(viewRecordKey));
-            redisUtils.set(viewRecordKey, String.valueOf(count + 1));
-        } else {
-            redisUtils.set(viewRecordKey, "1");
-        }
-
-        String imgInfoKey = PlatformConstant.IMG_INFO_KEY + id;
-        String agreeImgKey = PlatformConstant.AGREE_IMG_KEY + id;
-        String albumImgRelationKey = PlatformConstant.ALBUM_IMG_RELATION_KEY + id;
-
-        if (Boolean.TRUE.equals(redisUtils.hasKey(imgInfoKey))) {
-            ImgDetailVo imgDetailInfoVo = JSON.parseObject(redisUtils.get(imgInfoKey), ImgDetailVo.class);
-            int viewCount = Integer.parseInt(redisUtils.get(viewRecordKey));
-            int agreeCount = 0;
-            int collectCount = 0;
-            if (Boolean.TRUE.equals(redisUtils.hasKey(agreeImgKey))) {
-                agreeCount = JSON.parseArray(redisUtils.get(agreeImgKey), Long.class).size();
-            }
-            if (Boolean.TRUE.equals(redisUtils.hasKey(albumImgRelationKey))) {
-                collectCount = JSON.parseArray(redisUtils.get(albumImgRelationKey), Long.class).size();
-            }
-
-            imgDetailInfoVo.setViewCount((long) viewCount);
-            imgDetailInfoVo.setAgreeCount((long) agreeCount);
-            imgDetailInfoVo.setCollectionCount((long) collectCount);
-            return imgDetailInfoVo;
-        }
-
         ImgDetail imgDetail = this.getById(id);
+
+        if (imgDetail.getViewCount() <= 100) {
+            imgDetail.setViewCount(imgDetail.getViewCount() + 1);
+            sendMessageMq.sendMessage(PlatformMqConstant.IMG_DETAIL_STATE_EXCHANGE, PlatformMqConstant.IMG_DETAIL_STATE_KEY, imgDetail);
+        } else {
+            String imgDetailStateKey = PlatformConstant.IMG_DETAIL_STATE + id;
+            platformDataToCache.imgDetailDataToCache(imgDetail, imgDetailStateKey, 3, 1);
+        }
 
         List<String> imgList = JSON.parseArray(imgDetail.getImgsUrl(), String.class);
         User user = userService.getById(imgDetail.getUserId());
@@ -243,7 +228,7 @@ public class ImgDetailServiceImpl extends ServiceImpl<ImgDetailDao, ImgDetail> i
                 break;
             }
         }
-        redisUtils.setEx(imgInfoKey, JSON.toJSONString(imgDetailVo), 5, TimeUnit.DAYS);
+
         return imgDetailVo;
     }
 
@@ -279,9 +264,10 @@ public class ImgDetailServiceImpl extends ServiceImpl<ImgDetailDao, ImgDetail> i
 
         tagImgRelationService.saveBatch(tagImgRelationList);
 
+
         User user = userService.getById(imgDetail.getUserId());
         user.setTrendCount(user.getTrendCount() + 1);
-        userService.updateById(user);
+        sendMessageMq.sendMessage(PlatformMqConstant.USER_STATE_EXCHANGE, PlatformMqConstant.USER_STATE_KEY, user);
 
         ImgDetailVo imgDetailVo = ConvertUtils.sourceToTarget(imgDetail, ImgDetailVo.class);
         imgDetailVo.setUsername(user.getUsername())
@@ -402,8 +388,6 @@ public class ImgDetailServiceImpl extends ServiceImpl<ImgDetailDao, ImgDetail> i
                 .setOtherUserId(user.getUserId())
                 .setTime(imgDetail.getUpdateDate());
 
-        String imgInfoKey = PlatformConstant.IMG_INFO_KEY + imgDetail.getId();
-        redisUtils.delete(imgInfoKey);
 
         redisUtils.hDelete(PlatformConstant.IMG_DETAIL_LIST_KEY, String.valueOf(imgDetail.getId()));
         redisUtils.hPut(PlatformConstant.IMG_DETAIL_LIST_KEY, String.valueOf(imgDetail.getId()), JSON.toJSONString(imgDetail));
@@ -461,10 +445,7 @@ public class ImgDetailServiceImpl extends ServiceImpl<ImgDetailDao, ImgDetail> i
                     albumImgRelationService.remove(new QueryWrapper<AlbumImgRelation>().and(e -> e.eq("mid", model.getId()).eq("aid", albumEntity.getId())));
                     //删除图片与标签的绑定关系
                     tagImgRelationService.remove(new QueryWrapper<TagImgRelation>().eq("mid", model.getId()));
-                    String viewRecordKey = PlatformConstant.IMG_VIEW_RECORD + model.getId();
-                    if (Boolean.TRUE.equals(redisUtils.hasKey(viewRecordKey))) {
-                        redisUtils.delete(viewRecordKey);
-                    }
+
 
                     //删除推荐系统中缓存的数据
                     String recommendKey = PlatformConstant.RECOMMEND + model.getId();
@@ -472,8 +453,13 @@ public class ImgDetailServiceImpl extends ServiceImpl<ImgDetailDao, ImgDetail> i
                         redisUtils.delete(recommendKey);
                     }
 
+                    String imgDetailStateKey = PlatformConstant.IMG_DETAIL_STATE + model.getId();
+                    if (Boolean.TRUE.equals(redisUtils.hasKey(imgDetailStateKey))) {
+                        redisUtils.delete(imgDetailStateKey);
+                    }
+
                     //删除hmap中的图片信息
-                    redisUtils.hDelete(PlatformConstant.IMG_DETAIL_LIST_KEY, String.valueOf(model));
+                    redisUtils.hDelete(PlatformConstant.IMG_DETAIL_LIST_KEY, String.valueOf(model.getId()));
 
                     if (model.getStatus() == 1) {
                         //删除es中的数据

@@ -1,6 +1,5 @@
 <template>
 	<view class="container">
-		<scroll-view scroll-y class="page" @scrolltolower="loadData">
 			<ul>
 				<uni-list :data='dataList' :total='total'>
 					<li v-for="(item, index) in dataList" :key="index">
@@ -49,9 +48,6 @@
 
 			<view class="loadStyle" v-if="!isEnd && loading">正在加载中</view>
 			<view class="loadStyle" v-if="isEnd">我也是有底线的~</view>
-		</scroll-view>
-
-
 	</view>
 </template>
 
@@ -80,6 +76,7 @@
 	export default {
 		props: {
 			uid: String,
+			seed:Number,
 		},
 		data() {
 			return {
@@ -91,13 +88,22 @@
 				loading: false, //是否正在加载
 				total: 0,
 				type: 0,
+			
+			}
+		},
+		
+		watch:{
+			seed(newVal,oldVal){
+				this.loadData()
 			}
 		},
 
 		created() {
 			this.getUserInfo(this.uid)
 		},
+		
 		methods: {
+
 			getTrendByUser() {
 
 				let params = {
@@ -151,7 +157,7 @@
 							this.dataList.push(e)
 						})
 					})
-				}, 100)
+				}, 200)
 			},
 
 			cancelUpload(mid) {

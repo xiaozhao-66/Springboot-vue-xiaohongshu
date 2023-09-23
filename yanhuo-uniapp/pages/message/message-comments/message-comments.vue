@@ -14,7 +14,7 @@
 						<view class="tui-msg-box">
 							<image :src="item.avatar" class="tui-msg-pic" mode="aspectFill" :lazy-load='true'
 								@click="getUserInfo(item.uid)" />
-							<view class="tui-msg-item" @click="getComment(item.mid, item.id, item.replyId)">
+							<view class="tui-msg-item" @click="getComment(item.mid, item.id,item.replyId)">
 								<view class="tui-msg-name">{{ item.username }}</view>
 								<view class="tui-msg-type">
 									<view v-if="item.replyUid!=uid" class="tui-msg-type-item">评论您的笔记</view>
@@ -97,7 +97,7 @@
 
 				addBrowseRecord(data).then(res => {
 					uni.navigateTo({
-						url: "/pages/main/main?mid=" + mid + "&cid=" + cid + "&rid=" + rid
+						url: "/pages/main/main?mid=" + mid + "&cid=" + cid + "&rid=" + rid 
 					})
 				})
 

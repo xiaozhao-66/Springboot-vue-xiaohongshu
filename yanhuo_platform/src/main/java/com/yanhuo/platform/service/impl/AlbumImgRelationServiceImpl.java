@@ -62,12 +62,7 @@ public class AlbumImgRelationServiceImpl extends ServiceImpl<AlbumImgRelationDao
 
         String albumImgRelationKey = PlatformConstant.ALBUM_IMG_RELATION_KEY + mid;
 
-        if (Boolean.TRUE.equals(redisUtils.hasKey(albumImgRelationKey))) {
-            //存储所有用户收藏信息
-            List<Long> uids = JSON.parseArray(redisUtils.get(albumImgRelationKey), Long.class);
-            return uids.contains(Long.valueOf(uid));
-        }
-        return false;
+        return redisUtils.sIsMember(albumImgRelationKey, uid);
 
     }
 
@@ -80,16 +75,19 @@ public class AlbumImgRelationServiceImpl extends ServiceImpl<AlbumImgRelationDao
     @Override
     public void addAlbumImgRelation(AlbumImgRelationDTO albumImgRelationDTO) {
 
+        String imgDetailListKey = PlatformConstant.IMG_DETAIL_LIST_KEY;
+
+        if (redisUtils.hExists(imgDetailListKey, String.valueOf(albumImgRelationDTO.getMid()))) {
+            ImgDetail imgDetail = JsonUtils.parseObject((String) redisUtils.hGet(imgDetailListKey, String.valueOf(albumImgRelationDTO.getMid())), ImgDetail.class);
+            imgDetail.setCollectionCount(imgDetail.getCollectionCount() + 1);
+            redisUtils.hPut(imgDetailListKey, String.valueOf(albumImgRelationDTO.getMid()), JsonUtils.toJsonString(imgDetail));
+        }
+
         String albumImgRelationKey = PlatformConstant.ALBUM_IMG_RELATION_KEY + albumImgRelationDTO.getMid();
-        if (Boolean.TRUE.equals(redisUtils.hasKey(albumImgRelationKey))) {
-            //存储所有用户点赞信息
-            List<Long> uids = JSON.parseArray(redisUtils.get(albumImgRelationKey), Long.class);
-            uids.add(albumImgRelationDTO.getUid());
-            redisUtils.set(albumImgRelationKey, JSON.toJSONString(uids));
-        } else {
-            List<Long> uids = new ArrayList<>();
-            uids.add(albumImgRelationDTO.getUid());
-            redisUtils.set(albumImgRelationKey, JSON.toJSONString(uids));
+
+        boolean isMember = isCollectImgToAlbum(String.valueOf(albumImgRelationDTO.getUid()), String.valueOf(albumImgRelationDTO.getMid()));
+        if (!isMember) {
+            redisUtils.sAdd(albumImgRelationKey, String.valueOf(albumImgRelationDTO.getUid()));
         }
 
         //如果当前图片是本人发布的则无法添加至专辑中

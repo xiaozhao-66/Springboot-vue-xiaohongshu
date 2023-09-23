@@ -3,7 +3,9 @@ package com.yanhuo.platform.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yanhuo.common.constant.platform.PlatformConstant;
 import com.yanhuo.common.utils.ConvertUtils;
+import com.yanhuo.common.utils.RedisUtils;
 import com.yanhuo.platform.dao.AlbumDao;
 import com.yanhuo.platform.service.*;
 import com.yanhuo.xo.dto.platform.AlbumDTO;
@@ -39,6 +41,9 @@ public class AlbumServiceImpl extends ServiceImpl<AlbumDao, Album> implements Al
     @Autowired
     AgreeCollectService agreeCollectService;
 
+    @Autowired
+    RedisUtils redisUtils;
+
     @Override
     public List<AlbumVo> getAllAlbum(String uid) {
         List<Album> albumList = this.list(new QueryWrapper<Album>().eq("uid", uid).orderByDesc("update_date"));
@@ -61,6 +66,10 @@ public class AlbumServiceImpl extends ServiceImpl<AlbumDao, Album> implements Al
         //得到当前专辑下的所有图片
         List<AlbumImgRelation> albumImgRelationEntityList = albumImgRelationService.list(new QueryWrapper<AlbumImgRelation>().eq("aid", id));
         List<String> idList = albumImgRelationEntityList.stream().map(e -> String.valueOf(e.getMid())).collect(Collectors.toList());
+
+        String albumStateKey = PlatformConstant.ALBUM_STATE + id;
+        redisUtils.delete(albumStateKey);
+
         imgDetailService.deleteImgs(idList, uid);
         this.removeById(id);
     }

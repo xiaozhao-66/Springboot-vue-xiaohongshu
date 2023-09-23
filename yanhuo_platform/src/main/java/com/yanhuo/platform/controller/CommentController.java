@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -126,6 +127,20 @@ public class CommentController {
         IPage<CommentVo> pageInfo = commentService.getAllComment(page, limit, mid, uid);
         return Result.ok(pageInfo);
 
+    }
+
+
+    /**
+     * 跳转评论
+     * @param id
+     * @param mid
+     * @param uid
+     * @return
+     */
+    @RequestMapping("scrollComment")
+    public Result<?> scrollComment(String id, String mid, String uid){
+        Map<String,Object> resMap= commentService.scrollComment(id, mid, uid);
+        return Result.ok(resMap);
     }
 
     @RequestMapping("delComment")

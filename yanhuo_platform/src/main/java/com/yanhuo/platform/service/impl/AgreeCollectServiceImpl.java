@@ -6,10 +6,13 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yanhuo.common.constant.Constant;
 import com.yanhuo.common.constant.platform.PlatformConstant;
+import com.yanhuo.common.constant.platform.PlatformMqConstant;
 import com.yanhuo.common.exception.YanHuoException;
 import com.yanhuo.common.utils.ConvertUtils;
 import com.yanhuo.common.utils.JsonUtils;
 import com.yanhuo.common.utils.RedisUtils;
+import com.yanhuo.common.utils.SendMessageMq;
+import com.yanhuo.platform.common.PlatformDataToCache;
 import com.yanhuo.platform.dao.AgreeCollectDao;
 import com.yanhuo.platform.service.*;
 import com.yanhuo.platform.websocket.WebSocketServer;
@@ -46,22 +49,25 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
     @Autowired
     AlbumImgRelationService albumImgRelationService;
 
+    @Autowired
+    SendMessageMq sendMessageMq;
+
+    @Autowired
+    PlatformDataToCache platformDataToCache;
+
     private void agreeByType(AgreeCollectDTO agreeCollectDTO, String agreeKey) {
-        if (Boolean.TRUE.equals(redisUtils.hasKey(agreeKey))) {
-            //存储所有用户点赞信息
-            List<Long> uids = JSON.parseArray(redisUtils.get(agreeKey), Long.class);
-            uids.add(agreeCollectDTO.getUid());
-            redisUtils.set(agreeKey, JSON.toJSONString(uids));
+        boolean isMember = redisUtils.sIsMember(agreeKey, String.valueOf(agreeCollectDTO.getUid()));
+        if (isMember) {
+            redisUtils.sRemove(agreeKey, String.valueOf(agreeCollectDTO.getUid()));
         } else {
-            List<Long> uids = new ArrayList<>();
-            uids.add(agreeCollectDTO.getUid());
-            redisUtils.set(agreeKey, JSON.toJSONString(uids));
+            redisUtils.sAdd(agreeKey, String.valueOf(agreeCollectDTO.getUid()));
         }
     }
 
 
     /**
      * 通知用户点赞和收藏记录
+     *
      * @param agreeCollectDTO
      * @param agreeCollect
      */
@@ -97,14 +103,24 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
         this.save(agreeCollect);
 
         if (agreeCollectDTO.getType() == 1) {
-            ImgDetail imgDetail = imgDetailService.getById(agreeCollect.getAgreeCollectId());
-            imgDetail.setAgreeCount(imgDetail.getAgreeCount() + 1);
-            imgDetailService.updateById(imgDetail);
+            ImgDetail imgDetail = imgDetailService.getById(agreeCollectDTO.getAgreeCollectId());
+            if (imgDetail.getAgreeCount() <= 100) {
+                imgDetail.setAgreeCount(imgDetail.getAgreeCount() + 1);
+                sendMessageMq.sendMessage("imgDetailState.direct", "imgDetailStateKey.update", imgDetail);
+            } else {
+                String imgDetailStateKey = PlatformConstant.IMG_DETAIL_STATE + agreeCollectDTO.getAgreeCollectId();
+                platformDataToCache.imgDetailDataToCache(imgDetail, imgDetailStateKey, 0, 1);
+            }
         } else if (agreeCollectDTO.getType() == 0) {
             //点赞评论
-            Comment comment = commentService.getById(agreeCollect.getAgreeCollectId());
-            comment.setCount(comment.getCount() + 1);
-            commentService.updateById(comment);
+            Comment comment = commentService.getById(agreeCollectDTO.getAgreeCollectId());
+            if (comment.getCount() <= 100) {
+                comment.setCount(comment.getCount() + 1);
+                sendMessageMq.sendMessage("commentState.direct", "commentStateKey.update", comment);
+            } else {
+                String commentStateKey = PlatformConstant.COMMENT_STATE + agreeCollectDTO.getAgreeCollectId();
+                platformDataToCache.commentDataToCache(comment, commentStateKey, 0, 1);
+            }
         }
         agreeCollectNotice(agreeCollectDTO, agreeCollect);
     }
@@ -114,18 +130,12 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
     public boolean isAgree(AgreeCollectDTO agreeCollectDTO) {
         if (agreeCollectDTO.getType() == 1) {
             String agreeImgKey = PlatformConstant.AGREE_IMG_KEY + agreeCollectDTO.getAgreeCollectId();
-            if (Boolean.TRUE.equals(redisUtils.hasKey(agreeImgKey))) {
-                List<Long> uids = JSON.parseArray(redisUtils.get(agreeImgKey), Long.class);
-                return uids.contains(agreeCollectDTO.getUid());
-            }
-        } else if (agreeCollectDTO.getType() == 0) {
+            return redisUtils.sIsMember(agreeImgKey, String.valueOf(agreeCollectDTO.getUid()));
+        } else {
             String agreeCommentKey = PlatformConstant.AGREE_COMMENT_KEY + agreeCollectDTO.getAgreeCollectId();
-            if (Boolean.TRUE.equals(redisUtils.hasKey(agreeCommentKey))) {
-                List<Long> uids = JSON.parseArray(redisUtils.get(agreeCommentKey), Long.class);
-                return uids.contains(agreeCollectDTO.getUid());
-            }
+            return redisUtils.sIsMember(agreeCommentKey, String.valueOf(agreeCollectDTO.getUid()));
         }
-        return false;
+
     }
 
     @Override
@@ -243,32 +253,33 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
         //如果点赞的是图片
         if (agreeCollectDTO.getType() == 1) {
             String agreeImgKey = PlatformConstant.AGREE_IMG_KEY + agreeCollectDTO.getAgreeCollectId();
-            if (Boolean.TRUE.equals(redisUtils.hasKey(agreeImgKey))) {
-                //存储所有用户点赞信息
-                List<Long> uids = JSON.parseArray(redisUtils.get(agreeImgKey), Long.class);
-                uids.remove(agreeCollectDTO.getUid());
-                redisUtils.set(agreeImgKey, JSON.toJSONString(uids));
-            }
+            agreeByType(agreeCollectDTO, agreeImgKey);
         } else if (agreeCollectDTO.getType() == 0) {
             String agreeCommentKey = PlatformConstant.AGREE_COMMENT_KEY + agreeCollectDTO.getAgreeCollectId();
-            if (Boolean.TRUE.equals(redisUtils.hasKey(agreeCommentKey))) {
-                List<Long> uids = JSON.parseArray(redisUtils.get(agreeCommentKey), Long.class);
-                uids.remove(agreeCollectDTO.getUid());
-                redisUtils.set(agreeCommentKey, JSON.toJSONString(uids));
-            }
+            agreeByType(agreeCollectDTO, agreeCommentKey);
         }
 
-        this.remove(new QueryWrapper<AgreeCollect>().and(e -> e.eq("uid", agreeCollectDTO.getUid()).eq("agree_collect_id", agreeCollectDTO.getAgreeCollectId()).eq("agree_collect_uid", agreeCollectDTO.getAgreeCollectUid())));
+        this.remove(new QueryWrapper<AgreeCollect>().and(e -> e.eq("uid", agreeCollectDTO.getUid()).eq("agree_collect_id", agreeCollectDTO.getAgreeCollectId()).eq("agree_collect_uid", agreeCollectDTO.getAgreeCollectUid()).eq("type", agreeCollectDTO.getType())));
 
         if (agreeCollectDTO.getType() == 1) {
-            ImgDetail imgEntity = imgDetailService.getById(agreeCollectDTO.getAgreeCollectId());
-            imgEntity.setAgreeCount(imgEntity.getAgreeCount() - 1);
-            imgDetailService.updateById(imgEntity);
+            ImgDetail imgDetail = imgDetailService.getById(agreeCollectDTO.getAgreeCollectId());
+            if (imgDetail.getAgreeCount() <= 100) {
+                imgDetail.setAgreeCount(imgDetail.getAgreeCount() - 1);
+                sendMessageMq.sendMessage(PlatformMqConstant.IMG_DETAIL_STATE_EXCHANGE, PlatformMqConstant.IMG_DETAIL_STATE_KEY, imgDetail);
+            } else {
+                String imgDetailStateKey = PlatformConstant.IMG_DETAIL_STATE + agreeCollectDTO.getAgreeCollectId();
+                platformDataToCache.imgDetailDataToCache(imgDetail, imgDetailStateKey, 0, -1);
+            }
         } else if (agreeCollectDTO.getType() == 0) {
             //点赞评论
             Comment comment = commentService.getById(agreeCollectDTO.getAgreeCollectId());
-            comment.setCount(comment.getCount() - 1);
-            commentService.updateById(comment);
+            if (comment.getCount() < 100) {
+                comment.setCount(comment.getCount() - 1);
+                sendMessageMq.sendMessage(PlatformMqConstant.COMMON_STATE_EXCHANGE, PlatformMqConstant.COMMON_STATE_KEY, comment);
+            } else {
+                String commentStateKey = PlatformConstant.COMMENT_STATE + agreeCollectDTO.getAgreeCollectId();
+                platformDataToCache.commentDataToCache(comment, commentStateKey, 0, -1);
+            }
         }
 
         //更改用户记录表
@@ -297,7 +308,7 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
 
         if (type == 2) {
             //查找所有收藏的图片
-            List<Long> uids = agreeCollectList.stream().map(AgreeCollect::getUid).collect(Collectors.toList());
+            List<Long> uids = agreeCollectList.stream().map(AgreeCollect::getAgreeCollectUid).collect(Collectors.toList());
 
             HashMap<Long, User> userMap = new HashMap<>();
             HashMap<Long, ImgDetail> imgDetailMap = new HashMap<>();
@@ -317,7 +328,7 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
             for (AgreeCollect item : agreeCollectList) {
                 agreeCollectVo = new AgreeCollectVo();
                 imgDetail = imgDetailMap.get(item.getAgreeCollectId());
-                user = userMap.get(item.getUid());
+                user = userMap.get(item.getAgreeCollectUid());
 
                 agreeCollectVo.setMid(imgDetail.getId())
                         .setCount(imgDetail.getCount())
@@ -360,8 +371,14 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
         this.save(agreeCollect);
 
         Album album = albumService.getById(agreeCollectDTO.getAgreeCollectId());
-        album.setCollectionCount(album.getCollectionCount() + 1);
-        albumService.updateById(album);
+
+        if (album.getCollectionCount() <= 100) {
+            album.setCollectionCount(album.getCollectionCount() + 1);
+            sendMessageMq.sendMessage(PlatformMqConstant.ALBUM_STATE_EXCHANGE, PlatformMqConstant.ALBUM_STATE_KEY, album);
+        } else {
+            String albumStateKey = PlatformConstant.ALBUM_STATE + agreeCollectDTO.getAgreeCollectId();
+            platformDataToCache.albumDataToCache(album, albumStateKey, 1);
+        }
 
         //更改用户记录表
         agreeCollectNotice(agreeCollectDTO, agreeCollect);
@@ -376,12 +393,18 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
 
         if (agreeCollectDTO.getType() == 2) {
             //取消收藏图片
-            String albumImgRelationKey = PlatformConstant.ALBUM_IMG_RELATION_KEY + agreeCollectDTO.getAgreeCollectId();
-            if (Boolean.TRUE.equals(redisUtils.hasKey(albumImgRelationKey))) {
+            String imgDetailListKey = PlatformConstant.IMG_DETAIL_LIST_KEY;
+            if (Boolean.TRUE.equals(redisUtils.hExists(imgDetailListKey, String.valueOf(agreeCollectDTO.getAgreeCollectId())))) {
                 //存储所有用户点赞信息
-                List<Long> uids = JSON.parseArray(redisUtils.get(albumImgRelationKey), Long.class);
-                uids.remove(agreeCollectDTO.getUid());
-                redisUtils.set(albumImgRelationKey, JSON.toJSONString(uids));
+                ImgDetail imgDetail = JsonUtils.parseObject((String) redisUtils.hGet(imgDetailListKey, String.valueOf(agreeCollectDTO.getAgreeCollectId())), ImgDetail.class);
+                imgDetail.setCollectionCount(imgDetail.getCollectionCount() - 1);
+                redisUtils.hPut(PlatformConstant.IMG_DETAIL_LIST_KEY, String.valueOf(agreeCollectDTO.getAgreeCollectId()), JsonUtils.toJsonString(imgDetail));
+            }
+
+            String albumImgRelationKey = PlatformConstant.ALBUM_IMG_RELATION_KEY + agreeCollectDTO.getAgreeCollectId();
+            boolean isMember = albumImgRelationService.isCollectImgToAlbum(String.valueOf(agreeCollectDTO.getUid()), String.valueOf(agreeCollectDTO.getAgreeCollectId()));
+            if (isMember) {
+                redisUtils.sRemove(albumImgRelationKey, String.valueOf(agreeCollectDTO.getUid()));
             }
 
             AgreeCollect collectionEntity = this.getOne(new QueryWrapper<AgreeCollect>().and(e -> e.eq("uid", agreeCollectDTO.getUid()).eq("agree_collect_id", agreeCollectDTO.getAgreeCollectId()).eq("type", agreeCollectDTO.getType())));
@@ -391,8 +414,14 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
             }
 
             ImgDetail imgDetail = imgDetailService.getById(agreeCollectDTO.getAgreeCollectId());
-            imgDetail.setCollectionCount(imgDetail.getCollectionCount() - 1);
-            imgDetailService.updateById(imgDetail);
+            if (imgDetail.getCollectionCount() <= 100) {
+                imgDetail.setCollectionCount(imgDetail.getCollectionCount() - 1);
+                sendMessageMq.sendMessage(PlatformMqConstant.IMG_DETAIL_STATE_EXCHANGE, PlatformMqConstant.IMG_DETAIL_STATE_KEY, imgDetail);
+            } else {
+                String imgDetailStateKey = PlatformConstant.IMG_DETAIL_STATE + agreeCollectDTO.getAgreeCollectId();
+                platformDataToCache.imgDetailDataToCache(imgDetail, imgDetailStateKey, 1, -1);
+            }
+
 
             List<AlbumImgRelation> albumImgRelationList = albumImgRelationService.list(new QueryWrapper<AlbumImgRelation>().eq("mid", agreeCollectDTO.getAgreeCollectId()));
 
@@ -417,12 +446,22 @@ public class AgreeCollectServiceImpl extends ServiceImpl<AgreeCollectDao, AgreeC
                     break;
                 }
             }
-        }
+        } else if (agreeCollectDTO.getType() == 3) {
+            AgreeCollect agreeCollect = this.getOne(new QueryWrapper<AgreeCollect>().and(e -> e.eq("uid", agreeCollectDTO.getUid()).eq("agree_collect_id", agreeCollectDTO.getAgreeCollectId())).eq("type", agreeCollectDTO.getType()));
+            if (agreeCollect == null) {
+                res.put(PlatformConstant.MESSAGE, PlatformConstant.COLLECTION_USER_FAIL);
+                return res;
+            }
 
-        AgreeCollect agreeCollect = this.getOne(new QueryWrapper<AgreeCollect>().and(e -> e.eq("uid", agreeCollectDTO.getUid()).eq("agree_collect_id", agreeCollectDTO.getAgreeCollectId())).eq("type", agreeCollectDTO.getType()));
-        if (agreeCollect == null) {
-            res.put(PlatformConstant.MESSAGE, PlatformConstant.COLLECTION_USER_FAIL);
-            return res;
+            Album album = albumService.getById(agreeCollectDTO.getAgreeCollectId());
+
+            if (album.getCollectionCount() <= 100) {
+                album.setCollectionCount(album.getCollectionCount() - 1);
+                sendMessageMq.sendMessage(PlatformMqConstant.ALBUM_STATE_EXCHANGE, PlatformMqConstant.ALBUM_STATE_KEY, album);
+            } else {
+                String albumStateKey = PlatformConstant.ALBUM_STATE + agreeCollectDTO.getAgreeCollectId();
+                platformDataToCache.albumDataToCache(album, albumStateKey, -1);
+            }
         }
 
         this.remove(new QueryWrapper<AgreeCollect>().and(e -> e.eq("uid", agreeCollectDTO.getUid()).eq("agree_collect_id", agreeCollectDTO.getAgreeCollectId()).eq("type", agreeCollectDTO.getType())));

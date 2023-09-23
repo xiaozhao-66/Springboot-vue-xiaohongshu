@@ -1,6 +1,7 @@
 com\yanhuo\common\constant\auth\AuthConstant.class
 com\yanhuo\common\utils\JwtUtils.class
 com\yanhuo\common\utils\TokenServerAssistant$ErrorCode.class
+com\yanhuo\common\constant\platform\PlatformMqConstant.class
 com\yanhuo\common\auth\UserLoginInterceptor.class
 com\yanhuo\common\entity\UserLogin.class
 com\yanhuo\common\recommend\RecommendUtils2.class

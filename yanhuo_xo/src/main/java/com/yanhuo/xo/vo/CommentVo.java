@@ -48,6 +48,7 @@ public class CommentVo implements Serializable {
 
     private Long replyUid;
 
+
     private Long replyId;
     /**
      *

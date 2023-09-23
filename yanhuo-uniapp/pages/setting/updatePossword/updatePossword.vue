@@ -74,18 +74,22 @@
 			},
 
 			getCode() {
-				let isphone = isMobile(this.value)
-				let isEmail = isEmail(this.value)
+				let isM = isMobile(this.value)
+				let isE = isEmail(this.value)
 
 
-				if (isphone) {
-					sendMsm(this.value).then(res => {
+				if (isM) {
+					let data = {}
+					data.phone = this.value
+					sendMsm(data).then(res => {
 						uni.showToast({
 							title: "发送成功"
 						})
 					})
-				} else if (isEmail) {
-					sendDm(this.value).then(res => {
+				} else if (isE) {
+					let data = {}
+					data.email = this.value
+					sendDm(data).then(res => {
 						uni.showToast({
 							title: "发送成功"
 						})
@@ -112,17 +116,22 @@
 
 
 			next() {
-				let isphone = isMobile(this.value)
-				let isEmail = isEmail(this.value)
-				this.userInfo.code = this.code
-				if (isphone) {
-					this.userInfo.phone = this.value
-				} else if (isEmail) {
-					this.userInfo.email = this.value
+				
+				let userObj ={}
+				
+				let isM = isMobile(this.value)
+				let isE = isEmail(this.value)
+				userObj.code = this.code
+				if (isM) {
+					userObj.phone = this.value
+				} else if (isE) {
+					userObj.email = this.value
 				}
-				this.userInfo.type = 0
+				userObj.type = 0
+				userObj.id = this.userInfo.id
+				
 
-				check(this.userInfo).then(res => {
+				check(userObj).then(res => {
 
 					if (res.data.res === 1) {
 						this.check = true
@@ -151,9 +160,11 @@
 					return
 				}
 
-				this.userInfo.password = this.password
-				this.userInfo.checkPassword = this.checkPassword
-				updatePassword(this.userInfo).then(res => {
+                let userObj = {}
+				userObj.id = this.userInfo.id
+				userObj.password = this.password
+				userObj.checkPassword = this.checkPassword
+				updatePassword(userObj).then(res => {
 
 					if (res.data) {
 						uni.showToast({

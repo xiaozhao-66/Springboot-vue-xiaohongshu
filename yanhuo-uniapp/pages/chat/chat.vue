@@ -1,4 +1,5 @@
 <template>
+	<!-- 已使用第三方工具，这里的代码不用了 -->
 	<view>
 		<view class="container" :style="{ 'padding-bottom': `${52 + inputBottom}px` }">
 			<view class="header">

@@ -32,6 +32,10 @@ export function getComment(params) {
 	return request.get(appConfig.WEB_API + `/platform/comment/getComment`, params)
 }
 
+export function scrollComment(params) {
+	return request.get(appConfig.WEB_API + `/platform/comment/scrollComment`, params)
+}
+
 
 export function getAllTrendCommentByImage(page, limit, params) {
 	return request.get(appConfig.WEB_API + `/platform/comment/getAllTrendCommentByImage/${page}/${limit}`, params)

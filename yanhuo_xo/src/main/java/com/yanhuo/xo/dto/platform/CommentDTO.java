@@ -38,19 +38,6 @@ public class CommentDTO implements Serializable {
 	/**
 	 *
 	 */
-	@ApiModelProperty(value = "发布评论的用户名")
-	@NotBlank(message = "用户名不能为空", groups = DefaultGroup.class)
-	private String username;
-
-	/**
-	 *
-	 */
-	@ApiModelProperty(value = "发布评论的用户头像")
-	@NotBlank(message = "头像不能为空", groups = DefaultGroup.class)
-	private String avatar;
-	/**
-	 *
-	 */
 	@ApiModelProperty(value = "评论的父id")
 	private Long pid;
 
@@ -60,11 +47,9 @@ public class CommentDTO implements Serializable {
 	@ApiModelProperty(value = "回复某一条评论的id")
 	private Long replyId;
 
-	/**
-	 *
-	 */
-	@ApiModelProperty(value = "回复某一条评论的用户")
-	private String replyName;
+	@ApiModelProperty(value = "回复某一条评论的用户id")
+	private Long replyUid;
+
 	/**
 	 *
 	 */

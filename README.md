@@ -24,10 +24,18 @@
 [项目介绍](#项目介绍) | [运行配置](#运行配置) | [测试账号](#测试账号) | [项目技术](#项目特点及功能) | [技术选型](#技术选型) |  [关注&交流](#关注&交流) | [赞赏](#赞赏) | [项目截图](#项目截图)
 
 ## 项目介绍
+### **3.0版本开发中…，将要优化的部分介绍**
+- 数据库重构，代码结构优化
+- 重做点赞，收藏，评论模块，目前点赞收藏数据主要存在数据库中，性能较差。后续将数据存放在redis中，优化点赞，收藏，评论模块。定时同步数据，使用mq做异步通知。
+- 解决redis和mysql数据一致性问题
+- es搜索功能重做
+- 关注动态功能重做。用户发布新的图片要通知他的粉丝关注动态更新，并按照发布时间排序
+- 前端ui优化
 
-#### **2.0版本发布，优化数据库和优化代码结构，管理员平台不再使用人人开源管理系统，准备自己从新搭建一个后台管理平台（正在开发中）**
+#### **2.0版本发布，优化数据库和优化代码结构**
 
 **需要旧版本请切换分支**
+
 
 烟火app一个**基于微服务架构的前后端分离系统**。**Web** 端使用 **Vue** + **ElementUi** , 移动端使用 **uniapp** 和 **ThorUI**。后端使用 **SpringCloud** + **SpringBoot** + **Mybatis-plus**进行开发，使用 **ElasticSearch**  作为全文检索服务，使用**webSocket**做聊天和消息推送，文件支持**七牛云**和**阿里云上传**.并支持本地**QQ**,**微信**和**微博**登录。
 
@@ -35,30 +43,71 @@
 - 推荐功能需要一个压缩模型，无法上传，需要加我qq。如果不使用推荐功能也可以运行。里面也有使用协同过滤算法做推荐功能
 - 如果对uniapp项目不熟悉，本地仓库中还有一个只使用vue技术实现的一个完整的前后端分离的视频播放器项目。项目地址https://gitee.com/xzjsccz/cc_video
 
-【联系我】已经入职国企，没有太多时间再来做这个项目了，也没有时间帮忙解决问题，大家加群吧讨论吧  
+【联系我】已入职国企，没有太多时间再来做这个项目了，也没有时间帮忙解决问题，大家加群吧讨论吧  
 **QQ** 879599115
 <div align=center>
 <img src="./doc/app.png" /> 
 </div>
 
-## 运行配置
+## 运行启动
 
 数据库在`doc`包中。`yanhuo.sql`
 
-**后端启动**
+### 项目启动
 
-- 首先需要把`redis`，`nacos`环境配置好并启动。
+**手机端运行**
 
-- 启动`yanhuo-auth`,`yanhuo-gateway`,`yanhuo-platform`,`yanhuo-recommend`这四个服务就可以正常浏览项目。
+进入 http://ccimgvideo.top:53550/  直接下载apk测试文件运行即可
 
-- 如果需要使用图片上传,短信，邮箱,搜索功能，需要配置es环境并启动，并在`yanhuo-util`模块中连接自己的`oss`账号，然后启动`yanhuo-search`和`yanhuo-util`这两个服务。
+**web端运行**
 
-- 如果只需要运行后台页面，则启动`yanhuo-admin`即可(暂未完成)
+下载项目，将`yanhuo-uniapp`直接导入到hbuilder即可正常运行
+
+### 本地运行
 
 **前端启动**
 
-- 将`yanhuo-uniapp`项目导入到`hbuilder`中，正常启动即可
-- `yanhuo-admin-vue`直接启动即可
+下载项目进入`yanhuo-uniapp`中，修改`config`包下的配置文件
+
+![image text](./doc/appimgs/1.png)
+
+如果要使用聊天功能则需要修改`main.js`下的配置文件，将`appkey`改成自己在`goeasy`注册的`commonKey`(**goeasy网址:https://console.goeasy.io/**)
+
+![image text](./doc/appimgs/2.png)
+
+![image text](./doc/appimgs/3.png)
+
+![image text](./doc/appimgs/4.png)
+
+配置好后启动即可
+
+![image text](./doc/appimgs/8.png)
+
+**后端启动**
+
+- 首先需要把`redis`，`elasticsearch`,`nacos`，`rabbitmq`环境配置好并启动。
+
+- 修改`yanhuo-common`,`yanhuo-auth`,`yanhuo-gateway`,`yanhuo-search`,`yanhuo-platform`,`yanhuo-recommend`下的配置文件，并启动`yanhuo-auth`,`yanhuo-gateway`,`yanhuo-search`,`yanhuo-platform`这四个服务就可以正常浏览项目。(!!!**启动platform模块之前，必须先启动search模块，否则platform模块不会启动成功**)
+
+  **yanhuo-common**`->`**application.yml**
+
+  ![image text](./doc/appimgs/5.png)
+
+  **yanhuo-platform**`->`**application-dev.yml**
+
+  ![image text](./doc/appimgs/6.png)
+
+- 如果需要使用图片上传,短信，邮箱,搜索功能，需在`yanhuo-util`模块中连接自己的`oss`账号。
+
+  ![image text](./doc/appimgs/7.png)
+
+- 启动项目
+
+  ![image text](./doc/appimgs/9.png)
+
+### 成功运行
+
+![image text](./doc/appimgs/10.jpg)
 
 ## 测试账号
 
@@ -182,4 +231,4 @@
 |   ![image text](./doc/img/album-edit.png)    | ![image text](./doc/img/albumIndo-delete.png)  |
 |   ![image text](./doc/img/publish.png)    | ![image text](./doc/img/tags.png)  |
 |   ![image text](./doc/img/addAlbum.png)    |  |
- 
+

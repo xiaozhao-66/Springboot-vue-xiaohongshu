@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * @author 48423
+ * 已整合第三方聊天工具，这里的代码废弃
  */
 public interface ChatService {
 

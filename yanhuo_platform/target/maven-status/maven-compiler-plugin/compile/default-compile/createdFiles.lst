@@ -3,8 +3,9 @@ com\yanhuo\platform\chat\ChatService.class
 com\yanhuo\platform\service\TagImgRelationService.class
 com\yanhuo\platform\service\impl\CommentServiceImpl.class
 com\yanhuo\platform\websocket\WebSocketConfig.class
+com\yanhuo\platform\listener\PlatformMqListener.class
+com\yanhuo\platform\task\PlatformTask.class
 com\yanhuo\platform\controller\FollowController.class
-com\yanhuo\platform\task\ImgDetailTask.class
 com\yanhuo\platform\service\impl\AlbumServiceImpl.class
 com\yanhuo\platform\service\impl\AlbumImgRelationServiceImpl.class
 com\yanhuo\platform\controller\AgreeCollectController.class
@@ -36,12 +37,12 @@ com\yanhuo\platform\controller\SearchRecordController.class
 com\yanhuo\platform\service\TagService.class
 com\yanhuo\platform\dao\UserOtherLoginRelationDao.class
 com\yanhuo\platform\websocket\WebSocketServer.class
+com\yanhuo\platform\common\PlatformDataToCache.class
 com\yanhuo\platform\dao\AlbumImgRelationDao.class
 com\yanhuo\platform\controller\CategoryController.class
 com\yanhuo\platform\controller\BrowseRecordController.class
 com\yanhuo\platform\dao\AlbumDao.class
 com\yanhuo\platform\dao\ImgDetailDao.class
-com\yanhuo\platform\listener\MqListener.class
 com\yanhuo\platform\PlatformApplication.class
 com\yanhuo\platform\controller\ImgDetailController.class
 com\yanhuo\platform\dao\UserDao.class

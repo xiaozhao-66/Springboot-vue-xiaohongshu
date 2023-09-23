@@ -19,7 +19,7 @@ public interface AuthConstant {
 
     String EXPIRATION = "expiration";
 
-    String CODE = "code";
+    String CODE = "code:";
 
     String DEFAULT_AVATAR = "https://foruda.gitee.com/avatar/1677084428450863653/7573881_xzjsccz_1604058944.png!avatar200";
 

@@ -20,6 +20,34 @@
 	margin-right: 15rpx;
 }
 
+.fixed-top{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 5px;
+	-webkit-animation: fixed-top 0.5s;
+}
+
+@-webkit-keyframes fixed-top{
+    0%{ -webkit-transform:translateY(-30rpx); opacity:0;}
+}
+
+.fixed-user{
+	
+	display: flex;
+	align-items: center;
+}
+
+.fixed-user .avatar{
+	width: 60rpx;
+	height: 60rpx;
+	border-radius: 50%
+}
+
+.fixed-user  .username{
+	font-size: 28rpx;
+}
+
 .content .image {
 	position: relative;
 	top: -200rpx;
@@ -43,6 +71,8 @@
 	background-color: #fff;
 	
 }
+
+
 
 .content .main .top .user {
 	width: 100%;

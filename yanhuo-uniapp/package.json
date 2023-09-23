@@ -1,5 +1,16 @@
 {
-  "dependencies": {
-    "plus-websocket": "^1.0.7"
-  }
+    "id": "ldsy-waterfall-flow",
+    "displayName": "简单实用，支持同时渲染多张，异步加载错误处理，两列瀑布流",
+    "version": "1.0.0",
+    "description": "两列瀑布流，可以直接使用；提供复现demo，能看懂，就能自己写多列瀑布流。",
+    "keywords": [
+        "瀑布流",
+        "两列瀑布流"
+    ],
+    "dcloudext": {
+        "category": [
+            "前端组件",
+            "通用组件"
+        ]
+    }
 }

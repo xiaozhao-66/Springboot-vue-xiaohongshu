@@ -5,19 +5,14 @@
 				selectedColor="#ff0000"></tui-tabs>
 		</tui-navigation-bar>
 
-
 		<view @touchstart="start" @touchend="end">
-
 			<interest v-if="currentTab == 0"></interest>
 			<hot v-if="currentTab == 2"></hot>
 
 			<view v-if="currentTab == 1">
-
-
 				<scroll-view scroll-y class="page" @scrolltolower="loadData" refresher-enabled="true"
 					:refresher-triggered="triggered" @refresherrefresh="onRefresh" @scroll="scroll"
 					:scroll-top="scrollTop">
-
 					<view>
 						<tui-drawer mode="left" :visible="visiable" @close="closeDrawer">
 							<view class="d-container">
@@ -127,7 +122,7 @@
 										<view v-for="(item, index) in list1" :key="index" class="waterfall-item">
 
 											<view class="waterfall-item__image">
-												<image :src="item.image" :lazy-load="true" mode="widthFix"
+												<image :src="item.image" :lazy-load="true" mode=""
 													:width="item.width+'px'" @click="getImgInfo(item.id)">
 
 												</image>
@@ -166,7 +161,6 @@
 											<view class="waterfall-item__image">
 												<image :src="item.image" :lazy-load="true" mode="widthFix"
 													:width="item.width+'px'" @click="getImgInfo(item.id)">
-
 												</image>
 											</view>
 											<view class="card">
@@ -294,18 +288,19 @@
 		onPageScroll(e) {
 			this.stickyScrollTop = e.stickyScrollTop
 		},
-		created() {
-
+		created() { 
 			this.getCategory()
 			this.userInfo = uni.getStorageSync("userInfo")
+
+			getApp().globalData.currentUser = this.userInfo;
+			if (this.goEasy.getConnectionStatus() === 'disconnected') {
+				this.connectGoEasy(); //连接goeasy
+			}
 			this.getRecordCount()
-
 		},
-
-		mounted() {
-			this.$nextTick(function() {
-				this.getRecommend()
-			})
+		
+		mounted(){
+			this.getRecommend()
 		},
 
 		onHide() {
@@ -337,6 +332,30 @@
 		},
 
 		methods: {
+
+			connectGoEasy() {
+				
+				this.goEasy.connect({
+					id: this.userInfo.id,
+					data: {
+						name: this.userInfo.username,
+						avatar: this.userInfo.avatar
+					},
+					onSuccess: () => {
+						//this.triggered = false
+						console.log('GoEasy connect successfully.')
+
+					},
+					onFailed: (error) => {
+						console.log('Failed to connect GoEasy, code:' + error.code + ',error:' + error
+						.content);
+					},
+					onProgress: (attempts) => {
+						console.log('GoEasy is connecting', attempts);
+					}
+				});
+			},
+
 
 			changeSticky(e) {
 				console.log(e)
@@ -374,29 +393,29 @@
 			},
 
 			//---
-			getChatUserList() {
+			// getChatUserList() {
 
-				return new Promise((resolve) => {
+			// 	return new Promise((resolve) => {
 
-					let params = {
-						uid: uni.getStorageSync("userInfo").id
-					}
-					getChatUserList(params).then(res => {
-						let count = 0
+			// 		let params = {
+			// 			uid: uni.getStorageSync("userInfo").id
+			// 		}
+			// 		getChatUserList(params).then(res => {
+			// 			let count = 0
 
-						res.data.forEach(item => {
-							if (item.count > 0) {
-								count += item.count
-							}
-						})
+			// 			res.data.forEach(item => {
+			// 				if (item.count > 0) {
+			// 					count += item.count
+			// 				}
+			// 			})
 
-						resolve(count)
-					})
+			// 			resolve(count)
+			// 		})
 
-				})
+			// 	})
 
 
-			},
+			// },
 			getUserRecord() {
 				return new Promise((resolve) => {
 					let params = {
@@ -411,8 +430,11 @@
 
 			async getRecordCount() {
 
-				let count = await this.getChatUserList()
+				//let count = await this.getChatUserList()
+
+
 				let res = await this.getUserRecord()
+				let count = uni.getStorageSync("unreadTotal")
 
 				if (res.agreeCollectionCount > 0 || res.addFollowCount > 0 || res.noreplyCount > 0 || count > 0) {
 					uni.showTabBarRedDot({ //显示红点
@@ -459,6 +481,21 @@
 				dataList.forEach(item => {
 					this.list.push(this.getItem(item))
 				})
+				setTimeout(()=>{
+					this.triggered = false
+				},500)
+			},
+			
+			getItem(item) {
+				return {
+					id: item.id,
+					image: item.cover,
+					content: item.content,
+					count: item.count,
+					avatar: item.avatar,
+					username: item.username,
+					agreeCount: item.agreeCount,
+				}
 			},
 
 			getImgListByCategory(id, index) {
@@ -486,26 +523,23 @@
 				let params = {}
 				getPage(this.page, this.limit, params).then(res => {
 					this.total = res.data.total
-
 					this.getMoreData(res.data.records)
 				})
 			},
 			onRefresh() {
 				this.C = -1
 				this.triggered = true;
-
 				this.isEnd = false
 				setTimeout(() => {
 					this.triggered = false;
-				}, 300)
+					this.clear()
 
-				this.clear()
+					this.page = 1
 
-				this.page = 1
+					this.isSearchByCategory = false
 
-				this.isSearchByCategory = false
-
-				this.getRecommend()
+					this.getRecommend()
+				}, 500)
 			},
 			// 清空数据
 			clear() {
@@ -516,6 +550,7 @@
 				this.$refs.waterfall.clear();
 			},
 			getRecommend() {
+				this.triggered = true
 				let params = {
 					uid: this.userInfo.id
 				}
@@ -525,26 +560,14 @@
 						this.isFirst = true
 						this.getPage()
 					} else {
-
 						this.total = res.data.total
 						this.getMoreData(res.data.records)
-
 					}
 				})
 			},
 
 
-			getItem(item) {
-				return {
-					id: item.id,
-					image: item.cover,
-					content: item.content,
-					count: item.count,
-					avatar: item.avatar,
-					username: item.username,
-					agreeCount: item.agreeCount,
-				}
-			},
+			
 			changeList(e) {
 				this[e.name].push(e.value);
 

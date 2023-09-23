@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * @author 小赵
+ * (已废弃)已整合第三方聊天工具
  */
 @RestController
 @RequestMapping("/api/platform/chat")

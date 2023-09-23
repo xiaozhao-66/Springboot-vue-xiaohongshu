@@ -43,4 +43,12 @@ public interface PlatformConstant {
     String COLLECTION_USER_FAIL = "用户未收藏";
 
     String COLLECTION_CANCEL = "取消收藏";
+    //-------------------------------state
+    String IMG_DETAIL_STATE = "imgDetailState:";
+    String USER_STATE = "userState:";
+    String COMMENT_STATE = "commentState:";
+    String ALBUM_STATE = "albumState:";
+
+
+
 }

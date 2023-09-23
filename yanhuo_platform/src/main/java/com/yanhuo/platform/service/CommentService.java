@@ -7,6 +7,7 @@ import com.yanhuo.xo.model.Comment;
 import com.yanhuo.xo.vo.CommentVo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -82,4 +83,6 @@ public interface CommentService extends IService<Comment> {
      * @param id
      */
     void delComment(String id);
+
+    Map<String, Object> scrollComment(String id, String mid, String uid);
 }

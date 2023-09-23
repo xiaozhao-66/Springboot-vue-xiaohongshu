@@ -145,7 +145,7 @@ public class AuthUserController {
     }
 
     /**
-     * 刷新token
+     * (已废弃)刷新token
      *
      * @param authUserDTO
      * @return

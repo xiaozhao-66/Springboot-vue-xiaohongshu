@@ -1,65 +1,75 @@
 <template>
-	<view class="content">
+	<view class="content" :style="'margin-top:'+vHeight+'rpx'">
+		<tui-navigation-bar backgroundColor="#fff" :isFixed="true" :isOpacity="false" v-if='top_show'>
+			<view class="fixed-top">
+				<view class="fixed-user">
+					<image :src="userInfo.avatar" class="avatar" mode="aspectFill"
+						@click="previewImgae(userInfo.avatar)" />
+					<view class="username">{{ userInfo.username }}</view>
+				</view>
+			</view>
+		</tui-navigation-bar>
+
 		<tui-navigation-bar backgroundColor="#fff" :isFixed="false" :isOpacity="false">
 			<view class="top">
 				<view @click="back">
 					<tui-icon name="arrowleft" color="#fff" size="30"></tui-icon>
 				</view>
 			</view>
-
-			<!-- 显示图片 -->
-			<view class="image">
-				<image :src="userInfo.cover" v-if="userInfo" mode="aspectFill" @click="previewImgae(userInfo.cover)" />
-				<image src="/static/images/toast/img_nodata.png" v-else mode="aspectFill" />
-			</view>
-
-			<!-- 主体 -->
-			<view class="main">
-				<view class="top">
-					<view class="user">
-						<view class="user-left">
-							<image :src="userInfo.avatar" class="avatar" mode="aspectFill"
-								@click="previewImgae(userInfo.avatar)" />
-							<view class="user-content">
-								<h3>{{ userInfo.username }}</h3>
-								<view class="user-id f">id:{{ userInfo.userId }}</view>
-								<view class="descrpition f">{{ userInfo.description }} </view>
-							</view>
-
-						</view>
-						<view class="user-right">
-							<view @click="chat(userInfo.id)" class="user-message">
-								<tui-icon name="message" size="24" color="#797979"></tui-icon>
-							</view>
-							<tui-button v-if="T" @click="clearFollow(userInfo.id)" type="gray" height="66rpx" size="24"
-								width="120rpx">已关注</tui-button>
-							<tui-button v-else @click="follow(userInfo.id)" type="danger" height="66rpx" size="24"
-								width="120rpx">关注</tui-button>
-						</view>
-					</view>
-					<view class="info">
-						<p @click="getAllFriend(1)">关注 {{ userInfo.followCount }}</p>
-						<p @click="getAllFriend(0)">粉丝 {{ userInfo.fanCount }}</p>
-						<p>动态 {{ userInfo.trendCount }}</p>
-					</view>
-					<view class="">
-						<tui-tabs :tabs="tabs" :currentTab="currentTab" @change="change" sliderBgColor="red"
-							selectedColor="red" itemWidth="50%"></tui-tabs>
-					</view>
-				</view>
-
-				<view class="zhuti">
-					<view v-if="userInfo">
-						<Trend v-if="currentTab == 0" :uid='uid'> </Trend>
-						<Album v-if="currentTab == 1" :uid='uid'></Album>
-						<Collection v-if="currentTab == 2" :uid='uid'></Collection>
-					</view>
-					<view class="nologin" v-else>
-						<button @click="login">请先登录</button>
-					</view>
-				</view>
-			</view>
 		</tui-navigation-bar>
+		<!-- 显示图片 -->
+		<view class="image">
+			<image :src="userInfo.cover" v-if="userInfo" mode="aspectFill" @click="previewImgae(userInfo.cover)" />
+			<image src="/static/images/toast/img_nodata.png" v-else mode="aspectFill" />
+		</view>
+
+		<!-- 主体 -->
+		<view class="main">
+			<view class="top">
+				<view class="user">
+					<view class="user-left">
+						<image :src="userInfo.avatar" class="avatar" mode="aspectFill"
+							@click="previewImgae(userInfo.avatar)" />
+						<view class="user-content">
+							<h3>{{ userInfo.username }}</h3>
+							<view class="user-id f">id:{{ userInfo.userId }}</view>
+							<view class="descrpition f">{{ userInfo.description }} </view>
+						</view>
+
+					</view>
+					<view class="user-right">
+						<view @click="chat(userInfo.id)" class="user-message">
+							<tui-icon name="message" size="24" color="#797979"></tui-icon>
+						</view>
+						<tui-button v-if="T" @click="clearFollow(userInfo.id)" type="gray" height="66rpx" size="24"
+							width="120rpx">已关注</tui-button>
+						<tui-button v-else @click="follow(userInfo.id)" type="danger" height="66rpx" size="24"
+							width="120rpx">关注</tui-button>
+					</view>
+				</view>
+				<view class="info">
+					<p @click="getAllFriend(1)">关注 {{ userInfo.followCount }}</p>
+					<p @click="getAllFriend(0)">粉丝 {{ userInfo.fanCount }}</p>
+					<p>动态 {{ userInfo.trendCount }}</p>
+				</view>
+				<view class="">
+					<tui-tabs :tabs="tabs" :currentTab="currentTab" @change="change" sliderBgColor="red"
+						selectedColor="red" itemWidth="50%"></tui-tabs>
+				</view>
+			</view>
+
+			<view class="zhuti">
+				<view v-if="userInfo">
+					<Trend v-if="currentTab == 0" :uid='uid' :seed='seed'> </Trend>
+					<Album v-if="currentTab == 1" :uid='uid' :seed='seed'></Album>
+					<Collection v-if="currentTab == 2" :uid='uid' :seed='seed'></Collection>
+				</view>
+				<view class="nologin" v-else>
+					<button @click="login">请先登录</button>
+				</view>
+			</view>
+		</view>
+
 	</view>
 </template>
 
@@ -98,6 +108,12 @@
 				seed: 0,
 				uid: '',
 				T: false,
+				vHeight: 0,
+				//页面初始化高度
+				screenHeight: 0,
+				top_show:false,
+				
+				currentUser: null
 			}
 		},
 
@@ -107,6 +123,14 @@
 				this.currentTab = option.currentTab
 			}
 			this.uid = option.uid
+			this.screenHeight = uni.getSystemInfoSync().screenHeight;
+			
+			this.currentUser = uni.getStorageSync('userInfo');
+			getApp().globalData.currentUser = this.currentUser;
+			
+			if (this.goEasy.getConnectionStatus() === 'disconnected') {
+			        this.connectGoEasy();  //连接goeasy
+		    }
 		},
 
 		onShow() {
@@ -115,7 +139,46 @@
 			this.isFollow()
 			this.seed = Math.random()
 		},
+		
+		onPageScroll(e) {
+		
+			const that = this
+			if (e.scrollTop >= 20) {
+				this.top_show = true
+				uni.createSelectorQuery().select('.content').boundingClientRect(function(data) {
+					that.vHeight = 220
+				}).exec()
+			} else {
+				this.top_show = false
+				uni.createSelectorQuery().select('.content').boundingClientRect(function(data) {
+					that.vHeight = 0
+				}).exec()
+			}
+		
+		},
+		
 		methods: {
+			
+			connectGoEasy() {
+			        uni.showLoading();
+			        this.goEasy.connect({
+			          id: this.currentUser.id,
+			          data: {
+			            name: this.currentUser.username,
+			            avatar: this.currentUser.avatar
+			          },
+			          onSuccess: () => {
+			            console.log('GoEasy connect successfully.')
+			          },
+			          onFailed: (error) => {
+			            console.log('Failed to connect GoEasy, code:' + error.code + ',error:' + error.content);
+			          },
+			          onProgress: (attempts) => {
+			            console.log('GoEasy is connecting', attempts);
+			          }
+			        });
+			      },
+				  
 			back() {
 				uni.navigateBack({
 					delta: 1
@@ -138,8 +201,9 @@
 				})
 			},
 			chat(uid) {
+				console.log(uid)
 				uni.navigateTo({
-					url: "/pages/chat/chat2?toUid=" + this.uid
+					url: "/pages/message/privateChat/privateChat?to=" + uid
 				})
 			},
 
@@ -186,6 +250,9 @@
 				uni.navigateTo({
 					url: "/pages/user/allUser/allUser?type=" + type + "&uid=" + this.uid
 				})
+			},
+			onReachBottom() {
+				this.seed = Math.random()
 			},
 
 			previewImgae(url) {

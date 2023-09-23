@@ -20,7 +20,6 @@
 				<li class="info-item">
 					<view class="info-item-zhuti">
 						<view class="title">软件设置</view>
-
 						<view class="icon"><tui-icon name="arrowright" size="25"></tui-icon></view>
 					</view>
 
@@ -73,6 +72,14 @@
 		tokenUtil
 	} from "@/utils/token.js"
 	export default {
+		data() {
+			return {
+				currentUser: null
+			}
+		},
+		onShow() {
+			this.currentUser = uni.getStorageSync("userInfo");
+		},
 		methods: {
 			back() {
 				uni.navigateBack({
@@ -80,11 +87,14 @@
 				})
 			},
 			loginOut() {
-				let user = uni.getStorageSync("userInfo")
-                
-				loginOut(user).then(res => {
+				if (this.goEasy.getConnectionStatus() === 'disconnected') {
+					return
+				}
+				this.disconnect()
+				loginOut(this.currentUser).then(res => {
 					uni.removeStorageSync("userInfo")
 					tokenUtil.clear()
+
 					setTimeout(() => {
 						uni.navigateTo({
 							url: "/pages/login/login?close=" + true
@@ -93,6 +103,28 @@
 				})
 
 			},
+
+           disconnect(){
+			   this.goEasy.disconnect({
+			   	onSuccess: function() {
+			   		uni.hideLoading();
+			   		console.log('注销成功')
+			   		getApp().globalData.currentUser = null;
+			   		uni.navigateTo({
+			   			url: './login'
+			   		})
+			   	},
+			   	onFailed: function(error) {
+			   		uni.hideLoading();
+			   		uni.showToast({
+			   			icon: 'none',
+			   			title: '注销超时，请检查网络！（务必确保注销成功才允许客户退出应用，否则有可能会收到上个用户的消息。）',
+			   			duration: 6000
+			   		});
+			   		console.log('注销失败', error);
+			   	}
+			   });
+		   },
 
 			updatePassword() {
 				uni.navigateTo({

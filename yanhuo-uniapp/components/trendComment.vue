@@ -142,18 +142,19 @@
 					commentInfo.content = this.content
 					commentInfo.uid = userInfo.id
 					commentInfo.mid = this.mid
-					commentInfo.avatar = userInfo.avatar
-					commentInfo.username = userInfo.username
+					
 					//添加一级评论
 					if (this.comment.id == null) {
 						commentInfo.pid = 0
 						commentInfo.replyId = 0
+						commentInfo.replyUid = 0
 						commentInfo.level = 1
 					} else {
 
 						commentInfo.replyName = this.comment.username
 						commentInfo.level = 2
 						commentInfo.replyId = this.comment.id
+						commentInfo.replyUid = this.comment.uid
 						//添加二级评论
 						if (this.comment.pid == 0) {
 							commentInfo.pid = this.comment.id

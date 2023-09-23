@@ -87,5 +87,6 @@ public interface AuthUserService extends IService<User> {
      * @param authUserDTO
      * @return
      */
+    @Deprecated
     Map<String, Object> refreshToken(AuthUserDTO authUserDTO);
 }

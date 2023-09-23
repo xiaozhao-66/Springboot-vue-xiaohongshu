@@ -1,11 +1,8 @@
 <template>
 	<view class="container">
-		<scroll-view scroll-y class="page" @scrolltolower="loadData">
-
 			<WaterFall :list="list" @getImgInfo="getImgInfo"></WaterFall>
 			<view class="loadStyle" v-if="!isEnd && loading">正在加载中</view>
 			<view class="loadStyle" v-if="isEnd">我也是有底线的~</view>
-		</scroll-view>
 		<tui-toast ref="toast"></tui-toast>
 	</view>
 </template>
@@ -24,6 +21,7 @@
 		},
 		props: {
 			uid: String,
+			seed:Number,
 		},
 		data() {
 			return {
@@ -35,6 +33,11 @@
 				loading: false, //是否正在加载
 
 			}
+		},
+		watch:{
+		    seed(newVal,oldVal){
+				this.loadData()
+			}	
 		},
 
 		created() {
@@ -69,14 +72,16 @@
 				}
 				getAllCollection(this.page, this.limit, params).then(res => {
 					console.log(res)
-					this.total = res.data.length
+					this.total = res.data.total
 					this.getMoreData(res.data.records)
 				})
 
 			},
 
 			loadData() {
+				
 				this.loading = true
+				
 				if (this.list.length >= this.total) {
 					this.isEnd = true
 					return
@@ -94,8 +99,7 @@
 
 			},
 			getImgInfo(mid) {
-                console.log(mid)
-                  
+              
 				if (uni.getStorageSync("userInfo").id != null || uni.getStorageSync("userInfo").id != '') {
 					let data = {}
 					data.uid = uni.getStorageSync("userInfo").id

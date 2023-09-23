@@ -6,12 +6,12 @@ import {
 } from '../config/config.js'
 
 
-export function sendDm(dm) {
-	return request.get(appConfig.WEB_API + `/util/dm/sendDm/${dm}`, null)
+export function sendDm(data) {
+	return request.post(appConfig.WEB_API + `/util/dm/sendDm`, data)
 }
 
-export function sendMsm(msm) {
-	return request.get(appConfig.WEB_API + `/util/msm/sendMsm/${msm}`, null)
+export function sendMsm(data) {
+	return request.post(appConfig.WEB_API + `/util/msm/sendMsm`, data)
 }
 
 export function register(data) {

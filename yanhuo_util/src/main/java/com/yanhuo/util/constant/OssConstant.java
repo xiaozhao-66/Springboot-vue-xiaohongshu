@@ -10,7 +10,7 @@ public interface OssConstant {
 
     String KEY_ID = "";
 
-    String KEY_SECRET = "";
+    String KEY_SECRET ="";
 
     String BUCKET_NAME = "";
 

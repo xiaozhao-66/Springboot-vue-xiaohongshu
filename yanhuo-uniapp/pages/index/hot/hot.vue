@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<scroll-view scroll-y class="page" @scrolltolower="loadData">
-			<uni-list :data='dataList' :total='total'>
+			
 				<view class="item-hot" v-for="(item, index) in dataList" :key="index">
 					<view class="item-hot-left">{{ index + 1 }}</view>
 					<view class="item-hot-right">
@@ -35,7 +35,7 @@
 
 					</view>
 				</view>
-			</uni-list>
+
 
 			<view class="loadStyle" v-if="isEnd">我也是有底线的~</view>
 		</scroll-view>

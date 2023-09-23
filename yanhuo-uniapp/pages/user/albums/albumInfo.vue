@@ -284,7 +284,7 @@
 				})
 			},
 			loadData() {
-				console.log(this.type)
+				
 				this.loading = true
 				setTimeout(() => {
 					if (this.dataList.length >= this.total) {

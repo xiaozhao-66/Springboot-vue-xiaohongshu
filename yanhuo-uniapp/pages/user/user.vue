@@ -1,8 +1,17 @@
 <template>
-	<view class="content">
-		<tui-navigation-bar backgroundColor="#fff" :isFixed="false" :isOpacity="false">
-			<view class="top">
+	<view class="content" :style="'margin-top:'+vHeight+'rpx'">
+		<tui-navigation-bar backgroundColor="#fff" :isFixed="true" :isOpacity="false" v-if='top_show'>
+			<view class="fixed-top">
+				<view class="fixed-user">
+					<image :src="userInfo.avatar" class="avatar" mode="aspectFill"
+						@click="previewImgae(userInfo.avatar)" />
+					<view class="username">{{ userInfo.username }}</view>
+				</view>
+			</view>
+		</tui-navigation-bar>
 
+		<tui-navigation-bar backgroundColor="#fff" :isFixed="false" :isOpacity="false" v-else>
+			<view class="top">
 				<view class="right">
 					<view class="item">
 						<tui-icon name="manage" class="icon-item-manage" color="#fff" size="30"></tui-icon>
@@ -14,59 +23,61 @@
 					</view>
 				</view>
 			</view>
-
-			<!-- 头 -->
-
-			<!-- 显示图片 -->
-			<view class="image">
-				<image :src="userInfo.cover" v-if="userInfo" mode="aspectFill" @click="previewImgae(userInfo.cover)" />
-				<image src="/static/images/toast/img_nodata.png" v-else mode="aspectFill" />
-			</view>
-
-			<!-- 主体 -->
-			<view class="main">
-				<view class="top">
-					<view class="user">
-						<view class="user-left">
-							<image :src="userInfo.avatar" class="avatar" mode="aspectFill"
-								@click="previewImgae(userInfo.avatar)" />
-							<view class="user-content">
-								<h3>{{ userInfo.username }}</h3>
-								<view class="user-id f">id:{{ userInfo.userId }}</view>
-								<view class="descrpition f">{{ userInfo.description }} </view>
-							</view>
-						</view>
-						<view class="user-right">
-							<tui-button type="danger" shape="circle" @click="editUserInfo" height="60rpx" width="140rpx"
-								:size="28">编辑</tui-button>
-						</view>
-					</view>
-					<view class="info">
-						<p @click="getAllFriend(1)">关注 {{ userInfo.followCount }}</p>
-						<p @click="getAllFriend(0)">粉丝 {{ userInfo.fanCount }}</p>
-						<p>动态 {{ userInfo.trendCount }}</p>
-					</view>
-					<view class="">
-						<tui-tabs :tabs="tabs" :currentTab="currentTab" @change="change" sliderBgColor="red"
-							selectedColor="red" itemWidth="50%"></tui-tabs>
-					</view>
-				</view>
-
-				<view class="zhuti">
-					<view v-if="userInfo">
-						<Trend v-if="currentTab == 0" :uid='uid' @cancelUp='cancelUp'> </Trend>
-						<Album v-if="currentTab == 1" :seed='seed' :uid='uid'></Album>
-						<Collection v-if="currentTab == 2" :uid='uid'></Collection>
-					</view>
-					<view class="nologin" v-else>
-						<button @click="login">请先登录</button>
-					</view>
-				</view>
-			</view>
-
-			<tui-modal :show="show" @click="confirm" @cancel="hide" content="取消上传" :button="radio" width="50%"
-				padding="15rpx 40rpx" :fadeIn='true'></tui-modal>
 		</tui-navigation-bar>
+
+
+		<!-- 头 -->
+
+		<!-- 显示图片 -->
+		<view class="image">
+			<image :src="userInfo.cover" v-if="userInfo" mode="aspectFill" @click="previewImgae(userInfo.cover)" />
+			<image src="/static/images/toast/img_nodata.png" v-else mode="aspectFill" />
+		</view>
+
+		<!-- 主体 -->
+		<view class="main">
+			<view class="top">
+				<view class="user">
+					<view class="user-left">
+						<image :src="userInfo.avatar" class="avatar" mode="aspectFill"
+							@click="previewImgae(userInfo.avatar)" />
+						<view class="user-content">
+							<h3>{{ userInfo.username }}</h3>
+							<view class="user-id f">id:{{ userInfo.userId }}</view>
+							<view class="descrpition f">{{ userInfo.description }} </view>
+						</view>
+					</view>
+					<view class="user-right">
+						<tui-button type="danger" shape="circle" @click="editUserInfo" height="60rpx" width="140rpx"
+							:size="28">编辑</tui-button>
+					</view>
+				</view>
+				<view class="info">
+					<p @click="getAllFriend(1)">关注 {{ userInfo.followCount }}</p>
+					<p @click="getAllFriend(0)">粉丝 {{ userInfo.fanCount }}</p>
+					<p>动态 {{ userInfo.trendCount }}</p>
+				</view>
+				<view class="">
+					<tui-tabs :tabs="tabs" :currentTab="currentTab" @change="change" sliderBgColor="red"
+						selectedColor="red" itemWidth="50%"></tui-tabs>
+				</view>
+			</view>
+
+			<view class="zhuti">
+				<view v-if="userInfo">
+					<Trend v-if="currentTab == 0" :uid='uid' @cancelUp='cancelUp' :seed='seed'> </Trend>
+					<Album v-if="currentTab == 1" :seed='seed' :uid='uid'></Album>
+					<Collection v-if="currentTab == 2" :uid='uid' :seed='seed'></Collection>
+				</view>
+				<view class="nologin" v-else>
+					<button @click="login">请先登录</button>
+				</view>
+			</view>
+		</view>
+
+		<tui-modal :show="show" @click="confirm" @cancel="hide" content="取消上传" :button="radio" width="50%"
+			padding="15rpx 40rpx" :fadeIn='true'></tui-modal>
+
 	</view>
 </template>
 
@@ -114,18 +125,45 @@
 
 				mid: '',
 
+				//页面初始化高度
+				screenHeight: 0,
+
+				top_show: false,
+
+				vHeight: 0,
 			}
 		},
 		onLoad(options) {
 			if (typeof options.currentTab != 'undefined' || options.currentTab != null) {
 				this.currentTab = options.currentTab
 			}
+			this.screenHeight = uni.getSystemInfoSync().screenHeight;
 		},
 
+		onReachBottom() {
+			this.seed = Math.random()
+		},
 		onShow() {
 			this.getUser()
 			this.uid = uni.getStorageSync("userInfo").id
 			this.seed = Math.random()
+
+		},
+		onPageScroll(e) {
+
+			const that = this
+			if (e.scrollTop >= 20) {
+				this.top_show = true
+				uni.createSelectorQuery().select('.content').boundingClientRect(function(data) {
+					that.vHeight = 220
+				}).exec()
+			} else {
+				this.top_show = false
+				uni.createSelectorQuery().select('.content').boundingClientRect(function(data) {
+					that.vHeight = 0
+				}).exec()
+			}
+
 		},
 		methods: {
 			change(e) {
@@ -136,6 +174,7 @@
 					url: "/pages/setting/setting"
 				})
 			},
+
 
 			cancelUp(mid) {
 				this.show = true
@@ -172,7 +211,7 @@
 				})
 			},
 			getUser() {
-                
+
 				let params = {
 					uid: uni.getStorageSync("userInfo").id
 				}

@@ -62,7 +62,15 @@ public class AuthUserServiceImpl extends ServiceImpl<AuthUserDao, User> implemen
     }
 
     private boolean checkCode(AuthUserDTO authUserDTO, Map<String, Object> map) {
-        String code = redisUtils.get(AuthConstant.CODE);
+
+        String code = "";
+
+        if(StringUtils.isNotBlank(redisUtils.get(AuthConstant.CODE+authUserDTO.getPhone()))){
+            code = redisUtils.get(AuthConstant.CODE+authUserDTO.getPhone());
+        }else if(StringUtils.isNotBlank(redisUtils.get(AuthConstant.CODE+authUserDTO.getEmail()))){
+            code = redisUtils.get(AuthConstant.CODE+authUserDTO.getEmail());
+        }
+
 
         if (StringUtils.isEmpty(code)) {
             map.put(AuthConstant.RES, AuthConstant.ERROR_STATUE.toString());
@@ -94,7 +102,7 @@ public class AuthUserServiceImpl extends ServiceImpl<AuthUserDao, User> implemen
             String token = JwtUtils.getJwtToken(String.valueOf(currentUser.getId()), currentUser.getPassword());
             //将用户信息保存在redis中
             redisUtils.set(AuthConstant.USER_KEY + currentUser.getId(), JSON.toJSONString(currentUser));
-            redisUtils.setEx(Constant.FRONT_TOKEN_HEADER+currentUser.getId(),token,1, TimeUnit.DAYS);
+            redisUtils.setEx(Constant.FRONT_TOKEN_HEADER+currentUser.getId(),token,2, TimeUnit.DAYS);
             map.put(AuthConstant.RES, AuthConstant.SUCCESS_STATUE.toString());
             map.put(Constant.FRONT_TOKEN_HEADER, token);
             map.put(AuthConstant.USER_INFO, currentUser);
@@ -141,7 +149,7 @@ public class AuthUserServiceImpl extends ServiceImpl<AuthUserDao, User> implemen
             String token = JwtUtils.getJwtToken(String.valueOf(user.getId()), user.getPassword());
             //将用户信息保存在redis中
             redisUtils.set(AuthConstant.USER_KEY + user.getId(), JSON.toJSONString(user));
-            redisUtils.setEx(Constant.FRONT_TOKEN_HEADER+user.getId(),token,1, TimeUnit.DAYS);
+            redisUtils.setEx(Constant.FRONT_TOKEN_HEADER+user.getId(),token,2, TimeUnit.DAYS);
             map.put(Constant.FRONT_TOKEN_HEADER, token);
             map.put(AuthConstant.USER_INFO, user);
 
@@ -162,7 +170,9 @@ public class AuthUserServiceImpl extends ServiceImpl<AuthUserDao, User> implemen
     @Override
     public void loginOut(AuthUserDTO authUserDTO) {
         String key = AuthConstant.USER_KEY + authUserDTO.getId();
+        String tokenKey = Constant.FRONT_TOKEN_HEADER+authUserDTO.getId();
         redisUtils.delete(key);
+        redisUtils.delete(tokenKey);
     }
 
     @Override
@@ -176,7 +186,7 @@ public class AuthUserServiceImpl extends ServiceImpl<AuthUserDao, User> implemen
             return map;
         }
 
-        if (authUserDTO.getType() == 0 && !String.valueOf(currentUser.getUserId()).equals(authUserDTO.getUserId())) {
+        if (authUserDTO.getType() == 0 && !currentUser.getId().equals(authUserDTO.getId())) {
             map.put(AuthConstant.RES, AuthConstant.ERROR_STATUE.toString());
             map.put(AuthConstant.MESSAGE, AuthConstant.ReturnMessage.USERINFO_ERROR.getValue());
             return map;
@@ -200,7 +210,7 @@ public class AuthUserServiceImpl extends ServiceImpl<AuthUserDao, User> implemen
         if (authUserDTO.getId() == null) {
             user = this.getOne(new QueryWrapper<User>().eq("phone", authUserDTO.getPhone()).or().eq("email", authUserDTO.getEmail()));
         } else {
-            user = ConvertUtils.sourceToTarget(authUserDTO, User.class);
+            user = this.getById(authUserDTO.getId());
         }
         user.setPassword(pwd);
         return this.updateById(user);
@@ -234,7 +244,7 @@ public class AuthUserServiceImpl extends ServiceImpl<AuthUserDao, User> implemen
         String token = JwtUtils.getJwtToken(String.valueOf(user.getId()), user.getPassword());
         //将用户信息保存在redis中
         redisUtils.set(AuthConstant.USER_KEY + user.getId(), JSON.toJSONString(user));
-        redisUtils.setEx(Constant.FRONT_TOKEN_HEADER+user.getId(),token,1, TimeUnit.DAYS);
+        redisUtils.setEx(Constant.FRONT_TOKEN_HEADER+user.getId(),token,2, TimeUnit.DAYS);
         map.put(Constant.FRONT_TOKEN_HEADER, token);
         map.put(AuthConstant.USER_INFO, user);
         return map;

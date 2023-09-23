@@ -27,6 +27,12 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.yanhuo</groupId>
+            <artifactId>yanhuo_xo</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!--aliyun-->
         <dependency>
             <groupId>com.aliyun</groupId>
