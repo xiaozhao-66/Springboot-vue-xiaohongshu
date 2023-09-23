@@ -33,8 +33,6 @@ h
 8yanhuo_xo/src/main/java/com/yanhuo/xo/model/Comment.java,3\e\3e3f595c01d8c8df4e291be9ec1ebe5d52e8eb7c
 
 Qyanhuo_common/src/main/java/com/yanhuo/common/constant/search/SearchConstant.java,e\c\ec1b603afe40c27d957fbd931f0d2858842974fe
-y
-Iyanhuo_platform/src/main/java/com/yanhuo/platform/task/ImgDetailTask.java,7\b\7b595e969c5e705d71a2ac791d95d1fd7b08c675
 ~
 Nyanhuo_platform/src/main/java/com/yanhuo/platform/service/CategoryService.java,e\8\e8d0d39b201652f167c956acca14dc4e79ad228b
 ƒ
@@ -97,18 +95,10 @@ p
 @yanhuo_common/src/main/java/com/yanhuo/common/result/Result.java,f\6\f675144433c9321a68913eb9efa2b08e3ed2cd28
 v
 Fyanhuo_common/src/main/java/com/yanhuo/common/utils/SendMessageMq.java,0\b\0b5eeffd7eec295837b91915739735e3fc31f461
-v
-Fyanhuo_platform/src/main/java/com/yanhuo/platform/client/EsClient.java,8\9\89017eccacee6528c3a4c4fcef2965e074159f46
-
-Qyanhuo_platform/src/main/java/com/yanhuo/platform/controller/AlbumController.java,5\b\5b4dc6d1cef57ed6ca15642d3cb430c2caa1e066
-ˆ
-Xyanhuo_platform/src/main/java/com/yanhuo/platform/controller/AgreeCollectController.java,d\2\d28cda57db91e1b2ff964b8d0a42a9e8f695a697
 ‚
 Ryanhuo_platform/src/main/java/com/yanhuo/platform/service/AgreeCollectService.java,0\5\050e94363f2343d90016aeb5c200e3970738efaf
 y
 Iyanhuo_common/src/main/java/com/yanhuo/common/auth/AuthContextHolder.java,2\e\2ea55203fc5455a73daae08878979e46d1af8c08
-‹
-[yanhuo_platform/src/main/java/com/yanhuo/platform/service/impl/AgreeCollectServiceImpl.java,4\4\445179ddcf4ed60b169f2bcfce38ab7cc1db6b6d
 n
 >yanhuo_auth/src/main/java/com/yanhuo/auth/AuthApplication.java,4\a\4a680e2f44c8bb7d3e234f6ad5fe3a227478fd4a
 w

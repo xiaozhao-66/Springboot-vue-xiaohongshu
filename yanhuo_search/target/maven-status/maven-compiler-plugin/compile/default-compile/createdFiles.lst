@@ -1,8 +1,0 @@
-com\yanhuo\search\config\EsClientBuilders.class
-com\yanhuo\search\controller\SearchRecordEsController.class
-com\yanhuo\search\utils\EsClientUtil.class
-com\yanhuo\search\controller\ImgDetailEsController.class
-com\yanhuo\search\service\impl\EsServiceImpl.class
-com\yanhuo\search\service\EsService.class
-com\yanhuo\search\SearchApplication.class
-com\yanhuo\search\vo\SearchRecordVo.class
